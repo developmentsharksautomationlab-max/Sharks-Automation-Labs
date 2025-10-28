@@ -50,11 +50,11 @@ const WalmartMainContent: React.FC = () => {
                 <p className="text-xl text-gray-600 leading-relaxed max-w-3xl">
                   While traditional retail struggles with inventory management, Walmart's marketplace thrives on systematic operations. 
                   We identify and capitalize on this fundamental advantage, deploying capital with surgical precision into high-margin verticals 
-                  within the world's largest retail platform.
+                  within the world&apos;s largest retail platform.
                 </p>
                 
                 <p className="text-xl text-gray-600 leading-relaxed max-w-3xl">
-                  Our firm provides a seamless, institutional-grade gateway into Walmart's $600+ billion ecosystem. 
+                  Our firm provides a seamless, institutional-grade gateway into Walmart&apos;s $600+ billion ecosystem. 
                   We handle all operations—from listing optimization to fulfillment—transforming your capital into an 
                   actively managed, cash-flow generative enterprise that scales systematically and compounds returns.
                 </p>

@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 // --- Animated Success Metric Component ---
+/*
 const SuccessMetric: React.FC<{
   value: string;
   label: string;
@@ -57,12 +58,12 @@ const SuccessMetric: React.FC<{
         </motion.div>
         <p className="text-gray-300 text-lg font-medium">{label}</p>
         
-        {/* Animated border */}
         <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-teal-400/20 via-transparent to-teal-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       </div>
     </motion.div>
   );
 };
+*/
 
 // --- Enhanced Testimonial Card Component ---
 const TestimonialCard: React.FC<{
@@ -106,7 +107,7 @@ const TestimonialCard: React.FC<{
         <div className="relative z-10 space-y-6">
           {/* Content */}
           <p className="text-gray-300 leading-relaxed text-lg italic">
-            "{content}"
+            &ldquo;{content}&rdquo;
           </p>
           
           {/* Metrics */}
@@ -188,7 +189,14 @@ const FloatingElements: React.FC = () => {
 
 // --- Auto-Sliding Carousel Component ---
 const TestimonialCarousel: React.FC<{
-  testimonials: any[];
+  testimonials: Array<{
+    name: string;
+    role: string;
+    company: string;
+    content: string;
+    metrics: Array<{ label: string; value: string }>;
+    date: string;
+  }>;
 }> = ({ testimonials }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -208,7 +216,7 @@ const TestimonialCarousel: React.FC<{
   useEffect(() => {
     if (!isHovered) {
       const progressInterval = setInterval(() => {
-        setProgress((prev) => {
+        setProgress((prev: number) => {
           if (prev >= 100) return 0;
           return prev + 2; // Update every 100ms for smooth progress
         });
@@ -252,7 +260,15 @@ const TestimonialCarousel: React.FC<{
             const isActive = index === currentIndex;
             return (
               <div key={index} className="w-1/3 flex-shrink-0 px-4">
-                <TestimonialCard {...testimonial} isActive={isActive} />
+                <TestimonialCard 
+                  name={testimonial.name}
+                  role={testimonial.role}
+                  company={testimonial.company}
+                  date={testimonial.date}
+                  content={testimonial.content}
+                  metrics={testimonial.metrics}
+                  isActive={isActive}
+                />
               </div>
             );
           })}

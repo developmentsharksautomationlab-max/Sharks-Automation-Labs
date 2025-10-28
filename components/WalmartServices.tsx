@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import PlexusBackgroundWhite from './PlexusBackgroundWhite';
 
 // --- Walmart Services Component ---
 const WalmartServices: React.FC = () => {

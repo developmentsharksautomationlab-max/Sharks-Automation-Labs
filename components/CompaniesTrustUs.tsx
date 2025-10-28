@@ -6,7 +6,7 @@ import { motion, useInView } from 'framer-motion';
 
 // --- Company Data ---
 const companies = [
-  { name: 'Microsoft', logo: '/images/companies/microsoft.png' },
+  { name: 'Microsoft', logo: '/images/companies/Microsoft.png' },
   { name: 'Amazon', logo: '/images/companies/amazon.png' },
   { name: 'Google', logo: '/images/companies/google.png' },
   { name: 'Meta', logo: '/images/companies/meta.png' },

@@ -61,15 +61,15 @@ const ShopifyHero: React.FC = () => {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex items-center justify-start -ml-8 pr-8 py-8"
+          className="flex items-center justify-start -ml-24 pr-24 py-8"
         >
           <div className="relative">
             <Image
-              src="/images/companies/processed/shopify.png"
+              src="/images/companies/shopify.png"
               alt="Shopify Logo"
               width={400}
               height={400}
-              className="w-80 h-80 object-contain opacity-100 filter brightness-0 invert hover:opacity-90 transition-opacity duration-300"
+              className="w-[28rem] h-[28rem] object-contain opacity-100 hover:opacity-90 transition-opacity duration-300"
             />
             {/* Subtle glow effect around logo */}
             <div className="absolute inset-0 bg-teal-400/10 rounded-full blur-2xl scale-110"></div>

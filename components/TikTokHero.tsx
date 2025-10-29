@@ -61,7 +61,7 @@ const TikTokHero: React.FC = () => {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex items-center justify-start -ml-8 pr-8 py-8"
+          className="flex items-center justify-start -ml-24 pr-24 py-8"
         >
           <div className="relative">
             <Image

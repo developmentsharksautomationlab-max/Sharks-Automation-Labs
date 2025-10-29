@@ -120,16 +120,16 @@ const Header: React.FC = () => {
                     {/* Dropdown Menu */}
                     {isAutomationOpen && (
                       <div 
-                        className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50"
+                        className="absolute top-full left-0 w-64 bg-black rounded-lg shadow-xl border border-gray-700 z-50 bg-gradient-to-tl from-teal-400/20 via-black to-black"
                         onMouseEnter={() => setIsAutomationOpen(true)}
                         onMouseLeave={() => setIsAutomationOpen(false)}
                       >
-                        <div className="py-2">
+                        <div className="pt-2 pb-3">
                           {automationSolutions.map((solution) => (
                             <a
                               key={solution.name}
                               href={solution.href}
-                              className="block px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600 transition-colors"
+                              className="block px-6 py-4 text-white hover:bg-teal-400/20 hover:text-teal-400 transition-colors"
                             >
                               <div className="font-semibold">{solution.name}</div>
                             </a>
@@ -152,16 +152,16 @@ const Header: React.FC = () => {
                     {/* Dropdown Menu */}
                     {isAdditionalServicesOpen && (
                       <div 
-                        className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50"
+                        className="absolute top-full left-0 w-64 bg-black rounded-lg shadow-xl border border-gray-700 z-50 bg-gradient-to-tl from-teal-400/20 via-black to-black"
                         onMouseEnter={() => setIsAdditionalServicesOpen(true)}
                         onMouseLeave={() => setIsAdditionalServicesOpen(false)}
                       >
-                        <div className="py-2">
+                        <div className="pt-2 pb-3">
                           {additionalServices.map((service) => (
                             <a
                               key={service.name}
                               href={service.href}
-                              className="block px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600 transition-colors"
+                              className="block px-6 py-4 text-white hover:bg-teal-400/20 hover:text-teal-400 transition-colors"
                             >
                               <div className="font-semibold">{service.name}</div>
                             </a>

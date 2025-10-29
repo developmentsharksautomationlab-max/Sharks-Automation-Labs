@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 import PlexusBackgroundWhite from './PlexusBackgroundWhite';
 
 // --- PPC Management Services Component ---
@@ -215,13 +216,18 @@ const PPCManagementServices: React.FC = () => {
                       <div className="absolute -inset-2 bg-teal-400/0 group-hover:bg-teal-400/10 rounded-2xl blur-xl transition-all duration-500"></div>
                       
                       {/* Platform Icon */}
-                      <div className="w-12 h-12 bg-teal-400 rounded-lg flex items-center justify-center mb-4 shadow-lg shadow-teal-400/50 group-hover:shadow-teal-400/80 transition-all duration-500">
-                        <span className="text-white font-bold text-lg">
-                          {service.title.includes('Amazon') ? 'A' : 
-                           service.title.includes('Shopify') ? 'S' :
-                           service.title.includes('Walmart') ? 'W' :
-                           service.title.includes('eBay') ? 'E' : 'Y'}
-                        </span>
+                      <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mb-4 shadow-lg shadow-teal-400/50 group-hover:shadow-teal-400/80 transition-all duration-500 p-2">
+                        {service.title.includes('Amazon') ? (
+                          <Image src="/images/companies/amazon.png" alt="Amazon" width={32} height={32} className="object-contain" />
+                        ) : service.title.includes('Shopify') ? (
+                          <Image src="/images/companies/shopify1.png" alt="Shopify" width={32} height={32} className="object-contain" />
+                        ) : service.title.includes('Walmart') ? (
+                          <Image src="/images/companies/walmart.png" alt="Walmart" width={32} height={32} className="object-contain" />
+                        ) : service.title.includes('eBay') ? (
+                          <Image src="/images/companies/ebay.png" alt="eBay" width={32} height={32} className="object-contain" />
+                        ) : (
+                          <Image src="/images/companies/youtube.png" alt="YouTube" width={32} height={32} className="object-contain" />
+                        )}
                       </div>
                       
                       <h3 className="text-xl font-bold text-white mb-3 relative z-10 group-hover:text-teal-100 transition-colors duration-500">
@@ -260,13 +266,18 @@ const PPCManagementServices: React.FC = () => {
                     return (
                       <>
                         <div className="flex items-center mb-6">
-                          <div className="w-16 h-16 bg-teal-400 rounded-lg flex items-center justify-center mr-4 shadow-lg shadow-teal-400/50">
-                            <span className="text-white font-bold text-2xl">
-                              {service.title.includes('Amazon') ? 'A' : 
-                               service.title.includes('Shopify') ? 'S' :
-                               service.title.includes('Walmart') ? 'W' :
-                               service.title.includes('eBay') ? 'E' : 'Y'}
-                            </span>
+                          <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mr-4 shadow-lg shadow-teal-400/50 p-3">
+                            {service.title.includes('Amazon') ? (
+                              <Image src="/images/companies/amazon.png" alt="Amazon" width={40} height={40} className="object-contain" />
+                            ) : service.title.includes('Shopify') ? (
+                              <Image src="/images/companies/shopify1.png" alt="Shopify" width={40} height={40} className="object-contain" />
+                            ) : service.title.includes('Walmart') ? (
+                              <Image src="/images/companies/walmart.png" alt="Walmart" width={40} height={40} className="object-contain" />
+                            ) : service.title.includes('eBay') ? (
+                              <Image src="/images/companies/ebay.png" alt="eBay" width={40} height={40} className="object-contain" />
+                            ) : (
+                              <Image src="/images/companies/youtube.png" alt="YouTube" width={40} height={40} className="object-contain" />
+                            )}
                           </div>
                           <div>
                             <h3 className="text-2xl font-bold text-white">{service.title}</h3>

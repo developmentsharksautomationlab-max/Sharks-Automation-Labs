@@ -1,145 +1,241 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import PlexusBackgroundWhite from './PlexusBackgroundWhite';
 
+// --- Product Hunting Proof Component ---
 const ProductHuntingProof: React.FC = () => {
-  const results = [
-    {
-      metric: "Products Discovered",
-      value: "10,000+",
-      description: "Winning products identified"
-    },
-    {
-      metric: "Success Rate",
-      value: "87%",
-      description: "Products that became profitable"
-    },
-    {
-      metric: "Average ROI",
-      value: "450%",
-      description: "Average return on investment"
-    },
-    {
-      metric: "Time to Market",
-      value: "14 days",
-      description: "Average time from discovery to launch"
-    }
-  ];
+  const [counts, setCounts] = useState({
+    years: 0,
+    clients: 0,
+    products: 0,
+    revenue: 0
+  });
 
-  const caseStudies = [
-    {
-      title: "Fitness Accessories Success",
-      description: "Identified trending fitness accessories before they went viral",
-      results: [
-        "Generated $2.5M in sales",
-        "Launched 3 months before competitors",
-        "Achieved 600% ROI in first year"
-      ],
-      image: "/images/product-hunting-proof-1.jpg"
-    },
-    {
-      title: "Pet Products Discovery",
-      description: "Found untapped pet product niche with massive potential",
-      results: [
-        "Built $1.8M business in 8 months",
-        "Captured 40% market share",
-        "Expanded to 15+ product lines"
-      ],
-      image: "/images/product-hunting-proof-2.jpg"
-    },
-    {
-      title: "Home Organization Trend",
-      description: "Early detection of home organization trend",
-      results: [
-        "First to market with 5 products",
-        "Generated $3.2M revenue",
-        "Sold business for $8M after 18 months"
-      ],
-      image: "/images/product-hunting-proof-3.jpg"
+  const statsRef = useRef(null);
+  const isInView = useInView(statsRef, { once: true, margin: "-100px" });
+
+  const targetCounts = {
+    years: 6,
+    clients: 320,
+    products: 15000,
+    revenue: 25
+  };
+
+  useEffect(() => {
+    if (isInView) {
+      const duration = 2000; // 2 seconds
+      const steps = 60;
+      const stepDuration = duration / steps;
+
+      const animateCount = (key: keyof typeof targetCounts) => {
+        const target = targetCounts[key];
+        const increment = target / steps;
+        let current = 0;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          setCounts(prev => ({ ...prev, [key]: Math.floor(current) }));
+        }, stepDuration);
+      };
+
+      // Animate all counts
+      Object.keys(targetCounts).forEach(key => {
+        animateCount(key as keyof typeof targetCounts);
+      });
     }
-  ];
+  }, [isInView]);
 
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Proven <span className="text-blue-400">Results</span> That Speak for Themselves
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Our product hunting strategies have helped hundreds of entrepreneurs discover 
-            winning products and build million-dollar businesses.
-          </p>
-        </div>
+    <section className="relative bg-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <PlexusBackgroundWhite />
+      
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-teal-50/50 via-white to-teal-50/30 z-0"></div>
+      
+      {/* Floating Side Button */}
+      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+        Let&apos;s Talk Business
+      </button>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-          {results.map((result, index) => (
-            <div key={index} className="text-center">
-              <div className="text-4xl lg:text-5xl font-bold text-blue-400 mb-2">
-                {result.value}
-              </div>
-              <div className="text-lg font-semibold mb-2">{result.metric}</div>
-              <div className="text-sm text-gray-400">{result.description}</div>
-            </div>
-          ))}
-        </div>
+      <div className="container mx-auto relative z-10">
+        <div className="max-w-6xl mx-auto">
+          {/* Section Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Building Winning Product Portfolios, One Discovery at a Time.
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              We help e-commerce businesses find profitable products with data-driven research!
+            </p>
+          </motion.div>
 
-        {/* Case Studies */}
-        <div className="space-y-12">
-          {caseStudies.map((study, index) => (
-            <div key={index} className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-              <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-                <h3 className="text-2xl lg:text-3xl font-bold mb-4">{study.title}</h3>
-                <p className="text-gray-300 mb-6">{study.description}</p>
-                <ul className="space-y-3">
-                  {study.results.map((result, resultIndex) => (
-                    <li key={resultIndex} className="flex items-center">
-                      <svg className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      <span className="text-gray-300">{result}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
-                <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl p-8 border border-gray-800">
-                  <div className="aspect-video bg-gray-800 rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                        </svg>
-                      </div>
-                      <p className="text-gray-400">Product Success Story</p>
+          {/* Statistics Grid */}
+          <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {/* Years of Experience */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-center group"
+            >
+              <div className="bg-gradient-to-br from-white to-teal-50/30 rounded-3xl shadow-2xl p-8 border border-teal-100/50 hover:shadow-3xl hover:shadow-teal-400/20 transition-all duration-500 hover:-translate-y-3 relative overflow-hidden h-full flex flex-col justify-center">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Teal Glow Effect */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-400/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center justify-center mb-3">
+                    <div className="text-6xl md:text-7xl font-bold text-teal-400 group-hover:text-teal-500 transition-colors duration-300">
+                      {counts.years}
                     </div>
+                    <div className="text-4xl font-bold text-teal-400 ml-2 group-hover:text-teal-500 transition-colors duration-300">+</div>
+                  </div>
+                  <div className="text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors duration-300">
+                    Years of Experience
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            </motion.div>
 
-        {/* Testimonial */}
-        <div className="mt-20 text-center">
-          <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl p-8 border border-gray-800 max-w-4xl mx-auto">
-            <div className="text-6xl text-blue-400 mb-4">"</div>
-            <blockquote className="text-xl text-gray-300 mb-6 italic">
-              "Shark Retail's product hunting service is absolutely incredible. They found a product 
-              that became our best-seller, generating over $5M in revenue. Their research is thorough 
-              and their recommendations are spot-on. Worth every penny!"
-            </blockquote>
-            <div className="flex items-center justify-center space-x-4">
-              <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">MR</span>
+            {/* Active Clients */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-center group"
+            >
+              <div className="bg-gradient-to-br from-white to-teal-50/30 rounded-3xl shadow-2xl p-8 border border-teal-100/50 hover:shadow-3xl hover:shadow-teal-400/20 transition-all duration-500 hover:-translate-y-3 relative overflow-hidden h-full flex flex-col justify-center">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Teal Glow Effect */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-400/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center justify-center mb-3">
+                    <div className="text-6xl md:text-7xl font-bold text-teal-400 group-hover:text-teal-500 transition-colors duration-300">
+                      {counts.clients.toLocaleString()}
+                    </div>
+                    <div className="text-4xl font-bold text-teal-400 ml-2 group-hover:text-teal-500 transition-colors duration-300">+</div>
+                  </div>
+                  <div className="text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors duration-300">
+                    Active Clients
+                  </div>
+                </div>
               </div>
-              <div className="text-left">
-                <div className="font-semibold">Maria Rodriguez</div>
-                <div className="text-gray-400 text-sm">Founder, SuccessStore</div>
+            </motion.div>
+
+            {/* Products Researched */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-center group"
+            >
+              <div className="bg-gradient-to-br from-white to-teal-50/30 rounded-3xl shadow-2xl p-8 border border-teal-100/50 hover:shadow-3xl hover:shadow-teal-400/20 transition-all duration-500 hover:-translate-y-3 relative overflow-hidden h-full flex flex-col justify-center">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Teal Glow Effect */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-400/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center justify-center mb-3">
+                    <div className="text-6xl md:text-7xl font-bold text-teal-400 group-hover:text-teal-500 transition-colors duration-300">
+                      {counts.products.toLocaleString()}
+                    </div>
+                    <div className="text-4xl font-bold text-teal-400 ml-2 group-hover:text-teal-500 transition-colors duration-300">+</div>
+                  </div>
+                  <div className="text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors duration-300">
+                    Products Researched
+                  </div>
+                </div>
               </div>
-            </div>
+            </motion.div>
+
+            {/* Revenue Generated */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-center group"
+            >
+              <div className="bg-gradient-to-br from-white to-teal-50/30 rounded-3xl shadow-2xl p-8 border border-teal-100/50 hover:shadow-3xl hover:shadow-teal-400/20 transition-all duration-500 hover:-translate-y-3 relative overflow-hidden h-full flex flex-col justify-center">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Teal Glow Effect */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-400/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center justify-center mb-3">
+                    <div className="text-6xl md:text-7xl font-bold text-teal-400 group-hover:text-teal-500 transition-colors duration-300">
+                      ${counts.revenue}
+                    </div>
+                    <div className="text-4xl font-bold text-teal-400 ml-2 group-hover:text-teal-500 transition-colors duration-300">M+</div>
+                  </div>
+                  <div className="text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors duration-300">
+                    Revenue Generated
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
+
+          {/* CTA Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative"
+          >
+            {/* Video Background */}
+            <video
+              className="absolute inset-0 w-full h-full object-cover rounded-3xl z-0"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              controls={false}
+            >
+              <source src="/videos/bg-pattern.mp4" type="video/mp4" />
+            </video>
+            
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-black/70 rounded-3xl z-5"></div>
+            
+            {/* Teal Overlay */}
+            <div className="absolute inset-0 bg-teal-400/10 rounded-3xl z-10"></div>
+            
+            <div className="relative bg-black/50 backdrop-blur-sm rounded-3xl p-12 text-center z-20">
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Ready to See These Results for Your Product Research?
+              </h3>
+              <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                Join our systematic approach to product hunting and start generating consistent, measurable returns from your e-commerce investments.
+              </p>
+              <a
+                href="/contact"
+                className="bg-teal-400 px-8 py-4 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full cursor-pointer"
+              >
+                Schedule Your Discovery Call
+              </a>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

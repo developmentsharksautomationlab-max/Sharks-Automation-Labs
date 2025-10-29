@@ -1,121 +1,395 @@
 "use client";
 
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
 
+// --- Animated Success Metric Component ---
+const SuccessMetric: React.FC<{
+  value: string;
+  label: string;
+  delay?: number;
+  icon?: React.ReactNode;
+}> = ({ value, label, delay = 0, icon }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, delay }}
+      viewport={{ once: true }}
+      className="relative group"
+    >
+      <div className="bg-gradient-to-br from-teal-500/20 to-teal-600/30 backdrop-blur-sm border border-teal-400/30 rounded-2xl p-8 text-center hover:border-teal-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-teal-400/25">
+        {icon && (
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 bg-teal-400/20 rounded-full flex items-center justify-center group-hover:bg-teal-400/30 transition-colors duration-300">
+              {icon}
+            </div>
+          </div>
+        )}
+        <motion.div
+          className="text-4xl md:text-5xl font-bold text-teal-400 mb-3"
+          initial={{ scale: 0 }}
+          animate={isVisible ? { scale: 1 } : { scale: 0 }}
+          transition={{ duration: 0.6, delay: delay + 0.3 }}
+        >
+          {value}
+        </motion.div>
+        <p className="text-gray-300 text-lg font-medium">{label}</p>
+        
+        {/* Animated border */}
+        <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-teal-400/20 via-transparent to-teal-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      </div>
+    </motion.div>
+  );
+};
+
+// --- Enhanced Testimonial Card Component ---
+const TestimonialCard: React.FC<{
+  name: string;
+  role: string;
+  company: string;
+  date: string;
+  content: string;
+  metrics: { label: string; value: string }[];
+  delay?: number;
+  isActive?: boolean;
+}> = ({ name, role, company, date, content, metrics, delay = 0, isActive = true }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay }}
+      viewport={{ once: true }}
+      className={`group relative transition-all duration-500 ${
+        isActive ? 'opacity-100 blur-0 scale-100' : 'opacity-60 blur-sm scale-95'
+      }`}
+    >
+      <div className={`bg-white/5 backdrop-blur-md border rounded-2xl p-8 hover:border-white/20 hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl hover:shadow-teal-400/25 relative overflow-hidden ${
+        isActive ? 'border-teal-400/50 shadow-lg shadow-teal-400/20' : 'border-white/10'
+      }`}>
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        
+        {/* Quote decoration */}
+        <div className="absolute top-6 right-6 opacity-10">
+          <svg className="w-16 h-16 text-teal-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+          </svg>
+        </div>
+
+        {/* Active indicator */}
+        {isActive && (
+          <div className="absolute top-4 left-4 w-3 h-3 bg-teal-400 rounded-full shadow-lg shadow-teal-400/50 animate-pulse"></div>
+        )}
+
+        <div className="relative z-10 space-y-6">
+          {/* Content */}
+          <p className="text-gray-300 leading-relaxed text-lg italic">
+            "{content}"
+          </p>
+          
+          {/* Metrics */}
+          <div className="grid grid-cols-2 gap-4 py-4 border-t border-white/10">
+            {metrics.map((metric, index) => (
+              <div key={index} className="text-center">
+                <div className="text-2xl font-bold text-teal-400">{metric.value}</div>
+                <div className="text-gray-400 text-sm">{metric.label}</div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Author Info */}
+          <div className="flex items-center gap-4 pt-4 border-t border-white/10">
+            <div className="w-14 h-14 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center shadow-lg">
+              <span className="text-white font-bold text-lg">
+                {name.split(' ').map(n => n[0]).join('')}
+              </span>
+            </div>
+            <div className="flex-1">
+              <h4 className="font-bold text-white text-lg">{name}</h4>
+              <p className="text-teal-400 font-semibold">{role}</p>
+              <p className="text-gray-400 text-sm">{company}</p>
+              <p className="text-gray-500 text-xs mt-1">{date}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// --- Floating Elements Component ---
+const FloatingElements: React.FC = () => {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* Floating geometric shapes */}
+      <motion.div
+        animate={{ 
+          y: [0, -20, 0],
+          rotate: [0, 180, 360]
+        }}
+        transition={{ 
+          duration: 8, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+        className="absolute top-20 left-10 w-4 h-4 border border-teal-400/30 rotate-45"
+      />
+      <motion.div
+        animate={{ 
+          y: [0, 15, 0],
+          x: [0, 10, 0]
+        }}
+        transition={{ 
+          duration: 6, 
+          repeat: Infinity, 
+          ease: "easeInOut",
+          delay: 1
+        }}
+        className="absolute top-40 right-20 w-3 h-3 bg-teal-400/20 rounded-full"
+      />
+      <motion.div
+        animate={{ 
+          y: [0, -25, 0],
+          rotate: [0, -180, -360]
+        }}
+        transition={{ 
+          duration: 10, 
+          repeat: Infinity, 
+          ease: "easeInOut",
+          delay: 2
+        }}
+        className="absolute bottom-32 left-1/4 w-5 h-5 border border-teal-400/20 rounded-full"
+      />
+    </div>
+  );
+};
+
+// --- Auto-Sliding Carousel Component ---
+const TestimonialCarousel: React.FC<{
+  testimonials: any[];
+}> = ({ testimonials }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    if (!isHovered) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+        setProgress(0); // Reset progress
+      }, 3000); // Auto-slide every 3 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [isHovered, testimonials.length]);
+
+  useEffect(() => {
+    if (!isHovered) {
+      const progressInterval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) return 0;
+          return prev + 2; // Update every 100ms for smooth progress
+        });
+      }, 100);
+
+      return () => clearInterval(progressInterval);
+    }
+  }, [isHovered]);
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+    setProgress(0); // Reset progress when manually navigating
+  };
+
+  return (
+    <div 
+      className="relative overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Custom CSS for pulse animation */}
+      <style jsx>{`
+        @keyframes pulse {
+          0% {
+            box-shadow: 0 0 20px rgba(20, 184, 166, 0.6), 0 0 40px rgba(20, 184, 166, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 25px rgba(20, 184, 166, 0.8), 0 0 50px rgba(20, 184, 166, 0.4);
+          }
+          100% {
+            box-shadow: 0 0 20px rgba(20, 184, 166, 0.6), 0 0 40px rgba(20, 184, 166, 0.3);
+          }
+        }
+      `}</style>
+
+      {/* Carousel Container - Show 3 cards with center active */}
+      <div className="relative overflow-hidden py-8">
+        <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(calc(-${currentIndex * 33.333}% + 50% - 16.666%))` }}>
+          {testimonials.map((testimonial, index) => {
+            // Determine if this card is in the center (active) position
+            const isActive = index === currentIndex;
+            return (
+              <div key={index} className="w-1/3 flex-shrink-0 px-4">
+                <TestimonialCard {...testimonial} isActive={isActive} />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Navigation Dots */}
+      <div className="flex justify-center mt-8 mb-8 space-x-3">
+        {testimonials.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`relative w-4 h-4 rounded-full transition-all duration-300 ${
+              index === currentIndex 
+                ? 'bg-gradient-to-br from-teal-400 to-teal-600 scale-130 border-2 border-teal-400/80 shadow-lg shadow-teal-400/60' 
+                : 'bg-transparent border-2 border-white/20 hover:border-white/40 hover:scale-110 hover:shadow-lg hover:shadow-white/30'
+            }`}
+            style={{
+              backdropFilter: 'blur(10px)',
+              ...(index === currentIndex && {
+                animation: 'pulse 2s infinite'
+              })
+            }}
+          >
+            <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex 
+                ? 'bg-white/90 scale-120' 
+                : 'bg-white/60'
+            }`} />
+          </button>
+        ))}
+      </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={() => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 group"
+      >
+        <svg className="w-6 h-6 text-white group-hover:text-teal-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      
+      <button
+        onClick={() => setCurrentIndex((prev) => (prev + 1) % testimonials.length)}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 group"
+      >
+        <svg className="w-6 h-6 text-white group-hover:text-teal-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  );
+};
+
+// --- Product Hunting Testimonials Component ---
 const ProductHuntingTestimonials: React.FC = () => {
   const testimonials = [
     {
       name: "Alex Thompson",
-      role: "E-commerce Entrepreneur",
-      company: "Trendy Products Co",
-      content: "The product hunting service is game-changing. They found a product that became our #1 seller, generating $2M in the first 6 months. Their research is incredibly thorough.",
-      rating: 5,
-      results: "$2M in 6 months"
+      role: "E-commerce Director",
+      company: "Digital Ventures Group",
+      date: "Jan 18, 2025",
+      content: "Shark Retail's product research methodology transformed our entire e-commerce strategy. Their data-driven approach identified winning products that increased our revenue by 400% in just 6 months. The systematic market analysis and trend identification frameworks are truly exceptional.",
+      metrics: [
+        { label: "Revenue Growth", value: "400%" },
+        { label: "Time to Results", value: "6 Months" }
+      ]
     },
     {
-      name: "Sarah Kim",
-      role: "Dropshipping Expert",
-      company: "Global Dropship",
-      content: "I've tried other product research services, but none compare to Shark Retail. They consistently find winning products before they hit mainstream. My revenue increased 300%.",
-      rating: 5,
-      results: "300% revenue increase"
-    },
-    {
-      name: "Mike Johnson",
-      role: "Amazon Seller",
-      company: "Amazon Empire",
-      content: "Their weekly reports are gold. I've launched 15 products based on their recommendations, and 12 of them became profitable. The ROI is incredible.",
-      rating: 5,
-      results: "80% success rate"
-    },
-    {
-      name: "Lisa Chen",
-      role: "Shopify Store Owner",
-      company: "Fashion Forward",
-      content: "The viral product alerts are amazing. I was able to capitalize on a trending product before my competitors even knew it existed. Made $500K in 3 months.",
-      rating: 5,
-      results: "$500K in 3 months"
-    },
-    {
-      name: "David Wilson",
-      role: "E-commerce Consultant",
-      company: "Digital Ventures",
-      content: "Their market analysis is incredibly detailed. They don't just find products, they provide complete market intelligence. This service pays for itself.",
-      rating: 5,
-      results: "Complete market intelligence"
-    },
-    {
-      name: "Emma Davis",
+      name: "Maria Rodriguez",
       role: "Product Manager",
-      company: "Innovation Labs",
-      content: "The custom research package was exactly what we needed. They identified a gap in the market that we filled, resulting in a $3M product line.",
-      rating: 5,
-      results: "$3M product line"
+      company: "Global Retail Solutions",
+      date: "Dec 15, 2024",
+      content: "The product hunting insights provided by Shark Retail revolutionized our entire product portfolio. Their comprehensive analysis of market trends and competitor strategies helped us launch 25+ successful products. The ROI on their research services exceeded 500% within eight months.",
+      metrics: [
+        { label: "Products Launched", value: "25+" },
+        { label: "ROI Growth", value: "500%" }
+      ]
+    },
+    {
+      name: "James Chen",
+      role: "E-commerce Operations Lead",
+      company: "Marketplace Masters",
+      date: "Nov 28, 2024",
+      content: "Working with Shark Retail's product research team was a game-changer for our marketplace operations. Their supplier sourcing and market validation strategies increased our profit margins by 180% and reduced our product failure rate by 70%. The systematic approach delivers measurable results.",
+      metrics: [
+        { label: "Profit Margins", value: "180%" },
+        { label: "Failure Rate Reduction", value: "70%" }
+      ]
     }
   ];
 
   return (
-    <section className="py-20 px-4 bg-gray-900">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            What Our <span className="text-blue-400">Clients</span> Say
+    <section className="relative bg-black py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Enhanced Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-teal-900/20 via-black to-teal-900/10"></div>
+      
+      {/* Animated gradient orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+      
+      {/* Floating Side Button */}
+      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+        Let&apos;s Talk Business
+      </button>
+
+      {/* Floating Elements */}
+      <FloatingElements />
+
+      <div className="container mx-auto relative z-10">
+        {/* Enhanced Section Title */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            Success Stories from{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400">
+              Industry Leaders
+            </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what entrepreneurs and business owners say 
-            about our product hunting services.
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            Our partners have achieved extraordinary e-commerce growth through systematic product research. 
+            These data-driven results demonstrate the power of our proprietary research frameworks and strategic product optimization.
           </p>
-        </div>
+          <div className="flex justify-center mt-8">
+            <div className="w-32 h-1 bg-gradient-to-r from-transparent via-teal-400 to-transparent"></div>
+          </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-black/50 rounded-xl p-6 border border-gray-800 hover:border-blue-500/50 transition-all duration-300">
-              <div className="flex items-center mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              
-              <blockquote className="text-gray-300 mb-6 italic">
-                "{testimonial.content}"
-              </blockquote>
-              
-              <div className="border-t border-gray-700 pt-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-white">{testimonial.name}</div>
-                    <div className="text-sm text-gray-400">{testimonial.role}</div>
-                    <div className="text-sm text-blue-400">{testimonial.company}</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm font-semibold text-green-400">{testimonial.results}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Overall Stats */}
-        <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold text-blue-400 mb-2">500+</div>
-            <div className="text-gray-300">Successful Products</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold text-blue-400 mb-2">87%</div>
-            <div className="text-gray-300">Success Rate</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold text-blue-400 mb-2">450%</div>
-            <div className="text-gray-300">Average ROI</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold text-blue-400 mb-2">24/7</div>
-            <div className="text-gray-300">Monitoring</div>
-          </div>
+        {/* Testimonials Carousel */}
+        <div className="max-w-7xl mx-auto mb-20">
+          <TestimonialCarousel testimonials={testimonials} />
         </div>
       </div>
     </section>

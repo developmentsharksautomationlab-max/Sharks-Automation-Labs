@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import PlexusBackgroundWhite from '@/components/PlexusBackgroundWhite';
+import { Palette } from 'lucide-react';
 
 // --- Content Creation MainContent Component ---
 const ContentCreationMainContent: React.FC = () => {
@@ -15,9 +16,7 @@ const ContentCreationMainContent: React.FC = () => {
       title: "Creative Strategy Excellence",
       description: "Data-driven content strategy with precision-driven creative direction that scales your brand presence across all digital channels.",
       icon: (
-        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
-        </svg>
+        <Palette className="w-8 h-8 text-teal-400" />
       ),
       metrics: ["300% Engagement", "24/7 Production", "Multi-Platform"]
     },
@@ -117,7 +116,7 @@ const ContentCreationMainContent: React.FC = () => {
                   {/* Content */}
                   <div className="relative z-10">
                     {/* Icon */}
-                    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="text-4xl mb-4">
                       {service.icon}
                     </div>
                     

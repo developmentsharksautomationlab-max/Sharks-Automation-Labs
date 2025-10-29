@@ -116,7 +116,7 @@ const VirtualAssistantMainContent: React.FC = () => {
                   {/* Content */}
                   <div className="relative z-10">
                     {/* Icon */}
-                    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="text-4xl mb-4">
                       {service.icon}
                     </div>
                     

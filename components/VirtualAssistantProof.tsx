@@ -17,10 +17,10 @@ const VirtualAssistantProof: React.FC = () => {
   const isInView = useInView(statsRef, { once: true, margin: "-100px" });
 
   const targetCounts = {
-    clients: 1250,
-    tasks: 50000,
+    clients: 450,
+    tasks: 20000,
     efficiency: 75,
-    satisfaction: 98
+    satisfaction: 96
   };
 
   useEffect(() => {

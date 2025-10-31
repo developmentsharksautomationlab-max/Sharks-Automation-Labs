@@ -98,14 +98,14 @@ const VirtualAssistantServices: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-black text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-black text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <PlexusBackgroundWhite />
       
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-teal-400/10 via-black to-teal-400/5"></div>
       
-      {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      {/* Floating Side Button (hide on small) */}
+      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
       </button>
 
@@ -116,15 +116,15 @@ const VirtualAssistantServices: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-20"
+            className="text-center mb-12 sm:mb-16 lg:mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
               Virtual Assistance{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400">
                 Solutions
               </span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
               Our comprehensive virtual assistance services are designed to streamline your operations, 
               enhance customer satisfaction, and drive sustainable business growth.
             </p>
@@ -134,7 +134,7 @@ const VirtualAssistantServices: React.FC = () => {
           </motion.div>
 
           {/* Timeline Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16">
             {/* Left Side: Timeline */}
             <div className="relative" ref={timelineRef}>
               {/* Animated Timeline Line */}
@@ -276,19 +276,19 @@ const VirtualAssistantServices: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-center mt-16"
+            className="text-center mt-12 sm:mt-16"
           >
-            <div className="bg-gradient-to-r from-teal-400/10 to-teal-500/10 rounded-3xl p-8 border border-teal-400/30 backdrop-blur-md">
-              <h3 className="text-2xl font-bold text-white mb-4">
+            <div className="bg-gradient-to-r from-teal-400/10 to-teal-500/10 rounded-3xl p-6 sm:p-8 border border-teal-400/30 backdrop-blur-md">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                 Ready to Optimize Your Operations?
               </h3>
-              <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
+              <p className="text-sm sm:text-lg text-gray-300 mb-5 sm:mb-6 max-w-2xl mx-auto">
                 Transform your business with our comprehensive virtual assistance solutions. 
                 Experience the difference that professional support makes.
               </p>
               <a
                 href="/contact"
-                className="bg-teal-400 px-8 py-4 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full cursor-pointer"
+                className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full cursor-pointer"
               >
                 Get Started Today
               </a>

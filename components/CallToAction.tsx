@@ -6,7 +6,7 @@ import React from 'react';
 // --- Main Call to Action Component ---
 const CallToAction: React.FC = () => {
   return (
-    <section className="relative bg-black text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-black text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Radial Gradient */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, rgba(0,0,0,0) 70%) z-0"></div>
       
@@ -36,16 +36,16 @@ const CallToAction: React.FC = () => {
       <div className="container mx-auto relative z-10">
         {/* Content */}
         <div className="text-center max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
             Ready to Diversify Into a <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">Tangible Growth Asset?</span>
           </h2>
           
-          <p className="text-xl text-gray-400 mb-12 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-xl text-gray-400 mb-8 sm:mb-10 md:mb-12 leading-relaxed">
             Schedule your confidential strategy session with our investment team. Explore the data, review the performance, and discover how to structure your e-commerce portfolio for financial autonomy.
           </p>
           
           <div className="flex justify-center">
-            <button className="bg-teal-400 px-8 py-4 text-lg font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-white hover:text-black rounded-full hover:shadow-2xl hover:shadow-teal-400/25">
+            <button className="bg-teal-400 px-5 py-2.5 text-sm sm:px-6 sm:py-3.5 sm:text-sm md:px-8 md:py-4 md:text-lg font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-white hover:text-black rounded-full hover:shadow-2xl hover:shadow-teal-400/25">
               Schedule Your Capital Intro Call
             </button>
           </div>

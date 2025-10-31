@@ -51,40 +51,40 @@ const AmazonCTA: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-r from-teal-50/30 to-transparent"></div>
       
       {/* Top Right Teal Glow */}
       <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-bl from-teal-400/20 to-transparent"></div>
       
-      {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      {/* Floating Side Button (hide on small) */}
+      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
       </button>
 
       <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start relative z-10">
         
         {/* Left Column: Form */}
-        <div className="bg-gray-50 border border-gray-200 backdrop-blur-md text-gray-900 p-8 rounded-2xl shadow-2xl shadow-teal-400/25">
-          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-teal-600">Ready To Get Started</h2>
-          <p className="text-gray-600 mt-2 mb-8">
+        <div className="bg-gray-50 border border-gray-200 backdrop-blur-md text-gray-900 p-6 sm:p-8 rounded-2xl shadow-2xl shadow-teal-400/25">
+          <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-teal-600">Ready To Get Started</h2>
+          <p className="text-gray-600 mt-2 mb-6 sm:mb-8 text-sm sm:text-base">
             Connect with us to explore how we can deliver exceptional Amazon automation solutions for your business.
           </p>
           
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <form className="space-y-5 sm:space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <FormField label="First Name" type="text" />
               <FormField label="Last Name" type="text" />
             </div>
             <FormField label="Email" type="email" />
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">Phone number <span className="text-red-500">*</span></label>
-              <div className="flex">
-                <select className="bg-gray-50 border border-gray-300 rounded-l-md p-3 text-gray-900 focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-colors">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+                <select className="bg-gray-50 border border-gray-300 rounded-md sm:rounded-l-md p-3 text-gray-900 focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-colors sm:min-w-[220px]">
                   <option className="bg-white text-gray-900">United States</option>
                 </select>
-                <input type="text" defaultValue="+1" className="w-full bg-gray-50 border-t border-b border-r border-gray-300 rounded-r-md p-3 text-gray-900 placeholder-gray-500 focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-colors" />
+                <input type="text" defaultValue="+1" className="w-full bg-gray-50 border border-gray-300 sm:border-t sm:border-b sm:border-r sm:border-l-0 rounded-md sm:rounded-r-md p-3 text-gray-900 placeholder-gray-500 focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-colors" />
               </div>
             </div>
             <div>
@@ -109,7 +109,7 @@ const AmazonCTA: React.FC = () => {
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Services you're looking for <span className="text-red-500">*</span></label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {servicesOptions.map((service) => (
                   <Checkbox key={service} label={service} id={service.replace(/\s+/g, '-').toLowerCase()} />
                 ))}
@@ -126,7 +126,7 @@ const AmazonCTA: React.FC = () => {
               </div>
             </div>
             {/* reCAPTCHA Placeholder */}
-            <div className="bg-gray-100 border border-gray-300 rounded p-3 flex items-center justify-between">
+            <div className="bg-gray-100 border border-gray-300 rounded p-3 flex flex-col sm:flex-row gap-2 sm:gap-0 items-start sm:items-center justify-between">
                 <div className="flex items-center">
                     <div className="w-7 h-7 bg-teal-500 rounded flex items-center justify-center">
                         <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -135,15 +135,15 @@ const AmazonCTA: React.FC = () => {
                 </div>
                  <div className="text-xs text-gray-500">Privacy - Terms</div>
             </div>
-            <button type="submit" className="w-full bg-teal-400 text-black font-bold py-4 rounded-md hover:bg-black hover:text-white transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25 cursor-pointer">
+            <button type="submit" className="w-full bg-teal-400 text-black font-bold py-3 sm:py-4 rounded-md hover:bg-black hover:text-white transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25 cursor-pointer">
               Submit
             </button>
           </form>
         </div>
 
         {/* Right Column: Info */}
-        <div className="relative pt-16">
-          <div className="space-y-16">
+        <div className="relative pt-8 sm:pt-12 lg:pt-16">
+          <div className="space-y-10 sm:space-y-12 lg:space-y-16">
             <div className="flex items-start gap-6 group">
               <div className="text-teal-600 mt-1 transform group-hover:scale-110 transition-all duration-300 group-hover:drop-shadow-2xl group-hover:drop-shadow-teal-400/50">
                 <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">

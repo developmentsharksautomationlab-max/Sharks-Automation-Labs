@@ -20,34 +20,34 @@ const KeywordResearchMainContent: React.FC = () => {
   const fourthCardY = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
-    <section ref={sectionRef} className="relative bg-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <PlexusBackgroundWhite />
       
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-r from-teal-50/30 to-transparent"></div>
       
       {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
-      </button>
+      </a>
 
       <div className="relative z-10 px-4">
         <div className="max-w-full mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
             {/* Left Side: Content */}
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8 text-center lg:text-left"
             >
-              <div className="space-y-6">
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight max-w-3xl">
+              <div className="space-y-4 sm:space-y-6">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight max-w-3xl">
                   Why Choose{' '}
                   <span className="text-teal-400">The Shark Retail</span>
                 </h2>
                 
-                <p className="text-xl text-gray-600 leading-relaxed max-w-3xl">
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl">
                   We are your trusted keyword research partner, delivering comprehensive SEO strategies 
                   that drive exceptional organic growth. Our expertise spans from advanced keyword discovery 
                   to strategic content optimization, ensuring your brand achieves peak search visibility. 
@@ -55,10 +55,10 @@ const KeywordResearchMainContent: React.FC = () => {
                   that accelerate your organic traffic growth.
                 </p>
                 
-                <div className="flex justify-start">
+                <div className="flex justify-center lg:justify-start">
                   <a
                     href="/contact"
-                    className="bg-teal-400 px-8 py-4 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-black hover:text-white rounded-full cursor-pointer"
+                    className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-black hover:text-white rounded-full cursor-pointer"
                   >
                     Explore Our Solutions
                   </a>
@@ -73,8 +73,8 @@ const KeywordResearchMainContent: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="grid grid-cols-2 gap-6">
-                <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                <div className="space-y-4 sm:space-y-6">
                   {/* First Card - moves down on scroll */}
                   <motion.div 
                     style={{ y: firstCardY }}
@@ -132,7 +132,7 @@ const KeywordResearchMainContent: React.FC = () => {
                   </motion.div>
                 </div>
                 
-                <div className="space-y-6 mt-12">
+                <div className="space-y-4 sm:space-y-6 mt-8 sm:mt-12">
                   {/* Third Card - moves up on scroll */}
                   <motion.div 
                     style={{ y: thirdCardY }}

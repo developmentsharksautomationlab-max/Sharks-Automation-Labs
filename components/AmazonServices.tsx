@@ -96,7 +96,7 @@ const AmazonServices: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-black text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-black text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Radial Gradient */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, rgba(0,0,0,0) 70%) z-0"></div>
       
@@ -112,12 +112,12 @@ const AmazonServices: React.FC = () => {
 
       <div className="container mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+        <div className="text-center mb-10 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
             Proprietary Systems for{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">Market Domination</span>
           </h2>
-          <p className="text-xl text-gray-400">
+          <p className="text-sm sm:text-base md:text-xl text-gray-400">
             From Automation to Excellence
           </p>
         </div>
@@ -131,8 +131,8 @@ const AmazonServices: React.FC = () => {
                 ? 'opacity-100 blur-0' 
                 : 'opacity-60 blur-lg'
             }`}>
-              {/* Timeline Node */}
-              <div className="lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
+              {/* Timeline Node (hidden on small) */}
+              <div className="hidden lg:block lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
                 <div className="absolute top-0 left-8 lg:left-auto lg:top-auto w-0.5 h-full lg:w-auto lg:h-0.5"></div>
                 <div className="absolute top-0 -left-1.5 lg:left-auto lg:top-auto transform-none lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2">
                   <div className="flex items-center justify-center w-10 h-10 rounded-full bg-black border-2 border-teal-400/50 group-hover:border-teal-400 transition-colors duration-300">
@@ -148,7 +148,7 @@ const AmazonServices: React.FC = () => {
               />
 
               {/* Content Card */}
-              <div className="pl-16 lg:pl-0 lg:pt-20 text-center lg:text-left">
+              <div className="pl-0 lg:pl-0 lg:pt-20 text-center lg:text-left max-w-md mx-auto lg:max-w-none lg:mx-0">
                   <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md group-hover:border-white/20 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-teal-400/25 transition-all duration-500 ease-in-out h-full flex flex-col">
                       {/* Card Number Label */}
                       <div className="absolute -top-3 -left-3 w-8 h-8 bg-teal-400 text-white font-bold rounded-full flex items-center justify-center text-sm z-10">

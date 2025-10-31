@@ -49,29 +49,29 @@ const ContentCreationCTA: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-teal-50/30 to-transparent"></div>
       <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-bl from-teal-400/20 to-transparent"></div>
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
-      </button>
+      </a>
 
-      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start relative z-10">
-        <div className="bg-gray-50 border border-gray-200 backdrop-blur-md text-gray-900 p-8 rounded-2xl shadow-2xl shadow-teal-400/25">
-          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-teal-600">Ready To Get Started</h2>
-          <p className="text-gray-600 mt-2 mb-8">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start relative z-10">
+        <div className="bg-gray-50 border border-gray-200 backdrop-blur-md text-gray-900 p-5 sm:p-6 md:p-8 rounded-2xl shadow-2xl shadow-teal-400/25">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-teal-600">Ready To Get Started</h2>
+          <p className="text-sm sm:text-base text-gray-600 mt-2 mb-6 sm:mb-8">
             Connect with us to explore how we can deliver exceptional content creation solutions for your business.
           </p>
           
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <form className="space-y-4 sm:space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <FormField label="First Name" type="text" />
               <FormField label="Last Name" type="text" />
             </div>
             <FormField label="Email" type="email" />
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">Phone number <span className="text-red-500">*</span></label>
-              <div className="flex">
+              <div className="flex flex-col sm:flex-row">
                 <select className="bg-gray-50 border border-gray-300 rounded-l-md p-3 text-gray-900 focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-colors">
                   <option className="bg-white text-gray-900">United States</option>
                 </select>
@@ -108,7 +108,7 @@ const ContentCreationCTA: React.FC = () => {
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Services you're looking for <span className="text-red-500">*</span></label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {servicesOptions.map((service) => (
                   <Checkbox key={service} label={service} id={service.replace(/\s+/g, '-').toLowerCase()} />
                 ))}
@@ -124,7 +124,7 @@ const ContentCreationCTA: React.FC = () => {
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none" />
               </div>
             </div>
-            <div className="bg-gray-100 border border-gray-300 rounded p-3 flex items-center justify-between">
+            <div className="bg-gray-100 border border-gray-300 rounded p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
                 <div className="flex items-center">
                     <div className="w-7 h-7 bg-teal-500 rounded flex items-center justify-center">
                         <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -133,7 +133,7 @@ const ContentCreationCTA: React.FC = () => {
                 </div>
                  <div className="text-xs text-gray-500">Privacy - Terms</div>
             </div>
-            <button type="submit" className="w-full bg-teal-400 text-black font-bold py-4 rounded-md hover:bg-black hover:text-white transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25 cursor-pointer">
+            <button type="submit" className="w-full bg-teal-400 text-black font-bold py-3 sm:py-4 rounded-md hover:bg-black hover:text-white transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25 cursor-pointer">
               Submit
             </button>
           </form>

@@ -9,7 +9,7 @@ const SharkRetailLogo = () => (
     <img
       src="/images/sharks-retail-logo.png"
       alt="Shark Retail Logo"
-      className="h-14 w-auto"
+      className="hidden sm:block h-14 w-auto"
     />
     <div className="flex flex-col">
       <span className="text-2xl font-bold">
@@ -201,20 +201,20 @@ const Footer: React.FC = () => {
   const [isAdditionalServicesOpen, setIsAdditionalServicesOpen] = useState(false);
 
   return (
-    <footer className="relative bg-black text-white pt-16 pb-8 px-8 sm:px-16 overflow-hidden">
+    <footer className="relative bg-black text-white pt-12 sm:pt-16 pb-8 px-4 sm:px-8 lg:px-16 overflow-hidden">
       {/* Background Radial Gradient */}
       <div className="absolute bottom-0 right-0 w-1/2 h-full bg-gradient-to-l from-teal-400/25 to-transparent z-0"></div>
 
-      {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      {/* Floating Side Button (hide on small) */}
+      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
       </button>
 
       <div className="container mx-auto relative z-10">
         {/* Top Section: Logo and Nav */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+        <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center lg:items-center gap-6 sm:gap-8 text-center lg:text-left">
           <SharkRetailLogo />
-          <nav className="flex flex-col sm:flex-row items-start sm:items-center gap-8">
+          <nav className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
             {footerNavLinks.map(link => (
               <FooterLink 
                 key={link} 
@@ -229,10 +229,10 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Middle Section: Globe and Address Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-16 mt-12 sm:mt-16 items-center">
           {/* Left Side: Globe Visualization */}
           <div className="relative">
-            <div className="relative w-64 h-64 mx-auto lg:mx-0">
+          <div className="relative w-56 h-56 sm:w-64 sm:h-64 mx-auto lg:mx-0">
               <div className="relative w-full h-full animate-spin-slow">
                 {/* Earth Globe with 3D Effect */}
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -341,28 +341,28 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Right Side: Address Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-center lg:text-left mx-auto md:mx-0">
             {locationsData.map(location => <LocationCard key={location.country} {...location} />)}
           </div>
         </div>
 
         {/* Bottom Section: Contact Info, Legal, and Socials */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mt-16 pt-8 border-t border-white/10">
+        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center md:items-end gap-6 sm:gap-8 mt-12 sm:mt-16 pt-8 border-t border-white/10 text-center md:text-left">
           <div className="space-y-6">
             <div className="space-y-3">
-              <a href="mailto:business@sharkretail.com" className="text-xl font-bold text-white hover:text-teal-400 transition-colors block">
+              <a href="mailto:business@sharkretail.com" className="text-lg sm:text-xl font-bold text-white hover:text-teal-400 transition-colors block">
                 business@sharkretail.com
               </a>
-              <a href="tel:+14694807938" className="text-lg font-semibold text-white hover:text-teal-400 transition-colors block">
+              <a href="tel:+14694807938" className="text-base sm:text-lg font-semibold text-white hover:text-teal-400 transition-colors block">
                 (469) 480-7938
               </a>
             </div>
-            <div className="flex gap-6 text-gray-400 text-sm">
+            <div className="flex flex-wrap justify-center md:justify-start gap-4 sm:gap-6 text-gray-400 text-xs sm:text-sm">
               <a href="#" className="hover:text-white">Terms and Conditions</a>
               <a href="#" className="hover:text-white">Privacy Policy</a>
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 self-center md:self-auto">
             {socialLinks.map((link, index) => <SocialIcon key={index} {...link} />)}
           </div>
         </div>

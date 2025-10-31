@@ -20,14 +20,14 @@ const AmazonMainContent: React.FC = () => {
   const fourthCardY = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
-    <section ref={sectionRef} className="relative bg-white py-24 px-8 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <PlexusBackgroundWhite />
       
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-r from-teal-50/30 to-transparent"></div>
       
       {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
       </button>
 
@@ -40,30 +40,30 @@ const AmazonMainContent: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8 text-center lg:text-left"
             >
               <div className="space-y-6">
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight max-w-3xl">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight max-w-3xl">
                   Strategic Capital Deployment in the{' '}
                   <span className="text-teal-600">Amazon Ecosystem</span>
                 </h2>
                 
-                <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
+                <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">
                   While traditional markets fluctuate on sentiment, Amazon's marketplace grows on fundamental consumer demand. 
                   We identify and capitalize on this permanent shift, deploying capital with surgical precision into high-margin 
                   verticals within the world's largest e-commerce platform.
                 </p>
                 
-                <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
+                <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">
                   Our firm provides a seamless, institutional-grade gateway into Amazon's $6 trillion ecosystem. We handle 
                   all operations—from asset creation to global logistics—transforming your capital into an actively managed, 
                   cash-flow generative enterprise that scales systematically and compounds returns.
                 </p>
                 
-                <div className="flex justify-start">
+                <div className="flex justify-center lg:justify-start">
                   <a
                     href="/contact"
-                    className="bg-teal-400 px-8 py-4 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-black hover:text-white rounded-full cursor-pointer"
+                    className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-black hover:text-white rounded-full cursor-pointer"
                   >
                     Explore Our Solutions
                   </a>
@@ -78,7 +78,7 @@ const AmazonMainContent: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-6">
                   {/* First Card - moves down on scroll */}
                   <motion.div 
@@ -129,7 +129,7 @@ const AmazonMainContent: React.FC = () => {
                   </motion.div>
                 </div>
                 
-                <div className="space-y-6 mt-12">
+                <div className="space-y-6 mt-8 sm:mt-12">
                   {/* Third Card - moves up on scroll */}
                   <motion.div 
                     style={{ y: thirdCardY }}

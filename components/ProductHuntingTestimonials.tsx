@@ -244,14 +244,24 @@ const TestimonialCarousel: React.FC<{
         }
       `}</style>
 
-      {/* Carousel Container - Show 3 cards with center active */}
-      <div className="relative overflow-hidden py-8">
+      {/* Mobile Carousel (one card per view) */}
+      <div className="relative overflow-hidden py-6 md:hidden">
+        <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+          {testimonials.map((testimonial, index) => (
+            <div key={`m-${index}`} className="w-full flex-shrink-0 px-4">
+              <TestimonialCard {...testimonial} isActive={true} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop Carousel - Show 3 cards with center active */}
+      <div className="relative overflow-hidden py-8 hidden md:block">
         <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(calc(-${currentIndex * 33.333}% + 50% - 16.666%))` }}>
           {testimonials.map((testimonial, index) => {
-            // Determine if this card is in the center (active) position
             const isActive = index === currentIndex;
             return (
-              <div key={index} className="w-1/3 flex-shrink-0 px-4">
+              <div key={`d-${index}`} className="w-1/3 flex-shrink-0 px-4">
                 <TestimonialCard {...testimonial} isActive={isActive} />
               </div>
             );
@@ -286,10 +296,10 @@ const TestimonialCarousel: React.FC<{
         ))}
       </div>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows (desktop only) */}
       <button
         onClick={() => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 group"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full items-center justify-center hover:bg-white/20 transition-all duration-300 group"
       >
         <svg className="w-6 h-6 text-white group-hover:text-teal-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -298,7 +308,7 @@ const TestimonialCarousel: React.FC<{
       
       <button
         onClick={() => setCurrentIndex((prev) => (prev + 1) % testimonials.length)}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 group"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full items-center justify-center hover:bg-white/20 transition-all duration-300 group"
       >
         <svg className="w-6 h-6 text-white group-hover:text-teal-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -347,7 +357,7 @@ const ProductHuntingTestimonials: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-black py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-black py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-teal-900/20 via-black to-teal-900/10"></div>
       
@@ -355,8 +365,8 @@ const ProductHuntingTestimonials: React.FC = () => {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
       
-      {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      {/* Floating Side Button (hide on small) */}
+      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
       </button>
 
@@ -370,15 +380,15 @@ const ProductHuntingTestimonials: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6">
             Success Stories from{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400">
               Industry Leaders
             </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Our partners have achieved extraordinary e-commerce growth through systematic product research. 
             These data-driven results demonstrate the power of our proprietary research frameworks and strategic product optimization.
           </p>

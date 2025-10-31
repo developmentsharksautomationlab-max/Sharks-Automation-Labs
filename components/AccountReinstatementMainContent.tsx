@@ -57,14 +57,14 @@ const AccountReinstatementMainContent: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <PlexusBackgroundWhite />
       
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-teal-50/30 via-white to-teal-50/20"></div>
       
-      {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      {/* Floating Side Button (hide on small) */}
+      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
       </button>
 
@@ -75,15 +75,15 @@ const AccountReinstatementMainContent: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-20"
+            className="text-center mb-12 sm:mb-16 lg:mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               Proprietary Systems for{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400">
                 Account Recovery
               </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Our institutional-grade account reinstatement platform delivers unmatched recovery rates 
               and compliance management. Built for success, designed for results.
             </p>
@@ -93,7 +93,7 @@ const AccountReinstatementMainContent: React.FC = () => {
           </motion.div>
 
           {/* Services Grid */}
-          <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
             {servicesData.map((service, index) => (
               <motion.div
                 key={service.id}
@@ -152,17 +152,17 @@ const AccountReinstatementMainContent: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-center"
           >
-            <div className="bg-gradient-to-r from-teal-400/10 to-teal-500/10 rounded-3xl p-8 border border-teal-400/30 backdrop-blur-md">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <div className="bg-gradient-to-r from-teal-400/10 to-teal-500/10 rounded-3xl p-6 sm:p-8 border border-teal-400/30 backdrop-blur-md">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
                 Ready to Recover Your Accounts?
               </h3>
-              <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
+              <p className="text-sm sm:text-lg text-gray-600 mb-5 sm:mb-6 max-w-2xl mx-auto">
                 Experience the power of institutional-grade account reinstatement. 
                 Let our experts show you how to restore your suspended assets.
               </p>
               <a
                 href="/contact"
-                className="bg-teal-400 px-8 py-4 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-black hover:text-white rounded-full cursor-pointer"
+                className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-black hover:text-white rounded-full cursor-pointer"
               >
                 Explore Our Solutions
               </a>

@@ -6,12 +6,12 @@ import { motion } from 'framer-motion';
 // --- About CTA Component ---
 const AboutCTA: React.FC = () => {
   return (
-    <section className="relative bg-white py-24 px-8 overflow-hidden">
+    <section className="relative bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-r from-teal-50/30 to-transparent"></div>
       
-      {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      {/* Floating Side Button (hide on small) */}
+      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
       </button>
 
@@ -23,16 +23,16 @@ const AboutCTA: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
             {/* Section Title */}
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               Ready to Write Your Own{' '}
               <span className="text-teal-600">Success Story?</span>
             </h2>
             
             {/* Description */}
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
               Your journey to financial freedom and a life beyond the 9-to-5 starts with a single conversation.
             </p>
             
@@ -46,12 +46,12 @@ const AboutCTA: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
-            className="mt-12 flex flex-col sm:flex-row gap-6 justify-center items-center"
+            className="mt-10 sm:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
           >
             {/* Primary CTA Button */}
             <a
               href="/contact"
-              className="bg-teal-400 text-black font-bold py-4 px-8 rounded-full text-lg hover:bg-black hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3 group cursor-pointer"
+              className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 text-black font-bold py-2.5 sm:py-3.5 md:py-4 px-5 sm:px-7 md:px-8 rounded-full text-sm sm:text-base md:text-lg hover:bg-black hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl gap-3 group cursor-pointer"
             >
               <span>Schedule Your Free Consultation Now</span>
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -62,7 +62,7 @@ const AboutCTA: React.FC = () => {
             {/* Secondary CTA Button */}
             <a
               href="tel:+14694807938"
-              className="border-2 border-teal-600 text-teal-600 font-semibold py-4 px-8 rounded-full text-lg hover:bg-teal-600 hover:text-white transition-all duration-300 flex items-center gap-3 group cursor-pointer"
+              className="inline-flex w-full sm:w-auto justify-center border-2 border-teal-600 text-teal-600 font-semibold py-2.5 sm:py-3.5 md:py-4 px-5 sm:px-7 md:px-8 rounded-full text-sm sm:text-base md:text-lg hover:bg-teal-600 hover:text-white transition-all duration-300 items-center gap-3 group cursor-pointer"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -77,7 +77,7 @@ const AboutCTA: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
-            className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            className="mt-12 sm:mt-14 lg:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto"
           >
             <div className="text-center">
               <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">

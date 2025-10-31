@@ -5,25 +5,25 @@ import React, { useRef, useEffect, useState } from 'react';
 
 // --- Custom SVG Icon Components ---
 const TrackRecordIcon = () => (
-  <svg className="w-8 h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+  <svg className="w-6 h-6 md:w-8 md:h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
 
 const SolutionsIcon = () => (
-  <svg className="w-8 h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+  <svg className="w-6 h-6 md:w-8 md:h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
 
 const CommunicationIcon = () => (
-  <svg className="w-8 h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+  <svg className="w-6 h-6 md:w-8 md:h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
 
 const ScalableIcon = () => (
-  <svg className="w-8 h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+  <svg className="w-6 h-6 md:w-8 md:h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
@@ -93,7 +93,7 @@ const WhySharkRetail: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-black text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-black text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Video */}
       <video
         className="absolute inset-0 w-full h-full object-cover z-0 opacity-20"
@@ -112,14 +112,14 @@ const WhySharkRetail: React.FC = () => {
 
       <div className="container mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-14 lg:mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Why Allocate Capital with <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">The Shark Retail?</span>
           </h2>
         </div>
 
         {/* Points Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {pointsData.map((point, index) => (
             <div key={index} className={`group relative transition-all duration-1000 ease-in-out ${
               visibleCards.includes(index) 
@@ -130,12 +130,12 @@ const WhySharkRetail: React.FC = () => {
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" style={{ animationDelay: `${index * 0.2}s` }}></div>
               
-              <div className="relative bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-md group-hover:border-white/20 group-hover:-translate-y-2 transition-all duration-300">
-                <div className="flex items-center gap-4 mb-6">
+              <div className="relative bg-white/5 border border-white/10 rounded-2xl p-5 sm:p-6 lg:p-8 backdrop-blur-md group-hover:border-white/20 group-hover:-translate-y-2 transition-all duration-300 text-center md:text-left">
+                <div className="flex items-center justify-center md:justify-start gap-3 md:gap-4 mb-4 md:mb-6">
                   {point.icon}
-                  <h3 className="text-2xl font-bold text-white">{point.title}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white text-center md:text-left whitespace-nowrap md:whitespace-normal overflow-hidden text-ellipsis">{point.title}</h3>
                 </div>
-                <p className="text-gray-400 text-lg leading-relaxed">{point.description}</p>
+                <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed text-center md:text-left">{point.description}</p>
               </div>
             </div>
           ))}

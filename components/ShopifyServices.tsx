@@ -20,7 +20,7 @@ const ShopifyServices: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-black text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-black text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Radial Gradient */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, rgba(0,0,0,0) 70%) z-0"></div>
       
@@ -46,20 +46,20 @@ const ShopifyServices: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
               Proprietary Systems for{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">E-Commerce Domination</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
               Our battle-tested automation frameworks have been refined through managing millions in Shopify capital. 
               We deploy systematic approaches that transform your investment into a scalable, cash-flow generative enterprise.
             </p>
           </motion.div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
             {servicesData.map((service, index) => (
               <motion.div
                 key={service.id}
@@ -99,7 +99,7 @@ const ShopifyServices: React.FC = () => {
           >
             <a
               href="/contact"
-              className="bg-teal-400 px-8 py-4 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
+              className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
             >
               Schedule Your Capital Intro Call
             </a>

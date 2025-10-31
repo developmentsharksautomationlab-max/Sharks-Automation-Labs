@@ -98,16 +98,16 @@ const ContentCreationServices: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-black text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-black text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <PlexusBackgroundWhite />
       
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-teal-400/10 via-black to-teal-400/5"></div>
       
       {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
-      </button>
+      </a>
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -116,15 +116,15 @@ const ContentCreationServices: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-20"
+            className="text-center mb-12 sm:mb-16 lg:mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
               Content Creation{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400">
                 Solutions
               </span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
               Our comprehensive content creation services are designed to enhance your brand presence, 
               drive engagement, and accelerate your content marketing success.
             </p>
@@ -134,12 +134,12 @@ const ContentCreationServices: React.FC = () => {
           </motion.div>
 
           {/* Timeline Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
             {/* Left Side: Timeline */}
             <div className="relative" ref={timelineRef}>
               {/* Animated Timeline Line */}
               <motion.div
-                className="absolute left-8 top-0 w-0.5 bg-teal-400/30"
+                className="hidden lg:block absolute left-8 top-0 w-0.5 bg-teal-400/30"
                 initial={{ height: 0 }}
                 animate={{ height: isInView ? "100%" : 0 }}
                 transition={{ duration: 2, ease: "easeInOut" }}
@@ -157,7 +157,7 @@ const ContentCreationServices: React.FC = () => {
                   >
                     {/* Timeline Node */}
                     <motion.div
-                      className={`absolute left-6 w-4 h-4 rounded-full border-2 z-10 transition-all duration-300 ${
+                      className={`hidden lg:block absolute left-6 w-4 h-4 rounded-full border-2 z-10 transition-all duration-300 ${
                         selectedService === service.id
                           ? 'bg-teal-400 border-teal-400 scale-125'
                           : 'bg-black border-teal-400 hover:bg-teal-400'
@@ -169,7 +169,7 @@ const ContentCreationServices: React.FC = () => {
 
                     {/* Service Card */}
                     <div
-                      className={`ml-16 bg-white/5 border backdrop-blur-md text-white p-6 rounded-2xl shadow-2xl h-full flex flex-col relative group hover:border-white/20 hover:-translate-y-2 transition-all duration-300 cursor-pointer ${
+                      className={`pl-0 lg:ml-16 max-w-md mx-auto lg:max-w-none lg:mx-0 bg-white/5 border backdrop-blur-md text-white p-5 sm:p-6 rounded-2xl shadow-2xl h-full flex flex-col relative group hover:border-white/20 hover:-translate-y-2 transition-all duration-300 cursor-pointer ${
                         selectedService === service.id
                           ? 'border-teal-400/50 shadow-lg shadow-teal-400/20'
                           : 'border-white/10'
@@ -276,22 +276,24 @@ const ContentCreationServices: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-center mt-16"
+            className="text-center mt-12 sm:mt-16"
           >
-            <div className="bg-gradient-to-r from-teal-400/10 to-teal-500/10 rounded-3xl p-8 border border-teal-400/30 backdrop-blur-md">
-              <h3 className="text-2xl font-bold text-white mb-4">
+            <div className="bg-gradient-to-r from-teal-400/10 to-teal-500/10 rounded-3xl p-6 sm:p-8 border border-teal-400/30 backdrop-blur-md">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                 Ready to Transform Your Content Strategy?
               </h3>
-              <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg text-gray-300 mb-5 sm:mb-6 max-w-2xl mx-auto">
                 Transform your brand with our comprehensive content creation solutions. 
                 Experience the difference that professional content makes.
               </p>
-              <a
-                href="/contact"
-                className="bg-teal-400 px-8 py-4 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full cursor-pointer"
-              >
-                Get Started Today
-              </a>
+              <div className="flex justify-center lg:justify-start">
+                <a
+                  href="/contact"
+                  className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full cursor-pointer"
+                >
+                  Get Started Today
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>

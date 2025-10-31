@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
+    <section className="relative h-[60vh] sm:h-screen w-full overflow-hidden bg-black">
       <Swiper
         modules={[Pagination, Autoplay]}
         spaceBetween={0}
@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="relative h-screen w-full overflow-hidden bg-black">
+            <div className="relative h-[60vh] sm:h-screen w-full overflow-hidden bg-black">
               {/* Video Background */}
               <video
                 ref={index === 0 ? videoRef1 : videoRef2}
@@ -95,8 +95,8 @@ const Hero: React.FC = () => {
               
               {/* Content */}
               <div className="relative z-15 flex h-full items-center justify-start">
-                <div className="text-left text-white p-8">
-                  <h1 className={`mb-6 tracking-tight ${index === 1 ? 'max-w-3xl' : ''}`} style={{ fontFamily: 'Poppins', fontSize: '70px', fontWeight: '700', lineHeight: '1.2' }}>
+                <div className="text-left text-white p-4 sm:p-6 md:p-8">
+                  <h1 className={`mb-6 tracking-tight text-3xl sm:text-5xl md:text-6xl lg:text-[70px] ${index === 1 ? 'max-w-3xl' : ''}`} style={{ fontFamily: 'Poppins', fontWeight: '700', lineHeight: '1.2' }}>
                     {index === 1 ? (
                       <>
                         Strategic Capital Deployment in<br />
@@ -110,11 +110,11 @@ const Hero: React.FC = () => {
                       )
                     }
                   </h1>
-                  <p className="mb-8 text-xl font-black lg:text-2xl max-w-3xl">
+                  <p className="mb-6 sm:mb-8 text-sm sm:text-base md:text-xl lg:text-2xl font-black max-w-3xl">
                     {slide.description}
                   </p>
                   <div className="flex justify-start">
-                    <button className="bg-teal-400 px-8 py-4 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full">
+                    <button className="bg-teal-400 px-4 py-2.5 text-xs sm:px-6 sm:py-3.5 sm:text-sm md:px-8 md:py-4 md:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full">
                       {slide.buttonText}
                     </button>
                   </div>

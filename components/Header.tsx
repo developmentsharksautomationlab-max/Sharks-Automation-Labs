@@ -9,7 +9,7 @@ const SharkRetailLogo = () => (
   <img
     src="/images/sharks-retail-logo.png"
     alt="Shark Retail Logo"
-    className="h-16 w-auto"
+    className="h-12 w-auto lg:h-16"
   />
 );
 
@@ -38,6 +38,7 @@ const ChevronDownIcon = () => (
 const Header: React.FC = () => {
   const [isAutomationOpen, setIsAutomationOpen] = useState(false);
   const [isAdditionalServicesOpen, setIsAdditionalServicesOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
     'Home Page',
@@ -64,7 +65,7 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className="bg-black text-white font-avant-garde">
+    <header className="bg-black text-white font-avant-garde sticky top-0 z-50">
       {/* 
         CUSTOM FONT INSTRUCTIONS:
         1. Add your font file (e.g., itcavantgardestd-bk.woff2) to `/public/fonts`.
@@ -84,16 +85,16 @@ const Header: React.FC = () => {
              },
            },
       */}
-      <div className="container mx-auto flex items-center justify-between px-8 py-4">
+      <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 lg:py-4">
         {/* Left Section */}
         <div className="flex items-center">
           <div className="group relative">
-            <div className="flex items-center gap-0">
+            <div className="flex items-center gap-2">
               <div className="transition-transform duration-700 ease-in-out group-hover:-translate-x-2">
                 <SharkRetailLogo />
               </div>
-              <div className="opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out transform translate-x-2 group-hover:translate-x-0">
-                <span className="font-bold text-lg">
+              <div className="hidden sm:block opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out transform translate-x-2 group-hover:translate-x-0">
+                <span className="font-bold text-base lg:text-lg">
                   <span className="text-teal-400">Shark</span> <span className="text-white">Retail</span>
                 </span>
               </div>
@@ -189,13 +190,110 @@ const Header: React.FC = () => {
         </nav>
 
         {/* Right Section */}
-        <div className="flex items-center gap-4">
-          <button className="border border-teal-400 bg-teal-400 text-white font-light py-3 px-6 rounded-full text-sm hover:bg-white hover:text-black transition-colors">
-            Explore Careers
+        <div className="flex items-center gap-3 lg:gap-4">
+          <div className="hidden md:flex items-center gap-3 lg:gap-4">
+            <a href="/contact" className="border border-teal-400 bg-teal-400 text-white font-light py-2.5 lg:py-3 px-4 lg:px-6 rounded-full text-xs lg:text-sm hover:bg-white hover:text-black transition-colors">
+              Explore Careers
+            </a>
+            <a href="/contact" className="border border-teal-400 text-teal-400 font-light py-2.5 lg:py-3 px-4 lg:px-6 rounded-full text-xs lg:text-sm hover:bg-teal-400 hover:text-black transition-colors">
+              Let's Talk Business
+            </a>
+          </div>
+          {/* Mobile Menu Toggle */}
+          <button
+            aria-label="Open menu"
+            className="inline-flex items-center justify-center rounded-md p-2 text-white hover:text-teal-400 hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-teal-400 lg:hidden"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          >
+            <svg className={`h-6 w-6 ${isMobileMenuOpen ? 'hidden' : 'block'}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg className={`h-6 w-6 ${isMobileMenuOpen ? 'block' : 'hidden'}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
-          <a href="/contact" className="border border-teal-400 text-teal-400 font-light py-3 px-6 rounded-full text-sm hover:bg-teal-400 hover:text-black transition-colors">
-            Let's Talk Business
-          </a>
+        </div>
+      </div>
+
+      {/* Mobile Menu Panel */}
+      <div className={`lg:hidden border-t border-white/10 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/80 ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
+        <div className="container mx-auto px-4 sm:px-6 py-4">
+          <ul className="space-y-2 text-sm">
+            {navLinks.map((link) => (
+              <li key={`m-${link}`} className="">
+                {link === 'Automation Solutions' ? (
+                  <div className="">
+                    <button
+                      onClick={() => setIsAutomationOpen((o) => !o)}
+                      className="w-full flex items-center justify-between py-3 text-left hover:text-teal-400"
+                    >
+                      <span>Automation Solutions</span>
+                      <ChevronDownIcon />
+                    </button>
+                    {isAutomationOpen && (
+                      <div className="mt-2 rounded-lg border border-gray-700 bg-gradient-to-tl from-teal-400/20 via-black to-black p-2">
+                        {automationSolutions.map((solution) => (
+                          <a
+                            key={`m-${solution.name}`}
+                            href={solution.href}
+                            className="block py-2 text-white/90 hover:text-teal-400"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            {solution.name}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : link === 'Additional Services' ? (
+                  <div className="">
+                    <button
+                      onClick={() => setIsAdditionalServicesOpen((o) => !o)}
+                      className="w-full flex items-center justify-between py-3 text-left hover:text-teal-400"
+                    >
+                      <span>Additional Services</span>
+                      <ChevronDownIcon />
+                    </button>
+                    {isAdditionalServicesOpen && (
+                      <div className="mt-2 rounded-lg border border-gray-700 bg-gradient-to-tl from-teal-400/20 via-black to-black p-2">
+                        {additionalServices.map((service) => (
+                          <a
+                            key={`m-${service.name}`}
+                            href={service.href}
+                            className="block py-2 text-white/90 hover:text-teal-400"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            {service.name}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    href={
+                      link === 'Home Page' ? '/' :
+                      link === 'Our Story' ? '/about' :
+                      link === 'Contact Information' ? '/contact' : '#'
+                    }
+                    className="block py-3 hover:text-teal-400"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-4 flex flex-col items-center gap-2 md:hidden">
+            <a href="/contact" className="inline-flex w-full items-center justify-center border border-teal-400 bg-teal-400 text-white font-light py-2.5 px-4 rounded-full text-xs hover:bg-white hover:text-black transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              Explore Careers
+            </a>
+            <a href="/contact" className="inline-flex w-full items-center justify-center border border-teal-400 text-teal-400 font-light py-2.5 px-4 rounded-full text-xs hover:bg-teal-400 hover:text-black transition-colors">
+              Let's Talk Business
+            </a>
+          </div>
         </div>
       </div>
     </header>

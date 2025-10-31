@@ -102,7 +102,7 @@ const AmazonProof: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-teal-50 to-white z-0"></div>
       
@@ -123,15 +123,15 @@ const AmazonProof: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-4 sm:mb-6">
             Amazon{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400">
               Performance Metrics
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-5xl mx-auto">
+          <p className="text-sm sm:text-base md:text-xl text-gray-600 max-w-5xl mx-auto">
             Comprehensive analytics showcasing systematic capital deployment and measurable returns from our proprietary Amazon automation frameworks. 
             These performance indicators demonstrate our institutional approach to systematic wealth generation.
           </p>
@@ -142,7 +142,7 @@ const AmazonProof: React.FC = () => {
 
         {/* Proof Images Grid */}
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {proofData.map((proof, index) => (
               <ProofCard
                 key={index}
@@ -160,9 +160,9 @@ const AmazonProof: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-12 sm:mt-16"
         >
-          <div className="relative bg-black rounded-2xl p-8 max-w-4xl mx-auto overflow-hidden">
+          <div className="relative bg-black rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto overflow-hidden">
             {/* Background Video */}
             <video
               className="absolute inset-0 w-full h-full object-cover z-0 opacity-20"
@@ -189,7 +189,7 @@ const AmazonProof: React.FC = () => {
               </p>
               <a 
                 href="/contact"
-                className="bg-teal-400 px-8 py-4 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
+                className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-4 sm:px-8 py-2.5 sm:py-4 text-xs sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
               >
                 Schedule Your Capital Intro Call
               </a>

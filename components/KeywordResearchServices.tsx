@@ -118,7 +118,7 @@ const KeywordResearchServices: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-black text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-black text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Radial Gradient */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, rgba(0,0,0,0) 70%) z-0"></div>
       
@@ -131,9 +131,9 @@ const KeywordResearchServices: React.FC = () => {
       <div className="absolute top-0 left-0 w-32 h-32 bg-teal-400/60 rounded-full blur-xl z-0"></div>
       
       {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
-      </button>
+      </a>
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -142,24 +142,24 @@ const KeywordResearchServices: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16 lg:mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
               Build Authority with{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">Strategic Keyword Research</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
               We deliver systematic, data-backed keyword research programs that compound organic growth and reduce content risk.
             </p>
           </motion.div>
 
           {/* Timeline Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
             {/* Left Side: Timeline */}
             <div className="relative" ref={timelineRef}>
               {/* Animated Timeline Line */}
               <motion.div 
-                className="absolute left-8 top-0 w-0.5 bg-teal-400/30"
+                className="hidden lg:block absolute left-8 top-0 w-0.5 bg-teal-400/30"
                 initial={{ height: 0 }}
                 animate={{ height: isInView ? "100%" : 0 }}
                 transition={{ duration: 2, ease: "easeInOut" }}
@@ -177,7 +177,7 @@ const KeywordResearchServices: React.FC = () => {
                   >
                     {/* Timeline Node */}
                     <motion.div 
-                      className={`absolute left-6 w-4 h-4 rounded-full border-2 z-10 transition-all duration-300 ${
+                      className={`hidden lg:block absolute left-6 w-4 h-4 rounded-full border-2 z-10 transition-all duration-300 ${
                         selectedService === service.id 
                           ? 'bg-teal-400 border-teal-400 scale-125' 
                           : 'bg-black border-teal-400 hover:bg-teal-400'
@@ -189,7 +189,7 @@ const KeywordResearchServices: React.FC = () => {
                     
                     {/* Service Card */}
                     <div 
-                      className={`ml-16 bg-white/5 border backdrop-blur-md text-white p-6 rounded-2xl shadow-2xl h-full flex flex-col relative group hover:border-white/20 hover:-translate-y-2 transition-all duration-300 cursor-pointer ${
+                      className={`pl-0 lg:ml-16 max-w-md mx-auto lg:max-w-none lg:mx-0 bg-white/5 border backdrop-blur-md text-white p-5 sm:p-6 rounded-2xl shadow-2xl h-full flex flex-col relative group hover:border-white/20 hover:-translate-y-2 transition-all duration-300 cursor-pointer ${
                         selectedService === service.id 
                           ? 'border-teal-400/50 shadow-lg shadow-teal-400/20' 
                           : 'border-white/10'
@@ -316,14 +316,16 @@ const KeywordResearchServices: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center mt-16"
+            className="text-center mt-12 sm:mt-16"
           >
-            <a
-              href="/contact"
-              className="bg-teal-400 px-8 py-4 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
-            >
+            <div className="flex justify-center lg:justify-start">
+              <a
+                href="/contact"
+                className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
+              >
               Schedule Your Strategy Call
-            </a>
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>

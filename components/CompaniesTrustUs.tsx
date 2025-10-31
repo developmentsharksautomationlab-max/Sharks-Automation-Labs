@@ -21,11 +21,13 @@ const companies = [
 // --- Company Logo Component ---
 const CompanyLogo: React.FC<{ name: string; logo: string }> = ({ name, logo }) => {
   const isSmallLogo = ['Tesla', 'Amazon', 'Google', 'Netflix', 'Uber'].includes(name);
-  const logoSize = isSmallLogo ? 'w-20 h-20' : 'w-36 h-36';
-  const containerHeight = isSmallLogo ? 'h-32' : 'h-44';
+  const logoSize = isSmallLogo
+    ? 'w-16 h-16 sm:w-20 sm:h-20'
+    : 'w-24 h-24 sm:w-36 sm:h-36';
+  const containerHeight = isSmallLogo ? 'h-28 sm:h-32' : 'h-36 sm:h-44';
   
   return (
-    <div className={`flex items-center justify-center px-8 py-8 group ${containerHeight}`}>
+    <div className={`flex items-center justify-center px-4 sm:px-8 py-6 sm:py-8 group ${containerHeight}`}>
       <div className={`relative ${logoSize} flex items-center justify-center`}>
         <img
           src={logo}
@@ -100,29 +102,29 @@ const AnimatedNumber: React.FC<{
 // --- Main Companies Trust Us Section ---
 const CompaniesTrustUs: React.FC = () => {
   return (
-    <section className="relative bg-gray-50 py-16 px-8 overflow-hidden">
+    <section className="relative bg-gray-50 py-12 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-r from-teal-50/30 to-transparent"></div>
       
-      {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      {/* Floating Side Button (hide on small) */}
+      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
       </button>
 
       <div className="container mx-auto relative z-10">
         {/* Section Title */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-10 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
             Challenges Brands Face in Competitive Ecosystem
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
             In today's fast-paced digital marketplace, brands must navigate complex challenges to stay competitive and deliver exceptional customer experiences.
           </p>
         </div>
 
         {/* First Marquee Line */}
         <div>
-          <Marquee speed={50} gradient={false} className="py-0">
+          <Marquee speed={45} gradient={false} className="py-0">
             {companies.map((company, index) => (
               <CompanyLogo key={`first-${index}`} {...company} />
             ))}
@@ -133,8 +135,8 @@ const CompaniesTrustUs: React.FC = () => {
         </div>
 
         {/* Second Marquee Line - Opposite Direction */}
-        <div className="-mt-4">
-          <Marquee speed={50} gradient={false} direction="right" className="py-0">
+        <div className="-mt-2 sm:-mt-4">
+          <Marquee speed={45} gradient={false} direction="right" className="py-0">
             {companies.map((company, index) => (
               <CompanyLogo key={`third-${index}`} {...company} />
             ))}

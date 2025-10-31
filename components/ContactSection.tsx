@@ -318,7 +318,7 @@ const ContactSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-black text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-black text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Radial Gradient */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, rgba(0,0,0,0) 70%) z-0"></div>
       
@@ -332,28 +332,28 @@ const ContactSection: React.FC = () => {
       <div className="absolute top-0 left-0 w-64 h-64 bg-teal-400/30 rounded-full blur-2xl z-0"></div>
       <div className="absolute top-0 left-0 w-32 h-32 bg-teal-400/60 rounded-full blur-xl z-0"></div>
 
-      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start relative z-10">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start relative z-10">
         
         {/* Left Column: Form */}
-        <div className="bg-white/5 border border-white/10 backdrop-blur-md text-white p-8 rounded-2xl shadow-2xl shadow-teal-400/25">
-          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-400">Ready To Get Started</h2>
-          <p className="text-gray-300 mt-2 mb-8">
+        <div className="bg-white/5 border border-white/10 backdrop-blur-md text-white p-6 sm:p-8 rounded-2xl shadow-2xl shadow-teal-400/25">
+          <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-400">Ready To Get Started</h2>
+          <p className="text-gray-300 mt-2 mb-6 sm:mb-8 text-sm sm:text-base">
             Connect with us to explore how we can deliver exceptional IT solutions for your needs.
           </p>
           
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <form className="space-y-5 sm:space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <FormField label="First Name" type="text" />
               <FormField label="Last Name" type="text" />
             </div>
             <FormField label="Email" type="email" />
             <div>
               <label className="block text-sm font-semibold text-gray-300 mb-1">Phone number <span className="text-red-400">*</span></label>
-              <div className="flex">
-                <select className="bg-white/10 border border-white/20 rounded-l-md p-3 text-white focus:ring-1 focus:ring-teal-400 focus:border-teal-400 transition-colors">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+                <select className="bg-white/10 border border-white/20 rounded-md sm:rounded-l-md p-3 text-white focus:ring-1 focus:ring-teal-400 focus:border-teal-400 transition-colors sm:min-w-[220px]">
                   <option className="bg-black text-white">Pakistan (پاکستان)</option>
                 </select>
-                <input type="text" defaultValue="+92" className="w-full bg-white/10 border-t border-b border-r border-white/20 rounded-r-md p-3 text-white placeholder-gray-400 focus:ring-1 focus:ring-teal-400 focus:border-teal-400 transition-colors" />
+                <input type="text" defaultValue="+92" className="w-full bg-white/10 border border-white/20 sm:border-t sm:border-b sm:border-r sm:border-l-0 rounded-md sm:rounded-r-md p-3 text-white placeholder-gray-400 focus:ring-1 focus:ring-teal-400 focus:border-teal-400 transition-colors" />
               </div>
             </div>
             <div>
@@ -378,7 +378,7 @@ const ContactSection: React.FC = () => {
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-300 mb-2">Services you're looking for <span className="text-red-400">*</span></label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {servicesOptions.map((service) => (
                   <Checkbox key={service} label={service} id={service.replace(/\s+/g, '-').toLowerCase()} />
                 ))}
@@ -395,7 +395,7 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
             {/* reCAPTCHA Placeholder */}
-            <div className="bg-white/5 border border-white/20 rounded p-3 flex items-center justify-between">
+            <div className="bg-white/5 border border-white/20 rounded p-3 flex flex-col sm:flex-row gap-2 sm:gap-0 items-start sm:items-center justify-between">
                 <div className="flex items-center">
                     <div className="w-7 h-7 bg-teal-400 rounded flex items-center justify-center">
                         <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -404,16 +404,16 @@ const ContactSection: React.FC = () => {
                 </div>
                  <div className="text-xs text-gray-500">Privacy - Terms</div>
             </div>
-            <button type="submit" className="w-full bg-teal-400 text-black font-bold py-4 rounded-md hover:bg-white hover:text-black transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25">
+            <button type="submit" className="w-full bg-teal-400 text-black font-bold py-3 sm:py-4 rounded-md hover:bg-white hover:text-black transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25">
               Submit
             </button>
           </form>
         </div>
 
         {/* Right Column: Info */}
-        <div className="relative pt-16">
+        <div className="relative pt-8 sm:pt-12 lg:pt-16">
             <GlobalNetworkEarth />
-            <div className="space-y-16">
+            <div className="space-y-10 sm:space-y-12 lg:space-y-16">
                 <InfoBlock 
                     icon={<Globe3DIcon />}
                     title="Global Presence"
@@ -428,7 +428,7 @@ const ContactSection: React.FC = () => {
         </div>
       </div>
        {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white hover:text-black transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25">
+      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white hover:text-black transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25">
         Let&apos;s Talk Business
       </button>
     </section>

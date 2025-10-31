@@ -146,8 +146,8 @@ const InvestmentLifecycle: React.FC = () => {
                 ? 'opacity-100 blur-0' 
                 : 'opacity-60 blur-lg'
             }`}>
-              {/* Timeline Node */}
-              <div className="lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
+              {/* Timeline Node (hidden on small screens) */}
+              <div className="hidden lg:block lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
                 <div className="absolute top-0 left-8 lg:left-auto lg:top-auto w-0.5 h-full lg:w-auto lg:h-0.5"></div>
                 <div className="absolute top-0 -left-1.5 lg:left-auto lg:top-auto transform-none lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2">
                   <div className="flex items-center justify-center w-10 h-10 rounded-full bg-black border-2 border-teal-400/50 group-hover:border-teal-400 transition-colors duration-300">
@@ -164,7 +164,7 @@ const InvestmentLifecycle: React.FC = () => {
               />
 
                 {/* Content Card */}
-                <div className="pl-16 lg:pl-0 lg:pt-20 text-center lg:text-left">
+                <div className="pl-0 lg:pl-0 lg:pt-20 text-center lg:text-left max-w-md mx-auto lg:max-w-none lg:mx-0">
                     <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md group-hover:border-white/20 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-teal-400/25 transition-all duration-500 ease-in-out">
                         {/* Card Number Label */}
                         <div className="absolute -top-3 -left-3 w-8 h-8 bg-teal-400 text-white font-bold rounded-full flex items-center justify-center text-sm z-10">

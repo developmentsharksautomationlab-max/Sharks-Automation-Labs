@@ -1,15 +1,23 @@
 # Disable directory listing
 Options -Indexes
 
-# Prevent directory browsing
+# Prevent directory browsing completely
 IndexIgnore *
+DirectoryIndex index.html index.php
 
 # Enable rewrite engine
 RewriteEngine On
 
-# Redirect to HTTPS (uncomment if you have SSL)
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Redirect www to non-www (or vice versa - adjust as needed)
+RewriteCond %{HTTP_HOST} ^www\.thesharkretail\.com [NC]
+RewriteRule ^(.*)$ https://thesharkretail.com/$1 [L,R=301]
+
+# Redirect HTTP to HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Prevent access to cgi-bin directory
+RewriteRule ^cgi-bin/ - [F,L]
 
 # Next.js routing - handle all routes
 RewriteBase /
@@ -32,8 +40,11 @@ RewriteRule . /index.html [L]
   Deny from all
 </FilesMatch>
 
-# Prevent access to cgi-bin
-RedirectMatch 403 /cgi-bin/
+# Block access to cgi-bin
+<DirectoryMatch "^.*/cgi-bin">
+  Order allow,deny
+  Deny from all
+</DirectoryMatch>
 
 # Cache static assets
 <IfModule mod_expires.c>
@@ -47,3 +58,5 @@ RedirectMatch 403 /cgi-bin/
   ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
 
+# Disable server signature
+ServerSignature Off

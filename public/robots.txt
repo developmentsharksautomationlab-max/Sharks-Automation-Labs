@@ -2,6 +2,11 @@ User-agent: *
 Allow: /
 Disallow: /cgi-bin/
 Disallow: /*?*
+Disallow: /cgi-bin/*
+
+# Block directory listings
+User-agent: *
+Disallow: /?$
 
 Sitemap: https://thesharkretail.com/sitemap.xml
 

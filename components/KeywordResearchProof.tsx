@@ -58,10 +58,10 @@ const KeywordResearchProof: React.FC = () => {
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-teal-50/50 via-white to-teal-50/30 z-0"></div>
       
-      {/* Floating Side Button */}
-      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      {/* Floating Side Button (hide on small) */}
+      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
-      </a>
+      </button>
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -97,13 +97,13 @@ const KeywordResearchProof: React.FC = () => {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-teal-400/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="relative z-10">
-                  <div className="flex items-center justify-center mb-3">
-                    <div className="text-6xl md:text-7xl font-bold text-teal-400 group-hover:text-teal-500 transition-colors duration-300">
+                  <div className="flex items-center justify-center mb-2 sm:mb-3">
+                    <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-teal-400 group-hover:text-teal-500 transition-colors duration-300">
                       {counts.years}
                     </div>
-                    <div className="text-4xl font-bold text-teal-400 ml-2 group-hover:text-teal-500 transition-colors duration-300">+</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-teal-400 ml-1 sm:ml-2 group-hover:text-teal-500 transition-colors duration-300">+</div>
                   </div>
-                  <div className="text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors duration-300">
+                  <div className="text-sm sm:text-base md:text-lg font-bold text-gray-800 group-hover:text-gray-900 transition-colors duration-300">
                     Years of Experience
                   </div>
                 </div>
@@ -221,21 +221,19 @@ const KeywordResearchProof: React.FC = () => {
             {/* Teal Overlay */}
             <div className="absolute inset-0 bg-teal-400/10 rounded-3xl z-10"></div>
             
-            <div className="relative bg-black/50 backdrop-blur-sm rounded-3xl p-6 sm:p-8 md:p-12 text-center z-20">
+            <div className="relative bg-black/50 backdrop-blur-sm rounded-3xl p-6 sm:p-10 md:p-12 text-center z-20">
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
                 Ready to See These Results for Your Organic Search?
               </h3>
-              <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto">
+              <p className="text-sm sm:text-base md:text-xl text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto">
                 Join our systematic approach to keyword research and start generating consistent, measurable organic growth from your content strategy.
               </p>
-              <div className="flex justify-center">
-                <a
-                  href="/contact"
-                  className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-4 py-2.5 text-xs sm:px-6 sm:py-3 sm:text-sm md:px-8 md:py-4 md:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full cursor-pointer"
-                >
-                  Schedule Your Strategy Call
-                </a>
-              </div>
+              <a
+                href="/contact"
+                className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full cursor-pointer"
+              >
+                Schedule Your Strategy Call
+              </a>
             </div>
           </motion.div>
         </div>

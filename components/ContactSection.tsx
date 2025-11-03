@@ -270,9 +270,12 @@ const InfoBlock: React.FC<InfoBlockProps> = ({ icon, title, description }) => (
         {title}
       </h3>
       <p className="text-gray-300 mt-2 max-w-sm group-hover:text-gray-200 transition-colors duration-300">{description}</p>
-      <button className="bg-teal-400 text-black font-bold py-3 px-8 rounded-full mt-6 hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-teal-400/25 hover:-translate-y-1">
+      <a 
+        href="/about"
+        className="inline-flex items-center justify-center bg-teal-400 text-black font-bold py-3 px-8 rounded-full mt-6 hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-teal-400/25 hover:-translate-y-1"
+      >
         Learn more
-      </button>
+      </a>
     </div>
   </div>
 );

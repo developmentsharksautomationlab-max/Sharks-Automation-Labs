@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import PlexusBackgroundWhite from '@/components/PlexusBackgroundWhite';
+import PlexusBackgroundWhite from './PlexusBackgroundWhite';
 
 // --- Content Creation Services Component ---
 const ContentCreationServices: React.FC = () => {
@@ -99,52 +99,56 @@ const ContentCreationServices: React.FC = () => {
 
   return (
     <section className="relative bg-black text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <PlexusBackgroundWhite />
+      {/* Background Radial Gradient */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, rgba(0,0,0,0) 70%) z-0"></div>
       
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-teal-400/10 via-black to-teal-400/5"></div>
+      {/* Teal Glow from Right Bottom */}
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl z-0"></div>
+      <div className="absolute bottom-0 right-0 w-64 h-64 bg-teal-400/30 rounded-full blur-2xl z-0"></div>
+      <div className="absolute bottom-0 right-0 w-32 h-32 bg-teal-400/60 rounded-full blur-xl z-0"></div>
       
-      {/* Floating Side Button */}
-      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      {/* Teal Glow from Top Left */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl z-0"></div>
+      <div className="absolute top-0 left-0 w-64 h-64 bg-teal-400/30 rounded-full blur-2xl z-0"></div>
+      <div className="absolute top-0 left-0 w-32 h-32 bg-teal-400/60 rounded-full blur-xl z-0"></div>
+      
+      {/* Floating Side Button (hide on small) */}
+      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
-      </a>
+      </button>
 
       <div className="container mx-auto relative z-10">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12 sm:mb-16 lg:mb-20"
+            className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
               Content Creation{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400">
-                Solutions
-              </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">Solutions</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
               Our comprehensive content creation services are designed to enhance your brand presence, 
-              drive engagement, and accelerate your content marketing success.
+              drive engagement, and accelerate your content marketing success. We help brands of every 
+              size work smarter, not harder, by removing the stress of managing multiple content platforms.
             </p>
-            <div className="flex justify-center mt-8">
-              <div className="w-32 h-1 bg-gradient-to-r from-transparent via-teal-400 to-transparent"></div>
-            </div>
           </motion.div>
 
           {/* Timeline Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16">
             {/* Left Side: Timeline */}
             <div className="relative" ref={timelineRef}>
               {/* Animated Timeline Line */}
-              <motion.div
-                className="hidden lg:block absolute left-8 top-0 w-0.5 bg-teal-400/30"
+              <motion.div 
+                className="absolute left-8 top-0 w-0.5 bg-teal-400/30"
                 initial={{ height: 0 }}
                 animate={{ height: isInView ? "100%" : 0 }}
                 transition={{ duration: 2, ease: "easeInOut" }}
               ></motion.div>
-
+              
               {/* Timeline Cards */}
               <div className="space-y-8">
                 {servicesData.map((service, index) => (
@@ -156,38 +160,53 @@ const ContentCreationServices: React.FC = () => {
                     className="relative"
                   >
                     {/* Timeline Node */}
-                    <motion.div
-                      className={`hidden lg:block absolute left-6 w-4 h-4 rounded-full border-2 z-10 transition-all duration-300 ${
-                        selectedService === service.id
-                          ? 'bg-teal-400 border-teal-400 scale-125'
+                    <motion.div 
+                      className={`absolute left-6 w-4 h-4 rounded-full border-2 z-10 transition-all duration-300 ${
+                        selectedService === service.id 
+                          ? 'bg-teal-400 border-teal-400 scale-125' 
                           : 'bg-black border-teal-400 hover:bg-teal-400'
                       }`}
                       initial={{ scale: 0 }}
                       animate={{ scale: isInView ? 1 : 0 }}
                       transition={{ duration: 0.5, delay: index * 0.2 + 0.5 }}
                     ></motion.div>
-
+                    
                     {/* Service Card */}
-                    <div
-                      className={`pl-0 lg:ml-16 max-w-md mx-auto lg:max-w-none lg:mx-0 bg-white/5 border backdrop-blur-md text-white p-5 sm:p-6 rounded-2xl shadow-2xl h-full flex flex-col relative group hover:border-white/20 hover:-translate-y-2 transition-all duration-300 cursor-pointer ${
-                        selectedService === service.id
-                          ? 'border-teal-400/50 shadow-lg shadow-teal-400/20'
+                    <div 
+                      className={`ml-16 bg-white/5 border backdrop-blur-md text-white p-6 rounded-2xl shadow-2xl h-full flex flex-col relative group hover:border-white/20 hover:-translate-y-2 transition-all duration-300 cursor-pointer ${
+                        selectedService === service.id 
+                          ? 'border-teal-400/50 shadow-lg shadow-teal-400/20' 
                           : 'border-white/10'
                       }`}
                       onClick={() => setSelectedService(selectedService === service.id ? null : service.id)}
                     >
-                      {/* Service Number */}
-                      <div className="absolute top-4 left-4 w-8 h-8 bg-teal-400 rounded-full flex items-center justify-center text-black font-bold text-sm">
-                        {service.id}
+                      {/* Teal Glow Effect - Right Side */}
+                      <div className="absolute top-0 right-0 w-3/4 h-full bg-teal-400/10 rounded-2xl blur-3xl"></div>
+                      <div className="absolute top-0 right-0 w-1/2 h-full bg-teal-400/15 rounded-2xl blur-2xl"></div>
+                      <div className="absolute -top-4 -right-4 w-32 h-32 bg-teal-400/20 rounded-full blur-3xl"></div>
+                      
+                      {/* Hover Glow Effect */}
+                      <div className="absolute inset-0 bg-teal-400/0 group-hover:bg-teal-400/5 rounded-2xl transition-all duration-500"></div>
+                      <div className="absolute -inset-2 bg-teal-400/0 group-hover:bg-teal-400/10 rounded-2xl blur-xl transition-all duration-500"></div>
+                      
+                      {/* Service Number Icon */}
+                      <div className="w-12 h-12 bg-teal-400 rounded-lg flex items-center justify-center mb-4 shadow-lg shadow-teal-400/50 group-hover:shadow-teal-400/80 transition-all duration-500">
+                        <span className="text-white font-bold text-lg">{service.id}</span>
                       </div>
-
-                      <div className="mt-8">
-                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-teal-300 transition-colors duration-300">
-                          {service.title}
-                        </h3>
-                        <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
-                          {service.description}
-                        </p>
+                      
+                      <h3 className="text-xl font-bold text-white mb-3 relative z-10 group-hover:text-teal-100 transition-colors duration-500">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed flex-grow relative z-10 text-sm group-hover:text-gray-300 transition-colors duration-500">
+                        {service.description}
+                      </p>
+                      
+                      {/* Click Indicator */}
+                      <div className="mt-4 flex items-center text-teal-400 text-sm font-semibold group-hover:text-teal-300 transition-colors duration-500">
+                        <span>{selectedService === service.id ? 'Hide Details' : 'View Details'}</span>
+                        <svg className={`w-4 h-4 ml-2 transition-transform duration-300 ${selectedService === service.id ? 'rotate-90' : 'group-hover:translate-x-1'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
                       </div>
                     </div>
                   </motion.div>
@@ -207,12 +226,12 @@ const ContentCreationServices: React.FC = () => {
                   {(() => {
                     const service = servicesData.find(s => s.id === selectedService);
                     if (!service) return null;
-
+                    
                     return (
                       <>
                         <div className="flex items-center mb-6">
-                          <div className="w-12 h-12 bg-teal-400 rounded-full flex items-center justify-center mr-4">
-                            <span className="text-white font-bold text-lg">{service.id}</span>
+                          <div className="w-16 h-16 bg-teal-400 rounded-lg flex items-center justify-center mr-4 shadow-lg shadow-teal-400/50">
+                            <span className="text-white font-bold text-xl">{service.id}</span>
                           </div>
                           <div>
                             <h3 className="text-2xl font-bold text-white">{service.title}</h3>
@@ -250,7 +269,7 @@ const ContentCreationServices: React.FC = () => {
                           <div className="pt-6 border-t border-white/10">
                             <a
                               href="/contact"
-                              className="w-full bg-teal-400 px-6 py-3 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full text-center block cursor-pointer"
+                              className="w-full bg-teal-400 px-6 py-3 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full text-center block"
                             >
                               Get Started
                             </a>
@@ -262,39 +281,31 @@ const ContentCreationServices: React.FC = () => {
                 </motion.div>
               ) : (
                 <div className="bg-white/5 border border-white/10 backdrop-blur-md text-white p-8 rounded-2xl shadow-2xl shadow-teal-400/25 text-center">
-                  <h3 className="text-xl font-bold text-white mb-4">Select a Service</h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    Click on any service card to view detailed features, benefits, and implementation details.
-                  </p>
+                  <div className="w-16 h-16 bg-teal-400/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">Select a Service</h3>
+                  <p className="text-gray-400">Click on any service card to view detailed information, features, and benefits.</p>
                 </div>
               )}
             </div>
           </div>
 
-          {/* Bottom CTA */}
-          <motion.div
+          {/* CTA Section */}
+          <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             className="text-center mt-12 sm:mt-16"
           >
-            <div className="bg-gradient-to-r from-teal-400/10 to-teal-500/10 rounded-3xl p-6 sm:p-8 border border-teal-400/30 backdrop-blur-md">
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-                Ready to Transform Your Content Strategy?
-              </h3>
-              <p className="text-base sm:text-lg text-gray-300 mb-5 sm:mb-6 max-w-2xl mx-auto">
-                Transform your brand with our comprehensive content creation solutions. 
-                Experience the difference that professional content makes.
-              </p>
-              <div className="flex justify-center lg:justify-start">
-                <a
-                  href="/contact"
-                  className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full cursor-pointer"
-                >
-                  Get Started Today
-                </a>
-              </div>
-            </div>
+            <a
+              href="/contact"
+              className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
+            >
+              Schedule Your Capital Intro Call
+            </a>
           </motion.div>
         </div>
       </div>

@@ -130,10 +130,10 @@ const KeywordResearchServices: React.FC = () => {
       <div className="absolute top-0 left-0 w-64 h-64 bg-teal-400/30 rounded-full blur-2xl z-0"></div>
       <div className="absolute top-0 left-0 w-32 h-32 bg-teal-400/60 rounded-full blur-xl z-0"></div>
       
-      {/* Floating Side Button */}
-      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      {/* Floating Side Button (hide on small) */}
+      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
-      </a>
+      </button>
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -142,24 +142,24 @@ const KeywordResearchServices: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12 sm:mb-16 lg:mb-20"
+            className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
               Build Authority with{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-500">Strategic Keyword Research</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
               We deliver systematic, data-backed keyword research programs that compound organic growth and reduce content risk.
             </p>
           </motion.div>
 
           {/* Timeline Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16">
             {/* Left Side: Timeline */}
             <div className="relative" ref={timelineRef}>
               {/* Animated Timeline Line */}
               <motion.div 
-                className="hidden lg:block absolute left-8 top-0 w-0.5 bg-teal-400/30"
+                className="absolute left-8 top-0 w-0.5 bg-teal-400/30"
                 initial={{ height: 0 }}
                 animate={{ height: isInView ? "100%" : 0 }}
                 transition={{ duration: 2, ease: "easeInOut" }}
@@ -189,7 +189,7 @@ const KeywordResearchServices: React.FC = () => {
                     
                     {/* Service Card */}
                     <div 
-                      className={`pl-0 lg:ml-16 max-w-md mx-auto lg:max-w-none lg:mx-0 bg-white/5 border backdrop-blur-md text-white p-5 sm:p-6 rounded-2xl shadow-2xl h-full flex flex-col relative group hover:border-white/20 hover:-translate-y-2 transition-all duration-300 cursor-pointer ${
+                      className={`ml-16 bg-white/5 border backdrop-blur-md text-white p-6 rounded-2xl shadow-2xl h-full flex flex-col relative group hover:border-white/20 hover:-translate-y-2 transition-all duration-300 cursor-pointer ${
                         selectedService === service.id 
                           ? 'border-teal-400/50 shadow-lg shadow-teal-400/20' 
                           : 'border-white/10'
@@ -318,14 +318,12 @@ const KeywordResearchServices: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-center mt-12 sm:mt-16"
           >
-            <div className="flex justify-center lg:justify-start">
-              <a
-                href="/contact"
-                className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
-              >
+            <a
+              href="/contact"
+              className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
+            >
               Schedule Your Strategy Call
-              </a>
-            </div>
+            </a>
           </motion.div>
         </div>
       </div>

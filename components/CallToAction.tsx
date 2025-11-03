@@ -45,9 +45,12 @@ const CallToAction: React.FC = () => {
           </p>
           
           <div className="flex justify-center">
-            <button className="bg-teal-400 px-5 py-2.5 text-sm sm:px-6 sm:py-3.5 sm:text-sm md:px-8 md:py-4 md:text-lg font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-white hover:text-black rounded-full hover:shadow-2xl hover:shadow-teal-400/25">
+            <a 
+              href="/contact"
+              className="inline-flex items-center justify-center bg-teal-400 px-5 py-2.5 text-sm sm:px-6 sm:py-3.5 sm:text-sm md:px-8 md:py-4 md:text-lg font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-white hover:text-black rounded-full hover:shadow-2xl hover:shadow-teal-400/25"
+            >
               Schedule Your Capital Intro Call
-            </button>
+            </a>
           </div>
         </div>
       </div>

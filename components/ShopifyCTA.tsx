@@ -155,9 +155,12 @@ const ShopifyCTA: React.FC = () => {
                   Global E-Commerce Presence
                 </h3>
                 <p className="text-gray-600 mt-2 max-w-sm group-hover:text-gray-700 transition-colors duration-300">We're across 5 continents, explore our office nearest to you.</p>
-                <button className="bg-teal-400 text-black font-bold py-3 px-8 rounded-full mt-6 hover:bg-black hover:text-white transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25 hover:-translate-y-1 cursor-pointer">
+                <a 
+                  href="/about"
+                  className="inline-flex items-center justify-center bg-teal-400 text-black font-bold py-3 px-8 rounded-full mt-6 hover:bg-black hover:text-white transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25 hover:-translate-y-1 cursor-pointer"
+                >
                   Learn more
-                </button>
+                </a>
               </div>
             </div>
             
@@ -172,9 +175,12 @@ const ShopifyCTA: React.FC = () => {
                   E-Commerce Leaders
                 </h3>
                 <p className="text-gray-600 mt-2 max-w-sm group-hover:text-gray-700 transition-colors duration-300">Our capability and competencies are backed by diverse Global leadership.</p>
-                <button className="bg-teal-400 text-black font-bold py-3 px-8 rounded-full mt-6 hover:bg-black hover:text-white transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25 hover:-translate-y-1 cursor-pointer">
+                <a 
+                  href="/about"
+                  className="inline-flex items-center justify-center bg-teal-400 text-black font-bold py-3 px-8 rounded-full mt-6 hover:bg-black hover:text-white transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25 hover:-translate-y-1 cursor-pointer"
+                >
                   Learn more
-                </button>
+                </a>
               </div>
             </div>
           </div>

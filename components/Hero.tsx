@@ -114,9 +114,25 @@ const Hero: React.FC = () => {
                     {slide.description}
                   </p>
                   <div className="flex justify-start">
-                    <button className="bg-teal-400 px-4 py-2.5 text-xs sm:px-6 sm:py-3.5 sm:text-sm md:px-8 md:py-4 md:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full">
-                      {slide.buttonText}
-                    </button>
+                    {slide.buttonText === "Schedule Your Capital Intro Call" ? (
+                      <a 
+                        href="/contact"
+                        className="inline-flex items-center justify-center bg-teal-400 px-4 py-2.5 text-xs sm:px-6 sm:py-3.5 sm:text-sm md:px-8 md:py-4 md:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
+                      >
+                        {slide.buttonText}
+                      </a>
+                    ) : (
+                      <button 
+                        onClick={() => {
+                          // Dispatch custom event to open Automation Solutions dropdown
+                          window.dispatchEvent(new CustomEvent('openAutomationSolutions'));
+                          // The Header component will handle the scrolling and opening
+                        }}
+                        className="bg-teal-400 px-4 py-2.5 text-xs sm:px-6 sm:py-3.5 sm:text-sm md:px-8 md:py-4 md:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
+                      >
+                        {slide.buttonText}
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

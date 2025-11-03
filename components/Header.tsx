@@ -39,6 +39,69 @@ const Header: React.FC = () => {
   const [isAutomationOpen, setIsAutomationOpen] = useState(false);
   const [isAdditionalServicesOpen, setIsAdditionalServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const automationTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const additionalServicesTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  // Cleanup timeouts on unmount
+  React.useEffect(() => {
+    return () => {
+      if (automationTimeoutRef.current) {
+        clearTimeout(automationTimeoutRef.current);
+      }
+      if (additionalServicesTimeoutRef.current) {
+        clearTimeout(additionalServicesTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Listen for custom event to open Automation Solutions dropdown
+  React.useEffect(() => {
+    const handleOpenAutomationSolutions = () => {
+      // Check if we're on mobile (menu not visible on desktop)
+      const isMobile = window.innerWidth < 1024; // lg breakpoint
+      
+      if (isMobile) {
+        // On mobile: first open mobile menu, then open automation dropdown
+        setIsMobileMenuOpen(true);
+        
+        // Small delay to ensure menu is rendered before opening dropdown and scrolling
+        setTimeout(() => {
+          setIsAutomationOpen(true);
+          
+          // Scroll to header first
+          setTimeout(() => {
+            const header = document.querySelector('header');
+            if (header) {
+              header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              
+              // After scrolling to header, scroll to automation solutions section
+              setTimeout(() => {
+                const mobileAutomationElement = document.getElementById('mobile-automation-solutions');
+                if (mobileAutomationElement) {
+                  mobileAutomationElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+              }, 400);
+            }
+          }, 200);
+        }, 100);
+      } else {
+        // On desktop: just open automation dropdown
+        setIsAutomationOpen(true);
+        // Scroll to the automation solutions menu item
+        setTimeout(() => {
+          const automationElement = document.getElementById('automation-solutions');
+          if (automationElement) {
+            automationElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
+      }
+    };
+
+    window.addEventListener('openAutomationSolutions', handleOpenAutomationSolutions);
+    return () => {
+      window.removeEventListener('openAutomationSolutions', handleOpenAutomationSolutions);
+    };
+  }, []);
 
   const navLinks = [
     'Home Page',
@@ -108,11 +171,28 @@ const Header: React.FC = () => {
             {navLinks.map((link) => (
               <li key={link} className="relative">
                 {link === "Automation Solutions" ? (
-                  <div className="relative">
+                  <div 
+                    className="relative" 
+                    id="automation-solutions"
+                    onMouseEnter={() => {
+                      // Clear any pending timeout
+                      if (automationTimeoutRef.current) {
+                        clearTimeout(automationTimeoutRef.current);
+                        automationTimeoutRef.current = null;
+                      }
+                      setIsAutomationOpen(true);
+                    }}
+                    onMouseLeave={() => {
+                      // Delay closing to allow user to move mouse to dropdown
+                      automationTimeoutRef.current = setTimeout(() => {
+                        setIsAutomationOpen(false);
+                        automationTimeoutRef.current = null;
+                      }, 200);
+                    }}
+                  >
                     <button
-                      onMouseEnter={() => setIsAutomationOpen(true)}
-                      onMouseLeave={() => setIsAutomationOpen(false)}
                       className="flex items-center gap-2 hover:text-teal-400 transition-colors"
+                      style={isAutomationOpen ? { color: '#14b8a6' } : {}}
                     >
                       {link}
                       <ChevronDownIcon />
@@ -122,8 +202,6 @@ const Header: React.FC = () => {
                     {isAutomationOpen && (
                       <div 
                         className="absolute top-full left-0 w-64 bg-black rounded-lg shadow-xl border border-gray-700 z-50 bg-gradient-to-tl from-teal-400/20 via-black to-black"
-                        onMouseEnter={() => setIsAutomationOpen(true)}
-                        onMouseLeave={() => setIsAutomationOpen(false)}
                       >
                         <div className="pt-2 pb-3">
                           {automationSolutions.map((solution) => (
@@ -140,10 +218,25 @@ const Header: React.FC = () => {
                     )}
                   </div>
                 ) : link === "Additional Services" ? (
-                  <div className="relative">
+                  <div 
+                    className="relative"
+                    onMouseEnter={() => {
+                      // Clear any pending timeout
+                      if (additionalServicesTimeoutRef.current) {
+                        clearTimeout(additionalServicesTimeoutRef.current);
+                        additionalServicesTimeoutRef.current = null;
+                      }
+                      setIsAdditionalServicesOpen(true);
+                    }}
+                    onMouseLeave={() => {
+                      // Delay closing to allow user to move mouse to dropdown
+                      additionalServicesTimeoutRef.current = setTimeout(() => {
+                        setIsAdditionalServicesOpen(false);
+                        additionalServicesTimeoutRef.current = null;
+                      }, 200);
+                    }}
+                  >
                     <button
-                      onMouseEnter={() => setIsAdditionalServicesOpen(true)}
-                      onMouseLeave={() => setIsAdditionalServicesOpen(false)}
                       className="flex items-center gap-2 hover:text-teal-400 transition-colors"
                     >
                       {link}
@@ -154,8 +247,6 @@ const Header: React.FC = () => {
                     {isAdditionalServicesOpen && (
                       <div 
                         className="absolute top-full left-0 w-64 bg-black rounded-lg shadow-xl border border-gray-700 z-50 bg-gradient-to-tl from-teal-400/20 via-black to-black"
-                        onMouseEnter={() => setIsAdditionalServicesOpen(true)}
-                        onMouseLeave={() => setIsAdditionalServicesOpen(false)}
                       >
                         <div className="pt-2 pb-3">
                           {additionalServices.map((service) => (
@@ -222,10 +313,11 @@ const Header: React.FC = () => {
             {navLinks.map((link) => (
               <li key={`m-${link}`} className="">
                 {link === 'Automation Solutions' ? (
-                  <div className="">
+                  <div className="" id="mobile-automation-solutions">
                     <button
                       onClick={() => setIsAutomationOpen((o) => !o)}
                       className="w-full flex items-center justify-between py-3 text-left hover:text-teal-400"
+                      style={isAutomationOpen ? { color: '#14b8a6' } : {}}
                     >
                       <span>Automation Solutions</span>
                       <ChevronDownIcon />

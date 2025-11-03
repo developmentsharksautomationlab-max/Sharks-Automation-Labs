@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { ChevronDown, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Facebook, Instagram, Linkedin } from 'lucide-react';
 
 // --- Reusable SVG Logo Component ---
 const SharkRetailLogo = () => (
@@ -68,6 +68,19 @@ const socialLinks = [
   { href: "#", icon: <XIcon /> }
 ];
 
+// Chevron down icon for dropdowns (matching Header)
+const ChevronDownIcon = () => (
+  <svg
+    className="h-4 w-4 text-white"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+  </svg>
+);
+
 // --- Reusable Child Components ---
 const FooterLink: React.FC<{ 
   label: string; 
@@ -75,32 +88,48 @@ const FooterLink: React.FC<{
   setIsAutomationOpen: (open: boolean) => void;
   isAdditionalServicesOpen: boolean;
   setIsAdditionalServicesOpen: (open: boolean) => void;
-}> = ({ label, isAutomationOpen, setIsAutomationOpen, isAdditionalServicesOpen, setIsAdditionalServicesOpen }) => {
+  automationTimeoutRef: React.MutableRefObject<NodeJS.Timeout | null>;
+  additionalServicesTimeoutRef: React.MutableRefObject<NodeJS.Timeout | null>;
+}> = ({ label, isAutomationOpen, setIsAutomationOpen, isAdditionalServicesOpen, setIsAdditionalServicesOpen, automationTimeoutRef, additionalServicesTimeoutRef }) => {
   if (label === "Automation Solutions") {
     return (
-      <div className="relative">
+      <div 
+        className="relative"
+        onMouseEnter={() => {
+          // Clear any pending timeout
+          if (automationTimeoutRef.current) {
+            clearTimeout(automationTimeoutRef.current);
+            automationTimeoutRef.current = null;
+          }
+          setIsAutomationOpen(true);
+        }}
+        onMouseLeave={() => {
+          // Delay closing to allow user to move mouse to dropdown
+          automationTimeoutRef.current = setTimeout(() => {
+            setIsAutomationOpen(false);
+            automationTimeoutRef.current = null;
+          }, 200);
+        }}
+      >
         <button
-          onMouseEnter={() => setIsAutomationOpen(true)}
-          onMouseLeave={() => setIsAutomationOpen(false)}
-          className="flex items-center gap-2 text-white hover:text-teal-400 transition-colors"
+          className="flex items-center justify-center gap-2 hover:text-teal-400 transition-colors"
+          style={isAutomationOpen ? { color: '#14b8a6' } : {}}
         >
           {label}
-          <ChevronDown size={16} className="text-teal-400" />
+          <ChevronDownIcon />
         </button>
         
         {/* Dropdown Menu */}
         {isAutomationOpen && (
           <div 
-            className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50"
-            onMouseEnter={() => setIsAutomationOpen(true)}
-            onMouseLeave={() => setIsAutomationOpen(false)}
+            className="absolute top-full left-0 mt-2 w-64 bg-black rounded-lg shadow-xl border border-gray-700 z-50 bg-gradient-to-tl from-teal-400/20 via-black to-black"
           >
-            <div className="py-2">
+            <div className="pt-2 pb-3">
               {automationSolutions.map((solution) => (
                 <a
                   key={solution.name}
                   href={solution.href}
-                  className="block px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600 transition-colors"
+                  className="block px-6 py-4 text-white hover:bg-teal-400/20 hover:text-teal-400 transition-colors text-center"
                 >
                   <div className="font-semibold">{solution.name}</div>
                 </a>
@@ -114,29 +143,42 @@ const FooterLink: React.FC<{
 
   if (label === "Additional Services") {
     return (
-      <div className="relative">
+      <div 
+        className="relative"
+        onMouseEnter={() => {
+          // Clear any pending timeout
+          if (additionalServicesTimeoutRef.current) {
+            clearTimeout(additionalServicesTimeoutRef.current);
+            additionalServicesTimeoutRef.current = null;
+          }
+          setIsAdditionalServicesOpen(true);
+        }}
+        onMouseLeave={() => {
+          // Delay closing to allow user to move mouse to dropdown
+          additionalServicesTimeoutRef.current = setTimeout(() => {
+            setIsAdditionalServicesOpen(false);
+            additionalServicesTimeoutRef.current = null;
+          }, 200);
+        }}
+      >
         <button
-          onMouseEnter={() => setIsAdditionalServicesOpen(true)}
-          onMouseLeave={() => setIsAdditionalServicesOpen(false)}
-          className="flex items-center gap-2 text-white hover:text-teal-400 transition-colors"
+          className="flex items-center justify-center gap-2 hover:text-teal-400 transition-colors"
         >
           {label}
-          <ChevronDown size={16} className="text-teal-400" />
+          <ChevronDownIcon />
         </button>
         
         {/* Dropdown Menu */}
         {isAdditionalServicesOpen && (
           <div 
-            className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50"
-            onMouseEnter={() => setIsAdditionalServicesOpen(true)}
-            onMouseLeave={() => setIsAdditionalServicesOpen(false)}
+            className="absolute top-full left-0 mt-2 w-64 bg-black rounded-lg shadow-xl border border-gray-700 z-50 bg-gradient-to-tl from-teal-400/20 via-black to-black"
           >
-            <div className="py-2">
+            <div className="pt-2 pb-3">
               {additionalServices.map((service) => (
                 <a
                   key={service.name}
                   href={service.href}
-                  className="block px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600 transition-colors"
+                  className="block px-6 py-4 text-white hover:bg-teal-400/20 hover:text-teal-400 transition-colors text-center"
                 >
                   <div className="font-semibold">{service.name}</div>
                 </a>
@@ -152,6 +194,7 @@ const FooterLink: React.FC<{
     <a 
       href={
         label === "Home Page" ? "/" : 
+        label === "Our Story" ? "/about" :
         label === "Contact Information" ? "/contact" : 
         "#"
       } 
@@ -199,6 +242,8 @@ const SocialIcon: React.FC<{ href: string; icon: React.ReactNode }> = ({ href, i
 const Footer: React.FC = () => {
   const [isAutomationOpen, setIsAutomationOpen] = useState(false);
   const [isAdditionalServicesOpen, setIsAdditionalServicesOpen] = useState(false);
+  const automationTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const additionalServicesTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   return (
     <footer className="relative bg-black text-white pt-12 sm:pt-16 pb-8 px-4 sm:px-8 lg:px-16 overflow-hidden">
@@ -214,7 +259,8 @@ const Footer: React.FC = () => {
         {/* Top Section: Logo and Nav */}
         <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center lg:items-center gap-6 sm:gap-8 text-center lg:text-left">
           <SharkRetailLogo />
-          <nav className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
             {footerNavLinks.map(link => (
               <FooterLink 
                 key={link} 
@@ -223,8 +269,78 @@ const Footer: React.FC = () => {
                 setIsAutomationOpen={setIsAutomationOpen}
                 isAdditionalServicesOpen={isAdditionalServicesOpen}
                 setIsAdditionalServicesOpen={setIsAdditionalServicesOpen}
+                automationTimeoutRef={automationTimeoutRef}
+                additionalServicesTimeoutRef={additionalServicesTimeoutRef}
               />
             ))}
+          </nav>
+          {/* Mobile Navigation */}
+          <nav className="lg:hidden w-full">
+            <ul className="space-y-2 text-sm">
+              {footerNavLinks.map((link) => (
+                <li key={`m-${link}`} className="">
+                  {link === 'Automation Solutions' ? (
+                    <div className="">
+                      <button
+                        onClick={() => setIsAutomationOpen((o) => !o)}
+                        className="w-full flex items-center justify-center gap-2 py-3 hover:text-teal-400"
+                        style={isAutomationOpen ? { color: '#14b8a6' } : {}}
+                      >
+                        <span>Automation Solutions</span>
+                        <ChevronDownIcon />
+                      </button>
+                      {isAutomationOpen && (
+                        <div className="mt-2 rounded-lg border border-gray-700 bg-gradient-to-tl from-teal-400/20 via-black to-black p-2">
+                          {automationSolutions.map((solution) => (
+                            <a
+                              key={`m-${solution.name}`}
+                              href={solution.href}
+                              className="block py-2 text-white/90 hover:text-teal-400 text-center"
+                            >
+                              {solution.name}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : link === 'Additional Services' ? (
+                    <div className="">
+                      <button
+                        onClick={() => setIsAdditionalServicesOpen((o) => !o)}
+                        className="w-full flex items-center justify-center gap-2 py-3 hover:text-teal-400"
+                      >
+                        <span>Additional Services</span>
+                        <ChevronDownIcon />
+                      </button>
+                      {isAdditionalServicesOpen && (
+                        <div className="mt-2 rounded-lg border border-gray-700 bg-gradient-to-tl from-teal-400/20 via-black to-black p-2">
+                          {additionalServices.map((service) => (
+                            <a
+                              key={`m-${service.name}`}
+                              href={service.href}
+                              className="block py-2 text-white/90 hover:text-teal-400 text-center"
+                            >
+                              {service.name}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <a
+                      href={
+                        link === 'Home Page' ? '/' :
+                        link === 'Our Story' ? '/about' :
+                        link === 'Contact Information' ? '/contact' : '#'
+                      }
+                      className="block py-3 hover:text-teal-400"
+                    >
+                      {link}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
           </nav>
         </div>
 

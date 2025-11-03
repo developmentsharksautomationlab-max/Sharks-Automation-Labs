@@ -13,12 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shark Retail - E-commerce Automation Solutions",
+  metadataBase: new URL('https://thesharkretail.com'),
+  title: "The Shark Retail - E-commerce Automation Solutions",
   description: "Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart to scale your operations while you focus on strategic growth.",
-  keywords: ["e-commerce automation", "Amazon automation", "Shopify automation", "TikTok Shop automation", "Walmart automation", "PPC management", "virtual assistant", "account reinstatement", "content creation", "keyword research", "product hunting"],
-  authors: [{ name: "Shark Retail" }],
-  creator: "Shark Retail",
-  publisher: "Shark Retail",
+  keywords: ["e-commerce automation", "Amazon automation", "Shopify automation", "TikTok Shop automation", "Walmart automation", "PPC management", "virtual assistant", "account reinstatement", "content creation", "keyword research", "product hunting", "The Shark Retail"],
+  authors: [{ name: "The Shark Retail" }],
+  creator: "The Shark Retail",
+  publisher: "The Shark Retail",
+  applicationName: "The Shark Retail",
   robots: {
     index: true,
     follow: true,
@@ -33,31 +35,49 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://sharkretail.com',
-    siteName: 'Shark Retail',
-    title: 'Shark Retail - E-commerce Automation Solutions',
-    description: 'Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart.',
+    url: 'https://thesharkretail.com',
+    siteName: 'The Shark Retail',
+    title: 'The Shark Retail - E-commerce Automation Solutions',
+    description: 'Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart to scale your operations while you focus on strategic growth.',
     images: [
       {
         url: '/images/sharks-retail-logo.png',
         width: 1200,
         height: 630,
-        alt: 'Shark Retail Logo',
+        alt: 'The Shark Retail Logo',
+        type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shark Retail - E-commerce Automation Solutions',
-    description: 'Transform your capital into systematically managed, cash-flow generative e-commerce enterprises.',
+    site: '@sharkretail',
+    creator: '@sharkretail',
+    title: 'The Shark Retail - E-commerce Automation Solutions',
+    description: 'Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart.',
     images: ['/images/sharks-retail-logo.png'],
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/images/sharks-retail-logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/sharks-retail-logo.png', sizes: '16x16', type: 'image/png' },
+    ],
     shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    apple: [
+      { url: '/images/sharks-retail-logo.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      {
+        rel: 'apple-touch-icon-precomposed',
+        url: '/images/sharks-retail-logo.png',
+      },
+    ],
   },
   manifest: '/manifest.json',
+  alternates: {
+    canonical: 'https://thesharkretail.com',
+  },
 };
 
 export default function RootLayout({

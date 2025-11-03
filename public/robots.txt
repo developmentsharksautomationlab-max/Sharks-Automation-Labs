@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /cgi-bin/
+Disallow: /*?*
 
 Sitemap: https://thesharkretail.com/sitemap.xml
 

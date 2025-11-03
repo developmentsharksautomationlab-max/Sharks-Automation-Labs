@@ -8,9 +8,13 @@ DirectoryIndex index.html index.php
 # Enable rewrite engine
 RewriteEngine On
 
-# Redirect www to non-www (or vice versa - adjust as needed)
+# Redirect www to non-www (Namecheap compatible)
 RewriteCond %{HTTP_HOST} ^www\.thesharkretail\.com [NC]
 RewriteRule ^(.*)$ https://thesharkretail.com/$1 [L,R=301]
+
+# Redirect non-www to www (if you prefer www, uncomment this and comment the above)
+# RewriteCond %{HTTP_HOST} ^thesharkretail\.com [NC]
+# RewriteRule ^(.*)$ https://www.thesharkretail.com/$1 [L,R=301]
 
 # Redirect HTTP to HTTPS
 RewriteCond %{HTTPS} off

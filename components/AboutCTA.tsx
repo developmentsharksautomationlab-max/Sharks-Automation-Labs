@@ -127,10 +127,10 @@ const AboutCTA: React.FC = () => {
             <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 max-w-md mx-auto">
               <p className="text-gray-600 text-sm mb-2">Prefer to email us?</p>
               <a 
-                href="mailto:business@sharkretail.com" 
+                href="mailto:info@thesharkretail.com" 
                 className="text-teal-600 font-semibold hover:text-teal-700 transition-colors"
               >
-                business@sharkretail.com
+                info@thesharkretail.com
               </a>
             </div>
           </motion.div>

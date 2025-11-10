@@ -32,14 +32,14 @@ const AmazonHero: React.FC = () => {
             className="space-y-6 sm:space-y-8"
           >
             <div className="space-y-6">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight max-w-3xl" style={{ fontFamily: 'Poppins', fontWeight: '700' }}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight max-w-3xl" style={{ fontFamily: 'Poppins', fontWeight: '400' }}>
                 Dominate{' '}
                 <span className="text-white">Amazon</span>{' '}
                 with{' '}
                 <span className="text-teal-400">Institutional Automation</span>
               </h1>
               
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-3xl font-black text-justify lg:text-left hyphens-auto lg:hyphens-none">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-3xl font-normal text-justify lg:text-left hyphens-auto lg:hyphens-none">
                 Transform your capital into a systematically managed, cash-flow generative Amazon enterprise. 
                 We deploy sophisticated automation technologies to scale your operations while you focus on strategic growth.
               </p>

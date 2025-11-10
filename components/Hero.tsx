@@ -96,7 +96,7 @@ const Hero: React.FC = () => {
               {/* Content */}
               <div className="relative z-15 flex h-full items-center justify-start">
                 <div className="text-left text-white p-4 sm:p-6 md:p-8">
-                  <h1 className={`mb-6 tracking-tight text-3xl sm:text-5xl md:text-6xl lg:text-[70px] ${index === 1 ? 'max-w-3xl' : ''}`} style={{ fontFamily: 'Poppins', fontWeight: '700', lineHeight: '1.2' }}>
+                  <h1 className={`mb-6 tracking-tight text-3xl sm:text-5xl md:text-6xl lg:text-[70px] ${index === 1 ? 'max-w-3xl' : ''}`} style={{ fontFamily: 'Poppins', fontWeight: '400', lineHeight: '1.2' }}>
                     {index === 1 ? (
                       <>
                         Strategic Capital Deployment in<br />
@@ -110,7 +110,7 @@ const Hero: React.FC = () => {
                       )
                     }
                   </h1>
-                  <p className="mb-6 sm:mb-8 text-sm sm:text-base md:text-xl lg:text-2xl font-black max-w-3xl">
+                  <p className="mb-6 sm:mb-8 text-sm sm:text-base md:text-xl lg:text-2xl font-normal max-w-3xl">
                     {slide.description}
                   </p>
                   <div className="flex justify-start">

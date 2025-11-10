@@ -26,7 +26,7 @@ const OurStoryHero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 sm:mb-8 leading-tight max-w-4xl mx-auto"
-            style={{ fontFamily: 'Poppins', fontWeight: '700' }}
+            style={{ fontFamily: 'Poppins', fontWeight: '400' }}
           >
             Your Partner in{' '}
             <span className="text-teal-400">E-Commerce</span>,{' '}
@@ -39,7 +39,7 @@ const OurStoryHero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-sm sm:text-base md:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto font-black"
+            className="text-sm sm:text-base md:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto font-normal"
           >
             We transformed the rigorous investment strategies of Fortune 500 clients into a{' '}
             <span className="text-teal-400 font-semibold">done-for-you service</span>, so you can achieve{' '}

@@ -727,7 +727,7 @@ const ContactSection: React.FC = () => {
                 placeholder="Enter your budget (minimum 2000)"
                 className="w-full bg-white/10 border border-white/20 rounded-md p-3 text-white placeholder-gray-400 focus:ring-1 focus:ring-teal-400 focus:border-teal-400 transition-colors"
               />
-            </div>
+              </div>
             <FormField 
               label="Company name" 
               type="text" 
@@ -821,9 +821,9 @@ const ContactSection: React.FC = () => {
         </div>
       </div>
        {/* Floating Side Button */}
-      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white hover:text-black transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25">
+      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white hover:text-black transition-all duration-300 hover:shadow-2xl hover:shadow-teal-400/25">
         Let&apos;s Talk Business
-      </button>
+      </a>
     </section>
   );
 };

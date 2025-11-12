@@ -352,9 +352,9 @@ const TikTokCTA: React.FC = () => {
       <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-bl from-teal-400/20 to-transparent"></div>
       
       {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      <a href="/contact" className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
-      </button>
+      </a>
 
       <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start relative z-10">
         

@@ -9,36 +9,31 @@ import { motion } from 'framer-motion';
 // IMPORTANT: The `imageUrl` should point to images that already have the glowing effect.
 const teamData = [
   {
-    name: "Omnia Hamed",
-    company: "Google",
+    name: "Aain Ali",
+    company: "Shark Retail",
     companyColor: "text-teal-400", // Using a specific color prop for flexibility
     titles: ["Senior Director"],
     imageUrl: "/images/team/3.png", // Using existing team image
-    logoUrl: "/images/companies/processed/google.png", // Using existing company logo
+    logoUrl: "/images/sharks-retail-logo.png", // Using existing company logo
+    linkedinUrl: "https://www.linkedin.com/in/aainali?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
   },
   {
-    name: "Ankit Lathigara",
-    company: "Google",
+    name: "Zayn",
+    company: "Shark Retail",
     companyColor: "text-teal-400",
-    titles: ["AVP Client Services"],
+    titles: ["Chief Executive Officer"],
     imageUrl: "/images/team/4.png", // Using existing team image
-    logoUrl: "/images/companies/processed/google.png", // Using existing company logo
+    logoUrl: "/images/sharks-retail-logo.png", // Using existing company logo
+    linkedinUrl: "https://www.linkedin.com/in/muhammad-zayaan-b7b220259/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   },
   {
-    name: "Sundas Khalid",
-    company: "Google",
+    name: "Syed Sarmad",
+    company: "Shark Retail",
     companyColor: "text-teal-400",
-    titles: ["Principal Analytics Lead"],
-    imageUrl: "/images/team/3.png", // Using existing team image
-    logoUrl: "/images/companies/processed/google.png", // Using existing company logo
-  },
-  {
-    name: "Ahmed Mostafa",
-    company: "Google",
-    companyColor: "text-teal-400",
-    titles: ["Regional AI Adoption Lead"],
-    imageUrl: "/images/team/4.png", // Using existing team image
-    logoUrl: "/images/companies/processed/google.png", // Using existing company logo
+    titles: ["Chief Operating Officer"],
+    imageUrl: "/images/team/5.png", // New team member image
+    logoUrl: "/images/sharks-retail-logo.png", // Using existing company logo
+    linkedinUrl: "",
   },
 ];
 
@@ -57,12 +52,13 @@ interface TeamMemberCardProps {
   titles: string[];
   imageUrl: string;
   logoUrl: string;
+  linkedinUrl?: string;
 }
 
-const TeamMemberCard: React.FC<TeamMemberCardProps & { index: number }> = ({ name, company, companyColor, titles, imageUrl, logoUrl, index }) => {
+const TeamMemberCard: React.FC<TeamMemberCardProps & { index: number }> = ({ name, company, companyColor, titles, imageUrl, logoUrl, linkedinUrl, index }) => {
   return (
     <motion.div 
-      className="group text-left"
+      className="group text-left flex flex-col h-full"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -70,7 +66,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps & { index: number }> = ({ nam
     >
       {/* Image and Logo Container */}
       <motion.div 
-        className="relative mb-6"
+        className={`relative mb-6 aspect-[3/4] overflow-hidden ${name === "Sarmad" ? "" : ""}`}
         initial={{ scale: 0.9 }}
         whileInView={{ scale: 1 }}
         transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
@@ -80,8 +76,8 @@ const TeamMemberCard: React.FC<TeamMemberCardProps & { index: number }> = ({ nam
           src={imageUrl}
           alt={`Portrait of ${name}`}
           width={500}
-          height={500}
-          className="w-full object-cover rounded-lg"
+          height={667}
+          className={`w-full h-full object-cover rounded-lg ${name === "Syed Sarmad" ? "object-top scale-105 -translate-y-8" : ""}`}
         />
         {/* Subtle gradient to ensure logo is always readable */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg"></div>
@@ -105,13 +101,13 @@ const TeamMemberCard: React.FC<TeamMemberCardProps & { index: number }> = ({ nam
 
       {/* Text Content */}
       <motion.div 
-        className="px-1 flex flex-col h-full"
+        className="px-1 flex flex-col flex-grow"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: index * 0.2 + 0.4 }}
         viewport={{ once: false }}
       >
-        <div className="flex-grow">
+        <div>
           <motion.h3 
             className="text-lg font-bold text-white uppercase tracking-wider"
             initial={{ opacity: 0, y: 20 }}
@@ -139,15 +135,25 @@ const TeamMemberCard: React.FC<TeamMemberCardProps & { index: number }> = ({ nam
           >
             {titles.map(title => <p key={title}>{title}</p>)}
           </motion.div>
-          <motion.div 
-            className="mt-3 flex items-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: index * 0.2 + 0.9 }}
-            viewport={{ once: false }}
-          >
-            <LinkedInIcon />
-          </motion.div>
+          {linkedinUrl && (
+            <motion.div 
+              className="mt-3 flex items-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: index * 0.2 + 0.9 }}
+              viewport={{ once: false }}
+            >
+              <a 
+                href={linkedinUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+                aria-label={`${name}'s LinkedIn profile`}
+              >
+                <LinkedInIcon />
+              </a>
+            </motion.div>
+          )}
         </div>
       </motion.div>
     </motion.div>
@@ -187,7 +193,7 @@ const TeamSection: React.FC = () => {
           </motion.p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 items-start">
           {teamData.map((member, index) => (
             <TeamMemberCard key={member.name} {...member} index={index} />
           ))}

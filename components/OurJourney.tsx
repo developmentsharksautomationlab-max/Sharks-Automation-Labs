@@ -11,9 +11,9 @@ const OurJourney: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-l from-teal-50/30 to-transparent"></div>
       
       {/* Floating Side Button */}
-      <button className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      <a href="/contact" className="fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] transform rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
-      </button>
+      </a>
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-5xl mx-auto">

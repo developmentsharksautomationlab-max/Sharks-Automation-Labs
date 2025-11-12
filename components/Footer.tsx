@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Facebook, Instagram } from 'lucide-react';
 
 // --- Reusable SVG Logo Component ---
 const SharkRetailLogo = () => (
@@ -20,12 +20,6 @@ const SharkRetailLogo = () => (
   </div>
 );
 
-// --- Custom X (Twitter) Icon ---
-const XIcon = () => (
-  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-  </svg>
-);
 
 // --- Data for the Footer ---
 const footerNavLinks = ["Home Page", "Our Story", "Automation Solutions", "Additional Services", "Contact Information"];
@@ -62,10 +56,8 @@ const locationsData = [
 ];
 
 const socialLinks = [
-  { href: "#", icon: <Facebook size={20} /> },
-  { href: "#", icon: <Linkedin size={20} /> },
-  { href: "https://www.instagram.com/sharks_retail?igsh=MWlxZHFldGsyZW1uMA==", icon: <Instagram size={20} /> },
-  { href: "#", icon: <XIcon /> }
+  { href: "https://www.facebook.com/profile.php?id=61582189354952", icon: <Facebook size={20} /> },
+  { href: "https://www.instagram.com/sharks_retail?igsh=MWlxZHFldGsyZW1uMA==", icon: <Instagram size={20} /> }
 ];
 
 // Chevron down icon for dropdowns (matching Header)
@@ -251,9 +243,9 @@ const Footer: React.FC = () => {
       <div className="absolute bottom-0 right-0 w-1/2 h-full bg-gradient-to-l from-teal-400/25 to-transparent z-0"></div>
 
       {/* Floating Side Button (hide on small) */}
-      <button className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
-      </button>
+      </a>
 
       <div className="container mx-auto relative z-10">
         {/* Top Section: Logo and Nav */}

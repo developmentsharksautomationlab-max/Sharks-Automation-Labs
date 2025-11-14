@@ -7,6 +7,7 @@ import EcommerceAutomationStrategyCall from '@/components/EcommerceAutomationStr
 import PPCManagementTestimonials from '@/components/PPCManagementTestimonials';
 import EcommerceAutomationVideoSection from '@/components/EcommerceAutomationVideoSection';
 import EcommerceAutomationFinalCTA from '@/components/EcommerceAutomationFinalCTA';
+import EcommerceFooter from '@/components/EcommerceFooter';
 
 const EcommerceAutomationPage: React.FC = () => {
   return (
@@ -22,7 +23,7 @@ const EcommerceAutomationPage: React.FC = () => {
         <EcommerceAutomationFinalCTA />
       </main>
       
-      <Footer />
+      <EcommerceFooter />
     </div>
   );
 };

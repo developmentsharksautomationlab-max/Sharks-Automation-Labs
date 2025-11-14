@@ -50,7 +50,7 @@ const EcommerceAutomationHero: React.FC = () => {
               className="text-sm sm:text-base md:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto font-black"
             >
               The Done-For-You System That Gets You to{' '}
-              <span className="text-teal-400 font-semibold">$4,000 in 90 Days</span>
+              <span className="text-teal-400 font-semibold">$4,000 in 30 Days</span>
               —or We Work for Free.
             </motion.p>
 

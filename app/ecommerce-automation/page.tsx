@@ -14,6 +14,7 @@ const EcommerceAutomationPage: React.FC = () => {
       
       <main>
         <EcommerceAutomationHero />
+        <EcommerceAutomationVideoSection />
         <OurJourney />
         <EcommerceAutomationStrategyCall />
         <PPCManagementTestimonials />

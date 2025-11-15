@@ -1,11 +1,31 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import PlexusBackground from './PlexusBackground';
 
 const EcommerceAutomationHero: React.FC = () => {
+  useEffect(() => {
+    // Load Calendly widget script if not already loaded
+    if (!document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
+  const openCalendly = () => {
+    if ((window as any).Calendly) {
+      (window as any).Calendly.initPopupWidget({
+        url: 'https://calendly.com/sharksretailofficial/30min'
+      });
+    } else {
+      // Fallback: open in new window if Calendly script not loaded
+      window.open('https://calendly.com/sharksretailofficial/30min', '_blank');
+    }
+  };
   return (
     <section className="relative bg-black py-8 sm:py-12 lg:py-8 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <PlexusBackground />
@@ -17,9 +37,9 @@ const EcommerceAutomationHero: React.FC = () => {
       <div className="absolute top-0 right-0 w-1/2 sm:w-1/3 h-full bg-gradient-to-l from-teal-400/20 to-transparent"></div>
       
       {/* Floating Side Button (hide on small) */}
-      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      <button onClick={openCalendly} className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
         Let&apos;s Talk Business
-      </a>
+      </button>
 
       {/* Main Hero Content */}
       <div className="relative z-10 flex h-full items-center justify-center">
@@ -70,13 +90,13 @@ const EcommerceAutomationHero: React.FC = () => {
               transition={{ duration: 1, delay: 0.5 }}
               className="flex justify-center mt-8"
             >
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
+              <button
+                onClick={openCalendly}
+                className="inline-flex items-center justify-center bg-teal-400 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full cursor-pointer"
               >
                 Book Now
                 <ArrowRight className="w-5 h-5 ml-2" />
-              </a>
+              </button>
             </motion.div>
 
             {/* Decorative Elements */}

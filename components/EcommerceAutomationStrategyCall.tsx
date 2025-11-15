@@ -62,6 +62,27 @@ const EcommerceAutomationStrategyCall: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    // Load Calendly widget script if not already loaded
+    if (!document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
+  const openCalendly = () => {
+    if ((window as any).Calendly) {
+      (window as any).Calendly.initPopupWidget({
+        url: 'https://calendly.com/sharksretailofficial/30min'
+      });
+    } else {
+      // Fallback: open in new window if Calendly script not loaded
+      window.open('https://calendly.com/sharksretailofficial/30min', '_blank');
+    }
+  };
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -111,9 +132,9 @@ const EcommerceAutomationStrategyCall: React.FC = () => {
       <div className="absolute top-0 left-0 w-32 h-32 bg-teal-400/60 rounded-full blur-xl z-0"></div>
 
       {/* Floating Side Button (hide on small) */}
-      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      <button onClick={openCalendly} className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors cursor-pointer">
         Let&apos;s Talk Business
-      </a>
+      </button>
 
       <div className="container mx-auto relative z-10">
         {/* Section Header */}

@@ -231,15 +231,36 @@ const Footer: React.FC = () => {
   const automationTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
   const additionalServicesTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
+  React.useEffect(() => {
+    // Load Calendly widget script if not already loaded
+    if (!document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
+  const openCalendly = () => {
+    if ((window as any).Calendly) {
+      (window as any).Calendly.initPopupWidget({
+        url: 'https://calendly.com/sharksretailofficial/30min'
+      });
+    } else {
+      // Fallback: open in new window if Calendly script not loaded
+      window.open('https://calendly.com/sharksretailofficial/30min', '_blank');
+    }
+  };
+
   return (
     <footer className="relative bg-black text-white pt-12 sm:pt-16 pb-8 px-4 sm:px-8 lg:px-16 overflow-hidden">
       {/* Background Radial Gradient */}
       <div className="absolute bottom-0 right-0 w-1/2 h-full bg-gradient-to-l from-teal-400/25 to-transparent z-0"></div>
 
       {/* Floating Side Button (hide on small) */}
-      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      <button onClick={openCalendly} className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors cursor-pointer">
         Let&apos;s Talk Business
-      </a>
+      </button>
 
       <div className="container mx-auto relative z-10">
         {/* Top Section: Logo and Nav */}

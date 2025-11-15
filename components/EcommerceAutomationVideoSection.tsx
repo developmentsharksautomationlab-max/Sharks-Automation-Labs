@@ -60,9 +60,20 @@ const EcommerceAutomationVideoSection: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-teal-50/30 to-transparent"></div>
       
       {/* Floating Side Button (hide on small) */}
-      <a href="/contact" className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors">
+      <button 
+        onClick={() => {
+          if ((window as any).Calendly) {
+            (window as any).Calendly.initPopupWidget({
+              url: 'https://calendly.com/sharksretailofficial/30min'
+            });
+          } else {
+            window.open('https://calendly.com/sharksretailofficial/30min', '_blank');
+          }
+        }}
+        className="hidden md:flex fixed top-1/2 right-0 -translate-y-1/2 bg-teal-400 text-black font-bold py-4 px-3 rounded-l-xl z-50 [writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-sm hover:bg-white transition-colors cursor-pointer"
+      >
         Let&apos;s Talk Business
-      </a>
+      </button>
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-4xl mx-auto text-center">

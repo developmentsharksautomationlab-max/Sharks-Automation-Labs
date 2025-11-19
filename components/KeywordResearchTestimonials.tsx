@@ -346,10 +346,10 @@ const KeywordResearchTestimonials: React.FC = () => {
       role: "Content Marketing Manager",
       company: "Strategic Content Solutions",
       date: "Dec 12, 2024",
-      content: "The keyword research insights provided by Shark Retail transformed our content strategy completely. Their comprehensive analysis of search volumes, competition, and user intent helped us rank for 500+ high-value keywords. The ROI on their keyword research services exceeded 400% within six months.",
+      content: "The keyword research insights provided by Shark Retail transformed our content strategy completely. Their comprehensive analysis of search volumes, competition, and user intent helped us rank for 500+ high-value keywords. The ROI on their keyword research services achieved 100% ROI growth within six months.",
       metrics: [
         { label: "Keywords Ranked", value: "500+" },
-        { label: "ROI Growth", value: "400%" }
+        { label: "ROI Growth", value: "100%" }
       ]
     },
     {

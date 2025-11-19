@@ -348,9 +348,9 @@ const ShopifyTestimonials: React.FC = () => {
       role: "Capital Allocation Director",
       company: "E-Commerce Growth Partners",
       date: "Nov 25, 2024",
-      content: "Working with Shark Retail transformed our Shopify operations into a systematic wealth-building platform. Their predictive analytics and automated fulfillment systems delivered 220% ROI growth within six months. The institutional-grade reporting and strategic insights are unparalleled.",
+      content: "Working with Shark Retail transformed our Shopify operations into a systematic wealth-building platform. Their predictive analytics and automated fulfillment systems delivered 100% ROI growth within six months. The institutional-grade reporting and strategic insights are unparalleled.",
       metrics: [
-        { label: "ROI Growth", value: "220%" },
+        { label: "ROI Growth", value: "100%" },
         { label: "Timeframe", value: "6 Months" }
       ]
     }

@@ -44,7 +44,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, id, checked, onChange }) => 
 );
 
 const ContentCreationCTA: React.FC = () => {
-  const [selectedCountry, setSelectedCountry] = useState({ code: '+92', name: 'Pakistan (پاکستان)' });
+  const [selectedCountry, setSelectedCountry] = useState({ code: '+1', name: 'United States' });
   const [phoneNumber, setPhoneNumber] = useState('');
   const [budget, setBudget] = useState('');
   const [formData, setFormData] = useState({
@@ -218,7 +218,8 @@ const ContentCreationCTA: React.FC = () => {
   ].sort((a, b) => a.name.localeCompare(b.name));
 
   const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selected = countryCodes.find(c => c.code === e.target.value);
+    const [code, name] = e.target.value.split('|');
+    const selected = countryCodes.find(c => c.code === code && c.name === name);
     if (selected) {
       setSelectedCountry(selected);
       setPhoneNumber(selected.code + ' ');
@@ -387,12 +388,12 @@ const ContentCreationCTA: React.FC = () => {
               <label className="block text-sm font-semibold text-gray-700 mb-1">Phone number <span className="text-red-500">*</span></label>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
                 <select 
-                  value={selectedCountry.code}
+                  value={`${selectedCountry.code}|${selectedCountry.name}`}
                   onChange={handleCountryChange}
                   className="bg-gray-50 border border-gray-300 rounded-md sm:rounded-l-md sm:rounded-r-none p-3 text-gray-900 focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-colors"
                 >
                   {countryCodes.map((country, index) => (
-                    <option key={`${country.code}-${country.name}-${index}`} value={country.code} className="bg-white text-gray-900">
+                    <option key={`${country.code}-${country.name}-${index}`} value={`${country.code}|${country.name}`} className="bg-white text-gray-900">
                       {country.name} ({country.code})
                     </option>
                   ))}

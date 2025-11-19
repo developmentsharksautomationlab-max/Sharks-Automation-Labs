@@ -127,7 +127,8 @@ const EcommerceAutomationAbout: React.FC = () => {
   };
 
   const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selected = countryCodes.find(c => c.code === e.target.value);
+    const [code, name] = e.target.value.split('|');
+    const selected = countryCodes.find(c => c.code === code && c.name === name);
     if (selected) {
       setSelectedCountry(selected);
       setPhoneNumber(selected.code + ' ');
@@ -312,12 +313,12 @@ const EcommerceAutomationAbout: React.FC = () => {
                   <label className="block text-sm font-semibold text-gray-700 mb-1">Phone number <span className="text-red-500">*</span></label>
                   <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
                     <select 
-                      value={selectedCountry.code}
+                      value={`${selectedCountry.code}|${selectedCountry.name}`}
                       onChange={handleCountryChange}
                       className="bg-gray-50 border border-gray-300 rounded-md sm:rounded-l-md p-3 text-gray-900 focus:ring-2 focus:ring-teal-400 focus:border-teal-400 transition-colors sm:min-w-[220px]"
                     >
                       {countryCodes.map((country) => (
-                        <option key={country.code} value={country.code} className="bg-white text-gray-900">
+                        <option key={country.code} value={`${country.code}|${country.name}`} className="bg-white text-gray-900">
                           {country.name}
                         </option>
                       ))}

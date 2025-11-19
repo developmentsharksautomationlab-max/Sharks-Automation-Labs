@@ -99,7 +99,7 @@ const AboutCTA: React.FC = () => {
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">Proven Results</h3>
               <p className="text-gray-600 text-sm">
-                $200M+ ROI generated for Fortune 500 clients
+                $1M+ ROI generated for Fortune 500 clients
               </p>
             </div>
             

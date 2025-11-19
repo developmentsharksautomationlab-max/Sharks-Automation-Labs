@@ -116,6 +116,7 @@ const Header: React.FC = () => {
     { name: 'Shopify Automation', href: '/automation/shopify' },
     { name: 'TikTok Shop Automation', href: '/automation/tiktok' },
     { name: 'Walmart Automation', href: '/automation/walmart' },
+    { name: 'Etsy Automation', href: '/automation/etsy' },
   ];
 
   const additionalServices = [

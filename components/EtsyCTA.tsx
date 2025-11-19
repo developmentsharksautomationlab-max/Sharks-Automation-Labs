@@ -44,8 +44,8 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, id, checked, onChange }) => 
   </div>
 );
 
-// --- Amazon CTA Component ---
-const AmazonCTA: React.FC = () => {
+// --- Etsy CTA Component ---
+const EtsyCTA: React.FC = () => {
   const [selectedCountry, setSelectedCountry] = useState({ code: '+1', name: 'United States' });
   const [phoneNumber, setPhoneNumber] = useState('');
   const [budget, setBudget] = useState('');
@@ -64,12 +64,12 @@ const AmazonCTA: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const servicesOptions = [
-    "Amazon FBA Automation",
-    "Inventory Management System", 
+    "Etsy Shop Automation",
+    "Listing Optimization System", 
     "Order Processing Automation", 
     "Customer Analytics",
-    "PPC Optimization", 
-    "Multi-vendor Marketplace", 
+    "Etsy Ads Optimization", 
+    "Multi-shop Marketplace", 
     "Digital Marketing Solutions",
     "SEO & Performance Optimization", 
     "Customer Support Automation", 
@@ -363,7 +363,7 @@ const AmazonCTA: React.FC = () => {
         <div className="bg-gray-50 border border-gray-200 backdrop-blur-md text-gray-900 p-6 sm:p-8 rounded-2xl shadow-2xl shadow-teal-400/25">
           <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-teal-600">Ready To Get Started</h2>
           <p className="text-sm sm:text-base text-gray-600 mt-2 mb-6 sm:mb-8">
-            Connect with us to explore how we can deliver exceptional Amazon automation solutions for your business.
+            Connect with us to explore how we can deliver exceptional Etsy automation solutions for your business.
           </p>
           
           <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
@@ -562,4 +562,5 @@ const AmazonCTA: React.FC = () => {
   );
 };
 
-export default AmazonCTA;
+export default EtsyCTA;
+

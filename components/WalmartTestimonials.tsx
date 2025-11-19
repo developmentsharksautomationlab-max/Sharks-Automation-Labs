@@ -372,9 +372,9 @@ const WalmartTestimonials: React.FC = () => {
       role: "Capital Allocation Director",
       company: "Retail Growth Partners",
       date: "Nov 30, 2024",
-      content: "Working with Shark Retail transformed our Walmart operations into a systematic wealth-building platform. Their predictive analytics and automated supply chain systems delivered 180% ROI growth within six months. The institutional-grade reporting and strategic insights are unparalleled.",
+      content: "Working with Shark Retail transformed our Walmart operations into a systematic wealth-building platform. Their predictive analytics and automated supply chain systems delivered 100% ROI growth within six months. The institutional-grade reporting and strategic insights are unparalleled.",
       metrics: [
-        { label: "ROI Growth", value: "180%" },
+        { label: "ROI Growth", value: "100%" },
         { label: "Timeframe", value: "6 Months" }
       ]
     }

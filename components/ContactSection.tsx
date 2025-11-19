@@ -321,7 +321,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, id }) => (
 
 // --- Main Contact Section Component ---
 const ContactSection: React.FC = () => {
-  const [selectedCountry, setSelectedCountry] = useState({ code: '+92', name: 'Pakistan (پاکستان)' });
+  const [selectedCountry, setSelectedCountry] = useState({ code: '+1', name: 'United States' });
   const [phoneNumber, setPhoneNumber] = useState('');
   const [budget, setBudget] = useState('');
   const [formData, setFormData] = useState({
@@ -400,7 +400,8 @@ const ContactSection: React.FC = () => {
   };
 
   const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selected = countryCodes.find(c => c.code === e.target.value);
+    const [code, name] = e.target.value.split('|');
+    const selected = countryCodes.find(c => c.code === code && c.name === name);
     if (selected) {
       setSelectedCountry(selected);
       // Clear all numbers except country code when country changes
@@ -677,12 +678,12 @@ const ContactSection: React.FC = () => {
               <label className="block text-sm font-semibold text-gray-300 mb-1">Phone number <span className="text-red-400">*</span></label>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
                 <select 
-                  value={selectedCountry.code}
+                  value={`${selectedCountry.code}|${selectedCountry.name}`}
                   onChange={handleCountryChange}
                   className="bg-white/10 border border-white/20 rounded-md sm:rounded-l-md p-3 text-white focus:ring-1 focus:ring-teal-400 focus:border-teal-400 transition-colors sm:min-w-[240px]"
                 >
                   {countryCodes.map((country, index) => (
-                    <option key={`${country.code}-${country.name}-${index}`} value={country.code} className="bg-black text-white">
+                    <option key={`${country.code}-${country.name}-${index}`} value={`${country.code}|${country.name}`} className="bg-black text-white">
                       {country.code} {country.name}
                     </option>
                   ))}

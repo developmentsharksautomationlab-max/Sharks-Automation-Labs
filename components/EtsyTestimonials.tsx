@@ -1,68 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
-
-// --- Animated Success Metric Component ---
-const SuccessMetric: React.FC<{
-  value: string;
-  label: string;
-  delay?: number;
-  icon?: React.ReactNode;
-}> = ({ value, label, delay = 0, icon }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, scale: 0.8 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, delay }}
-      viewport={{ once: true }}
-      className="relative group"
-    >
-      <div className="bg-gradient-to-br from-teal-500/20 to-teal-600/30 backdrop-blur-sm border border-teal-400/30 rounded-2xl p-8 text-center hover:border-teal-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-teal-400/25">
-        {icon && (
-          <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-teal-400/20 rounded-full flex items-center justify-center group-hover:bg-teal-400/30 transition-colors duration-300">
-              {icon}
-            </div>
-          </div>
-        )}
-        <motion.div
-          className="text-4xl md:text-5xl font-bold text-teal-400 mb-3"
-          initial={{ scale: 0 }}
-          animate={isVisible ? { scale: 1 } : { scale: 0 }}
-          transition={{ duration: 0.6, delay: delay + 0.3 }}
-        >
-          {value}
-        </motion.div>
-        <p className="text-gray-300 text-lg font-medium">{label}</p>
-        
-        {/* Animated border */}
-        <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-teal-400/20 via-transparent to-teal-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-      </div>
-    </motion.div>
-  );
-};
+import { motion } from 'framer-motion';
 
 // --- Enhanced Testimonial Card Component ---
 const TestimonialCard: React.FC<{
@@ -318,40 +257,40 @@ const TestimonialCarousel: React.FC<{
   );
 };
 
-// --- Product Hunting Testimonials Component ---
-const ProductHuntingTestimonials: React.FC = () => {
+// --- Etsy Testimonials Component ---
+const EtsyTestimonials: React.FC = () => {
   const testimonials = [
     {
-      name: "Alex Thompson",
-      role: "E-commerce Director",
-      company: "Digital Ventures Group",
-      date: "Jan 18, 2025",
-      content: "Shark Retail's product research methodology transformed our entire e-commerce strategy. Their data-driven approach identified winning products that increased our revenue by 400% in just 6 months. The systematic market analysis and trend identification frameworks are truly exceptional.",
+      name: "David Martinez",
+      role: "Institutional Investor",
+      company: "Capital Partners LLC",
+      date: "Jan 12, 2025",
+      content: "Shark Retail's systematic approach to Etsy automation delivered exceptional results. Within 90 days, our portfolio generated $50K in monthly recurring revenue. Their proprietary shop optimization algorithms and strategic capital deployment transformed our Etsy operations into a cash-flow generative asset.",
       metrics: [
-        { label: "Revenue Growth", value: "400%" },
-        { label: "Time to Results", value: "6 Months" }
+        { label: "Monthly Revenue", value: "$50K" },
+        { label: "Time to Profit", value: "90 Days" }
       ]
     },
     {
-      name: "Maria Rodriguez",
-      role: "Product Manager",
-      company: "Global Retail Solutions",
-      date: "Dec 15, 2024",
-      content: "The product hunting insights provided by Shark Retail revolutionized our entire product portfolio. Their comprehensive analysis of market trends and competitor strategies helped us launch 25+ successful products. The ROI on their research services achieved 100% ROI growth within six months.",
+      name: "Jennifer Walsh",
+      role: "Portfolio Manager",
+      company: "Strategic Ventures",
+      date: "Dec 8, 2024",
+      content: "The institutional-grade automation frameworks deployed by Shark Retail exceeded all expectations. Our Etsy portfolio achieved 400% growth through their systematic approach to market analysis and strategic positioning. Their proprietary systems consistently outperform market benchmarks.",
       metrics: [
-        { label: "Products Launched", value: "25+" },
-        { label: "ROI Growth", value: "100%" }
+        { label: "Portfolio Growth", value: "400%" },
+        { label: "Market Outperformance", value: "250%" }
       ]
     },
     {
-      name: "James Chen",
-      role: "E-commerce Operations Lead",
-      company: "Marketplace Masters",
-      date: "Nov 28, 2024",
-      content: "Working with Shark Retail's product research team was a game-changer for our marketplace operations. Their supplier sourcing and market validation strategies increased our profit margins by 180% and reduced our product failure rate by 70%. The systematic approach delivers measurable results.",
+      name: "Robert Kim",
+      role: "Capital Allocation Director",
+      company: "Global Investment Group",
+      date: "Nov 20, 2024",
+      content: "Working with Shark Retail transformed our Etsy operations into a systematic wealth-building platform. Their predictive analytics and automated fulfillment systems delivered 100% ROI growth within six months. The institutional-grade reporting and strategic insights are unparalleled.",
       metrics: [
-        { label: "Profit Margins", value: "180%" },
-        { label: "Failure Rate Reduction", value: "70%" }
+        { label: "ROI Growth", value: "100%" },
+        { label: "Timeframe", value: "6 Months" }
       ]
     }
   ];
@@ -389,8 +328,8 @@ const ProductHuntingTestimonials: React.FC = () => {
             </span>
           </h2>
           <p className="text-sm sm:text-base md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Our partners have achieved extraordinary e-commerce growth through systematic product research. 
-            These data-driven results demonstrate the power of our proprietary research frameworks and strategic product optimization.
+            Our partners have achieved extraordinary returns through systematic Etsy automation. 
+            These institutional-grade results demonstrate the power of our proprietary frameworks and strategic capital deployment.
           </p>
           <div className="flex justify-center mt-8">
             <div className="w-32 h-1 bg-gradient-to-r from-transparent via-teal-400 to-transparent"></div>
@@ -406,4 +345,5 @@ const ProductHuntingTestimonials: React.FC = () => {
   );
 };
 
-export default ProductHuntingTestimonials;
+export default EtsyTestimonials;
+

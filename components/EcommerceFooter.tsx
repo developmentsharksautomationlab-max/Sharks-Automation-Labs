@@ -26,6 +26,7 @@ const footerNavLinks = ["Home Page", "Our Story", "Automation Solutions", "Addit
 
 const automationSolutions = [
   { name: 'Amazon Automation', href: '/automation/amazon' },
+  { name: 'Etsy Automation', href: '/automation/etsy' },
   { name: 'Shopify Automation', href: '/automation/shopify' },
   { name: 'TikTok Shop Automation', href: '/automation/tiktok' },
   { name: 'Walmart Automation', href: '/automation/walmart' },

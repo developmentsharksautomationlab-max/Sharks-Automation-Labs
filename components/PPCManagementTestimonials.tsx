@@ -348,9 +348,9 @@ const PPCManagementTestimonials: React.FC = () => {
       role: "Advertising Allocation Director",
       company: "Global Investment Group",
       date: "Nov 20, 2024",
-      content: "Working with Shark Retail transformed our PPC operations into a systematic wealth-building platform. Their predictive analytics and automated campaign management delivered 250% ROI growth within six months. The institutional-grade reporting and strategic insights are unparalleled.",
+      content: "Working with Shark Retail transformed our PPC operations into a systematic wealth-building platform. Their predictive analytics and automated campaign management delivered 100% ROI growth within six months. The institutional-grade reporting and strategic insights are unparalleled.",
       metrics: [
-        { label: "ROI Growth", value: "250%" },
+        { label: "ROI Growth", value: "100%" },
         { label: "Timeframe", value: "6 Months" }
       ]
     }

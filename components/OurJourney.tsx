@@ -52,7 +52,7 @@ const OurJourney: React.FC = () => {
                 <div className="bg-teal-50 border-l-4 border-teal-400 p-6 rounded-r-lg">
                   <p className="text-lg font-semibold text-teal-800">
                     The result? They spearheaded investments that generated a staggering{' '}
-                    <span className="text-2xl font-bold">$200+ million in ROI</span>.
+                    <span className="text-2xl font-bold">$1 million in ROI</span>.
                   </p>
                 </div>
                 
@@ -99,7 +99,7 @@ const OurJourney: React.FC = () => {
                           ></motion.div>
                         </div>
                       </div>
-                      <span className="text-sm font-semibold text-gray-700">$50M</span>
+                      <span className="text-sm font-semibold text-gray-700">$250K</span>
                     </div>
                     
                     <div className="flex items-center justify-between">
@@ -114,7 +114,7 @@ const OurJourney: React.FC = () => {
                           ></motion.div>
                         </div>
                       </div>
-                      <span className="text-sm font-semibold text-gray-700">$100M</span>
+                      <span className="text-sm font-semibold text-gray-700">$500K</span>
                     </div>
                     
                     <div className="flex items-center justify-between">
@@ -129,7 +129,7 @@ const OurJourney: React.FC = () => {
                           ></motion.div>
                         </div>
                       </div>
-                      <span className="text-sm font-semibold text-gray-700">$150M</span>
+                      <span className="text-sm font-semibold text-gray-700">$750K</span>
                     </div>
                     
                     <div className="flex items-center justify-between">
@@ -144,7 +144,7 @@ const OurJourney: React.FC = () => {
                           ></motion.div>
                         </div>
                       </div>
-                      <span className="text-sm font-bold text-teal-600">$200M+</span>
+                      <span className="text-sm font-bold text-teal-600">$1 million</span>
                     </div>
                   </div>
                   
@@ -153,7 +153,7 @@ const OurJourney: React.FC = () => {
                     <p className="text-sm text-teal-800 font-semibold">
                       Total ROI Generated for Fortune 500 Clients
                     </p>
-                    <p className="text-2xl font-bold text-teal-600 mt-1">$200+ Million</p>
+                    <p className="text-2xl font-bold text-teal-600 mt-1">$1 Million</p>
                   </div>
                 </div>
               </div>

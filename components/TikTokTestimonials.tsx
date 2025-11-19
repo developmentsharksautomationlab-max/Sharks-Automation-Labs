@@ -348,9 +348,9 @@ const TikTokTestimonials: React.FC = () => {
       role: "Capital Allocation Director",
       company: "Influence Growth Partners",
       date: "Nov 28, 2024",
-      content: "Working with Shark Retail transformed our TikTok operations into a systematic wealth-building platform. Their predictive analytics and automated content systems delivered 280% ROI growth within six months. The institutional-grade reporting and strategic insights are unparalleled.",
+      content: "Working with Shark Retail transformed our TikTok operations into a systematic wealth-building platform. Their predictive analytics and automated content systems delivered 100% ROI growth within six months. The institutional-grade reporting and strategic insights are unparalleled.",
       metrics: [
-        { label: "ROI Growth", value: "280%" },
+        { label: "ROI Growth", value: "100%" },
         { label: "Timeframe", value: "6 Months" }
       ]
     }

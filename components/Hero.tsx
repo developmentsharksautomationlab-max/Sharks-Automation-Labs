@@ -1,226 +1,235 @@
 "use client";
-import React, { useRef, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
 
-const Hero: React.FC = () => {
-  const videoRef1 = useRef<HTMLVideoElement>(null);
-  const videoRef2 = useRef<HTMLVideoElement>(null);
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { 
+  Facebook, 
+  Twitter, 
+  Instagram, 
+  Linkedin, 
+  Cpu
+} from 'lucide-react';
+import { useLoading } from '@/contexts/LoadingContext';
+
+// --- HELPER COMPONENTS ---
+
+const SocialIcon = ({ Icon, delay }: { Icon: any, delay: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: delay, duration: 0.5 }}
+    className="relative group cursor-pointer"
+  >
+    <div className="p-3 border border-[#35c4dd]/30 rounded-xl bg-[#052126]/80 backdrop-blur-md group-active:scale-95 transition-all duration-200 hover:border-[#35c4dd] hover:bg-[#35c4dd]/10">
+      <Icon size={18} className="text-[#f2f4f4] group-hover:text-[#35c4dd] transition-colors" />
+    </div>
+  </motion.div>
+);
+
+const VerticalLines = () => (
+  <div className="absolute inset-0 w-full h-full pointer-events-none z-0 flex justify-between px-[8%] opacity-20">
+    {[1, 2, 3, 4].map((i) => (
+      <motion.div 
+        key={i}
+        className="w-px h-full bg-gradient-to-b from-transparent via-[#35c4dd] to-transparent"
+        animate={{ opacity: [0.1, 0.3, 0.1], y: [-100, 100, -100] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear", delay: i * 1.5 }}
+      />
+    ))}
+  </div>
+);
+
+// --- MAIN HERO COMPONENT ---
+
+const Hero = () => {
+  const [step, setStep] = useState(0);
+  const { isLoading } = useLoading();
 
   useEffect(() => {
-    const video1 = videoRef1.current;
-    const video2 = videoRef2.current;
-    
-    if (video1) {
-      video1.play().catch((error) => {
-        console.log('Autoplay was prevented by the browser:', error);
-      });
+    if (isLoading) {
+      setStep(0);
+      return;
     }
-    if (video2) {
-      video2.play().catch((error) => {
-        console.log('Autoplay was prevented by the browser:', error);
-      });
-    }
-  }, []);
 
-  const slides = [
-    {
-      video: "/videos/hero-vid-1.mp4",
-      title: "In a landscape of",
-      highlight: "volatile",
-      titleEnd: "speculation,",
-      description: "We offer a tangible, high-yield alternative. We build, scale, and manage proprietary e-commerce portfolios for discerning investors seeking superior, risk-adjusted returns.",
-      buttonText: "Schedule Your Capital Intro Call"
-    },
-    {
-      video: "/videos/hero-vid-2.mp4",
-      title: "Strategic Capital Deployment in",
-      highlight: "Global Commerce",
-      titleEnd: "",
-      description: "While traditional markets fluctuate on sentiment, global e-commerce grows on fundamental demand. We identify and capitalize on this permanent shift. Our firm provides a seamless, institutional-grade gateway into this $6 trillion ecosystem. We handle all operations—from asset creation to global logistics—transforming your capital into a actively managed, cash-flow generative enterprise.",
-      buttonText: "Explore Our Solutions"
-    }
-  ];
+    const sequence = async () => {
+      setTimeout(() => setStep(1), 100);  
+      setTimeout(() => setStep(2), 2000); 
+      setTimeout(() => setStep(3), 3500); 
+      setTimeout(() => setStep(4), 4500); 
+    };
+    sequence();
+  }, [isLoading]);
 
   return (
-    <section className="relative h-[60vh] sm:h-screen w-full overflow-hidden bg-black">
-      <Swiper
-        modules={[Pagination, Autoplay]}
-        spaceBetween={0}
-        slidesPerView={1}
-        pagination={{ 
-          clickable: true,
-          bulletClass: 'swiper-pagination-bullet',
-          bulletActiveClass: 'swiper-pagination-bullet-active'
-        }}
-        autoplay={{
-          delay: 8000,
-          disableOnInteraction: false,
-        }}
-        loop={true}
-        className="h-full w-full"
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <div className="relative h-[60vh] sm:h-screen w-full overflow-hidden bg-black">
-              {/* Video Background */}
-              <video
-                ref={index === 0 ? videoRef1 : videoRef2}
-                className={`absolute inset-0 h-full object-cover z-10 ${
-                  index === 1 
-                    ? 'w-full opacity-30' 
-                    : 'w-full'
-                }`}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                controls={false}
-                poster="/images/hero-poster.jpg"
-                onCanPlay={() => {
-                  console.log(`Video ${index + 1} is ready to play.`);
-                }}
-                onError={(e) => {
-                  console.error(`Video ${index + 1} Error:`, e);
-                }}
-              >
-                <source src={slide.video} type="video/mp4" />
-              </video>
-              
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-              
-              {/* Content */}
-              <div className="relative z-15 flex h-full items-center justify-start">
-                <div className="text-left text-white p-4 sm:p-6 md:p-8">
-                  <h1 className={`mb-6 tracking-tight text-3xl sm:text-5xl md:text-6xl lg:text-[70px] ${index === 1 ? 'max-w-3xl' : ''}`} style={{ fontFamily: 'Poppins', fontWeight: '400', lineHeight: '1.2' }}>
-                    {index === 1 ? (
-                      <>
-                        Strategic Capital Deployment in<br />
-                        <span className="text-teal-400">Global</span> <span className="text-white">Commerce</span>
-                      </>
-                      ) : (
-                        <>
-                          {slide.title}<br />
-                          <span className="text-teal-400">{slide.highlight}</span> {slide.titleEnd}
-                        </>
-                      )
-                    }
-                  </h1>
-                  <p className="mb-6 sm:mb-8 text-sm sm:text-base md:text-xl lg:text-2xl font-normal max-w-3xl">
-                    {slide.description}
-                  </p>
-                  <div className="flex justify-start">
-                    {slide.buttonText === "Schedule Your Capital Intro Call" ? (
-                      <a 
-                        href="/contact"
-                        className="inline-flex items-center justify-center bg-teal-400 px-4 py-2.5 text-xs sm:px-6 sm:py-3.5 sm:text-sm md:px-8 md:py-4 md:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
-                      >
-                        {slide.buttonText}
-                      </a>
-                    ) : (
-                      <button 
-                        onClick={() => {
-                          // Dispatch custom event to open Automation Solutions dropdown
-                          window.dispatchEvent(new CustomEvent('openAutomationSolutions'));
-                          // The Header component will handle the scrolling and opening
-                        }}
-                        className="bg-teal-400 px-4 py-2.5 text-xs sm:px-6 sm:py-3.5 sm:text-sm md:px-8 md:py-4 md:text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black rounded-full"
-                      >
-                        {slide.buttonText}
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <section 
+      className="relative w-full min-h-[90vh] md:h-screen bg-[#052126] overflow-hidden font-sans flex flex-col justify-between md:justify-start"
+      style={{ fontFamily: 'ITCAvantGardeStd-Bk, sans-serif' }}
+    >
       
-      {/* Custom Pagination Styles */}
-      <style jsx global>{`
-        .swiper-pagination {
-          bottom: 40px !important;
-          left: 50% !important;
-          transform: translateX(-50%) !important;
-          width: auto !important;
-          display: flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          gap: 12px !important;
-        }
+      {/* --- 1. PRELOADER --- */}
+      {step < 2 && (
+        <div className="absolute inset-0 z-[100] flex pointer-events-none">
+          <motion.div
+            initial={{ height: "100%" }}
+            animate={{ height: "0%" }}
+            transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1], delay: 0.2 }}
+            className="absolute top-0 left-0 w-full bg-[#35c4dd] z-[102]"
+          />
+        </div>
+      )}
+
+      {/* --- 2. BACKGROUND --- */}
+      <VerticalLines />
+      
+      <div className="hidden md:flex absolute inset-0 flex-col items-center justify-center z-0 select-none pointer-events-none -mt-48">
+        <motion.h1 
+          initial={{ opacity: 0, letterSpacing: "50px" }}
+          animate={step >= 2 ? { opacity: 1, letterSpacing: "10px" } : {}}
+          transition={{ duration: 2.5, ease: "circOut" }}
+          className="text-[8vw] sm:text-[9vw] md:text-[11vw] font-black text-transparent opacity-10 leading-[0.8] whitespace-nowrap"
+          style={{ WebkitTextStroke: '1px #35c4dd' }}
+        >
+          SHARKS
+        </motion.h1>
         
-        .swiper-pagination-bullet {
-          width: 16px !important;
-          height: 16px !important;
-          background: rgba(255, 255, 255, 0.3) !important;
-          opacity: 1 !important;
-          margin: 0 !important;
-          border-radius: 50% !important;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-          position: relative !important;
-          cursor: pointer !important;
-          border: 2px solid rgba(255, 255, 255, 0.2) !important;
-          backdrop-filter: blur(10px) !important;
-        }
-        
-        .swiper-pagination-bullet::before {
-          content: '' !important;
-          position: absolute !important;
-          top: 50% !important;
-          left: 50% !important;
-          transform: translate(-50%, -50%) !important;
-          width: 8px !important;
-          height: 8px !important;
-          background: rgba(255, 255, 255, 0.6) !important;
-          border-radius: 50% !important;
-          transition: all 0.3s ease !important;
-        }
-        
-        .swiper-pagination-bullet-active {
-          background: linear-gradient(135deg, #14b8a6, #0d9488) !important;
-          transform: scale(1.3) !important;
-          border: 2px solid rgba(20, 184, 166, 0.8) !important;
-          box-shadow: 0 0 20px rgba(20, 184, 166, 0.6), 0 0 40px rgba(20, 184, 166, 0.3) !important;
-        }
-        
-        .swiper-pagination-bullet-active::before {
-          background: rgba(255, 255, 255, 0.9) !important;
-          transform: translate(-50%, -50%) scale(1.2) !important;
-        }
-        
-        .swiper-pagination-bullet:hover {
-          background: rgba(255, 255, 255, 0.6) !important;
-          transform: scale(1.1) !important;
-          border: 2px solid rgba(255, 255, 255, 0.4) !important;
-          box-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
-        }
-        
-        .swiper-pagination-bullet:hover::before {
-          background: rgba(255, 255, 255, 0.8) !important;
-        }
-        
-        /* Add a subtle pulse animation for the active bullet */
-        @keyframes pulse {
-          0% {
-            box-shadow: 0 0 20px rgba(20, 184, 166, 0.6), 0 0 40px rgba(20, 184, 166, 0.3);
-          }
-          50% {
-            box-shadow: 0 0 25px rgba(20, 184, 166, 0.8), 0 0 50px rgba(20, 184, 166, 0.4);
-          }
-          100% {
-            box-shadow: 0 0 20px rgba(20, 184, 166, 0.6), 0 0 40px rgba(20, 184, 166, 0.3);
-          }
-        }
-        
-        .swiper-pagination-bullet-active {
-          animation: pulse 2s ease-in-out infinite !important;
-        }
-      `}</style>
+        <motion.h1 
+           initial={{ opacity: 0, letterSpacing: "50px" }}
+           animate={step >= 2 ? { opacity: 1, letterSpacing: "5px" } : {}}
+           transition={{ duration: 2.5, delay: 0.2, ease: "circOut" }}
+           className="text-[4vw] sm:text-[4.5vw] md:text-[4.5vw] font-black text-transparent opacity-10 leading-none whitespace-nowrap mt-1 sm:mt-2"
+           style={{ WebkitTextStroke: '1px #35c4dd' }}
+        >
+          AUTOMATION LABS
+        </motion.h1>
+      </div>
+
+      {/* --- 3. MAIN CONTENT GRID --- */}
+      <div className="relative z-10 w-full flex-grow max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-12 px-4 sm:px-6 md:px-12 h-full">
+
+        {/* 
+            LEFT SIDE: Text Content 
+            Mobile: Bottom aligned
+            Desktop: Vertically centered
+        */}
+        <div className="md:col-span-4 flex flex-col justify-end pb-12 sm:pb-16 md:justify-end md:pb-40 pt-20 sm:pt-24 md:pt-[212px] relative z-30 order-1 md:order-1 px-2 sm:px-4 md:px-0">
+          {step >= 4 && (
+            <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 items-start mt-0 md:mt-0">
+               
+               <motion.div 
+                 initial={{ x: -50, opacity: 0 }}
+                 animate={{ x: 0, opacity: 1 }}
+                 transition={{ duration: 0.8 }}
+                 className="w-9 h-9 sm:w-10 sm:h-10 md:w-14 md:h-14 bg-[#052126] border border-[#35c4dd] flex items-center justify-center rounded-lg text-[#35c4dd] shadow-[0_0_20px_rgba(53,196,221,0.2)]"
+               >
+                 <Cpu size={20} className="sm:w-6 sm:h-6 md:w-8 md:h-8" />
+               </motion.div>
+
+               <motion.h2
+                 initial={{ x: -100, opacity: 0 }}
+                 animate={{ x: 0, opacity: 1 }}
+                 transition={{ duration: 0.8, delay: 0.2 }}
+                 className="text-3xl sm:text-4xl md:text-7xl font-bold text-[#f2f4f4] leading-[0.9] sm:leading-[0.95]"
+               >
+                 DIGITAL <br />
+                 <span className="text-[#35c4dd]">DEFENSE</span>
+               </motion.h2>
+
+               <motion.p
+                 initial={{ x: -50, opacity: 0 }}
+                 animate={{ x: 0, opacity: 1 }}
+                 transition={{ duration: 0.8, delay: 0.4 }}
+                 className="text-[#f2f4f4]/70 text-xs sm:text-sm md:text-base leading-relaxed max-w-full sm:max-w-md border-l-4 border-[#35c4dd] pl-3 sm:pl-4 md:pl-5 py-0.5 sm:py-1"
+               >
+                 We provide cutting-edge cybersecurity solutions that defend your business against modern threats.
+               </motion.p>
+
+               <Link href="/contact">
+                <motion.button
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  className="group relative mt-1 sm:mt-2 md:mt-2 px-5 py-2.5 sm:px-6 sm:py-3 md:px-10 md:py-4 bg-[#35c4dd] text-[#f2f4f4] font-bold tracking-wider hover:text-[#052126] transition-all duration-300 hover:scale-95 rounded-full text-xs sm:text-sm md:text-base cursor-pointer overflow-hidden w-full sm:w-auto"
+                >
+                  <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#f2f4f4] rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                  <span className="relative flex items-center justify-center gap-2">CONTACT US</span>
+                </motion.button>
+               </Link>
+            </div>
+          )}
+        </div>
+
+        {/* 
+            CENTER: Robot Animation 
+            Mobile: Absolute bottom
+            Desktop: Center aligned
+        */}
+        <div className="absolute bottom-0 left-0 right-0 md:relative md:col-span-4 flex justify-center items-end h-[75vh] sm:h-[80vh] md:h-full pointer-events-none md:order-2 z-0 md:z-20 md:pt-8">
+           <motion.div
+             initial={{ scale: 4, opacity: 0, y: 0 }}
+             animate={
+               step === 2 
+               ? { scale: 1, opacity: 1, y: -30 } 
+               : step >= 3 
+               ? { scale: 1.5, opacity: 1, y: 180 } 
+               : {}
+             }
+             transition={{ 
+               duration: step === 2 ? 1.5 : 1.5, 
+               ease: [0.6, 0.01, 0.05, 0.95] 
+             }}
+             className="relative w-full h-full flex items-end justify-center"
+           >
+              {/* Mobile: Image full size aur perfectly bottom aligned */}
+              <div className="relative w-full max-w-[500px] h-[500px] sm:max-w-[550px] sm:h-[600px] md:w-[550px] md:h-[750px] md:max-w-none">
+                <Image 
+                  src="/banner_robot.png" 
+                  alt="AI Robot" 
+                  fill 
+                  style={{ objectFit: 'contain', objectPosition: 'bottom' }}
+                  priority
+                />
+              </div>
+           </motion.div>
+        </div>
+
+        {/* RIGHT SIDE: Content & Socials (Desktop Only) */}
+        <div className="md:col-span-4 flex flex-col justify-between py-6 md:pb-32 md:pt-24 relative z-30 order-3 hidden md:flex"> 
+          
+          <div className="flex justify-end">
+            {step >= 4 && (
+              <motion.div
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-right"
+              >
+                 <h3 className="text-6xl font-black text-[#35c4dd]/10 select-none">AI</h3>
+                 <h3 className="text-xl md:text-2xl font-bold text-[#f2f4f4] -mt-4">INTELLIGENCE</h3>
+                 <div className="w-full h-1 bg-[#35c4dd] mt-2 rounded-full opacity-50" />
+              </motion.div>
+            )}
+          </div>
+
+          <div className="flex flex-row justify-end items-end gap-3 md:gap-4 mb-10">
+            {step >= 4 && (
+              <>
+                <SocialIcon Icon={Facebook} delay={0.7} />
+                <SocialIcon Icon={Twitter} delay={0.8} />
+                <SocialIcon Icon={Instagram} delay={0.9} />
+                <SocialIcon Icon={Linkedin} delay={1.0} />
+              </>
+            )}
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* Bottom Fade - Desktop only */}
+      <div className="hidden md:block absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#052126] via-[#052126] to-transparent z-20 pointer-events-none" />
+
     </section>
   );
 };

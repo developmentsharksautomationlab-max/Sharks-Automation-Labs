@@ -1,395 +1,271 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { 
+  motion, 
+  AnimatePresence, 
+  useScroll, 
+  useMotionValue, 
+  useTransform, 
+  useSpring 
+} from 'framer-motion';
+import { Menu, X, ArrowUpRight, Github, Linkedin, Twitter } from 'lucide-react';
 
-// --- Reusable Icon Components ---
+// --- UTILS ---
+const Magnetic = ({ children }: { children: React.ReactNode }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
-// Official Shark Retail logo
-const SharkRetailLogo = () => (
-  <img
-    src="/images/sharks-retail-logo.png"
-    alt="Shark Retail Logo"
-    className="h-12 w-auto lg:h-16"
-  />
-);
+  const handleMouse = (e: React.MouseEvent) => {
+    const { clientX, clientY } = e;
+    const { height, width, left, top } = ref.current!.getBoundingClientRect();
+    const middleX = clientX - (left + width / 2);
+    const middleY = clientY - (top + height / 2);
+    setPosition({ x: middleX, y: middleY });
+  };
 
-// Simple theme toggle switch
-const ThemeToggle = () => (
-  <button className="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-white transition-colors duration-200 ease-in-out focus:outline-none" role="switch" aria-checked="false">
-    <span className="pointer-events-none inline-block h-5 w-5 translate-x-0 transform rounded-full bg-black shadow ring-0 transition duration-200 ease-in-out" />
-  </button>
-);
+  const reset = () => setPosition({ x: 0, y: 0 });
 
-// Chevron down icon for dropdowns
-const ChevronDownIcon = () => (
-  <svg
-    className="h-4 w-4 text-white"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-  </svg>
-);
+  const { x, y } = position;
+  return (
+    <motion.div
+      style={{ position: "relative" }}
+      ref={ref}
+      onMouseMove={handleMouse}
+      onMouseLeave={reset}
+      animate={{ x, y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
-// --- Main Header Component ---
+// --- CONFIGURATION ---
+const NAV_LINKS = [
+  { name: "HOME", href: "/" },
+  { name: "ABOUT US", href: "/about" },
+  { name: "SERVICES", href: "/services" },
+  { name: "CONTACT US", href: "/contact" },
+];
 
-const Header: React.FC = () => {
-  const [isAutomationOpen, setIsAutomationOpen] = useState(false);
-  const [isAdditionalServicesOpen, setIsAdditionalServicesOpen] = useState(false);
+const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const automationTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-  const additionalServicesTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const { scrollY } = useScroll();
+  
+  // Parallax Text Scroll Hook
+  const yRange = useTransform(scrollY, [0, 100], [0, -20]);
 
-  // Cleanup timeouts on unmount
-  React.useEffect(() => {
-    return () => {
-      if (automationTimeoutRef.current) {
-        clearTimeout(automationTimeoutRef.current);
-      }
-      if (additionalServicesTimeoutRef.current) {
-        clearTimeout(additionalServicesTimeoutRef.current);
-      }
-    };
+  useEffect(() => {
+    setIsMounted(true);
   }, []);
 
-  // Listen for custom event to open Automation Solutions dropdown
-  React.useEffect(() => {
-    const handleOpenAutomationSolutions = () => {
-      // Check if we're on mobile (menu not visible on desktop)
-      const isMobile = window.innerWidth < 1024; // lg breakpoint
-      
-      if (isMobile) {
-        // On mobile: first open mobile menu, then open automation dropdown
-        setIsMobileMenuOpen(true);
-        
-        // Small delay to ensure menu is rendered before opening dropdown and scrolling
-        setTimeout(() => {
-          setIsAutomationOpen(true);
-          
-          // Scroll to header first
-          setTimeout(() => {
-            const header = document.querySelector('header');
-            if (header) {
-              header.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              
-              // After scrolling to header, scroll to automation solutions section
-              setTimeout(() => {
-                const mobileAutomationElement = document.getElementById('mobile-automation-solutions');
-                if (mobileAutomationElement) {
-                  mobileAutomationElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-              }, 400);
-            }
-          }, 200);
-        }, 100);
-      } else {
-        // On desktop: just open automation dropdown
-        setIsAutomationOpen(true);
-        // Scroll to the automation solutions menu item
-        setTimeout(() => {
-          const automationElement = document.getElementById('automation-solutions');
-          if (automationElement) {
-            automationElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        }, 100);
-      }
-    };
-
-    window.addEventListener('openAutomationSolutions', handleOpenAutomationSolutions);
-    return () => {
-      window.removeEventListener('openAutomationSolutions', handleOpenAutomationSolutions);
-    };
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    'Home Page',
-    'Our Story',
-    'Automation Solutions',
-    'Additional Services',
-    'Contact Information',
-  ];
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
+  }, [isMobileMenuOpen]);
 
-  const automationSolutions = [
-    { name: 'Amazon Automation', href: '/automation/amazon' },
-    { name: 'Shopify Automation', href: '/automation/shopify' },
-    { name: 'TikTok Shop Automation', href: '/automation/tiktok' },
-    { name: 'Walmart Automation', href: '/automation/walmart' },
-    { name: 'Etsy Automation', href: '/automation/etsy' },
-  ];
+  // Menu Variants for complex reveal
+  const menuVars = {
+    initial: { scaleY: 0 },
+    animate: { 
+      scaleY: 1,
+      transition: { duration: 0.5, ease: [0.12, 0, 0.39, 0] }
+    },
+    exit: { 
+      scaleY: 0,
+      transition: { delay: 0.5, duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+    }
+  };
 
-  const additionalServices = [
-    { name: 'PPC Management', href: '/services/ppc-management' },
-    { name: 'Virtual Assistant', href: '/services/virtual-assistant' },
-    { name: 'Account Reinstatement', href: '/services/account-reinstatement' },
-    { name: 'Content Creation', href: '/services/content-creation' },
-    { name: 'Deep Keyword Research', href: '/services/keyword-research' },
-    { name: 'Product Hunting', href: '/services/product-hunting' },
-  ];
+  const containerVars = {
+    initial: { transition: { staggerChildren: 0.09, staggerDirection: -1 } },
+    open: { transition: { delayChildren: 0.3, staggerChildren: 0.09, staggerDirection: 1 } }
+  };
+
+  const mobileLinkVars = {
+    initial: { y: "30vh", transition: { duration: 0.5, ease: [0.37, 0, 0.63, 1] } },
+    open: { y: 0, transition: { duration: 0.7, ease: [0, 0.55, 0.45, 1] } }
+  };
 
   return (
-    <header className="bg-black text-white font-avant-garde sticky top-0 z-50">
-      {/* 
-        CUSTOM FONT INSTRUCTIONS:
-        1. Add your font file (e.g., itcavantgardestd-bk.woff2) to `/public/fonts`.
-        2. In `globals.css`, define the font-face:
-           @font-face {
-             font-family: 'Itcavantgardestd Bk';
-             src: url('/fonts/itcavantgardestd-bk.woff2') format('woff2');
-             font-weight: normal;
-             font-style: normal;
-           }
-        3. In `tailwind.config.ts`, extend the theme:
-           theme: {
-             extend: {
-               fontFamily: {
-                 'avant-garde': ['Itcavantgardestd Bk', 'sans-serif'],
-               },
-             },
-           },
-      */}
-      <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 lg:py-4">
-        {/* Left Section */}
-        <div className="flex items-center">
-          <div className="group relative">
-            <div className="flex items-center gap-2">
-              <div className="transition-transform duration-700 ease-in-out group-hover:-translate-x-2">
-                <SharkRetailLogo />
+    <>
+      {/* --- MAIN HEADER --- */}
+      <motion.header
+        initial={{ y: -200, opacity: 0 }}
+        animate={isMounted ? { y: 0, opacity: 1 } : { y: -200, opacity: 0 }}
+        transition={{ 
+          duration: 1.2, 
+          ease: [0.16, 1, 0.3, 1], 
+          delay: 0.3,
+          opacity: { duration: 0.8, delay: 0.3 }
+        }}
+        className="fixed top-0 left-0 w-full z-[999]"
+        style={{
+          paddingTop: isScrolled ? '1rem' : '2rem',
+          paddingBottom: isScrolled ? '1rem' : '2rem',
+          backgroundColor: isScrolled ? 'rgba(5, 33, 38, 0.7)' : 'transparent',
+          backdropFilter: isScrolled ? 'blur(24px)' : 'blur(0px)',
+          borderBottom: isScrolled ? '1px solid rgba(53, 196, 221, 0.1)' : '1px solid transparent',
+          boxShadow: isScrolled ? '0 10px 40px -10px rgba(5, 33, 38, 0.8)' : 'none',
+          transition: 'padding 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1)'
+        }}
+      >
+        <div className="max-w-[1920px] mx-auto px-6 md:px-16 flex items-center justify-between">
+          
+          {/* 1. LOGO (Magnetic) */}
+          <Magnetic>
+            <Link href="/" className="relative block z-50 group">
+              <div className="relative w-48 h-12 md:w-56 md:h-14 overflow-hidden">
+                {/* Logo Placeholder - Replacing Image with text for demo if image fails */}
+                <Image
+                  src="/logo_main.png"
+                  alt="Sharks Automation"
+                  fill
+                  className="object-contain object-left group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
-              <div className="hidden sm:block opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out transform translate-x-2 group-hover:translate-x-0">
-                <span className="font-bold text-base lg:text-lg">
-                  <span className="text-teal-400">Shark</span> <span className="text-white">Retail</span>
+            </Link>
+          </Magnetic>
+
+          {/* 2. DESKTOP NAV (Glass Capsule) */}
+          <nav className="hidden lg:flex items-center gap-2 p-1.5 rounded-full bg-[#35c4dd]/5 border border-[#35c4dd]/10 backdrop-blur-md shadow-inner shadow-[#35c4dd]/5">
+            {NAV_LINKS.map((link) => (
+              <Link key={link.name} href={link.href} className="relative px-6 py-2.5 rounded-full group overflow-hidden">
+                {/* Hover Background Pill */}
+                <span className="absolute inset-0 w-full h-full bg-[#35c4dd] rounded-full scale-0 group-hover:scale-100 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] origin-center" />
+                
+                <span className="relative z-10 flex flex-col overflow-hidden h-5">
+                  <span className="block text-[#f2f4f4] font-medium text-sm tracking-widest group-hover:-translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
+                    {link.name}
+                  </span>
+                  <span className="block absolute top-full text-[#f2f4f4] font-bold text-sm tracking-widest group-hover:-translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
+                    {link.name}
+                  </span>
                 </span>
-              </div>
-            </div>
+              </Link>
+            ))}
+          </nav>
+
+          {/* 3. RIGHT ACTION AREA */}
+          <div className="hidden lg:flex items-center gap-6">
+             <Magnetic>
+                <Link href="/contact" className="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden rounded-full bg-[#35c4dd] text-[#f2f4f4] font-bold text-sm tracking-wider transition-all duration-300 hover:shadow-[0_0_30px_rgba(53,196,221,0.6)]">
+                  <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#f2f4f4] rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                  <span className="relative flex items-center gap-2">
+                    GET QUOTE <ArrowUpRight size={18} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </span>
+                </Link>
+             </Magnetic>
+          </div>
+
+          {/* 4. MOBILE HAMBURGER (Magnetic) */}
+          <div className="lg:hidden z-[1000]">
+            <Magnetic>
+              <button 
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={`relative w-14 h-14 flex items-center justify-center rounded-full transition-colors duration-500 ${
+                  isMobileMenuOpen ? 'bg-white text-black' : 'bg-[#35c4dd]/10 text-[#35c4dd] border border-[#35c4dd]/20 backdrop-blur-md'
+                }`}
+              >
+                <div className="relative w-6 h-6">
+                  <span className={`absolute top-1/2 left-0 w-full h-[2px] bg-current transform transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-0' : '-translate-y-2'}`} />
+                  <span className={`absolute top-1/2 left-0 w-full h-[2px] bg-current transform transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
+                  <span className={`absolute top-1/2 left-0 w-full h-[2px] bg-current transform transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 -translate-y-0' : 'translate-y-2'}`} />
+                </div>
+              </button>
+            </Magnetic>
           </div>
         </div>
+      </motion.header>
 
-        {/* Center Navigation */}
-        <nav className="hidden lg:flex flex-1 justify-center">
-          <ul className="flex items-center gap-8 text-sm font-light tracking-wider">
-            {navLinks.map((link) => (
-              <li key={link} className="relative">
-                {link === "Automation Solutions" ? (
-                  <div 
-                    className="relative" 
-                    id="automation-solutions"
-                    onMouseEnter={() => {
-                      // Clear any pending timeout
-                      if (automationTimeoutRef.current) {
-                        clearTimeout(automationTimeoutRef.current);
-                        automationTimeoutRef.current = null;
-                      }
-                      setIsAutomationOpen(true);
-                    }}
-                    onMouseLeave={() => {
-                      // Delay closing to allow user to move mouse to dropdown
-                      automationTimeoutRef.current = setTimeout(() => {
-                        setIsAutomationOpen(false);
-                        automationTimeoutRef.current = null;
-                      }, 200);
-                    }}
-                  >
-                    <button
-                      className="flex items-center gap-2 hover:text-teal-400 transition-colors"
-                      style={isAutomationOpen ? { color: '#14b8a6' } : {}}
-                    >
-                      {link}
-                      <ChevronDownIcon />
-                    </button>
-                    
-                    {/* Dropdown Menu */}
-                    {isAutomationOpen && (
-                      <div 
-                        className="absolute top-full left-0 w-64 bg-black rounded-lg shadow-xl border border-gray-700 z-50 bg-gradient-to-tl from-teal-400/20 via-black to-black"
-                      >
-                        <div className="pt-2 pb-3">
-                          {automationSolutions.map((solution) => (
-                            <a
-                              key={solution.name}
-                              href={solution.href}
-                              className="block px-6 py-4 text-white hover:bg-teal-400/20 hover:text-teal-400 transition-colors"
-                            >
-                              <div className="font-semibold">{solution.name}</div>
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ) : link === "Additional Services" ? (
-                  <div 
-                    className="relative"
-                    onMouseEnter={() => {
-                      // Clear any pending timeout
-                      if (additionalServicesTimeoutRef.current) {
-                        clearTimeout(additionalServicesTimeoutRef.current);
-                        additionalServicesTimeoutRef.current = null;
-                      }
-                      setIsAdditionalServicesOpen(true);
-                    }}
-                    onMouseLeave={() => {
-                      // Delay closing to allow user to move mouse to dropdown
-                      additionalServicesTimeoutRef.current = setTimeout(() => {
-                        setIsAdditionalServicesOpen(false);
-                        additionalServicesTimeoutRef.current = null;
-                      }, 200);
-                    }}
-                  >
-                    <button
-                      className="flex items-center gap-2 hover:text-teal-400 transition-colors"
-                    >
-                      {link}
-                      <ChevronDownIcon />
-                    </button>
-                    
-                    {/* Dropdown Menu */}
-                    {isAdditionalServicesOpen && (
-                      <div 
-                        className="absolute top-full left-0 w-64 bg-black rounded-lg shadow-xl border border-gray-700 z-50 bg-gradient-to-tl from-teal-400/20 via-black to-black"
-                      >
-                        <div className="pt-2 pb-3">
-                          {additionalServices.map((service) => (
-                            <a
-                              key={service.name}
-                              href={service.href}
-                              className="block px-6 py-4 text-white hover:bg-teal-400/20 hover:text-teal-400 transition-colors"
-                            >
-                              <div className="font-semibold">{service.name}</div>
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <a 
-                    href={
-                      link === "Home Page" ? "/" : 
-                      link === "Our Story" ? "/about" :
-                      link === "Contact Information" ? "/contact" : 
-                      "#"
-                    } 
-                    className="hover:text-teal-400 transition-colors"
-                  >
-                    {link}
-                  </a>
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* Right Section */}
-        <div className="flex items-center gap-3 lg:gap-4">
-          <div className="hidden md:flex items-center gap-3 lg:gap-4">
-            <a href="/contact" className="border border-teal-400 bg-teal-400 text-white font-light py-2.5 lg:py-3 px-4 lg:px-6 rounded-full text-xs lg:text-sm hover:bg-white hover:text-black transition-colors">
-              Explore Careers
-            </a>
-            <a href="/contact" className="border border-teal-400 text-teal-400 font-light py-2.5 lg:py-3 px-4 lg:px-6 rounded-full text-xs lg:text-sm hover:bg-teal-400 hover:text-black transition-colors">
-              Let's Talk Business
-            </a>
-          </div>
-          {/* Mobile Menu Toggle */}
-          <button
-            aria-label="Open menu"
-            className="inline-flex items-center justify-center rounded-md p-2 text-white hover:text-teal-400 hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-teal-400 lg:hidden"
-            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+      {/* --- 5. MOBILE MENU (THE "BAAP LEVEL" OVERLAY) --- */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            variants={menuVars}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="fixed inset-0 bg-[#052126] z-[990] origin-top flex flex-col justify-between"
           >
-            <svg className={`h-6 w-6 ${isMobileMenuOpen ? 'hidden' : 'block'}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <svg className={`h-6 w-6 ${isMobileMenuOpen ? 'block' : 'hidden'}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-      </div>
+            {/* Dynamic Background Noise & Grid */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#35c4dd_1px,transparent_1px),linear-gradient(to_bottom,#35c4dd_1px,transparent_1px)] bg-[size:6rem_6rem] [mask-image:radial-gradient(circle_at_center,black_40%,transparent_100%)] opacity-10 pointer-events-none" />
 
-      {/* Mobile Menu Panel */}
-      <div className={`lg:hidden border-t border-white/10 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/80 ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
-        <div className="container mx-auto px-4 sm:px-6 py-4">
-          <ul className="space-y-2 text-sm">
-            {navLinks.map((link) => (
-              <li key={`m-${link}`} className="">
-                {link === 'Automation Solutions' ? (
-                  <div className="" id="mobile-automation-solutions">
-                    <button
-                      onClick={() => setIsAutomationOpen((o) => !o)}
-                      className="w-full flex items-center justify-between py-3 text-left hover:text-teal-400"
-                      style={isAutomationOpen ? { color: '#14b8a6' } : {}}
-                    >
-                      <span>Automation Solutions</span>
-                      <ChevronDownIcon />
-                    </button>
-                    {isAutomationOpen && (
-                      <div className="mt-2 rounded-lg border border-gray-700 bg-gradient-to-tl from-teal-400/20 via-black to-black p-2">
-                        {automationSolutions.map((solution) => (
-                          <a
-                            key={`m-${solution.name}`}
-                            href={solution.href}
-                            className="block py-2 text-white/90 hover:text-teal-400"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            {solution.name}
-                          </a>
-                        ))}
-                      </div>
-                    )}
+            <div className="flex flex-col h-full justify-center px-4 sm:px-6 md:px-20 pt-20 sm:pt-24 pb-10">
+              <motion.div
+                variants={containerVars}
+                initial="initial"
+                animate="open"
+                exit="initial"
+                className="flex flex-col gap-4 sm:gap-6"
+              >
+                {NAV_LINKS.map((link, index) => (
+                  <div key={index} className="overflow-hidden">
+                    <motion.div variants={mobileLinkVars}>
+                      <Link 
+                        href={link.href} 
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="group flex items-center gap-3 sm:gap-4 md:gap-6"
+                      >
+                        <span className="text-xs sm:text-sm font-mono text-[#35c4dd] opacity-50">0{index + 1}/</span>
+                        <span className="text-4xl sm:text-5xl md:text-8xl font-black text-[#f2f4f4] uppercase tracking-tighter transition-all duration-500 group-hover:text-transparent group-hover:stroke-cyan group-hover:translate-x-4">
+                           {link.name}
+                        </span>
+                      </Link>
+                    </motion.div>
                   </div>
-                ) : link === 'Additional Services' ? (
-                  <div className="">
-                    <button
-                      onClick={() => setIsAdditionalServicesOpen((o) => !o)}
-                      className="w-full flex items-center justify-between py-3 text-left hover:text-teal-400"
-                    >
-                      <span>Additional Services</span>
-                      <ChevronDownIcon />
-                    </button>
-                    {isAdditionalServicesOpen && (
-                      <div className="mt-2 rounded-lg border border-gray-700 bg-gradient-to-tl from-teal-400/20 via-black to-black p-2">
-                        {additionalServices.map((service) => (
-                          <a
-                            key={`m-${service.name}`}
-                            href={service.href}
-                            className="block py-2 text-white/90 hover:text-teal-400"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            {service.name}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <a
-                    href={
-                      link === 'Home Page' ? '/' :
-                      link === 'Our Story' ? '/about' :
-                      link === 'Contact Information' ? '/contact' : '#'
-                    }
-                    className="block py-3 hover:text-teal-400"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link}
-                  </a>
-                )}
-              </li>
-            ))}
-          </ul>
+                ))}
+              </motion.div>
+            </div>
 
-          <div className="mt-4 flex flex-col items-center gap-2 md:hidden">
-            <a href="/contact" className="inline-flex w-full items-center justify-center border border-teal-400 bg-teal-400 text-white font-light py-2.5 px-4 rounded-full text-xs hover:bg-white hover:text-black transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-              Explore Careers
-            </a>
-            <a href="/contact" className="inline-flex w-full items-center justify-center border border-teal-400 text-teal-400 font-light py-2.5 px-4 rounded-full text-xs hover:bg-teal-400 hover:text-black transition-colors">
-              Let's Talk Business
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
+            {/* Footer Area in Menu */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              className="px-6 md:px-20 py-8 border-t border-[#35c4dd]/10 flex flex-wrap justify-between items-end"
+            >
+              <div className="flex flex-col gap-2">
+                <span className="text-[#35c4dd] text-sm font-mono tracking-widest uppercase mb-2">Socials</span>
+                <div className="flex gap-4">
+                  {[Twitter, Linkedin, Github].map((Icon, i) => (
+                    <Link key={i} href="#" className="w-12 h-12 rounded-full border border-[#35c4dd]/30 flex items-center justify-center text-[#f2f4f4] hover:bg-[#35c4dd] hover:text-[#052126] transition-all duration-300">
+                      <Icon size={20} />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="mt-6 md:mt-0">
+                 <p className="text-[#f2f4f4]/30 text-xs uppercase tracking-[0.2em]">
+                   Designed for Sharks Automation
+                 </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <style jsx global>{`
+        .stroke-cyan {
+          -webkit-text-stroke: 1px #35c4dd;
+        }
+        .group:hover .stroke-cyan {
+          -webkit-text-stroke: 1px #35c4dd;
+        }
+      `}</style>
+    </>
   );
 };
 

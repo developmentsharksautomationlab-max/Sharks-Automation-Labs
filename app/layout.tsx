@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import MetaPixel from "@/components/MetaPixel";
+import PageLoader from "@/components/PageLoader";
+import { LoadingProvider } from "@/contexts/LoadingContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thesharkretail.com'),
-  title: "The Shark Retail - E-commerce Automation Solutions",
-  description: "Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart to scale your operations while you focus on strategic growth.",
+  title: "Sharks Automation Lab - E-commerce Automation Solutions",
+  description: "Sharks Automation Lab - Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart to scale your operations while you focus on strategic growth.",
   keywords: ["e-commerce automation", "Amazon automation", "Shopify automation", "TikTok Shop automation", "Walmart automation", "PPC management", "virtual assistant", "account reinstatement", "content creation", "keyword research", "product hunting", "The Shark Retail"],
   authors: [{ name: "The Shark Retail" }],
   creator: "The Shark Retail",
@@ -37,15 +39,15 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://thesharkretail.com',
-    siteName: 'The Shark Retail',
-    title: 'The Shark Retail - E-commerce Automation Solutions',
-    description: 'Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart to scale your operations while you focus on strategic growth.',
+    siteName: 'Sharks Automation Lab',
+    title: 'Sharks Automation Lab - E-commerce Automation Solutions',
+    description: 'Sharks Automation Lab - Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart to scale your operations while you focus on strategic growth.',
     images: [
       {
-        url: '/images/sharks-retail-logo.png',
+        url: '/logo_main.png',
         width: 1200,
         height: 630,
-        alt: 'The Shark Retail Logo',
+        alt: 'Sharks Automation Lab Logo',
         type: 'image/png',
       },
     ],
@@ -54,24 +56,25 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@sharkretail',
     creator: '@sharkretail',
-    title: 'The Shark Retail - E-commerce Automation Solutions',
-    description: 'Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart.',
-    images: ['/images/sharks-retail-logo.png'],
+    title: 'Sharks Automation Lab - E-commerce Automation Solutions',
+    description: 'Sharks Automation Lab - Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart.',
+    images: ['/logo_main.png'],
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/images/sharks-retail-logo.png', sizes: '32x32', type: 'image/png' },
-      { url: '/images/sharks-retail-logo.png', sizes: '16x16', type: 'image/png' },
+      { url: '/logo_main.png', sizes: 'any' },
+      { url: '/logo_main.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logo_main.png', sizes: '16x16', type: 'image/png' },
+      { url: '/logo_main.png', sizes: '48x48', type: 'image/png' },
     ],
-    shortcut: '/favicon.ico',
+    shortcut: '/logo_main.png',
     apple: [
-      { url: '/images/sharks-retail-logo.png', sizes: '180x180', type: 'image/png' },
+      { url: '/logo_main.png', sizes: '180x180', type: 'image/png' },
     ],
     other: [
       {
         rel: 'apple-touch-icon-precomposed',
-        url: '/images/sharks-retail-logo.png',
+        url: '/logo_main.png',
       },
     ],
   },
@@ -87,12 +90,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
-        <MetaPixel />
-        {children}
+        <LoadingProvider>
+          <PageLoader />
+          <MetaPixel />
+          {children}
+        </LoadingProvider>
       </body>
     </html>
   );

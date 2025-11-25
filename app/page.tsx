@@ -1,23 +1,23 @@
 import Header from '../components/Header';
 import Hero from '../components/Hero';
+import FallingLogosSection from '../components/FallingLogosSection';
 import InvestmentLifecycle from '../components/InvestmentLifecycle';
+import MarqueeSection from '../components/MarqueeSection';
 import WhySharkRetail from '../components/WhySharkRetail';
 import CallToAction from '../components/CallToAction';
 import ContactSection from '../components/ContactSection';
-import FeaturedInSection from '../components/FeaturedInSection';
-import CompaniesTrustUs from '../components/CompaniesTrustUs';
 import Footer from '../components/Footer';
 
 export default function Home() {
   return (
-    <div>
+    <div className="smooth-scroll">
       <Header />
       <Hero />
-      <FeaturedInSection />
+      <FallingLogosSection />
       <InvestmentLifecycle />
+      <MarqueeSection />
       <WhySharkRetail />
       <CallToAction />
-      <CompaniesTrustUs />
       <ContactSection />
       <Footer />
       <main>

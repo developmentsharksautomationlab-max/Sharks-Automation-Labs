@@ -1,26 +1,24 @@
+'use client';
+
 import React from 'react';
+import dynamic from 'next/dynamic';
 import Header from '../../components/Header';
-import OurStoryHero from '../../components/OurStoryHero';
-import OurJourney from '../../components/OurJourney';
-import PerformanceStats from '../../components/PerformanceStats';
-import SharkDifference from '../../components/SharkDifference';
-import VisionMission from '../../components/VisionMission';
-import TeamSection from '../../components/TeamSection';
-import AboutCTA from '../../components/AboutCTA';
-import Footer from '../../components/Footer';
+
+// Dynamically import OurStoryHero with SSR disabled to prevent React root conflicts
+const OurStoryHero = dynamic(() => import('../../components/OurStoryHero'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-screen bg-[#052126] text-[#f2f4f4] flex items-center justify-center">
+      <div className="text-[#35c4dd] text-xl">Loading...</div>
+    </div>
+  ),
+});
 
 const AboutPage: React.FC = () => {
   return (
     <div>
       <Header />
       <OurStoryHero />
-      <OurJourney />
-      <TeamSection />
-      <SharkDifference />
-      <VisionMission />
-      <PerformanceStats />
-      <AboutCTA />
-      <Footer />
     </div>
   );
 };

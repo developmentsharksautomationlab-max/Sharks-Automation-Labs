@@ -1,29 +1,29 @@
 {
-  "name": "The Shark Retail - E-commerce Automation Solutions",
-  "short_name": "The Shark Retail",
-  "description": "Transform your capital into systematically managed, cash-flow generative e-commerce enterprises.",
+  "name": "Sharks Automation Lab - E-commerce Automation Solutions",
+  "short_name": "Sharks Automation Lab",
+  "description": "Sharks Automation Lab - Transform your capital into systematically managed, cash-flow generative e-commerce enterprises.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#14b8a6",
+  "theme_color": "#35c4dd",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/images/sharks-retail-logo.png",
+      "src": "/logo_main.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/images/sharks-retail-logo.png",
+      "src": "/logo_main.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon.ico",
+      "src": "/logo_main.png",
       "sizes": "48x48",
-      "type": "image/x-icon"
+      "type": "image/png"
     }
   ]
 }

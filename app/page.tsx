@@ -20,9 +20,6 @@ export default function Home() {
       <CallToAction />
       <ContactSection />
       <Footer />
-      <main>
-        {/* Your main content goes here */}
-      </main>
     </div>
   );
 }

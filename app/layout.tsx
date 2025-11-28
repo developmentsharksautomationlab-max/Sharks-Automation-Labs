@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://thesharkretail.com'),
   title: "Sharks Automation Lab - E-commerce Automation Solutions",
-  description: "Sharks Automation Lab - Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart to scale your operations while you focus on strategic growth.",
-  keywords: ["e-commerce automation", "Amazon automation", "Shopify automation", "TikTok Shop automation", "Walmart automation", "PPC management", "virtual assistant", "account reinstatement", "content creation", "keyword research", "product hunting", "The Shark Retail"],
+  description: "Sharks Automation Lab - Advanced DND automation tools to boost productivity and stay focused. Work smart with cutting-edge automation solutions.",
+  keywords: ["DND automation", "productivity tools", "focus automation", "work smart", "automation solutions", "The Shark Retail"],
   authors: [{ name: "The Shark Retail" }],
   creator: "The Shark Retail",
   publisher: "The Shark Retail",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     url: 'https://thesharkretail.com',
     siteName: 'Sharks Automation Lab',
     title: 'Sharks Automation Lab - E-commerce Automation Solutions',
-    description: 'Sharks Automation Lab - Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart to scale your operations while you focus on strategic growth.',
+    description: 'Sharks Automation Lab - Advanced DND automation tools to boost productivity and stay focused. Work smart with cutting-edge automation solutions.',
     images: [
       {
         url: '/logo_main.png',
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     site: '@sharkretail',
     creator: '@sharkretail',
     title: 'Sharks Automation Lab - E-commerce Automation Solutions',
-    description: 'Sharks Automation Lab - Transform your capital into systematically managed, cash-flow generative e-commerce enterprises. We deploy sophisticated automation technologies for Amazon, Shopify, TikTok Shop, and Walmart.',
+    description: 'Sharks Automation Lab - Advanced DND automation tools to boost productivity and stay focused. Work smart with cutting-edge automation solutions.',
     images: ['/logo_main.png'],
   },
   icons: {

@@ -9,7 +9,7 @@ import {
   useTransform, 
   useMotionTemplate
 } from 'framer-motion';
-import { ArrowRight, Zap, Hexagon, Cpu, Activity, MoveRight } from 'lucide-react';
+import { ArrowRight, Zap, Hexagon, Cpu, Activity, MoveRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -322,12 +322,12 @@ const ApexServices = () => {
             
             {/* Navigation Buttons */}
             <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between items-center z-50 pointer-events-none px-2 md:px-8">
-                <button onClick={handlePrev} className="pointer-events-auto p-3 md:p-5 rounded-full border border-[#35c4dd]/20 bg-[#052126]/80 hover:bg-[#35c4dd]/10 text-[#35c4dd] transition-all backdrop-blur-md group shadow-[0_0_20px_rgba(5,33,38,0.5)]">
-                    <Zap className="w-5 h-5 md:w-6 md:h-6 rotate-180 group-hover:scale-110 transition-transform" />
+                <button onClick={handlePrev} className="pointer-events-auto p-3 md:p-5 rounded-full border-2 border-[#35c4dd]/40 bg-[#052126]/90 hover:bg-[#35c4dd]/20 text-[#35c4dd] transition-all backdrop-blur-md group shadow-[0_0_25px_rgba(53,196,221,0.4)] hover:shadow-[0_0_35px_rgba(53,196,221,0.6)]">
+                    <ChevronLeft className="w-6 h-6 md:w-7 md:h-7 group-hover:scale-110 transition-transform" />
                 </button>
                 
-                <button onClick={handleNext} className="pointer-events-auto p-3 md:p-5 rounded-full border border-[#35c4dd]/20 bg-[#052126]/80 hover:bg-[#35c4dd]/10 text-[#35c4dd] transition-all backdrop-blur-md group shadow-[0_0_20px_rgba(5,33,38,0.5)]">
-                    <Zap className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform" />
+                <button onClick={handleNext} className="pointer-events-auto p-3 md:p-5 rounded-full border-2 border-[#35c4dd]/40 bg-[#052126]/90 hover:bg-[#35c4dd]/20 text-[#35c4dd] transition-all backdrop-blur-md group shadow-[0_0_25px_rgba(53,196,221,0.4)] hover:shadow-[0_0_35px_rgba(53,196,221,0.6)]">
+                    <ChevronRight className="w-6 h-6 md:w-7 md:h-7 group-hover:scale-110 transition-transform" />
                 </button>
             </div>
 
@@ -379,8 +379,14 @@ const ApexServices = () => {
                                 }}
                                 className={cn(
                                     "absolute top-[5%] md:top-[10%] w-[90%] sm:w-[360px] md:w-[400px] h-[520px] md:h-[600px]",
-                                    isCenter ? "cursor-none md:cursor-default pointer-events-auto" : "pointer-events-none"
+                                    isCenter ? "cursor-none md:cursor-default pointer-events-auto" : "pointer-events-auto cursor-pointer"
                                 )}
+                                onClick={() => {
+                                    if (!isCenter) {
+                                        if (offset === -1) handlePrev();
+                                        if (offset === 1) handleNext();
+                                    }
+                                }}
                             >
                                 <HyperCard 
                                     service={service} 

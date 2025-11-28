@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { 
   motion, 
   AnimatePresence, 
@@ -55,6 +56,9 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const pathname = usePathname();
+  const isAboutPage = pathname === '/about';
+  const footerObserverRef = useRef<IntersectionObserver | null>(null);
   const { scrollY } = useScroll();
   
   // Parallax Text Scroll Hook
@@ -64,11 +68,100 @@ const Header = () => {
     setIsMounted(true);
   }, []);
 
+  // Reset scroll state when switching pages
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (isAboutPage) {
+      // On About page, start with no background
+      setIsScrolled(false);
+    }
+  }, [isAboutPage]);
+
+  // Handle scroll for non-About pages (normal scroll)
+  useEffect(() => {
+    if (!isAboutPage) {
+      const handleScroll = () => setIsScrolled(window.scrollY > 50);
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    } else {
+      // On About page, explicitly disable any scroll-based background
+      // This ensures no background appears before footer is reached
+      setIsScrolled(false);
+    }
+  }, [isAboutPage]);
+
+  // Handle footer detection for About page - ONLY show background when footer is visible
+  useEffect(() => {
+    if (!isAboutPage) {
+      // Clean up observer when leaving About page
+      if (footerObserverRef.current) {
+        footerObserverRef.current.disconnect();
+        footerObserverRef.current = null;
+      }
+      return;
+    }
+
+    // CRITICAL: Ensure background is ALWAYS hidden initially on About page
+    // This prevents any background from showing before footer is reached
+    setIsScrolled(false);
+
+    // Cleanup previous observer
+    if (footerObserverRef.current) {
+      footerObserverRef.current.disconnect();
+      footerObserverRef.current = null;
+    }
+
+    // Wait a bit for the page to render (especially for dynamic imports)
+    const timeoutId = setTimeout(() => {
+      // Find footer element - try multiple times if not found initially
+      const findFooter = (attempts = 0) => {
+        const footer = document.querySelector('footer');
+        if (!footer && attempts < 10) {
+          setTimeout(() => findFooter(attempts + 1), 300);
+          return;
+        }
+        if (!footer) {
+          // Footer not found, keep background hidden
+          setIsScrolled(false);
+          return;
+        }
+
+        // Create intersection observer to detect when footer is visible
+        // STRICT: Only trigger when footer actually enters viewport
+        footerObserverRef.current = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              // STRICT CHECK: Only show background when footer is intersecting AND has visible area
+              if (entry.isIntersecting && entry.intersectionRatio > 0) {
+                // Footer is now visible - show background
+                setIsScrolled(true);
+              } else {
+                // Footer is not visible - hide background immediately
+                setIsScrolled(false);
+              }
+            });
+          },
+          {
+            threshold: [0, 0.01, 0.05], // Multiple thresholds for precise detection
+            rootMargin: '0px' // No margin - trigger exactly when footer enters viewport
+          }
+        );
+
+        footerObserverRef.current.observe(footer);
+      };
+
+      findFooter();
+    }, 1500); // Increased delay to ensure OurStoryHero is fully loaded
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (footerObserverRef.current) {
+        footerObserverRef.current.disconnect();
+        footerObserverRef.current = null;
+      }
+      // CRITICAL: Reset scroll state when leaving About page
+      setIsScrolled(false);
+    };
+  }, [isAboutPage]);
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
@@ -138,7 +231,9 @@ const Header = () => {
           </Magnetic>
 
           {/* 2. DESKTOP NAV (Glass Capsule) */}
-          <nav className="hidden lg:flex items-center gap-2 p-1.5 rounded-full bg-[#35c4dd]/5 border border-[#35c4dd]/10 backdrop-blur-md shadow-inner shadow-[#35c4dd]/5">
+          <nav className={`hidden lg:flex items-center gap-2 p-1.5 rounded-full border border-[#35c4dd]/10 backdrop-blur-md shadow-inner shadow-[#35c4dd]/5 ${
+            isAboutPage && !isScrolled ? 'bg-[#35c4dd]/20' : 'bg-[#35c4dd]/5'
+          }`}>
             {NAV_LINKS.map((link) => (
               <Link key={link.name} href={link.href} className="relative px-6 py-2.5 rounded-full group overflow-hidden">
                 {/* Hover Background Pill */}

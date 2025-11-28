@@ -7,7 +7,6 @@ import { EffectComposer, Bloom, Noise, Vignette, ChromaticAberration } from '@re
 import { motion } from 'framer-motion';
 import { ArrowDown, Zap, Target, Cpu, Code2, Rocket, Globe } from 'lucide-react';
 import * as THREE from 'three';
-import Footer from './Footer';
 
 // --- COLORS & THEMES ---
 const COLORS = {
@@ -209,7 +208,7 @@ export default function AboutPage() {
         camera={{ position: [0, 0, 12], fov: 50 }}
       >
         <Suspense fallback={null}>
-          <ScrollControls pages={6} damping={0.2}>
+          <ScrollControls pages={5.8} damping={0.2}>
             <Scene />
             
             {/* OPTIMIZATION: multisampling={0} prevents heavy GPU load */}
@@ -346,11 +345,6 @@ export default function AboutPage() {
                     SECURE CONNECTION // ENCRYPTED
                   </div>
                 </Section>
-
-                {/* 6. FOOTER */}
-                <div className="w-full mt-12">
-                  <Footer />
-                </div>
 
             </Scroll>
             

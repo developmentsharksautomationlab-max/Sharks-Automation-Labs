@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { Facebook, Instagram, ArrowUpRight, MapPin, Mail, Phone, ArrowRight, ShieldCheck, FileText, Globe, Cpu, Layers } from 'lucide-react';
 
 // --- DATA ---
@@ -147,10 +148,17 @@ const Footer = () => {
           <SpotlightCard className="lg:col-span-4 p-8 flex flex-col justify-between min-h-[300px]">
             <div>
               <div className="w-12 h-12 bg-[#35c4dd] rounded-lg flex items-center justify-center mb-6 text-[#052126]">
-                {/* Placeholder for Logo Icon */}
                 <Cpu size={28} strokeWidth={2} /> 
               </div>
-              <h3 className="text-2xl font-bold text-[#052126] mb-4">Shark Retail</h3>
+              <div className="relative w-48 h-12 mb-4">
+                <Image
+                  src="/images/logo_main_dark.png"
+                  alt="Shark Retail Logo"
+                  fill
+                  className="object-contain object-left"
+                  priority
+                />
+              </div>
               <p className="text-[#052126]/70 leading-relaxed">
                 We don't just build software; we engineer digital ecosystems. Empowering brands with automation that feels like magic.
               </p>

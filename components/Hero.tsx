@@ -113,7 +113,7 @@ const Hero = () => {
             Mobile: Bottom aligned
             Desktop: Vertically centered
         */}
-        <div className="md:col-span-4 flex flex-col justify-end pb-12 sm:pb-16 md:justify-end md:pb-40 pt-20 sm:pt-24 md:pt-[212px] relative z-30 order-1 md:order-1 px-2 sm:px-4 md:px-0">
+        <div className="md:col-span-4 flex flex-col justify-end pb-12 sm:pb-16 md:justify-end md:pb-40 pt-16 sm:pt-20 md:pt-[180px] relative z-30 order-1 md:order-1 px-2 sm:px-4 md:px-0">
           {step >= 4 && (
             <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 items-start mt-0 md:mt-0">
                
@@ -132,8 +132,8 @@ const Hero = () => {
                  transition={{ duration: 0.8, delay: 0.2 }}
                  className="text-3xl sm:text-4xl md:text-7xl font-bold text-[#f2f4f4] leading-[0.9] sm:leading-[0.95]"
                >
-                 DIGITAL <br />
-                 <span className="text-[#35c4dd]">DEFENSE</span>
+                 Work <br />
+                 <span className="text-[#35c4dd]">Smart</span>
                </motion.h2>
 
                <motion.p
@@ -142,7 +142,7 @@ const Hero = () => {
                  transition={{ duration: 0.8, delay: 0.4 }}
                  className="text-[#f2f4f4]/70 text-xs sm:text-sm md:text-base leading-relaxed max-w-full sm:max-w-md border-l-4 border-[#35c4dd] pl-3 sm:pl-4 md:pl-5 py-0.5 sm:py-1"
                >
-                 We provide cutting-edge cybersecurity solutions that defend your business against modern threats.
+                 Advanced DND tools to stay focused and achieve more daily.
                </motion.p>
 
                <Link href="/contact">
@@ -153,7 +153,7 @@ const Hero = () => {
                   className="group relative mt-1 sm:mt-2 md:mt-2 px-5 py-2.5 sm:px-6 sm:py-3 md:px-10 md:py-4 bg-[#35c4dd] text-[#f2f4f4] font-bold tracking-wider hover:text-[#052126] transition-all duration-300 hover:scale-95 rounded-full text-xs sm:text-sm md:text-base cursor-pointer overflow-hidden w-full sm:w-auto"
                 >
                   <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#f2f4f4] rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
-                  <span className="relative flex items-center justify-center gap-2">CONTACT US</span>
+                  <span className="relative flex items-center justify-center gap-2">Book Now</span>
                 </motion.button>
                </Link>
             </div>

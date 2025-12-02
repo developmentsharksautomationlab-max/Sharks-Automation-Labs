@@ -10,8 +10,7 @@ const nextConfig: NextConfig = {
   
   // === PERFORMANCE OPTIMIZATIONS ===
   
-  // Enable SWC minification for faster builds and smaller bundles
-  swcMinify: true,
+  // Note: SWC minification is enabled by default in Next.js 15, no need to specify
   
   // Compress output
   compress: true,
@@ -32,7 +31,7 @@ const nextConfig: NextConfig = {
   
   // Experimental features for performance
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true, // Disabled - requires critters package
     optimizePackageImports: [
       'lucide-react',
       'framer-motion',

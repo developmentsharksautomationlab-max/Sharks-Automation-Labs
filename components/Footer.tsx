@@ -8,7 +8,7 @@ import { Facebook, Instagram, ArrowUpRight, MapPin, Mail, Phone, ArrowRight, Shi
 const footerMenu = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
-  { name: "Services", href: "/services" },
+  { name: "Creative Design", href: "/our-services/creative-services/creative-design" },
   { name: "Contact Us", href: "/contact" },
 ];
 
@@ -160,15 +160,16 @@ const Footer = () => {
                 />
               </div>
               <p className="text-[#052126]/70 leading-relaxed">
-                We don't just build software; we engineer digital ecosystems. Empowering brands with automation that feels like magic.
+                Strategic digital transformation partners delivering enterprise-grade solutions that accelerate revenue growth and secure competitive advantage for global market leaders.
               </p>
             </div>
             <div className="flex gap-4 mt-8">
-              {[<Facebook key="fb"/>, <Instagram key="ig"/>].map((icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-full border border-[#35c4dd]/30 flex items-center justify-center text-[#35c4dd] hover:bg-[#35c4dd] hover:text-[#052126] transition-all duration-300">
-                  {icon}
-                </a>
-              ))}
+              <a href="https://facebook.com/thesharkretail" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[#35c4dd]/30 flex items-center justify-center text-[#35c4dd] hover:bg-[#35c4dd] hover:text-[#052126] transition-all duration-300">
+                <Facebook />
+              </a>
+              <a href="https://instagram.com/thesharkretail" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-[#35c4dd]/30 flex items-center justify-center text-[#35c4dd] hover:bg-[#35c4dd] hover:text-[#052126] transition-all duration-300">
+                <Instagram />
+              </a>
             </div>
           </SpotlightCard>
 
@@ -231,11 +232,11 @@ const Footer = () => {
 
         {/* BOTTOM BAR */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-[#052126]/40 text-sm border-t border-[#35c4dd]/10 pt-8">
-           <p>© 2024 Shark Retail. Systems Operational.</p>
+           <p>© 2025 Shark Automation Lab. Systems Operational.</p>
            <div className="flex items-center gap-6">
-             <a href="#" className="hover:text-[#35c4dd] transition-colors">Sitemap</a>
-             <a href="#" className="hover:text-[#35c4dd] transition-colors">Status</a>
-             <span className="font-mono text-[#35c4dd] opacity-50">v2.4.0</span>
+             <a href="/sitemap" className="hover:text-[#35c4dd] transition-colors">Sitemap</a>
+             <a href="/status" className="hover:text-[#35c4dd] transition-colors">Status</a>
+             <span className="font-mono text-[#35c4dd] opacity-50">v2.5.0</span>
            </div>
         </div>
 

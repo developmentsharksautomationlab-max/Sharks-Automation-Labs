@@ -71,10 +71,16 @@ img {
   display: block;
 }
 
-/* Smooth scroll container */
+/* Smooth scroll container - Optimized for performance */
 .smooth-scroll {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  /* Prevent layout shifts */
+  min-height: 100vh;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  will-change: scroll-position;
 }
 
 /* Optimize animations */

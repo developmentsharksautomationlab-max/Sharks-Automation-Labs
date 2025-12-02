@@ -15,7 +15,7 @@ import { useLoading } from '@/contexts/LoadingContext';
 
 // --- HELPER COMPONENTS ---
 
-const SocialIcon = ({ Icon, delay }: { Icon: any, delay: number }) => (
+const SocialIcon = ({ Icon, delay }: { Icon: React.ComponentType<{ size?: number; className?: string }>, delay: number }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -101,7 +101,7 @@ const Hero = () => {
            className="text-[4vw] sm:text-[4.5vw] md:text-[4.5vw] font-black text-transparent opacity-10 leading-none whitespace-nowrap mt-1 sm:mt-2"
            style={{ WebkitTextStroke: '1px #35c4dd' }}
         >
-          AUTOMATION LABS
+          AUTOMATION LAB
         </motion.h1>
       </div>
 
@@ -113,7 +113,7 @@ const Hero = () => {
             Mobile: Bottom aligned
             Desktop: Vertically centered
         */}
-        <div className="md:col-span-4 flex flex-col justify-end pb-12 sm:pb-16 md:justify-end md:pb-40 pt-16 sm:pt-20 md:pt-[180px] relative z-30 order-1 md:order-1 px-2 sm:px-4 md:px-0">
+        <div className="md:col-span-4 flex flex-col justify-end pb-12 sm:pb-16 md:justify-end md:pb-40 pt-4 sm:pt-6 md:pt-[60px] relative z-30 order-1 md:order-1 px-2 sm:px-4 md:px-0">
           {step >= 4 && (
             <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 items-start mt-0 md:mt-0">
                
@@ -130,10 +130,10 @@ const Hero = () => {
                  initial={{ x: -100, opacity: 0 }}
                  animate={{ x: 0, opacity: 1 }}
                  transition={{ duration: 0.8, delay: 0.2 }}
-                 className="text-3xl sm:text-4xl md:text-7xl font-bold text-[#f2f4f4] leading-[0.9] sm:leading-[0.95]"
+                 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#f2f4f4] leading-[0.9] sm:leading-[0.95]"
                >
-                 Work <br />
-                 <span className="text-[#35c4dd]">Smart</span>
+                 Strategic <br />
+                 <span className="text-[#35c4dd]">Outsourcing Services</span>
                </motion.h2>
 
                <motion.p
@@ -142,7 +142,7 @@ const Hero = () => {
                  transition={{ duration: 0.8, delay: 0.4 }}
                  className="text-[#f2f4f4]/70 text-xs sm:text-sm md:text-base leading-relaxed max-w-full sm:max-w-md border-l-4 border-[#35c4dd] pl-3 sm:pl-4 md:pl-5 py-0.5 sm:py-1"
                >
-                 Advanced DND tools to stay focused and achieve more daily.
+                 Trusted outsourcing partner delivering scalable growth enterprise support and long-term business success worldwide.
                </motion.p>
 
                <Link href="/contact">
@@ -153,7 +153,7 @@ const Hero = () => {
                   className="group relative mt-1 sm:mt-2 md:mt-2 px-5 py-2.5 sm:px-6 sm:py-3 md:px-10 md:py-4 bg-[#35c4dd] text-[#f2f4f4] font-bold tracking-wider hover:text-[#052126] transition-all duration-300 hover:scale-95 rounded-full text-xs sm:text-sm md:text-base cursor-pointer overflow-hidden w-full sm:w-auto"
                 >
                   <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#f2f4f4] rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
-                  <span className="relative flex items-center justify-center gap-2">Book Now</span>
+                  <span className="relative flex items-center justify-center gap-2">Get Started</span>
                 </motion.button>
                </Link>
             </div>
@@ -165,7 +165,7 @@ const Hero = () => {
             Mobile: Absolute bottom
             Desktop: Center aligned
         */}
-        <div className="absolute bottom-0 left-0 right-0 md:relative md:col-span-4 flex justify-center items-end h-[75vh] sm:h-[80vh] md:h-full pointer-events-none md:order-2 z-0 md:z-20 md:pt-8">
+        <div className="absolute bottom-0 left-0 right-0 md:relative md:col-span-4 flex justify-center items-end h-[75vh] sm:h-[80vh] md:h-full pointer-events-none md:order-2 z-0 md:z-20 md:pt-4">
            <motion.div
              initial={{ scale: 4, opacity: 0, y: 0 }}
              animate={
@@ -189,13 +189,17 @@ const Hero = () => {
                   fill 
                   style={{ objectFit: 'contain', objectPosition: 'bottom' }}
                   priority
+                  quality={90}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 550px"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
               </div>
            </motion.div>
         </div>
 
         {/* RIGHT SIDE: Content & Socials (Desktop Only) */}
-        <div className="md:col-span-4 flex flex-col justify-between py-6 md:pb-32 md:pt-24 relative z-30 order-3 hidden md:flex"> 
+        <div className="md:col-span-4 flex flex-col justify-between py-6 md:pb-32 md:pt-16 relative z-30 order-3 hidden md:flex"> 
           
           <div className="flex justify-end">
             {step >= 4 && (

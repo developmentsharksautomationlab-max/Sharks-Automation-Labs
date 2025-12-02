@@ -1,0 +1,118 @@
+const fs = require('fs');
+const path = require('path');
+
+// Service configuration mapping category to services
+const SERVICE_STRUCTURE = {
+  'digital-services': [
+    { slug: 'web-development', name: 'Web Development', color: '#35c4dd' },
+    { slug: 'app-development', name: 'App Development', color: '#35c4dd' },
+    { slug: 'social-media', name: 'Social Media Marketing', color: '#35c4dd' },
+    { slug: 'performance-marketing', name: 'Performance Marketing', color: '#35c4dd' },
+    { slug: 'seo', name: 'Search Engine Optimization', color: '#35c4dd' }
+  ],
+  'creative-services': [
+    { slug: 'creative-design', name: 'Creative Design', color: '#ff6b9d' },
+    { slug: 'creative', name: 'Creative Services', color: '#ff6b9d' }
+  ],
+  'outsourcing-partnership': [
+    { slug: 'outsourcing', name: 'Outsourcing Partnership', color: '#00ff88' },
+    { slug: 'agency-plan', name: 'Agency Development Plan', color: '#00ff88' }
+  ],
+  'virtual-resources': [
+    { slug: 'designer-resources', name: 'Designer Resources', color: '#ffaa00' },
+    { slug: 'developer-resources', name: 'Developer Resources', color: '#ffaa00' },
+    { slug: 'marketing-resources', name: 'Marketing Resources', color: '#ffaa00' },
+    { slug: 'virtual-assistant', name: 'Virtual Assistant', color: '#ffaa00' }
+  ],
+  'emerging-technologies': [
+    { slug: 'nfts', name: 'NFTs', color: '#9d4edd' },
+    { slug: 'blockchain', name: 'Blockchain Development', color: '#9d4edd' },
+    { slug: 'ar', name: 'Augmented Reality', color: '#9d4edd' },
+    { slug: 'web3', name: 'Web 3.0', color: '#9d4edd' },
+    { slug: 'vr', name: 'Virtual Reality', color: '#9d4edd' }
+  ],
+  'industry-plans': [
+    { slug: 'digital-agency', name: 'Digital Agency', color: '#00d4ff' },
+    { slug: 'ecommerce', name: 'Ecommerce', color: '#00d4ff' },
+    { slug: 'real-estate', name: 'Real Estate', color: '#00d4ff' },
+    { slug: 'vehicle-rental', name: 'Vehicle Rental', color: '#00d4ff' },
+    { slug: 'healthcare', name: 'Healthcare', color: '#00d4ff' },
+    { slug: 'cleaning', name: 'Cleaning Services', color: '#00d4ff' },
+    { slug: 'restaurants', name: 'Restaurants', color: '#00d4ff' },
+    { slug: 'law-firms', name: 'Law Firms', color: '#00d4ff' },
+    { slug: 'financial', name: 'Financial Services', color: '#00d4ff' },
+    { slug: 'professional', name: 'Professional Services', color: '#00d4ff' }
+  ]
+};
+
+// Read template
+const templatePath = path.join(__dirname, '../app/creative-design/page.tsx');
+let template = fs.readFileSync(templatePath, 'utf-8');
+
+// Function to customize template for each service
+function customizeTemplate(template, service) {
+  let customized = template;
+  
+  // Replace hero section title
+  customized = customized.replace(
+    /title: "Outsource Creative Services",/g,
+    `title: "${service.name}",`
+  );
+  
+  // Replace subtitle
+  customized = customized.replace(
+    /subtitle: "Creative Excellence",/g,
+    `subtitle: "${service.name} Excellence",`
+  );
+  
+  // Replace description
+  customized = customized.replace(
+    /desc: "Outsource creative services to our team of talented creatives\."/g,
+    `desc: "Get professional ${service.name.toLowerCase()} services from our expert team."`
+  );
+  
+  // Replace hero color
+  customized = customized.replace(
+    /color: new THREE\.Color\("#00f0ff"\),/g,
+    `color: new THREE.Color("${service.color}"),`
+  );
+  
+  return customized;
+}
+
+// Generate all pages
+let totalGenerated = 0;
+
+Object.entries(SERVICE_STRUCTURE).forEach(([category, services]) => {
+  services.forEach((service) => {
+    const servicePath = path.join(__dirname, `../app/our-services/${category}/${service.slug}/page.tsx`);
+    const serviceDir = path.dirname(servicePath);
+    
+    // Create directory if it doesn't exist
+    if (!fs.existsSync(serviceDir)) {
+      fs.mkdirSync(serviceDir, { recursive: true });
+    }
+    
+    // Customize template
+    const customizedTemplate = customizeTemplate(template, service);
+    
+    // Write file
+    fs.writeFileSync(servicePath, customizedTemplate, 'utf-8');
+    console.log(`✓ Created: ${category}/${service.slug}/page.tsx`);
+    totalGenerated++;
+  });
+});
+
+// Copy creative-design to creative-services folder (if not already there)
+const creativeDesignDest = path.join(__dirname, '../app/our-services/creative-services/creative-design/page.tsx');
+if (!fs.existsSync(creativeDesignDest)) {
+  const creativeDesignDir = path.dirname(creativeDesignDest);
+  if (!fs.existsSync(creativeDesignDir)) {
+    fs.mkdirSync(creativeDesignDir, { recursive: true });
+  }
+  fs.copyFileSync(templatePath, creativeDesignDest);
+  console.log(`✓ Copied creative-design to creative-services folder`);
+}
+
+console.log(`\n✅ Generated ${totalGenerated} service pages!`);
+

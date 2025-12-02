@@ -156,13 +156,13 @@ const Scene = () => {
 
 // --- HTML CONTENT SECTIONS ---
 
-const GlassPanel = ({ children, className = "" }: any) => (
+const GlassPanel = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
   <div className={`p-6 md:p-12 rounded-3xl bg-[#052126]/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] ${className}`}>
     {children}
   </div>
 );
 
-const Section = ({ children, className = "" }: any) => (
+const Section = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
   <section className={`w-full min-h-screen md:h-screen flex flex-col justify-center items-center px-4 py-16 md:py-0 relative ${className}`}>
     <div className="max-w-6xl w-full flex justify-center">
       {children}
@@ -170,7 +170,7 @@ const Section = ({ children, className = "" }: any) => (
   </section>
 );
 
-const StatCard = ({ label, value }: any) => (
+const StatCard = ({ label, value }: { label: string; value: string | number }) => (
   <div className="text-center p-4">
     <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 tracking-tighter">{value}</h3>
     <p className="text-[#35c4dd] uppercase tracking-widest text-[10px] sm:text-xs font-semibold">{label}</p>
@@ -203,9 +203,19 @@ export default function AboutPage() {
     <div className="w-full h-screen bg-black text-[#f2f4f4] overflow-hidden">
       
       <Canvas 
-        dpr={[1, 1.5]} // OPTIMIZATION: Cap DPR at 1.5 for performance
-        gl={{ antialias: false, stencil: false, depth: true, toneMapping: THREE.ReinhardToneMapping, toneMappingExposure: 1.5 }}
+        dpr={[1, 1.25]} // OPTIMIZATION: Cap DPR at 1.25 for performance
+        gl={{ 
+          antialias: false, 
+          stencil: false, 
+          depth: true, 
+          toneMapping: THREE.ReinhardToneMapping, 
+          toneMappingExposure: 1.5,
+          powerPreference: "high-performance",
+          preserveDrawingBuffer: false,
+        }}
         camera={{ position: [0, 0, 12], fov: 50 }}
+        performance={{ min: 0.5 }}
+        frameloop="demand"
       >
         <Suspense fallback={null}>
           <ScrollControls pages={5.8} damping={0.2}>

@@ -80,6 +80,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Performance Hints */}
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        {/* Optimize font loading */}
+        <link rel="preload" href="/fonts/ITCAvantGardeStd-Bk.otf" as="font" type="font/otf" crossOrigin="anonymous" />
+      </head>
       <body
         className="antialiased"
         suppressHydrationWarning

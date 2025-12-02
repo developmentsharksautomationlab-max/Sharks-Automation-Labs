@@ -278,22 +278,17 @@ const FallingLogosSection: React.FC = () => {
         </button>
 
         {/* Text Content */}
-        <div className="absolute top-4 md:top-6 left-0 right-0 flex justify-center px-4 pointer-events-none pt-2 md:pt-4">
-          <div className="text-center relative">
+        <div className="absolute top-4 md:top-6 left-0 right-0 flex justify-center items-center px-4 pointer-events-none pt-2 md:pt-4">
+          <div className="text-center relative max-w-4xl mx-auto">
             <p className="text-[#35c4dd] text-[10px] md:text-sm font-bold tracking-[0.25em] uppercase mb-1 md:mb-4 drop-shadow-sm">
               Insights
             </p>
-            <h2 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[#052126] mb-3 md:mb-6 drop-shadow-sm leading-tight max-w-3xl">
-              Challenges Brands Face in Competitive Ecosystem
+            <h2 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[#052126] mb-3 md:mb-6 drop-shadow-sm leading-tight max-w-3xl mx-auto">
+              Enterprise Market Challenges
             </h2>
             <p className="text-xs sm:text-sm md:text-base text-[#052126]/80 max-w-2xl mx-auto mb-4 md:mb-8 leading-relaxed">
-              In today's fast-paced digital marketplace, brands must navigate complex challenges to stay competitive and deliver exceptional customer experiences.
+            In today's digital economy enterprises must overcome complex market dynamics to sustain competitive advantage and deliver premium customer experiences at scale.
             </p>
-            
-            <button className="group relative pointer-events-auto inline-flex items-center justify-center bg-[#35c4dd] text-[#f2f4f4] font-bold py-1.5 px-5 md:py-3 md:px-8 text-xs md:text-base rounded-full hover:text-[#052126] transition-all duration-300 hover:scale-95 hover:shadow-2xl hover:shadow-[#35c4dd]/25 cursor-pointer overflow-hidden">
-              <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#f2f4f4] rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
-              <span className="relative">Learn More</span>
-            </button>
           </div>
         </div>
 

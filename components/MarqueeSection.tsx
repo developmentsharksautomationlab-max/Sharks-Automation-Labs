@@ -90,7 +90,7 @@ const MarqueeSection = () => {
 
       {/* Text 2 */}
       <span className={`font-black tracking-tighter text-6xl md:text-8xl lg:text-9xl uppercase transition-colors duration-0 ${isColored ? 'text-[#35c4dd]' : 'text-transparent text-outline'}`}>
-        Engineering
+        Lab
       </span>
 
       {/* Icon 2 */}

@@ -1,0 +1,45 @@
+{
+  "services": {
+    "digital-services": [
+      { "slug": "web-development", "name": "Web Development", "color": "#35c4dd", "icon": "Code" },
+      { "slug": "app-development", "name": "App Development", "color": "#35c4dd", "icon": "Smartphone" },
+      { "slug": "social-media", "name": "Social Media Marketing", "color": "#35c4dd", "icon": "MessageSquare" },
+      { "slug": "performance-marketing", "name": "Performance Marketing", "color": "#35c4dd", "icon": "TrendingUp" },
+      { "slug": "seo", "name": "Search Engine Optimization", "color": "#35c4dd", "icon": "Search" }
+    ],
+    "creative-services": [
+      { "slug": "creative-design", "name": "Creative Design", "color": "#ff6b9d", "icon": "Sparkles" },
+      { "slug": "creative", "name": "Creative Services", "color": "#ff6b9d", "icon": "Palette" }
+    ],
+    "outsourcing-partnership": [
+      { "slug": "outsourcing", "name": "Outsourcing Partnership", "color": "#00ff88", "icon": "Users" },
+      { "slug": "agency-plan", "name": "Agency Development Plan", "color": "#00ff88", "icon": "Building2" }
+    ],
+    "virtual-resources": [
+      { "slug": "designer-resources", "name": "Designer Resources", "color": "#ffaa00", "icon": "Palette" },
+      { "slug": "developer-resources", "name": "Developer Resources", "color": "#ffaa00", "icon": "Code" },
+      { "slug": "marketing-resources", "name": "Marketing Resources", "color": "#ffaa00", "icon": "TrendingUp" },
+      { "slug": "virtual-assistant", "name": "Virtual Assistant", "color": "#ffaa00", "icon": "Bot" }
+    ],
+    "emerging-technologies": [
+      { "slug": "nfts", "name": "NFTs", "color": "#9d4edd", "icon": "Box" },
+      { "slug": "blockchain", "name": "Blockchain Development", "color": "#9d4edd", "icon": "Network" },
+      { "slug": "ar", "name": "Augmented Reality", "color": "#9d4edd", "icon": "Zap" },
+      { "slug": "web3", "name": "Web 3.0", "color": "#9d4edd", "icon": "Globe" },
+      { "slug": "vr", "name": "Virtual Reality", "color": "#9d4edd", "icon": "Layers" }
+    ],
+    "industry-plans": [
+      { "slug": "digital-agency", "name": "Digital Agency", "color": "#00d4ff", "icon": "Building2" },
+      { "slug": "ecommerce", "name": "Ecommerce", "color": "#00d4ff", "icon": "Box" },
+      { "slug": "real-estate", "name": "Real Estate", "color": "#00d4ff", "icon": "Building2" },
+      { "slug": "vehicle-rental", "name": "Vehicle Rental", "color": "#00d4ff", "icon": "Box" },
+      { "slug": "healthcare", "name": "Healthcare", "color": "#00d4ff", "icon": "Building2" },
+      { "slug": "cleaning", "name": "Cleaning Services", "color": "#00d4ff", "icon": "Box" },
+      { "slug": "restaurants", "name": "Restaurants", "color": "#00d4ff", "icon": "Building2" },
+      { "slug": "law-firms", "name": "Law Firms", "color": "#00d4ff", "icon": "Building2" },
+      { "slug": "financial", "name": "Financial Services", "color": "#00d4ff", "icon": "Building2" },
+      { "slug": "professional", "name": "Professional Services", "color": "#00d4ff", "icon": "Building2" }
+    ]
+  }
+}
+

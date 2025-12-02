@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useRef, useEffect, useState } from 'react';
 import { 
@@ -62,7 +62,16 @@ const NeuralBackground = () => {
     let h = canvas.height = window.innerHeight;
     
     // Physics Configuration
-    const particles: any[] = [];
+    interface Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      update: () => void;
+      draw: () => void;
+    }
+    const particles: Particle[] = [];
     const particleCount = 60; // Keep optimized
     const connectionDistance = 150;
     const mouseDistance = 200;
@@ -194,7 +203,15 @@ const VelocitySkew = ({ children }: { children: React.ReactNode }) => {
 // --- COMPONENTS ---
 
 // 4. The "Hyper-Card" (Glass + Tilt + Glow)
-const HyperCard = ({ service, index }: any) => {
+interface ServiceCard {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  tags: string[];
+  image: string;
+}
+
+const HyperCard = ({ service, index }: { service: ServiceCard; index: number }) => {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
     const rotateX = useTransform(y, [-100, 100], [15, -15]); // Inverted for 3D feel

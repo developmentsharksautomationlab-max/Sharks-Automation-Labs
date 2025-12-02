@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -13,6 +13,7 @@ import {
   useSpring 
 } from 'framer-motion';
 import { Menu, X, ArrowUpRight, Github, Linkedin, Twitter } from 'lucide-react';
+import MegaMenu from './MegaMenu';
 
 // --- UTILS ---
 const Magnetic = ({ children }: { children: React.ReactNode }) => {
@@ -48,16 +49,21 @@ const Magnetic = ({ children }: { children: React.ReactNode }) => {
 const NAV_LINKS = [
   { name: "HOME", href: "/" },
   { name: "ABOUT US", href: "/about" },
-  { name: "SERVICES", href: "/services" },
+  { name: "OUR SERVICES", href: null }, // No link, just text
   { name: "CONTACT US", href: "/contact" },
 ];
 
 const Header = () => {
+  // Always start with no background - only show on scroll
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
+  const megaMenuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isHomePage = pathname === '/';
   const isAboutPage = pathname === '/about';
+  const isCreativeDesignPage = pathname?.includes('/creative-design') || pathname?.includes('/our-services');
   const footerObserverRef = useRef<IntersectionObserver | null>(null);
   const { scrollY } = useScroll();
   
@@ -70,17 +76,28 @@ const Header = () => {
 
   // Reset scroll state when switching pages
   useEffect(() => {
+    // Always reset scroll state when pathname changes
+    setIsScrolled(false);
+    
+    // Additional reset for About page
     if (isAboutPage) {
-      // On About page, start with no background
       setIsScrolled(false);
     }
-  }, [isAboutPage]);
+  }, [pathname, isAboutPage]);
 
-  // Handle scroll for non-About pages (normal scroll)
+  // Handle scroll for ALL pages (including homepage) - Header should scroll with page
   useEffect(() => {
     if (!isAboutPage) {
-      const handleScroll = () => setIsScrolled(window.scrollY > 50);
-      window.addEventListener('scroll', handleScroll);
+      // For all pages except About page, show background on scroll
+      const handleScroll = () => {
+        setIsScrolled(window.scrollY > 50);
+      };
+      
+      // Add scroll listener with passive for better performance
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      // Always start with no background - only show when scrolling
+      setIsScrolled(false);
+      
       return () => window.removeEventListener('scroll', handleScroll);
     } else {
       // On About page, explicitly disable any scroll-based background
@@ -172,11 +189,11 @@ const Header = () => {
     initial: { scaleY: 0 },
     animate: { 
       scaleY: 1,
-      transition: { duration: 0.5, ease: [0.12, 0, 0.39, 0] }
+      transition: { duration: 0.5, ease: [0.12, 0, 0.39, 0] as const }
     },
     exit: { 
       scaleY: 0,
-      transition: { delay: 0.5, duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+      transition: { delay: 0.5, duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }
     }
   };
 
@@ -186,8 +203,8 @@ const Header = () => {
   };
 
   const mobileLinkVars = {
-    initial: { y: "30vh", transition: { duration: 0.5, ease: [0.37, 0, 0.63, 1] } },
-    open: { y: 0, transition: { duration: 0.7, ease: [0, 0.55, 0.45, 1] } }
+    initial: { y: "30vh", transition: { duration: 0.5, ease: [0.37, 0, 0.63, 1] as const } },
+    open: { y: 0, transition: { duration: 0.7, ease: [0, 0.55, 0.45, 1] as const } }
   };
 
   return (
@@ -202,14 +219,40 @@ const Header = () => {
           delay: 0.3,
           opacity: { duration: 0.8, delay: 0.3 }
         }}
-        className="fixed top-0 left-0 w-full z-[999]"
+        className={`${isHomePage ? 'sticky' : 'fixed'} top-0 left-0 right-0 w-full z-[999] transition-all duration-300`}
         style={{
-          paddingTop: isScrolled ? '1rem' : '2rem',
-          paddingBottom: isScrolled ? '1rem' : '2rem',
-          backgroundColor: isScrolled ? 'rgba(5, 33, 38, 0.7)' : 'transparent',
-          backdropFilter: isScrolled ? 'blur(24px)' : 'blur(0px)',
-          borderBottom: isScrolled ? '1px solid rgba(53, 196, 221, 0.1)' : '1px solid transparent',
-          boxShadow: isScrolled ? '0 10px 40px -10px rgba(5, 33, 38, 0.8)' : 'none',
+          position: isHomePage ? 'sticky' : 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          width: '100%',
+          zIndex: 999,
+          paddingTop: isHomePage 
+            ? (isScrolled ? '0.5rem' : '0.75rem') // Homepage: reduced padding for smaller height
+            : (isScrolled ? '1rem' : '2rem'),
+          paddingBottom: isHomePage 
+            ? (isScrolled ? '0.5rem' : '0.75rem') // Homepage: reduced padding for smaller height
+            : (isScrolled ? '1rem' : '2rem'),
+          backgroundColor: isCreativeDesignPage 
+            ? (isScrolled ? 'rgba(0, 0, 0, 0.8)' : 'transparent')
+            : isHomePage
+            ? 'rgba(5, 33, 38, 0.95)' // Homepage: banner color (#052126) always - top and scroll
+            : (isScrolled ? 'rgba(5, 33, 38, 0.7)' : 'transparent'),
+          backdropFilter: isCreativeDesignPage 
+            ? (isScrolled ? 'blur(24px)' : 'blur(0px)')
+            : isHomePage
+            ? 'blur(24px)' // Homepage: blur always
+            : (isScrolled ? 'blur(24px)' : 'blur(0px)'),
+          borderBottom: isCreativeDesignPage 
+            ? (isScrolled ? '1px solid rgba(53, 196, 221, 0.1)' : '1px solid transparent')
+            : isHomePage
+            ? '1px solid rgba(53, 196, 221, 0.1)' // Homepage: border always
+            : (isScrolled ? '1px solid rgba(53, 196, 221, 0.1)' : '1px solid transparent'),
+          boxShadow: isCreativeDesignPage 
+            ? (isScrolled ? '0 10px 40px -10px rgba(5, 33, 38, 0.8)' : 'none')
+            : isHomePage
+            ? '0 10px 40px -10px rgba(5, 33, 38, 0.8)' // Homepage: shadow always
+            : (isScrolled ? '0 10px 40px -10px rgba(5, 33, 38, 0.8)' : 'none'),
           transition: 'padding 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1)'
         }}
       >
@@ -231,24 +274,86 @@ const Header = () => {
           </Magnetic>
 
           {/* 2. DESKTOP NAV (Glass Capsule) */}
-          <nav className={`hidden lg:flex items-center gap-2 p-1.5 rounded-full border border-[#35c4dd]/10 backdrop-blur-md shadow-inner shadow-[#35c4dd]/5 ${
-            isAboutPage && !isScrolled ? 'bg-[#35c4dd]/20' : 'bg-[#35c4dd]/5'
-          }`}>
-            {NAV_LINKS.map((link) => (
-              <Link key={link.name} href={link.href} className="relative px-6 py-2.5 rounded-full group overflow-hidden">
-                {/* Hover Background Pill */}
-                <span className="absolute inset-0 w-full h-full bg-[#35c4dd] rounded-full scale-0 group-hover:scale-100 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] origin-center" />
-                
-                <span className="relative z-10 flex flex-col overflow-hidden h-5">
-                  <span className="block text-[#f2f4f4] font-medium text-sm tracking-widest group-hover:-translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
-                    {link.name}
-                  </span>
-                  <span className="block absolute top-full text-[#f2f4f4] font-bold text-sm tracking-widest group-hover:-translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
-                    {link.name}
-                  </span>
-                </span>
-              </Link>
-            ))}
+          <nav 
+            className="hidden lg:flex items-center gap-2 p-1.5 rounded-full border border-[#35c4dd]/10 backdrop-blur-md shadow-inner shadow-[#35c4dd]/5"
+            style={{
+              backgroundColor: isCreativeDesignPage 
+                ? 'rgba(0, 0, 0, 0.8)' // Always strong background on creative-design page
+                : isHomePage
+                ? 'transparent' // Homepage: nav menu transparent - top and scroll
+                : (isScrolled ? 'rgba(0, 0, 0, 0.7)' : 'rgba(0, 0, 0, 0.5)'),
+              backdropFilter: isCreativeDesignPage 
+                ? 'blur(24px)' // Always strong blur on creative-design page
+                : isHomePage
+                ? 'blur(0px)' // Homepage: nav menu no blur
+                : (isScrolled ? 'blur(20px)' : 'blur(16px)'),
+              transition: 'background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.25s cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+          >
+            {NAV_LINKS.map((link) => {
+              const isOurServices = link.name === "OUR SERVICES";
+              
+              const handleMouseEnter = () => {
+                if (isOurServices) {
+                  if (megaMenuTimeoutRef.current) {
+                    clearTimeout(megaMenuTimeoutRef.current);
+                    megaMenuTimeoutRef.current = null;
+                  }
+                  setIsMegaMenuOpen(true);
+                }
+              };
+              
+              const handleMouseLeave = () => {
+                if (isOurServices) {
+                  // Start timeout - will be cancelled if mouse enters menu
+                  megaMenuTimeoutRef.current = setTimeout(() => {
+                    setIsMegaMenuOpen(false);
+                  }, 150);
+                }
+              };
+              
+              return (
+                <div
+                  key={link.name}
+                  className="relative"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {link.href ? (
+                    <Link
+                      href={link.href}
+                      className="relative px-6 py-2.5 rounded-full group overflow-hidden block"
+                    >
+                      {/* Hover Background Pill */}
+                      <span className="absolute inset-0 w-full h-full bg-[#35c4dd] rounded-full scale-0 group-hover:scale-100 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] origin-center" />
+                      
+                      <span className="relative z-10 flex flex-col overflow-hidden h-5">
+                        <span className="block text-[#f2f4f4] font-medium text-sm tracking-widest group-hover:-translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
+                          {link.name}
+                        </span>
+                        <span className="block absolute top-full text-[#f2f4f4] font-bold text-sm tracking-widest group-hover:-translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
+                          {link.name}
+                        </span>
+                      </span>
+                    </Link>
+                  ) : (
+                    <span className="relative px-6 py-2.5 rounded-full group overflow-hidden block cursor-default">
+                      {/* Hover Background Pill */}
+                      <span className="absolute inset-0 w-full h-full bg-[#35c4dd] rounded-full scale-0 group-hover:scale-100 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] origin-center" />
+                      
+                      <span className="relative z-10 flex flex-col overflow-hidden h-5">
+                        <span className="block text-[#f2f4f4] font-medium text-sm tracking-widest group-hover:-translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
+                          {link.name}
+                        </span>
+                        <span className="block absolute top-full text-[#f2f4f4] font-bold text-sm tracking-widest group-hover:-translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
+                          {link.name}
+                        </span>
+                      </span>
+                    </span>
+                  )}
+                </div>
+              );
+            })}
           </nav>
 
           {/* 3. RIGHT ACTION AREA */}
@@ -308,16 +413,28 @@ const Header = () => {
                 {NAV_LINKS.map((link, index) => (
                   <div key={index} className="overflow-hidden">
                     <motion.div variants={mobileLinkVars}>
-                      <Link 
-                        href={link.href} 
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="group flex items-center gap-3 sm:gap-4 md:gap-6"
-                      >
-                        <span className="text-xs sm:text-sm font-mono text-[#35c4dd] opacity-50">0{index + 1}/</span>
-                        <span className="text-4xl sm:text-5xl md:text-8xl font-black text-[#f2f4f4] uppercase tracking-tighter transition-all duration-500 group-hover:text-transparent group-hover:stroke-cyan group-hover:translate-x-4">
-                           {link.name}
+                      {link.href ? (
+                        <Link 
+                          href={link.href} 
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="group flex items-center gap-3 sm:gap-4 md:gap-6"
+                        >
+                          <span className="text-xs sm:text-sm font-mono text-[#35c4dd] opacity-50">0{index + 1}/</span>
+                          <span className="text-4xl sm:text-5xl md:text-8xl font-black text-[#f2f4f4] uppercase tracking-tighter transition-all duration-500 group-hover:text-transparent group-hover:stroke-cyan group-hover:translate-x-4">
+                             {link.name}
+                          </span>
+                        </Link>
+                      ) : (
+                        <span 
+                          onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
+                          className="group flex items-center gap-3 sm:gap-4 md:gap-6 cursor-pointer"
+                        >
+                          <span className="text-xs sm:text-sm font-mono text-[#35c4dd] opacity-50">0{index + 1}/</span>
+                          <span className="text-4xl sm:text-5xl md:text-8xl font-black text-[#f2f4f4] uppercase tracking-tighter transition-all duration-500 group-hover:text-transparent group-hover:stroke-cyan group-hover:translate-x-4">
+                             {link.name}
+                          </span>
                         </span>
-                      </Link>
+                      )}
                     </motion.div>
                   </div>
                 ))}
@@ -334,11 +451,15 @@ const Header = () => {
               <div className="flex flex-col gap-2">
                 <span className="text-[#35c4dd] text-sm font-mono tracking-widest uppercase mb-2">Socials</span>
                 <div className="flex gap-4">
-                  {[Twitter, Linkedin, Github].map((Icon, i) => (
-                    <Link key={i} href="#" className="w-12 h-12 rounded-full border border-[#35c4dd]/30 flex items-center justify-center text-[#f2f4f4] hover:bg-[#35c4dd] hover:text-[#052126] transition-all duration-300">
-                      <Icon size={20} />
-                    </Link>
-                  ))}
+                  <Link href="https://twitter.com/thesharkretail" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-[#35c4dd]/30 flex items-center justify-center text-[#f2f4f4] hover:bg-[#35c4dd] hover:text-[#052126] transition-all duration-300">
+                    <Twitter size={20} />
+                  </Link>
+                  <Link href="https://linkedin.com/company/shark-automation-lab" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-[#35c4dd]/30 flex items-center justify-center text-[#f2f4f4] hover:bg-[#35c4dd] hover:text-[#052126] transition-all duration-300">
+                    <Linkedin size={20} />
+                  </Link>
+                  <Link href="https://github.com/thesharkretail" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-[#35c4dd]/30 flex items-center justify-center text-[#f2f4f4] hover:bg-[#35c4dd] hover:text-[#052126] transition-all duration-300">
+                    <Github size={20} />
+                  </Link>
                 </div>
               </div>
               
@@ -351,6 +472,31 @@ const Header = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Mega Menu */}
+      <MegaMenu 
+        isOpen={isMegaMenuOpen} 
+        onClose={() => {
+          if (megaMenuTimeoutRef.current) {
+            clearTimeout(megaMenuTimeoutRef.current);
+            megaMenuTimeoutRef.current = null;
+          }
+          setIsMegaMenuOpen(false);
+        }}
+        onMouseEnter={() => {
+          // Cancel any pending close from nav item
+          if (megaMenuTimeoutRef.current) {
+            clearTimeout(megaMenuTimeoutRef.current);
+            megaMenuTimeoutRef.current = null;
+          }
+        }}
+        onMouseLeave={() => {
+          // Start timeout to close
+          megaMenuTimeoutRef.current = setTimeout(() => {
+            setIsMegaMenuOpen(false);
+          }, 200);
+        }}
+      />
 
       <style jsx global>{`
         .stroke-cyan {

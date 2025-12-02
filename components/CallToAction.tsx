@@ -259,23 +259,15 @@ const CallToAction = () => {
               animate={status}
               className="inline-block py-1 px-2.5 sm:px-3 rounded-full bg-[#052126]/5 text-[#052126] text-[10px] sm:text-xs font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-4 sm:mb-6 border border-[#052126]/10"
             >
-              {status === 'reborn' ? "System Upgraded" : "Algorithmic Precision"}
+              Data-Driven Growth
             </motion.span>
 
             {/* Heading - The main melt event */}
             <motion.div variants={textCollapseVariant} animate={status} className="relative z-20">
               <h2 className={`text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#052126] mb-4 sm:mb-6 md:mb-8 tracking-tight leading-[1.1] ${rebirthGlow}`}>
-                {status === 'reborn' ? "Architecting" : "Construct Your"} <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#35c4dd] via-[#2a9cb1] to-[#35c4dd] relative">
-                  {status === 'reborn' ? "Pure Velocity" : "Wealth Architecture"}
-                  {/* Decorative underline that breaks during collapse */}
-                  <motion.svg 
-                    animate={status === 'collapsing' ? { pathLength: 0, opacity: 0 } : { pathLength: 1, opacity: 0.4 }}
-                    className="absolute w-full h-2 sm:h-3 -bottom-1 sm:-bottom-2 left-0 text-[#35c4dd]" 
-                    viewBox="0 0 100 10" preserveAspectRatio="none"
-                  >
-                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
-                  </motion.svg>
+                Build Your <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#35c4dd] via-[#2a9cb1] to-[#35c4dd]">
+                  Enterprise Advantage
                 </span>
               </h2>
             </motion.div>
@@ -287,10 +279,7 @@ const CallToAction = () => {
               transition={{ delay: 0.1 }}
               className="text-sm sm:text-base md:text-lg lg:text-xl text-[#052126]/70 max-w-2xl mb-6 sm:mb-8 md:mb-10 leading-relaxed font-medium px-2 sm:px-0"
             >
-              {status === 'reborn' 
-                ? "Reality rebuilt. Your assets have been synchronized with the new high-velocity standard. Proceed to dashboard." 
-                : <>Move beyond speculation. Utilize our <span className="text-[#052126] font-semibold underline decoration-[#35c4dd]/50 decoration-2 underline-offset-4">mathematical framework</span> to diversify capital into tangible assets.</>
-              }
+              Leverage precision-driven digital strategies to scale revenue, performance, and market leadership with confidence.
             </motion.p>
 
             {/* The Trigger Button */}
@@ -317,17 +306,15 @@ const CallToAction = () => {
                 
                 {/* Text & Icon */}
                 <span className="relative font-bold text-sm sm:text-base md:text-lg tracking-wide uppercase z-10 group-hover:text-white transition-colors">
-                  {status === 'reborn' ? "Access Dashboard" : "Initialize Protocol"}
+                  Activate Growth
                 </span>
                 
-                {status !== 'reborn' && (
-                  <svg 
-                    className="relative w-4 h-4 sm:w-5 sm:h-5 z-10 transform transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-45 text-[#35c4dd] group-hover:text-white" 
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                )}
+                <svg 
+                  className="relative w-4 h-4 sm:w-5 sm:h-5 z-10 transform transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-45 text-[#35c4dd] group-hover:text-white" 
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
                 {status === 'reborn' && (
                   <motion.div 
                      initial={{ scale: 0 }} animate={{ scale: 1 }}

@@ -27,7 +27,7 @@ const PageLoader = () => {
   }, []);
 
   useEffect(() => {
-    const totalTime = 3000; // 3 Seconds for cinematic feel
+    const totalTime = 1500; // 1.5 Seconds for faster load
     const intervalTime = 30;
     const steps = totalTime / intervalTime;
     let currentStep = 0;

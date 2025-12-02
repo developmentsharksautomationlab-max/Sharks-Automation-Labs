@@ -8,30 +8,30 @@ import { CheckCircle2 } from "lucide-react";
 const dataItems = [
   {
     id: 1,
-    title: "History of Outperformance",
+    title: "One Stop Solution",
     description:
-      "Our proprietary systems and strategic playbooks are battle-tested, consistently delivering market-beating growth and establishing a new benchmark.",
+      "End-to-end digital solutions delivering seamless execution across your entire business ecosystem.",
     icon: <CheckCircle2 />,
   },
   {
     id: 2,
-    title: "End-to-End Capital Solution",
+    title: "Experienced Team",
     description:
-      "From initial setup to global fulfillment, we are your single point of accountability. This eliminates operational friction and allows for pure growth.",
+      "Senior industry experts delivering precision-driven strategy, execution, and business transformation.",
     icon: <CheckCircle2 />,
   },
   {
     id: 3,
-    title: "Institutional-Grade Reporting",
+    title: "High Quality",
     description:
-      "You are not a customer; you are a partner. Gain clear, data-driven insights into your asset's performance with transparent P&L reporting.",
+      "Enterprise-grade quality assurance ensuring reliability, performance, and consistent excellence.",
     icon: <CheckCircle2 />,
   },
   {
     id: 4,
-    title: "Engineered for Compounding",
+    title: "Value for Money",
     description:
-      "Our models are designed for scalability. We systematically reinvest profits to compound your returns, building long-term, transferable wealth.",
+      "Maximum ROI through optimized systems, intelligent resource allocation, and scalable efficiency.",
     icon: <CheckCircle2 />,
   },
 ];

@@ -206,7 +206,18 @@ HyperCoreAnimation.displayName = 'HyperCoreAnimation';
 
 // --- UI COMPONENTS (Memoized to prevent flicker) ---
 
-const FormField = memo(({ label, as, required = true, ...props }: any) => {
+interface FormFieldProps {
+  label: string;
+  as?: 'input' | 'textarea';
+  required?: boolean;
+  name?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  type?: string;
+  placeholder?: string;
+}
+
+const FormField = memo(({ label, as, required = true, ...props }: FormFieldProps) => {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <div className="relative group">
@@ -236,7 +247,7 @@ const FormField = memo(({ label, as, required = true, ...props }: any) => {
 });
 FormField.displayName = 'FormField';
 
-const InfoCard = memo(({ icon, title, desc }: { icon: any; title: string; desc: string }) => (
+const InfoCard = memo(({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) => (
   <motion.div 
     whileHover={{ y: -5 }}
     className="relative p-6 rounded-2xl border border-[#35c4dd]/10 bg-gradient-to-br from-[#f2f4f4]/5 to-transparent backdrop-blur-sm group overflow-hidden"
@@ -283,7 +294,16 @@ const ContactSection = () => {
     setTimeout(() => setStatus('success'), 2000);
   };
 
-  const servicesList = ["Amazon Automation", "Shopify Automation", "PPC Management", "Content Creation", "Product Hunting", "Strategic Capital"];
+  const servicesList = [
+    "Creative Services & Brand Strategy",
+    "Enterprise Web Development",
+    "Mobile App Development",
+    "Social Media Marketing",
+    "Performance Marketing & PPC",
+    "Search Engine Optimization (SEO)",
+    "Strategic Outsourcing Partnership",
+    "Agency Development & Scaling"
+  ];
   const countryCodes = [{ code: '+1', name: 'USA' }, { code: '+44', name: 'UK' }, { code: '+92', name: 'PAK' }, { code: '+971', name: 'UAE' }];
 
   return (
@@ -312,10 +332,10 @@ const ContactSection = () => {
               <div className="mb-10">
                 <div className="h-1 w-20 bg-[#35c4dd] mb-6" />
                 <h2 className="text-4xl md:text-6xl font-black text-[#f2f4f4] tracking-tight leading-tight">
-                  INITIATE <br/><span className="text-[#35c4dd]">PARTNERSHIP.</span>
+                  Enterprise Digital <br/><span className="text-[#35c4dd]">Transformation Solutions</span>
                 </h2>
-                <p className="mt-4 text-[#f2f4f4]/70 text-lg border-l-2 border-[#35c4dd]/30 pl-4">
-                  Transform capital into a systematically managed enterprise.
+                <p className="mt-4 text-[#f2f4f4]/70 text-lg md:text-xl leading-relaxed border-l-2 border-[#35c4dd]/30 pl-4">
+                  Strategic digital transformation services engineered for global market leaders and institutional investors. Accelerate revenue growth, optimize enterprise operations, and secure market dominance through data-driven solutions that deliver measurable ROI and sustainable competitive positioning.
                 </p>
               </div>
 
@@ -396,7 +416,7 @@ const ContactSection = () => {
                     <div className="absolute inset-0 w-full h-full bg-white/30 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                     <div className="relative flex items-center justify-center gap-2">
                       {status === 'submitting' ? 'Processing...' : status === 'success' ? 'Request Sent' : (
-                        <>INITIALIZE CONTACT <Send size={18} /></>
+                        <>SCHEDULE CONSULTATION <Send size={18} /></>
                       )}
                     </div>
                   </button>
@@ -428,8 +448,8 @@ const ContactSection = () => {
 
                <InfoCard 
                  icon={<Users size={24} />}
-                 title="Executive Leadership"
-                 desc="Connect directly with our specialized team managing 8-figure portfolios."
+                 title="C-Suite Advisory"
+                 desc="Direct access to enterprise transformation specialists serving Fortune 500 leadership teams and institutional investors."
                />
 
                <div className="grid grid-cols-2 gap-4">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import MetaPixel from "@/components/MetaPixel";
 import PageLoader from "@/components/PageLoader";
+import Header from "@/components/Header";
 import { LoadingProvider } from "@/contexts/LoadingContext";
 
 export const metadata: Metadata = {
@@ -95,6 +96,7 @@ export default function RootLayout({
         <LoadingProvider>
           <PageLoader />
           <MetaPixel />
+          <Header />
           {children}
         </LoadingProvider>
       </body>

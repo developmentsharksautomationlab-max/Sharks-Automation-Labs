@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { 
   motion, 
   useMotionValue, 
@@ -264,7 +265,7 @@ const CallToAction = () => {
 
             {/* Heading - The main melt event */}
             <motion.div variants={textCollapseVariant} animate={status} className="relative z-20">
-              <h2 className={`text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#052126] mb-4 sm:mb-6 md:mb-8 tracking-tight leading-[1.1] ${rebirthGlow}`}>
+              <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#052126] mb-4 sm:mb-6 md:mb-8 tracking-tight leading-[1.1] ${rebirthGlow}`}>
                 Build Your <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#35c4dd] via-[#2a9cb1] to-[#35c4dd]">
                   Enterprise Advantage
@@ -277,7 +278,7 @@ const CallToAction = () => {
               variants={textCollapseVariant}
               animate={status}
               transition={{ delay: 0.1 }}
-              className="text-sm sm:text-base md:text-lg lg:text-xl text-[#052126]/70 max-w-2xl mb-6 sm:mb-8 md:mb-10 leading-relaxed font-medium px-2 sm:px-0"
+              className="text-sm sm:text-base md:text-lg text-[#052126]/70 max-w-2xl mb-6 sm:mb-8 md:mb-10 leading-relaxed font-medium px-2 sm:px-0"
             >
               Leverage precision-driven digital strategies to scale revenue, performance, and market leadership with confidence.
             </motion.p>
@@ -290,13 +291,14 @@ const CallToAction = () => {
                 filter: "hue-rotate(90deg)"
               } : { scale: 1, opacity: 1 }}
             >
-              <button 
-                onClick={handleTrigger}
-                disabled={status !== 'idle'}
-                className={`group relative inline-flex items-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 text-[#f2f4f4] rounded-full overflow-hidden shadow-[0_10px_30px_-10px_rgba(5,33,38,0.5)] transition-all duration-300 
-                  ${status === 'reborn' ? 'bg-[#35c4dd] hover:shadow-[0_20px_50px_-10px_rgba(53,196,221,0.6)]' : 'bg-[#052126] hover:shadow-[0_20px_40px_-10px_rgba(53,196,221,0.4)] hover:-translate-y-1'}
-                `}
-              >
+              <Link href="/contact">
+                <button 
+                  onClick={handleTrigger}
+                  disabled={status !== 'idle'}
+                  className={`group relative inline-flex items-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 text-[#f2f4f4] rounded-full overflow-hidden shadow-[0_10px_30px_-10px_rgba(5,33,38,0.5)] transition-all duration-300 
+                    ${status === 'reborn' ? 'bg-[#35c4dd] hover:shadow-[0_20px_50px_-10px_rgba(53,196,221,0.6)]' : 'bg-[#052126] hover:shadow-[0_20px_40px_-10px_rgba(53,196,221,0.4)] hover:-translate-y-1'}
+                  `}
+                >
                 {/* Button BG */}
                 <div className={`absolute inset-0 w-full h-full transition-all duration-500 bg-[length:200%_auto] bg-left group-hover:bg-right
                   ${status === 'reborn' 
@@ -305,7 +307,7 @@ const CallToAction = () => {
                 `} />
                 
                 {/* Text & Icon */}
-                <span className="relative font-bold text-sm sm:text-base md:text-lg tracking-wide uppercase z-10 group-hover:text-white transition-colors">
+                <span className="relative font-bold text-xs sm:text-sm md:text-base tracking-wide uppercase z-10 group-hover:text-white transition-colors">
                   Activate Growth
                 </span>
                 
@@ -322,6 +324,7 @@ const CallToAction = () => {
                   />
                 )}
               </button>
+              </Link>
             </motion.div>
 
           </div>

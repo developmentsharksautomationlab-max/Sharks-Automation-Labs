@@ -10,7 +10,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Zap, Share2, Hexagon, ArrowDown, MoveUpRight, Globe, Radio, Plus, Diamond, Cpu, Box, Layers, Eye, Aperture } from "lucide-react";
 import Link from "next/link";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 // --- GSAP REGISTER ---
@@ -195,7 +194,7 @@ const SECTIONS = [
 // --- 2. 3D COMPONENTS ---
 
 // Portfolio Item Component (Single Card)
-const PortfolioCard = ({ url, position, index, groupRef }) => {
+const PortfolioCard = ({ url, position, index, groupRef }: { url: string; position: [number, number, number]; index: number; groupRef: React.RefObject<any> }) => {
     const mesh = useRef();
     const material = useRef();
     const [hovered, setHover] = useState(false);
@@ -455,7 +454,7 @@ const HyperParticles = ({ sectionIndex }) => {
 
 // --- 3. UI & LAYOUT COMPONENTS ---
 
-const VerticalSection = ({ data, index }) => {
+const VerticalSection = ({ data, index }: { data: any; index: number }) => {
   const isFirstSection = index === 0;
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
@@ -487,8 +486,8 @@ const VerticalSection = ({ data, index }) => {
       >
         <div ref={contentRef} className="relative z-10 max-w-4xl w-full flex flex-col items-center justify-center text-center pointer-events-auto">
           <div className="relative z-10 px-8 py-12">
-            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-[1.1] mb-6">{data.title}</h2>
-            <p className="text-white text-lg md:text-xl font-light leading-relaxed max-w-3xl mb-12">{data.desc}</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tighter leading-[1.1] mb-6">{data.title}</h2>
+            <p className="text-white text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-3xl mb-12">{data.desc}</p>
             <div className="flex flex-col items-center gap-3 mt-8 animate-bounce">
               <span className="text-sm font-mono text-white uppercase tracking-widest">Scroll Down</span>
               <ArrowDown className="w-6 h-6 text-white" />
@@ -511,8 +510,8 @@ const VerticalSection = ({ data, index }) => {
                 <div className="w-10 h-[1px] bg-current" style={{ color: '#' + data.color.getHexString() }}></div>
                 <span className="text-xs font-mono uppercase tracking-[0.2em] text-white/70">0{index} // {data.subtitle}</span>
             </div>
-            <h2 className="text-6xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-8 mix-blend-overlay break-words">{data.title}</h2>
-            <div className="text-xl md:text-2xl font-light leading-relaxed text-gray-200 mt-4 max-w-md border-l-2 border-white/20 pl-6">{data.desc}</div>
+            <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-6xl font-bold text-white tracking-tighter leading-[0.85] mb-8 mix-blend-overlay break-words">{data.title}</h2>
+            <div className="text-base sm:text-lg md:text-xl font-light leading-relaxed text-gray-200 mt-4 max-w-md border-l-2 border-white/20 pl-6">{data.desc}</div>
         </div>
         <div className="md:w-1/2 flex flex-col justify-start p-8 md:p-12 z-20 pt-[30vh] pb-[10vh]">
             <div className="mb-12 opacity-50 font-mono text-xs">
@@ -530,7 +529,7 @@ const VerticalSection = ({ data, index }) => {
                                  <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/80 group-hover:rotate-90 transition-transform duration-500"><Plus className="w-5 h-5" /></div>
                                  <span className="font-mono text-xs text-white/40">{i < 9 ? `0${i+1}` : i+1}</span>
                              </div>
-                             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">{point.title}</h3>
+                             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-4">{point.title}</h3>
                              <p className="text-lg text-gray-400 leading-relaxed max-w-sm">{point.text}</p>
                          </div>
                     </div>
@@ -542,26 +541,11 @@ const VerticalSection = ({ data, index }) => {
   );
 };
 
-const HorizontalSection = ({ data, index }) => {
+const HorizontalSection = ({ data, index }: { data: any; index: number }) => {
     const sectionRef = useRef(null);
     const triggerRef = useRef(null);
-    const headerRef = useRef(null);
 
     useLayoutEffect(() => {
-        // Parallax for header
-        if (headerRef.current) {
-            const headerParallax = gsap.to(headerRef.current, {
-                y: window.innerHeight * 0.08,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: triggerRef.current,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 0.8, // Smoother parallax
-                }
-            });
-        }
-
         // Calculate exact scroll distance based on content width
         const cardsCount = data.points.length;
         const cardWidth = window.innerWidth < 768 ? window.innerWidth * 0.85 : 600;
@@ -595,13 +579,13 @@ const HorizontalSection = ({ data, index }) => {
     return (
         <section ref={triggerRef} id={`section-${index}`} className="relative w-full h-screen overflow-hidden bg-black/20 mb-20">
             <div className="relative h-full flex flex-col w-full max-w-[1920px] mx-auto z-20">
-                <div ref={headerRef} className="flex-shrink-0 pt-16 px-8 md:px-20 w-full">
+                <div className="flex-shrink-0 pt-16 px-8 md:px-20 w-full">
                      <div className="max-w-7xl">
                         <div className="flex items-center gap-4 mb-4">
                             <div className="w-12 h-1 bg-current" style={{ color: themeColor }} />
                             <span className="font-mono text-sm tracking-widest text-white/60">0{index} // {data.subtitle}</span>
                         </div>
-                        <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.9] mb-6 uppercase">
+                        <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-6xl font-bold text-white tracking-tighter leading-[0.9] mb-6 uppercase">
                             {data.title.split('\n').map((line, i) => (
                                 <span key={i} className="block">{line}</span>
                             ))}
@@ -614,11 +598,11 @@ const HorizontalSection = ({ data, index }) => {
                         {data.points.map((point, i) => (
                             <div key={i} className="w-[85vw] md:w-[600px] flex-shrink-0 group">
                                 <div className="relative border-t border-white/20 pt-8 hover:border-yellow-400 transition-colors duration-500">
-                                    <span className="absolute -top-10 left-0 text-[120px] font-black text-white/5 select-none group-hover:text-yellow-500/10 transition-colors duration-500 z-0">{point.id}</span>
+                                    <span className="absolute -top-10 left-0 text-[120px] font-bold text-white/5 select-none group-hover:text-yellow-500/10 transition-colors duration-500 z-0">{point.id}</span>
                                     <div className="relative z-10 bg-white/5 backdrop-blur-md border border-white/10 p-10 h-[320px] flex flex-col justify-between rounded-xl hover:bg-white/10 transition-all duration-300 shadow-2xl">
                                         <div>
-                                            <h3 className="text-2xl font-bold uppercase tracking-wide text-white mb-4 group-hover:text-yellow-400 transition-colors">{point.title}</h3>
-                                            <p className="text-gray-400 text-lg leading-relaxed">{point.text}</p>
+                                            <h3 className="text-lg sm:text-lg md:text-xl font-bold uppercase tracking-wide text-white mb-4 group-hover:text-yellow-400 transition-colors">{point.title}</h3>
+                                            <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed">{point.text}</p>
                                         </div>
                                         <div className="flex justify-between items-end">
                                             <div className="h-[1px] w-full bg-white/10 mr-4 mb-3 group-hover:bg-yellow-400/50 transition-colors" />
@@ -638,7 +622,7 @@ const HorizontalSection = ({ data, index }) => {
 };
 
 // --- NEW PORTFOLIO SECTION IMPLEMENTATION (HYBRID SCROLL) ---
-const PortfolioSectionScroll = ({ data, index, setScrollProgress }) => {
+const PortfolioSectionScroll = ({ data, index, setScrollProgress }: { data: any; index: number; setScrollProgress: React.MutableRefObject<number> }) => {
     const triggerRef = useRef(null);
     const overlayRef = useRef(null);
 
@@ -687,13 +671,13 @@ const PortfolioSectionScroll = ({ data, index, setScrollProgress }) => {
                         <div className="w-12 h-1 bg-current" style={{ color: '#8A2BE2' }} />
                         <span className="font-mono text-sm tracking-widest text-white/60">0{index} // {data.subtitle}</span>
                     </div>
-                    <h2 className="text-6xl md:text-9xl font-black text-white tracking-tighter leading-[0.9] uppercase mix-blend-overlay drop-shadow-lg">
+                    <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-6xl font-bold text-white tracking-tighter leading-[0.9] uppercase mix-blend-overlay drop-shadow-lg">
                         {data.title}
                     </h2>
                 </div>
                 
                 <div className="flex justify-between items-end w-full">
-                    <p className="text-white/50 max-w-sm font-light text-sm md:text-base border-l border-white/20 pl-4">{data.desc}</p>
+                    <p className="text-white/50 max-w-sm font-light text-xs sm:text-sm border-l border-white/20 pl-4">{data.desc}</p>
                     <div className="text-right hidden md:block">
                          <span className="block text-xs font-mono text-white/30">SCROLL TO EXPLORE</span>
                          <span className="block text-xs font-mono text-[#8A2BE2] animate-pulse"> {'>>'}</span>
@@ -704,9 +688,11 @@ const PortfolioSectionScroll = ({ data, index, setScrollProgress }) => {
     )
 }
 
-const PricingSection = ({ data, index }) => {
+const PricingSection = ({ data, index }: { data: any; index: number }) => {
     const sectionRef = useRef(null);
     const contentRef = useRef(null);
+    const [activePlanIndex, setActivePlanIndex] = useState<number | null>(null);
+    const [clickedPlanIndex, setClickedPlanIndex] = useState<number | null>(null);
 
     // Parallax effect
     useLayoutEffect(() => {
@@ -763,45 +749,58 @@ const PricingSection = ({ data, index }) => {
                     <span className="w-2 h-2 rounded-full bg-[#00ff88] animate-pulse shadow-[0_0_10px_#00ff88]" />
                     <span className="text-[#00ff88] font-mono text-xs tracking-widest uppercase">Protocol Initialized</span>
                  </div>
-                 <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-4 uppercase drop-shadow-[0_0_15px_rgba(0,255,136,0.3)]">
+                 <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-5xl font-bold text-white tracking-tighter mb-4 uppercase drop-shadow-[0_0_15px_rgba(0,255,136,0.3)]">
                     {data.title.split('\n').join(' ')}
                  </h2>
                  <p className="text-gray-400 max-w-2xl mx-auto text-lg">{data.desc}</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full max-w-[1600px] px-6 md:px-12">
-                {data.plans.map((plan, i) => (
+                {data.plans.map((plan, i) => {
+                    const isActive = activePlanIndex === i || clickedPlanIndex === i || plan.highlight;
+                    return (
                     <div 
                         key={i}
-                        className={`pricing-card group relative w-full h-full min-h-[550px] transition-all duration-500 ease-out`}
+                        onClick={() => {
+                            setClickedPlanIndex(i);
+                            setActivePlanIndex(i);
+                        }}
+                        onMouseEnter={() => setActivePlanIndex(i)}
+                        onMouseLeave={() => {
+                            // Only reset hover state if this plan wasn't clicked
+                            if (clickedPlanIndex !== i) {
+                                setActivePlanIndex(null);
+                            }
+                        }}
+                        className={`pricing-card group relative w-full h-full min-h-[550px] transition-all duration-500 ease-out cursor-pointer`}
                         style={{
                             transform: 'perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry))',
                             transformStyle: 'preserve-3d'
                         }}
                     >
-                        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${plan.highlight ? 'from-[#00ff88] via-transparent to-[#00ff88]' : 'from-white/20 via-transparent to-white/10'} p-[1px] mask-gradient`}>
+                        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${isActive ? 'from-[#00ff88] via-transparent to-[#00ff88]' : 'from-white/20 via-transparent to-white/10'} p-[1px] mask-gradient transition-all duration-500`}>
                              <div className="absolute inset-0 bg-black rounded-2xl" />
                         </div>
                         <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none z-0">
                              <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,255,136,0.03)_50%)] bg-[length:100%_4px]" />
                         </div>
-                        <div className={`relative h-full bg-black/40 backdrop-blur-xl rounded-2xl p-8 flex flex-col overflow-hidden border ${plan.highlight ? 'border-[#00ff88]/30 shadow-[0_0_30px_rgba(0,255,136,0.1)]' : 'border-white/10 hover:border-white/30'}`}>
+                        <div className={`relative h-full bg-black/40 backdrop-blur-xl rounded-2xl p-8 flex flex-col overflow-hidden border ${isActive ? 'border-[#00ff88]/50 shadow-[0_0_40px_rgba(0,255,136,0.2)] scale-[1.02]' : 'border-white/10 hover:border-white/30'} transition-all duration-500`}>
                             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00ff88] to-transparent opacity-0 group-hover:opacity-100 group-hover:top-full transition-all duration-[1.5s] ease-in-out z-20" />
                             <div className="flex justify-between items-start mb-8 z-10 transform translate-z-10">
-                                <div className={`p-3 rounded-lg border ${plan.highlight ? 'border-[#00ff88] bg-[#00ff88]/10 text-[#00ff88]' : 'border-white/10 bg-white/5 text-gray-300'}`}>
+                                <div className={`p-3 rounded-lg border ${isActive ? 'border-[#00ff88] bg-[#00ff88]/10 text-[#00ff88]' : 'border-white/10 bg-white/5 text-gray-300'} transition-all duration-300`}>
                                     {plan.icon}
                                 </div>
-                                {plan.highlight && (
-                                    <div className="px-3 py-1 rounded border border-[#00ff88] bg-[#00ff88] text-black text-[10px] font-black uppercase tracking-widest">
-                                        Recommended
+                                {(isActive || plan.highlight) && (
+                                    <div className="px-3 py-1 rounded border border-[#00ff88] bg-[#00ff88] text-black text-[10px] font-bold uppercase tracking-widest">
+                                        {plan.highlight ? 'Recommended' : 'Selected'}
                                     </div>
                                 )}
                             </div>
                             <div className="mb-8 z-10">
-                                <h3 className={`font-mono text-sm tracking-widest uppercase mb-2 ${plan.highlight ? 'text-[#00ff88]' : 'text-gray-400'}`}>
+                                <h3 className={`font-mono text-sm tracking-widest uppercase mb-2 ${isActive ? 'text-[#00ff88]' : 'text-gray-400'} transition-colors duration-300`}>
                                     // {plan.name}
                                 </h3>
                                 <div className="flex items-baseline gap-1">
-                                    <span className="text-4xl md:text-5xl font-bold text-white tracking-tight group-hover:scale-105 transition-transform origin-left duration-300">
+                                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight group-hover:scale-105 transition-transform origin-left duration-300">
                                         {plan.price}
                                     </span>
                                     <span className="text-sm text-gray-500 font-mono">{plan.period}</span>
@@ -813,22 +812,35 @@ const PricingSection = ({ data, index }) => {
                             <div className="flex-1 space-y-4 mb-8 z-10">
                                 {plan.features.map((feat, idx) => (
                                     <div key={idx} className="flex items-center gap-3 text-sm group/item">
-                                        <div className={`w-1.5 h-1.5 rounded-full ${plan.highlight ? 'bg-[#00ff88]' : 'bg-white/30'} group-hover/item:scale-150 transition-transform`} />
-                                        <span className="text-gray-300 group-hover/item:text-white transition-colors">{feat}</span>
+                                        <div className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-[#00ff88]' : 'bg-white/30'} group-hover/item:scale-150 transition-transform`} />
+                                        <span className={`${isActive ? 'text-white' : 'text-gray-300'} group-hover/item:text-white transition-colors`}>{feat}</span>
                                     </div>
                                 ))}
                             </div>
-                            <Link href="/contact" className={`w-full py-4 relative overflow-hidden group/btn block ${plan.highlight ? 'bg-[#00ff88] text-black' : 'bg-white/5 text-white border border-white/10 hover:border-white/30'}`}>
+                            <Link 
+                                href="/contact" 
+                                onClick={(e) => {
+                                    e.stopPropagation(); // Prevent card click when button is clicked
+                                    setClickedPlanIndex(i);
+                                    setActivePlanIndex(i);
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.stopPropagation();
+                                    setActivePlanIndex(i);
+                                }}
+                                className={`w-full py-4 relative overflow-hidden group/btn block ${isActive ? 'bg-[#00ff88] text-black' : 'bg-white/5 text-white border border-white/10 hover:border-white/30'} transition-all duration-300 cursor-pointer`}
+                            >
                                 <div className="absolute inset-0 w-full h-full bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
                                 <span className="relative z-10 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2">
                                     Initialize <MoveUpRight className="w-3 h-3" />
                                 </span>
                             </Link>
-                            <div className="absolute -bottom-12 -right-12 w-32 h-32 border border-white/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 opacity-20" />
+                            <div className={`absolute -bottom-12 -right-12 w-32 h-32 border ${isActive ? 'border-[#00ff88]/30' : 'border-white/5'} rounded-full z-0 group-hover:scale-150 transition-transform duration-700 ${isActive ? 'opacity-40' : 'opacity-20'}`} />
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-t from-black via-transparent to-transparent opacity-60 pointer-events-none" />
                         </div>
                     </div>
-                ))}
+                    );
+                })}
             </div>
         </section>
     );
@@ -864,7 +876,7 @@ export default function App() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full bg-black min-h-screen text-white cursor-none selection:bg-[#00ff88] selection:text-black">
+    <div ref={containerRef} className="relative w-full bg-black min-h-screen text-white cursor-none selection:bg-[#00ff88] selection:text-black overflow-x-hidden md:overflow-x-visible">
       <CustomCursor />
       
       {/* 3D CANVAS */}
@@ -895,9 +907,6 @@ export default function App() {
       {/* OVERLAY FOR TEXT VISIBILITY */}
       <div className="fixed top-0 left-0 w-full h-full bg-black/40 z-[5] pointer-events-none" />
 
-      <div className="header-wrapper-creative-design">
-        <Header />
-      </div>
 
       {/* CONTENT WRAPPER */}
       <div className="relative z-10 pt-10">
@@ -937,11 +946,6 @@ export default function App() {
           -moz-osx-font-smoothing: grayscale;
         }
         ::-webkit-scrollbar { width: 0px; }
-        .header-wrapper-creative-design nav {
-          background: rgba(0, 0, 0, 0.7) !important;
-          backdrop-filter: blur(16px) !important;
-          border: 1px solid rgba(255, 255, 255, 0.15) !important;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
         }
         /* Ultra smooth scrolling */
         @supports (scroll-behavior: smooth) {

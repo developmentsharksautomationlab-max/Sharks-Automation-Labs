@@ -130,17 +130,17 @@ const Hero = () => {
                  initial={{ x: -100, opacity: 0 }}
                  animate={{ x: 0, opacity: 1 }}
                  transition={{ duration: 0.8, delay: 0.2 }}
-                 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#f2f4f4] leading-[0.9] sm:leading-[0.95]"
+                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#f2f4f4] leading-[0.9] sm:leading-[0.95]"
                >
                  Strategic <br />
-                 <span className="text-[#35c4dd]">Outsourcing Services</span>
+                 <span className="text-[#35c4dd]">Services</span>
                </motion.h2>
 
                <motion.p
                  initial={{ x: -50, opacity: 0 }}
                  animate={{ x: 0, opacity: 1 }}
                  transition={{ duration: 0.8, delay: 0.4 }}
-                 className="text-[#f2f4f4]/70 text-xs sm:text-sm md:text-base leading-relaxed max-w-full sm:max-w-md border-l-4 border-[#35c4dd] pl-3 sm:pl-4 md:pl-5 py-0.5 sm:py-1"
+                 className="text-sm sm:text-base md:text-lg text-[#f2f4f4]/70 leading-relaxed max-w-full sm:max-w-md border-l-4 border-[#35c4dd] pl-3 sm:pl-4 md:pl-5 py-0.5 sm:py-1"
                >
                  Trusted outsourcing partner delivering scalable growth enterprise support and long-term business success worldwide.
                </motion.p>
@@ -165,7 +165,7 @@ const Hero = () => {
             Mobile: Absolute bottom
             Desktop: Center aligned
         */}
-        <div className="absolute bottom-0 left-0 right-0 md:relative md:col-span-4 flex justify-center items-end h-[75vh] sm:h-[80vh] md:h-full pointer-events-none md:order-2 z-0 md:z-20 md:pt-4">
+        <div className="absolute bottom-0 left-0 right-0 md:relative md:col-span-4 flex justify-center items-end h-[75vh] sm:h-[80vh] md:h-full pointer-events-none md:order-2 z-10 md:z-20 md:pt-4">
            <motion.div
              initial={{ scale: 4, opacity: 0, y: 0 }}
              animate={
@@ -187,12 +187,14 @@ const Hero = () => {
                   src="/banner_robot.png" 
                   alt="AI Robot" 
                   fill 
-                  style={{ objectFit: 'contain', objectPosition: 'bottom' }}
+                  style={{ 
+                    objectFit: 'contain', 
+                    objectPosition: 'bottom'
+                  }}
                   priority
                   quality={90}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 550px"
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  className="relative z-10"
                 />
               </div>
            </motion.div>

@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Footer from '../components/Footer';
 
@@ -10,7 +9,7 @@ const FallingLogosSection = dynamic(() => import('../components/FallingLogosSect
 });
 
 const InvestmentLifecycle = dynamic(() => import('../components/InvestmentLifecycle'), {
-  loading: () => <div className="min-h-screen" />,
+  loading: () => <div className="min-h-screen bg-[#052126]" />,
   ssr: true,
 });
 
@@ -37,7 +36,6 @@ const ContactSection = dynamic(() => import('../components/ContactSection'), {
 export default function Home() {
   return (
     <div className="smooth-scroll">
-      <Header />
       <Hero />
       <FallingLogosSection />
       <InvestmentLifecycle />

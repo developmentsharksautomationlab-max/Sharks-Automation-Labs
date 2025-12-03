@@ -1,16 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
   
+  // Turbopack configuration (Next.js 16 default)
+  turbopack: {},
+  
   // === PERFORMANCE OPTIMIZATIONS ===
   
-  // Note: SWC minification is enabled by default in Next.js 15, no need to specify
+  // Note: SWC minification is enabled by default in Next.js 16, no need to specify
   
   // Compress output
   compress: true,
@@ -24,6 +24,7 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    qualities: [75, 90, 100], // Required for Next.js 16
   },
   
   // Production optimizations
@@ -41,55 +42,9 @@ const nextConfig: NextConfig = {
     ],
   },
   
-  // Webpack optimizations
-  webpack: (config, { isServer, dev }) => {
-    // Production optimizations
-    if (!dev && !isServer) {
-      config.optimization = {
-        ...config.optimization,
-        moduleIds: 'deterministic',
-        runtimeChunk: 'single',
-        splitChunks: {
-          chunks: 'all',
-          cacheGroups: {
-            default: false,
-            vendors: false,
-            // Vendor chunk for heavy libraries
-            vendor: {
-              name: 'vendor',
-              chunks: 'all',
-              test: /node_modules/,
-              priority: 20,
-            },
-            // Three.js and related
-            three: {
-              name: 'three',
-              chunks: 'all',
-              test: /[\\/]node_modules[\\/](three|@react-three)[\\/]/,
-              priority: 30,
-            },
-            // Framer Motion
-            framer: {
-              name: 'framer',
-              chunks: 'all',
-              test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-              priority: 25,
-            },
-            // Common chunks
-            common: {
-              name: 'common',
-              minChunks: 2,
-              chunks: 'all',
-              priority: 10,
-              reuseExistingChunk: true,
-            },
-          },
-        },
-      };
-    }
-    
-    return config;
-  },
+  // Note: Webpack config removed for Next.js 16 (Turbopack is default)
+  // Turbopack handles optimizations automatically
+  // If you need webpack, use --webpack flag or configure turbopack
 };
 
 export default nextConfig;

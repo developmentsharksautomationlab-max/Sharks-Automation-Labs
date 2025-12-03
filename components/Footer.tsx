@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Facebook, Instagram, ArrowUpRight, MapPin, Mail, Phone, ArrowRight, ShieldCheck, FileText, Globe, Cpu, Layers } from 'lucide-react';
 
 // --- DATA ---
@@ -77,20 +78,41 @@ const SpotlightCard = ({ children, className = "" }: { children: React.ReactNode
 };
 
 // 2. High Tech Link
-const TechLink = ({ href, name, icon }: { href: string, name: string, icon?: React.ReactNode }) => (
-  <a 
-    href={href} 
-    className="group flex items-center gap-3 py-2 text-[#052126]/60 hover:text-[#35c4dd] transition-all duration-300"
-  >
-    <div className="relative flex items-center justify-center w-6 h-6">
-      <span className="absolute w-1.5 h-1.5 bg-[#35c4dd] rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-150 shadow-[0_0_10px_#35c4dd]"></span>
-      <span className="text-[#35c4dd] opacity-100 group-hover:opacity-0 transition-all duration-300">
-         {icon ? icon : <ArrowRight size={14} />}
-      </span>
-    </div>
-    <span className="font-medium tracking-wide group-hover:translate-x-1 transition-transform duration-300">{name}</span>
-  </a>
-);
+const TechLink = ({ href, name, icon }: { href: string, name: string, icon?: React.ReactNode }) => {
+  const isExternal = href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel');
+  
+  if (isExternal) {
+    return (
+      <a 
+        href={href} 
+        className="group flex items-center gap-3 py-2 text-[#052126]/60 hover:text-[#35c4dd] transition-all duration-300"
+      >
+        <div className="relative flex items-center justify-center w-6 h-6">
+          <span className="absolute w-1.5 h-1.5 bg-[#35c4dd] rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-150 shadow-[0_0_10px_#35c4dd]"></span>
+          <span className="text-[#35c4dd] opacity-100 group-hover:opacity-0 transition-all duration-300">
+            {icon ? icon : <ArrowRight size={14} />}
+          </span>
+        </div>
+        <span>{name}</span>
+      </a>
+    );
+  }
+  
+  return (
+    <Link 
+      href={href} 
+      className="group flex items-center gap-3 py-2 text-[#052126]/60 hover:text-[#35c4dd] transition-all duration-300"
+    >
+      <div className="relative flex items-center justify-center w-6 h-6">
+        <span className="absolute w-1.5 h-1.5 bg-[#35c4dd] rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-150 shadow-[0_0_10px_#35c4dd]"></span>
+        <span className="text-[#35c4dd] opacity-100 group-hover:opacity-0 transition-all duration-300">
+          {icon ? icon : <ArrowRight size={14} />}
+        </span>
+      </div>
+      <span className="font-medium tracking-wide group-hover:translate-x-1 transition-transform duration-300">{name}</span>
+    </Link>
+  );
+};
 
 // --- MAIN FOOTER ---
 const Footer = () => {
@@ -124,7 +146,7 @@ const Footer = () => {
                 </span>
                 <span className="text-xs font-bold text-[#35c4dd] tracking-[0.2em] uppercase">Next-Gen Retail</span>
              </div>
-             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-[#052126] leading-[0.9]">
+             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-[#052126] leading-[0.9]">
                Architecting the <br/>
                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#35c4dd] via-[#052126] to-[#35c4dd] animate-gradient-x bg-[length:200%_auto]">
                  Future of Speed.
@@ -133,12 +155,12 @@ const Footer = () => {
           </div>
           
           {/* Big CTA Button */}
-          <a href="/contact" className="group relative overflow-hidden rounded-full bg-[#052126] px-10 py-6 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(53,196,221,0.3)]">
+          <Link href="/contact" className="group relative overflow-hidden rounded-full bg-[#052126] px-10 py-6 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(53,196,221,0.3)]">
             <div className="absolute inset-0 bg-gradient-to-r from-[#35c4dd] to-[#26a0b5] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative flex items-center gap-4 text-white font-bold text-xl uppercase tracking-wider group-hover:text-white transition-colors">
+            <span className="relative flex items-center gap-4 text-white font-bold text-lg sm:text-xl md:text-2xl uppercase tracking-wider group-hover:text-white transition-colors">
               Start Project <ArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" strokeWidth={2.5} />
             </span>
-          </a>
+          </Link>
         </div>
 
         {/* SECTION 2: BENTO GRID LAYOUT */}
@@ -234,8 +256,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-[#052126]/40 text-sm border-t border-[#35c4dd]/10 pt-8">
            <p>© 2025 Shark Automation Lab. Systems Operational.</p>
            <div className="flex items-center gap-6">
-             <a href="/sitemap" className="hover:text-[#35c4dd] transition-colors">Sitemap</a>
-             <a href="/status" className="hover:text-[#35c4dd] transition-colors">Status</a>
+             <Link href="/services" className="hover:text-[#35c4dd] transition-colors">Services</Link>
+             <Link href="/about" className="hover:text-[#35c4dd] transition-colors">About</Link>
              <span className="font-mono text-[#35c4dd] opacity-50">v2.5.0</span>
            </div>
         </div>

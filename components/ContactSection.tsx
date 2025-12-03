@@ -331,10 +331,10 @@ const ContactSection = () => {
             >
               <div className="mb-10">
                 <div className="h-1 w-20 bg-[#35c4dd] mb-6" />
-                <h2 className="text-4xl md:text-6xl font-black text-[#f2f4f4] tracking-tight leading-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#f2f4f4] tracking-tight leading-tight">
                   Enterprise Digital <br/><span className="text-[#35c4dd]">Transformation Solutions</span>
                 </h2>
-                <p className="mt-4 text-[#f2f4f4]/70 text-lg md:text-xl leading-relaxed border-l-2 border-[#35c4dd]/30 pl-4">
+                <p className="mt-4 text-sm sm:text-base md:text-lg text-[#f2f4f4]/70 leading-relaxed border-l-2 border-[#35c4dd]/30 pl-4">
                   Strategic digital transformation services engineered for global market leaders and institutional investors. Accelerate revenue growth, optimize enterprise operations, and secure market dominance through data-driven solutions that deliver measurable ROI and sustainable competitive positioning.
                 </p>
               </div>
@@ -434,7 +434,7 @@ const ContactSection = () => {
               className="lg:pl-8 space-y-6"
             >
                <div className="bg-[#052126]/80 backdrop-blur-md p-6 rounded-2xl border border-[#35c4dd]/20 shadow-xl">
-                  <h3 className="text-[#35c4dd] font-bold text-lg mb-4 flex items-center gap-2">
+                  <h3 className="text-[#35c4dd] font-bold text-base sm:text-lg md:text-xl mb-4 flex items-center gap-2">
                     <Globe className="animate-pulse" /> Global Operations
                   </h3>
                   <div className="flex flex-wrap gap-4">
@@ -454,11 +454,11 @@ const ContactSection = () => {
 
                <div className="grid grid-cols-2 gap-4">
                   <div className="p-5 rounded-2xl bg-[#35c4dd]/5 border border-[#35c4dd]/20 text-center">
-                    <div className="text-3xl font-black text-[#f2f4f4]">98%</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#f2f4f4]">98%</div>
                     <div className="text-xs text-[#35c4dd] uppercase tracking-wider mt-1">Success</div>
                   </div>
                   <div className="p-5 rounded-2xl bg-[#35c4dd]/5 border border-[#35c4dd]/20 text-center">
-                    <div className="text-3xl font-black text-[#f2f4f4]">24/7</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#f2f4f4]">24/7</div>
                     <div className="text-xs text-[#35c4dd] uppercase tracking-wider mt-1">Support</div>
                   </div>
                </div>

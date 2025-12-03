@@ -248,11 +248,11 @@ export default function AboutPage() {
                         <span className="text-[#35c4dd] text-xs sm:text-sm tracking-[0.3em] font-mono">SYSTEM: ONLINE</span>
                       </div>
                       
-                      <h1 className="text-3xl sm:text-5xl md:text-[6rem] font-bold leading-tight md:leading-[0.85] tracking-tighter mb-6 mix-blend-screen">
+                      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight md:leading-[0.85] tracking-tighter mb-6 mix-blend-screen">
                         <span className="block">ABOUT US</span>
                       </h1>
                       
-                      <p className="max-w-xl mx-auto text-sm sm:text-lg text-gray-300 font-light mb-10 leading-relaxed drop-shadow-xl">
+                      <p className="max-w-xl mx-auto text-sm sm:text-base md:text-lg text-gray-300 font-light mb-10 leading-relaxed drop-shadow-xl">
                         At Outsource IT Projects, we operate as a strategic extension of your organization, delivering precision-driven solutions to complex business challenges. Our mission is to empower sustainable growth through innovation, reliability, and uncompromising execution. We partner with ambitious leaders to transform vision into measurable performance.
                       </p>
                     </motion.div>
@@ -271,7 +271,7 @@ export default function AboutPage() {
                 {/* 2. CORE VALUES SECTION */}
                 <Section>
                   <div className="w-full max-w-6xl">
-                    <h2 className="text-center text-3xl sm:text-4xl md:text-6xl font-bold mb-10 md:mb-16 tracking-tight text-white drop-shadow-[0_0_15px_rgba(53,196,221,0.5)]">
+                    <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-10 md:mb-16 tracking-tight text-white drop-shadow-[0_0_15px_rgba(53,196,221,0.5)]">
                       OUR CORE VALUES
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -317,12 +317,12 @@ export default function AboutPage() {
                             </div>
                             
                             {/* Title */}
-                            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 text-white group-hover:text-[#35c4dd] transition-colors duration-300">
+                            <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 text-white group-hover:text-[#35c4dd] transition-colors duration-300">
                               {item.title}
                             </h3>
                             
                             {/* Description */}
-                            <p className="text-gray-300 text-sm sm:text-base leading-relaxed pl-0 md:pl-4">
+                            <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed pl-0 md:pl-4">
                               {item.desc}
                             </p>
                           </div>
@@ -337,11 +337,11 @@ export default function AboutPage() {
                   <div className="w-full max-w-7xl">
                     {/* Header */}
                     <div className="mb-12 md:mb-16">
-                      <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 text-white">
+                      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
                         OUR HERITAGE
                         <div className="h-1 w-24 md:w-32 bg-[#35c4dd] mt-2"></div>
                       </h2>
-                      <p className="text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed max-w-4xl">
+                      <p className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed max-w-4xl">
                         We have been known among{' '}
                         <span className="text-[#35c4dd] font-semibold">many businesses, brands</span>
                         {' '}and{' '}
@@ -403,12 +403,12 @@ export default function AboutPage() {
                                 <div className="text-[#35c4dd] text-sm font-mono mb-2 tracking-wider">
                                   {phase.dates}
                                 </div>
-                                <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-4 ${
+                                <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-4 ${
                                   phase.isActive ? 'text-white' : 'text-gray-300'
                                 } group-hover:text-[#35c4dd] transition-colors duration-300`}>
                                   {phase.title}
                                 </h3>
-                                <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+                                <p className="text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed">
                                   {phase.desc}
                                 </p>
                               </GlassPanel>

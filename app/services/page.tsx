@@ -12,7 +12,7 @@ import {
   useAnimationFrame 
 } from 'framer-motion';
 import { Cpu, Shield, Zap, Globe, Activity, Aperture, Hexagon, Component } from 'lucide-react';
-import Header from '../../components/Header';
+import Link from 'next/link';
 import Footer from '../../components/Footer';
 
 // --- ALIEN TECH UTILITIES (MATH & PHYSICS) ---
@@ -266,10 +266,10 @@ const HyperCard = ({ service, index }: { service: ServiceCard; index: number }) 
 
                 {/* Main Text */}
                 <div className="mt-auto mb-8">
-                    <h3 className="text-3xl md:text-5xl font-bold text-white mb-3 md:mb-4 mix-blend-screen group-hover:text-[#35c4dd] transition-colors">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4 mix-blend-screen group-hover:text-[#35c4dd] transition-colors">
                         {service.title}
                     </h3>
-                    <p className="text-[#f2f4f4]/70 text-base md:text-lg font-light leading-relaxed">
+                    <p className="text-sm sm:text-base md:text-lg text-[#f2f4f4]/70 font-light leading-relaxed">
                         {service.description}
                     </p>
                 </div>
@@ -332,7 +332,6 @@ const services = [
 export default function ServicePage() {
     return (
         <div className="relative min-h-screen bg-[#052126] text-[#f2f4f4] overflow-x-hidden selection:bg-[#35c4dd] selection:text-[#052126]">
-            <Header />
             <NeuralBackground />
             
             {/* Ambient Lighting */}
@@ -361,7 +360,7 @@ export default function ServicePage() {
                             <HyperText text="SYSTEM_INITIALIZED_V.3.0" className="font-mono text-[#35c4dd] tracking-widest text-xs md:text-sm" />
                         </div>
 
-                        <h1 className="text-4xl sm:text-6xl md:text-[11rem] leading-tight md:leading-[0.85] font-bold tracking-tighter mix-blend-difference space-y-2 md:space-y-4">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight md:leading-[0.85] font-bold tracking-tighter mix-blend-difference space-y-2 md:space-y-4">
                             <span className="block overflow-hidden">
                                 <motion.span 
                                     initial={{ y: "100%" }} 
@@ -372,7 +371,7 @@ export default function ServicePage() {
                                     FUTURE
                                 </motion.span>
                             </span>
-                            <span className="block overflow-hidden text-transparent bg-clip-text bg-gradient-to-r from-[#35c4dd] via-white to-transparent text-4xl sm:text-6xl md:text-[11rem]">
+                            <span className="block overflow-hidden text-transparent bg-clip-text bg-gradient-to-r from-[#35c4dd] via-white to-transparent text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
                                 <motion.span 
                                     initial={{ y: "100%" }} 
                                     animate={{ y: 0 }} 
@@ -385,7 +384,7 @@ export default function ServicePage() {
                         </h1>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl">
-                            <p className="text-base sm:text-lg md:text-2xl text-[#f2f4f4]/60 font-light leading-relaxed">
+                            <p className="text-sm sm:text-base md:text-lg text-[#f2f4f4]/60 font-light leading-relaxed">
                                 We don't build websites. We construct <span className="text-[#35c4dd]">high-velocity digital realities</span> by merging cognitive physics with React architecture.
                             </p>
                             
@@ -409,7 +408,7 @@ export default function ServicePage() {
                     <section>
                          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-0 mb-12 md:mb-20 border-b border-[#35c4dd]/20 pb-6 md:pb-8">
                             <div>
-                                <h2 className="text-4xl sm:text-5xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10">
+                                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10">
                                     MODULES
                                 </h2>
                             </div>
@@ -436,25 +435,30 @@ export default function ServicePage() {
                         
                         <div className="relative z-10 text-center max-w-5xl px-4 space-y-6">
                             <p className="font-mono tracking-[0.4em] text-[10px] sm:text-xs text-[#f2f4f4]/40">SECTOR 07G - CLEARANCE GRANTED</p>
-                            <h2 className="text-4xl sm:text-6xl md:text-[10rem] leading-tight md:leading-none font-bold">
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight md:leading-none font-bold">
                                 <HyperText text="READY_TO" className="block text-[#f2f4f4]" />
                                 <span className="text-[#35c4dd]">TRANSCEND?</span>
                             </h2>
                             
-                            <p className="text-sm sm:text-base md:text-2xl text-[#f2f4f4]/60 max-w-2xl mx-auto">
+                            <p className="text-sm sm:text-base md:text-lg text-[#f2f4f4]/60 max-w-2xl mx-auto">
                                 The code for your next billion-dollar valuation is waiting to be written.
                             </p>
 
-                            <motion.button 
-                                whileHover={{ scale: 1.03 }}
-                                whileTap={{ scale: 0.97 }}
-                                className="relative w-full sm:w-auto px-10 md:px-16 py-4 md:py-6 bg-[#f2f4f4] text-[#052126] text-base md:text-xl font-black tracking-[0.2em] rounded-full overflow-hidden group shadow-[0_0_40px_rgba(242,244,244,0.4)]"
+                            <Link 
+                                href="/contact"
+                                className="inline-block"
                             >
-                                <span className="relative z-10 flex items-center justify-center gap-4">
-                                    EXECUTE ORDER <Zap className="w-5 h-5 md:w-6 md:h-6 fill-current" />
-                                </span>
-                                <div className="absolute inset-0 bg-[#35c4dd] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                            </motion.button>
+                                <motion.button 
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.97 }}
+                                    className="relative w-full sm:w-auto px-10 md:px-16 py-4 md:py-6 bg-[#f2f4f4] text-[#052126] text-base md:text-xl font-bold tracking-[0.2em] rounded-full overflow-hidden group shadow-[0_0_40px_rgba(242,244,244,0.4)]"
+                                >
+                                    <span className="relative z-10 flex items-center justify-center gap-4">
+                                        EXECUTE ORDER <Zap className="w-5 h-5 md:w-6 md:h-6 fill-current" />
+                                    </span>
+                                    <div className="absolute inset-0 bg-[#35c4dd] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                                </motion.button>
+                            </Link>
                         </div>
                     </section>
 

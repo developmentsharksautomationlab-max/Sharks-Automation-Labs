@@ -50,7 +50,7 @@ const InfoCard = ({ item, className = "" }: { item: (typeof dataItems)[0]; class
       {React.cloneElement(item.icon as React.ReactElement<any>, { size: 20, className: "text-[#35c4dd]" })}
     </div>
     
-    <h3 className="text-lg md:text-xl font-bold leading-tight text-white mt-2">
+    <h3 className="text-lg sm:text-xl md:text-2xl font-bold leading-tight text-white mt-2">
       {item.title}
     </h3>
     <div className="w-12 h-0.5 bg-gradient-to-r from-[#35c4dd] to-transparent rounded-full" />

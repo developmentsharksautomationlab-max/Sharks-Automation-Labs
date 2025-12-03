@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Sparkles, Zap, Code, Smartphone, TrendingUp, Search, Users, Building2, Cpu, Palette, MessageSquare, Bot, Network, Box, Globe, Layers, Rocket } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Code, Smartphone, TrendingUp, Search, Users, Building2, Cpu, Palette, MessageSquare, Bot, Network, Box, Globe, Layers, Rocket, X } from 'lucide-react';
 
 // Service Categories with Icons
 const SERVICE_CATEGORIES = [
@@ -191,9 +191,10 @@ interface MegaMenuProps {
   onClose: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  isMobile?: boolean;
 }
 
-const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, onMouseEnter, onMouseLeave }) => {
+const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, onMouseEnter, onMouseLeave, isMobile = false }) => {
   const menuRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -258,30 +259,33 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, onMouseEnter, onMo
             transition={{ duration: 0.3 }}
             className="mega-menu-backdrop fixed inset-0 bg-black/60 backdrop-blur-sm z-[998]"
             onClick={onClose}
+            style={{ pointerEvents: isMobile ? 'auto' : 'auto' }}
           />
 
-          {/* Bridge Element - Connects nav to menu to prevent gap */}
-          <div 
-            className="fixed top-[80px] left-0 right-0 h-[20px] z-[998] pointer-events-auto"
-            onMouseEnter={handleMouseEnterMenu}
-            onMouseLeave={handleMouseLeaveMenu}
-            style={{ pointerEvents: 'auto' }}
-          />
+          {/* Bridge Element - Connects nav to menu to prevent gap (Desktop only) */}
+          {!isMobile && (
+            <div 
+              className="fixed top-[80px] left-0 right-0 h-[20px] z-[998] pointer-events-auto hidden lg:block"
+              onMouseEnter={handleMouseEnterMenu}
+              onMouseLeave={handleMouseLeaveMenu}
+              style={{ pointerEvents: 'auto' }}
+            />
+          )}
 
           {/* Mega Menu */}
           <motion.div
             ref={menuRef}
             data-mega-menu
-            initial={{ opacity: 0, y: -5 }}
+            initial={{ opacity: 0, y: isMobile ? 20 : -5 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -5 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-[90px] left-0 right-0 z-[999] max-w-[1920px] mx-auto px-3 md:px-6 lg:px-16 pointer-events-auto"
+            exit={{ opacity: 0, y: isMobile ? 20 : -5 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] as const }}
+            className={`fixed ${isMobile ? 'top-0 left-0 right-0 bottom-0' : 'top-[90px] left-0 right-0'} z-[999] ${isMobile ? 'w-full h-full' : 'max-w-[1920px] mx-auto'} ${isMobile ? 'px-0 py-0' : 'px-3 md:px-6 lg:px-16'} pointer-events-auto ${isMobile ? 'overflow-y-auto' : ''}`}
             onMouseEnter={handleMouseEnterMenu}
             onMouseLeave={handleMouseLeaveMenu}
           >
             <div 
-              className="relative bg-[#052126]/95 backdrop-blur-2xl border border-[#35c4dd]/20 rounded-2xl shadow-2xl overflow-hidden pointer-events-auto"
+              className={`relative bg-[#052126]/95 backdrop-blur-2xl ${isMobile ? 'border-0 rounded-none h-full min-h-screen' : 'border border-[#35c4dd]/20 rounded-2xl'} shadow-2xl ${isMobile ? 'overflow-y-auto max-h-full' : 'overflow-hidden'} pointer-events-auto`}
               onMouseEnter={handleMouseEnterMenu}
               onMouseLeave={handleMouseLeaveMenu}
             >
@@ -295,8 +299,19 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, onMouseEnter, onMo
               <div className="absolute inset-0 bg-[linear-gradient(to_right,#35c4dd_1px,transparent_1px),linear-gradient(to_bottom,#35c4dd_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-10 pointer-events-none" />
 
               {/* Content */}
-              <div className="relative z-10 p-4 md:p-6 lg:p-8 pointer-events-auto">
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-3 md:gap-4 lg:gap-6">
+              <div className={`relative z-10 ${isMobile ? 'p-4 sm:p-6 pb-24' : 'p-3 sm:p-4 md:p-6 lg:p-8'} pointer-events-auto`}>
+                {/* Close Button for Mobile/Tablet */}
+                {isMobile && (
+                  <button
+                    onClick={onClose}
+                    className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#35c4dd]/20 border border-[#35c4dd]/30 flex items-center justify-center text-[#35c4dd] hover:bg-[#35c4dd] hover:text-[#052126] transition-all duration-300 hover:scale-110"
+                    aria-label="Close menu"
+                  >
+                    <X size={20} className="sm:w-6 sm:h-6" />
+                  </button>
+                )}
+                
+                <div className={`grid ${isMobile ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6'} gap-3 sm:gap-4 md:gap-4 lg:gap-6`}>
                   {SERVICE_CATEGORIES.map((category, categoryIndex) => {
                     const IconComponent = category.icon;
                     return (
@@ -308,18 +323,18 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, onMouseEnter, onMo
                         className="group"
                       >
                         {/* Category Header */}
-                        <div className="flex items-center gap-1.5 md:gap-2 mb-2 md:mb-3 pb-1.5 md:pb-2 border-b border-[#35c4dd]/20">
+                        <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2 mb-2 sm:mb-2 md:mb-3 pb-1.5 sm:pb-1.5 md:pb-2 border-b border-[#35c4dd]/20">
                           <div
-                            className="p-1 md:p-1.5 rounded-lg"
+                            className="p-1 sm:p-1 md:p-1.5 rounded-lg"
                             style={{ backgroundColor: `${category.color}20` }}
                           >
                             <IconComponent
-                              size={12}
-                              className="md:w-4 md:h-4 transition-transform duration-300 group-hover:scale-110"
+                              size={14}
+                              className="sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 transition-transform duration-300 group-hover:scale-110"
                               style={{ color: category.color }}
                             />
                           </div>
-                          <h3 className="text-[10px] md:text-xs lg:text-sm font-bold text-[#f2f4f4] uppercase tracking-wider truncate">
+                          <h3 className="text-xs sm:text-xs md:text-xs lg:text-sm font-bold text-[#f2f4f4] uppercase tracking-wider truncate">
                             {category.title}
                           </h3>
                         </div>
@@ -337,19 +352,19 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, onMouseEnter, onMo
                               >
                                 <Link
                                   href={service.href}
-                                  className="group/item flex items-center gap-1.5 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 rounded-md hover:bg-[#35c4dd]/10 transition-all duration-300"
+                                  className="group/item flex items-center gap-1.5 sm:gap-2 md:gap-2 px-2 sm:px-2 md:px-3 py-1.5 sm:py-1.5 md:py-1.5 rounded-md hover:bg-[#35c4dd]/10 transition-all duration-300"
                                   onClick={onClose}
                                 >
                                   <ServiceIcon
-                                    size={12}
-                                    className="md:w-3.5 md:h-3.5 text-[#35c4dd] opacity-60 group-hover/item:opacity-100 transition-opacity flex-shrink-0"
+                                    size={14}
+                                    className="sm:w-3.5 sm:h-3.5 md:w-3.5 md:h-3.5 text-[#35c4dd] opacity-60 group-hover/item:opacity-100 transition-opacity flex-shrink-0"
                                   />
-                                  <span className="text-[10px] md:text-xs font-medium group-hover/item:text-[#35c4dd] transition-colors flex-1 truncate leading-tight">
+                                  <span className="text-xs sm:text-xs md:text-xs font-medium group-hover/item:text-[#35c4dd] transition-colors flex-1 truncate leading-tight">
                                     {service.name}
                                   </span>
                                   <ArrowRight
-                                    size={10}
-                                    className="md:w-3 md:h-3 text-[#35c4dd] opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-1 transition-all flex-shrink-0"
+                                    size={12}
+                                    className="sm:w-3 sm:h-3 md:w-3 md:h-3 text-[#35c4dd] opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-1 transition-all flex-shrink-0"
                                   />
                                 </Link>
                               </motion.li>
@@ -366,19 +381,19 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, onMouseEnter, onMo
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-[#35c4dd]/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 md:gap-4"
+                  className={`mt-4 md:mt-6 pt-4 md:pt-6 border-t border-[#35c4dd]/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 md:gap-4 ${isMobile ? 'sticky bottom-0 bg-[#052126]/95 backdrop-blur-2xl pb-4 -mx-4 sm:-mx-6 px-4 sm:px-6' : ''}`}
                 >
                   <div>
-                    <p className="text-[#35c4dd] text-[10px] md:text-xs font-mono tracking-widest uppercase mb-0.5">
+                    <p className="text-[#35c4dd] text-xs sm:text-xs md:text-xs font-mono tracking-widest uppercase mb-0.5">
                       Need Custom Solution?
                     </p>
-                    <p className="text-[#f2f4f4]/60 text-[9px] md:text-[10px]">
+                    <p className="text-[#f2f4f4]/60 text-[10px] sm:text-[10px] md:text-[10px]">
                       Let's discuss your unique requirements
                     </p>
                   </div>
                   <Link
                     href="/contact"
-                    className="px-4 md:px-5 py-1.5 md:py-2 bg-[#35c4dd] text-[#052126] font-bold text-[10px] md:text-xs rounded-full hover:bg-[#35c4dd]/80 transition-all duration-300 hover:shadow-[0_0_30px_rgba(53,196,221,0.5)] whitespace-nowrap"
+                    className="px-4 sm:px-4 md:px-5 py-2 sm:py-2 md:py-2 bg-[#35c4dd] text-[#052126] font-bold text-xs sm:text-xs md:text-xs rounded-full hover:bg-[#35c4dd]/80 transition-all duration-300 hover:shadow-[0_0_30px_rgba(53,196,221,0.5)] whitespace-nowrap"
                     onClick={onClose}
                   >
                     Get Started

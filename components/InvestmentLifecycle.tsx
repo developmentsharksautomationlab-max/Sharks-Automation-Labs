@@ -10,6 +10,7 @@ import {
   useMotionTemplate
 } from 'framer-motion';
 import { ArrowRight, Zap, Hexagon, Cpu, Activity, MoveRight, ChevronLeft, ChevronRight, Layers, Globe, Box, Briefcase } from 'lucide-react';
+import Link from 'next/link';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -28,6 +29,41 @@ interface Service {
   image: string;
   chemical: string;
 }
+
+// Service category to URL mapping
+const getServiceUrl = (category: string, tabCategory: string): string => {
+  const categoryMap: Record<string, string> = {
+    'Creative Services': '/our-services/creative-services/creative',
+    'Web Development': '/our-services/digital-services/web-development',
+    'App Development': '/our-services/digital-services/app-development',
+    'Social Media Marketing': '/our-services/digital-services/social-media',
+    'Performance Marketing': '/our-services/digital-services/performance-marketing',
+    'Search Engine Optimization': '/our-services/digital-services/seo',
+    'Designer Resources': '/our-services/virtual-resources/designer-resources',
+    'Developer Resources': '/our-services/virtual-resources/developer-resources',
+    'Marketing Resources': '/our-services/virtual-resources/marketing-resources',
+    'Virtual Assistant': '/our-services/virtual-resources/virtual-assistant',
+    'NFTs': '/our-services/emerging-technologies/nfts',
+    'Blockchain Development': '/our-services/emerging-technologies/blockchain',
+    'Augmented Reality': '/our-services/emerging-technologies/ar',
+    'Web 3.0': '/our-services/emerging-technologies/web3',
+    'Virtual Reality': '/our-services/emerging-technologies/vr',
+    'Digital Agency': '/our-services/industry-plans/digital-agency',
+    'Ecommerce Growth': '/our-services/industry-plans/ecommerce',
+    'Real Estate': '/our-services/industry-plans/real-estate',
+    'Vehicle Rental': '/our-services/industry-plans/vehicle-rental',
+    'Healthcare': '/our-services/industry-plans/healthcare',
+    'Cleaning Services': '/our-services/industry-plans/cleaning',
+    'Restaurants': '/our-services/industry-plans/restaurants',
+    'Law Firms': '/our-services/industry-plans/law-firms',
+    'Financial Services': '/our-services/industry-plans/financial',
+    'Professional Services': '/our-services/industry-plans/professional',
+    'Outsourcing Partnership': '/our-services/outsourcing-partnership/outsourcing',
+    'Agency Development Plan': '/our-services/outsourcing-partnership/agency-plan',
+  };
+  
+  return categoryMap[category] || '/services';
+};
 
 // --- TABS DATA ---
 const TABS = [
@@ -299,9 +335,18 @@ const useWindowSize = () => {
     function updateSize() {
       setSize({ width: window.innerWidth, height: window.innerHeight });
     }
-    window.addEventListener('resize', updateSize);
+    // Throttle resize events for better performance
+    let timeoutId: NodeJS.Timeout;
+    const throttledUpdate = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(updateSize, 150);
+    };
+    window.addEventListener('resize', throttledUpdate, { passive: true });
     updateSize();
-    return () => window.removeEventListener('resize', updateSize);
+    return () => {
+      window.removeEventListener('resize', throttledUpdate);
+      clearTimeout(timeoutId);
+    };
   }, []);
   return size;
 };
@@ -336,29 +381,29 @@ const HolographicText = ({ children, className, active }: { children: React.Reac
 };
 
 // 2. THE REACTOR CORE (Card Component)
-const HyperCard = ({ service }: { service: Service }) => {
+const HyperCard = React.memo(({ service }: { service: Service }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const mouseX = useSpring(x, { stiffness: 500, damping: 15, mass: 0.1 });
-  const mouseY = useSpring(y, { stiffness: 500, damping: 15, mass: 0.1 });
+  const mouseX = useSpring(x, { stiffness: 400, damping: 20, mass: 0.15 });
+  const mouseY = useSpring(y, { stiffness: 400, damping: 20, mass: 0.15 });
   const rotateX = useTransform(mouseY, [-0.5, 0.5], [12, -12]);
   const rotateY = useTransform(mouseX, [-0.5, 0.5], [-12, 12]);
   const glowX = useTransform(mouseX, [-0.5, 0.5], [0, 100]);
   const glowY = useTransform(mouseY, [-0.5, 0.5], [0, 100]);
   const plasmaGradient = useMotionTemplate`radial-gradient(circle at ${glowX}% ${glowY}%, #35c4dd 0%, transparent 45%)`;
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     x.set((e.clientX - rect.left) / rect.width - 0.5);
     y.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
+  }, [x, y]);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = React.useCallback(() => {
     x.set(0);
     y.set(0);
-  };
+  }, [x, y]);
 
   return (
     <motion.div
@@ -381,8 +426,11 @@ const HyperCard = ({ service }: { service: Service }) => {
         </div>
         <div className="absolute inset-0 z-0">
             <motion.div 
-                className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-50 transition-all duration-700"
-                style={{ backgroundImage: `url(${service.image})` }}
+                className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-50 transition-all duration-500"
+                style={{ 
+                  backgroundImage: `url(${service.image})`,
+                  willChange: 'opacity, transform'
+                }}
             />
             <div className="absolute inset-0 bg-[#052126] opacity-80 mix-blend-multiply" />
             <motion.div style={{ background: plasmaGradient, opacity: 0.15 }} className="absolute inset-0 mix-blend-screen group-hover:opacity-30 transition-opacity duration-300" />
@@ -405,13 +453,13 @@ const HyperCard = ({ service }: { service: Service }) => {
                 </div>
             </div>
             <div className="space-y-6 mt-4 md:mt-0">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#f2f4f4] tracking-tighter uppercase leading-[0.9]">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#f2f4f4] tracking-tighter uppercase leading-[0.9]">
                     <HolographicText active={true} className="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#f2f4f4] group-hover:to-[#35c4dd] transition-all">
                         {service.category}
                     </HolographicText>
                 </h2>
                 <div className="h-[1px] w-12 bg-[#35c4dd]/30 group-hover:w-full group-hover:bg-[#35c4dd] transition-all duration-500 ease-out" />
-                <p className="text-sm md:text-base text-[#f2f4f4]/70 leading-relaxed font-sans max-w-[95%]">
+                <p className="text-sm sm:text-base md:text-lg text-[#f2f4f4]/70 leading-relaxed font-sans max-w-[95%]">
                     {service.description}
                 </p>
                 <div className="flex flex-wrap gap-2 pt-2">
@@ -423,32 +471,36 @@ const HyperCard = ({ service }: { service: Service }) => {
                 </div>
             </div>
             <div className="pt-6 md:pt-8">
-                <button className="w-full py-4 border-t border-[#35c4dd]/10 flex items-center justify-between group/btn overflow-hidden relative">
-                    <div className="absolute inset-0 bg-[#35c4dd] translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
-                    <span className="relative z-10 text-xs font-bold tracking-[0.3em] text-[#f2f4f4] group-hover/btn:text-[#052126] transition-colors">
-                        EXPLORE SOLUTIONS
-                    </span>
-                    <ArrowRight className="relative z-10 w-4 h-4 text-[#35c4dd] group-hover/btn:text-[#052126] transition-colors transform group-hover/btn:translate-x-1 duration-300" />
-                </button>
+                <Link href={getServiceUrl(service.category, service.tabCategory)}>
+                    <button className="w-full py-4 border-t border-[#35c4dd]/10 flex items-center justify-between group/btn overflow-hidden relative">
+                        <div className="absolute inset-0 bg-[#35c4dd] translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
+                        <span className="relative z-10 text-xs font-bold tracking-[0.3em] text-[#f2f4f4] group-hover/btn:text-[#052126] transition-colors">
+                            EXPLORE SOLUTIONS
+                        </span>
+                        <ArrowRight className="relative z-10 w-4 h-4 text-[#35c4dd] group-hover/btn:text-[#052126] transition-colors transform group-hover/btn:translate-x-1 duration-300" />
+                    </button>
+                </Link>
             </div>
         </div>
       </motion.div>
     </motion.div>
   );
-};
+});
+HyperCard.displayName = 'HyperCard';
 
-// 3. FRACTAL BACKGROUND
-const FractalField = () => {
+// 3. FRACTAL BACKGROUND (Optimized with will-change for smooth performance)
+const FractalField = React.memo(() => {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" style={{ willChange: 'transform' }}>
        <div className="absolute inset-0 perspective-[1000px]">
-           <div className="absolute inset-[-100%] bg-[linear-gradient(to_right,#35c4dd_1px,transparent_1px),linear-gradient(to_bottom,#35c4dd_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.05] transform rotate-x-[60deg] animate-grid-flow" />
+           <div className="absolute inset-[-100%] bg-[linear-gradient(to_right,#35c4dd_1px,transparent_1px),linear-gradient(to_bottom,#35c4dd_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.05] transform rotate-x-[60deg] animate-grid-flow" style={{ willChange: 'transform' }} />
        </div>
-       <div className="absolute top-[-20%] left-[20%] w-[60vw] h-[60vw] bg-[#35c4dd] opacity-[0.05] blur-[150px] rounded-full mix-blend-screen" />
-       <div className="absolute bottom-[-20%] right-[20%] w-[60vw] h-[60vw] bg-[#052126] opacity-[0.8] blur-[150px] rounded-full mix-blend-multiply" />
+       <div className="absolute top-[-20%] left-[20%] w-[60vw] h-[60vw] bg-[#35c4dd] opacity-[0.05] blur-[150px] rounded-full mix-blend-screen" style={{ willChange: 'opacity' }} />
+       <div className="absolute bottom-[-20%] right-[20%] w-[60vw] h-[60vw] bg-[#052126] opacity-[0.8] blur-[150px] rounded-full mix-blend-multiply" style={{ willChange: 'opacity' }} />
     </div>
   );
-};
+});
+FractalField.displayName = 'FractalField';
 
 // --- MAIN COMPONENT ---
 
@@ -470,15 +522,22 @@ const ApexServices = () => {
     setActiveIndex(0);
   }, [activeTab]);
   
-  // Handlers
-  const handleNext = () => setActiveIndex((prev) => (prev + 1) % filteredServices.length);
-  const handlePrev = () => setActiveIndex((prev) => (prev - 1 + filteredServices.length) % filteredServices.length);
+  // Handlers - Memoized for performance
+  const handleNext = React.useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % filteredServices.length);
+  }, [filteredServices.length]);
+  
+  const handlePrev = React.useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + filteredServices.length) % filteredServices.length);
+  }, [filteredServices.length]);
 
-  // Auto-rotate (pauses if only 1 item)
+  // Auto-rotate (pauses if only 1 item) - Optimized
   useEffect(() => {
     if(filteredServices.length <= 1) return;
-      const timer = setInterval(handleNext, 8000); 
-      return () => clearInterval(timer);
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % filteredServices.length);
+    }, 10000); // Increased to 10s for smoother experience
+    return () => clearInterval(timer);
   }, [filteredServices.length]);
 
   // Dynamic Title Logic
@@ -544,7 +603,7 @@ const ApexServices = () => {
         </div>
 
         {/* --- MAIN CAROUSEL ENGINE --- */}
-        <div className="relative w-full h-[600px] md:h-[700px] flex items-center justify-center">
+        <div className="relative w-full h-[600px] md:h-[700px] flex items-center justify-center" style={{ contain: 'layout style paint' }}>
             
             {/* Controls */}
             {filteredServices.length > 1 && (
@@ -559,7 +618,7 @@ const ApexServices = () => {
             )}
 
             {/* 3D Card Stack */}
-            <div className="relative w-full max-w-[1400px] h-full flex items-center justify-center perspective-[2000px]">
+            <div className="relative w-full max-w-[1400px] h-full flex items-center justify-center perspective-[2000px]" style={{ willChange: 'transform' }}>
                 <AnimatePresence initial={false} mode="popLayout">
                     {/* Only map if we have data */}
                     {filteredServices.length > 0 ? (
@@ -579,22 +638,38 @@ const ApexServices = () => {
                             <motion.div
                                   key={`${service.id}-${activeTab}`} // Key change triggers animation on tab switch
                                 layout
-                                  initial={{ opacity: 0, scale: 0.8, z: -200, x: 0, rotateY: 0 }}
+                                  initial={{ opacity: 0, scale: 0.9, z: -100, x: 0, rotateY: 0 }}
                                 animate={{ 
                                       opacity: isCenter ? 1 : (isMobile ? 0 : 0.4),
-                                    scale: isCenter ? 1 : 0.85,
-                                    z: isCenter ? 0 : -100,
+                                    scale: isCenter ? 1 : 0.88,
+                                    z: isCenter ? 0 : -80,
                                       x: isMobile && !isCenter ? 0 : xOffset,
-                                    rotateY: isCenter ? 0 : offset * -15,
+                                    rotateY: isCenter ? 0 : offset * -12,
                                     zIndex: isCenter ? 10 : 5,
-                                    filter: isCenter ? 'blur(0px)' : 'blur(2px)'
+                                    filter: isCenter ? 'blur(0px)' : 'blur(1.5px)'
                                 }}
-                                  exit={{ opacity: 0, scale: 0.5, z: -300, filter: 'blur(10px)', transition: { duration: 0.3 } }}
-                                  transition={{ type: "spring", stiffness: 180, damping: 24, mass: 1.2 }}
+                                  exit={{ 
+                                    opacity: 0, 
+                                    scale: 0.5, 
+                                    z: -300, 
+                                    filter: 'blur(10px)', 
+                                    transition: { 
+                                      duration: 0.4,
+                                      ease: [0.4, 0, 0.2, 1]
+                                    } 
+                                  }}
+                                  transition={{ 
+                                    type: "spring", 
+                                    stiffness: 200, 
+                                    damping: 30, 
+                                    mass: 0.8,
+                                    duration: 0.6
+                                  }}
                                 className={cn(
                                     "absolute top-[5%] md:top-[10%] w-[90%] sm:w-[360px] md:w-[400px] h-[520px] md:h-[600px]",
                                       isCenter ? "cursor-none md:cursor-default pointer-events-auto" : "pointer-events-auto cursor-pointer"
                                 )}
+                                style={{ willChange: 'transform, opacity' }}
                                   onClick={() => {
                                       if (!isCenter) {
                                           if (offset === -1) handlePrev();

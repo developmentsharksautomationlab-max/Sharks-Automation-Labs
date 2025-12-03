@@ -283,10 +283,10 @@ const FallingLogosSection: React.FC = () => {
             <p className="text-[#35c4dd] text-[10px] md:text-sm font-bold tracking-[0.25em] uppercase mb-1 md:mb-4 drop-shadow-sm">
               Insights
             </p>
-            <h2 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[#052126] mb-3 md:mb-6 drop-shadow-sm leading-tight max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#052126] mb-3 md:mb-6 drop-shadow-sm leading-tight max-w-3xl mx-auto">
               Enterprise Market Challenges
             </h2>
-            <p className="text-xs sm:text-sm md:text-base text-[#052126]/80 max-w-2xl mx-auto mb-4 md:mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-[#052126]/80 max-w-2xl mx-auto mb-4 md:mb-8 leading-relaxed">
             In today's digital economy enterprises must overcome complex market dynamics to sustain competitive advantage and deliver premium customer experiences at scale.
             </p>
           </div>

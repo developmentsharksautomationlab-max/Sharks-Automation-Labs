@@ -85,100 +85,21 @@ const Header = () => {
     }
   }, [pathname, isAboutPage]);
 
-  // Handle scroll for ALL pages (including homepage) - Header should scroll with page
+  // Handle scroll for ALL pages (including homepage and About page) - Header should scroll with page
   useEffect(() => {
-    if (!isAboutPage) {
-      // For all pages except About page, show background on scroll
-      const handleScroll = () => {
-        setIsScrolled(window.scrollY > 50);
-      };
-      
-      // Add scroll listener with passive for better performance
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      // Always start with no background - only show when scrolling
-      setIsScrolled(false);
-      
-      return () => window.removeEventListener('scroll', handleScroll);
-    } else {
-      // On About page, explicitly disable any scroll-based background
-      // This ensures no background appears before footer is reached
-      setIsScrolled(false);
-    }
-  }, [isAboutPage]);
-
-  // Handle footer detection for About page - ONLY show background when footer is visible
-  useEffect(() => {
-    if (!isAboutPage) {
-      // Clean up observer when leaving About page
-      if (footerObserverRef.current) {
-        footerObserverRef.current.disconnect();
-        footerObserverRef.current = null;
-      }
-      return;
-    }
-
-    // CRITICAL: Ensure background is ALWAYS hidden initially on About page
-    // This prevents any background from showing before footer is reached
-    setIsScrolled(false);
-
-    // Cleanup previous observer
-    if (footerObserverRef.current) {
-      footerObserverRef.current.disconnect();
-      footerObserverRef.current = null;
-    }
-
-    // Wait a bit for the page to render (especially for dynamic imports)
-    const timeoutId = setTimeout(() => {
-      // Find footer element - try multiple times if not found initially
-      const findFooter = (attempts = 0) => {
-        const footer = document.querySelector('footer');
-        if (!footer && attempts < 10) {
-          setTimeout(() => findFooter(attempts + 1), 300);
-          return;
-        }
-        if (!footer) {
-          // Footer not found, keep background hidden
-          setIsScrolled(false);
-          return;
-        }
-
-        // Create intersection observer to detect when footer is visible
-        // STRICT: Only trigger when footer actually enters viewport
-        footerObserverRef.current = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              // STRICT CHECK: Only show background when footer is intersecting AND has visible area
-              if (entry.isIntersecting && entry.intersectionRatio > 0) {
-                // Footer is now visible - show background
-                setIsScrolled(true);
-              } else {
-                // Footer is not visible - hide background immediately
-                setIsScrolled(false);
-              }
-            });
-          },
-          {
-            threshold: [0, 0.01, 0.05], // Multiple thresholds for precise detection
-            rootMargin: '0px' // No margin - trigger exactly when footer enters viewport
-          }
-        );
-
-        footerObserverRef.current.observe(footer);
-      };
-
-      findFooter();
-    }, 1500); // Increased delay to ensure OurStoryHero is fully loaded
-
-    return () => {
-      clearTimeout(timeoutId);
-      if (footerObserverRef.current) {
-        footerObserverRef.current.disconnect();
-        footerObserverRef.current = null;
-      }
-      // CRITICAL: Reset scroll state when leaving About page
-      setIsScrolled(false);
+    // For all pages including About page, show background on scroll
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
     };
+    
+    // Add scroll listener with passive for better performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Always start with no background - only show when scrolling
+    setIsScrolled(false);
+    
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [isAboutPage]);
+
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
@@ -186,13 +107,18 @@ const Header = () => {
 
   // Menu Variants for complex reveal
   const menuVars = {
-    initial: { scaleY: 0 },
+    initial: { 
+      scaleY: 0,
+      opacity: 0
+    },
     animate: { 
       scaleY: 1,
+      opacity: 1,
       transition: { duration: 0.5, ease: [0.12, 0, 0.39, 0] as const }
     },
     exit: { 
       scaleY: 0,
+      opacity: 0,
       transition: { delay: 0.5, duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }
     }
   };
@@ -203,8 +129,16 @@ const Header = () => {
   };
 
   const mobileLinkVars = {
-    initial: { y: "30vh", transition: { duration: 0.5, ease: [0.37, 0, 0.63, 1] as const } },
-    open: { y: 0, transition: { duration: 0.7, ease: [0, 0.55, 0.45, 1] as const } }
+    initial: { 
+      y: "30vh", 
+      opacity: 0,
+      transition: { duration: 0.5, ease: [0.37, 0, 0.63, 1] as const } 
+    },
+    open: { 
+      y: 0, 
+      opacity: 1,
+      transition: { duration: 0.7, ease: [0, 0.55, 0.45, 1] as const } 
+    }
   };
 
   return (
@@ -396,23 +330,24 @@ const Header = () => {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="fixed inset-0 bg-[#052126] z-[990] origin-top flex flex-col justify-between"
+            className="fixed inset-0 bg-[#052126] z-[9999] origin-top flex flex-col justify-between"
+            style={{ transformOrigin: 'top' }}
           >
             {/* Dynamic Background Noise & Grid */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#35c4dd_1px,transparent_1px),linear-gradient(to_bottom,#35c4dd_1px,transparent_1px)] bg-[size:6rem_6rem] [mask-image:radial-gradient(circle_at_center,black_40%,transparent_100%)] opacity-10 pointer-events-none" />
 
-            <div className="flex flex-col h-full justify-center px-4 sm:px-6 md:px-20 pt-20 sm:pt-24 pb-10">
+            <div className="flex flex-col h-full justify-center px-4 sm:px-6 md:px-20 pt-20 sm:pt-24 pb-10 relative z-10">
               <motion.div
                 variants={containerVars}
                 initial="initial"
                 animate="open"
                 exit="initial"
-                className="flex flex-col gap-4 sm:gap-6"
+                className="flex flex-col gap-4 sm:gap-6 relative z-10"
               >
                 {NAV_LINKS.map((link, index) => (
-                  <div key={index} className="overflow-hidden">
-                    <motion.div variants={mobileLinkVars}>
+                  <div key={index} className="overflow-hidden relative z-10">
+                    <motion.div variants={mobileLinkVars} className="relative z-10">
                       {link.href ? (
                         <Link 
                           href={link.href} 

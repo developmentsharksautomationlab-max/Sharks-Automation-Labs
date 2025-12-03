@@ -5,8 +5,12 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Stars, Float, Text, ScrollControls, Scroll, useScroll, MeshDistortMaterial, Environment, Sparkles, Preload } from '@react-three/drei';
 import { EffectComposer, Bloom, Noise, Vignette, ChromaticAberration } from '@react-three/postprocessing';
 import { motion } from 'framer-motion';
-import { ArrowDown, Zap, Target, Cpu, Code2, Rocket, Globe } from 'lucide-react';
+import { ArrowDown, CheckCircle2, Users, Award, DollarSign, Network, Lightbulb, Building2 } from 'lucide-react';
 import * as THREE from 'three';
+import dynamic from 'next/dynamic';
+
+const CallToAction = dynamic(() => import('./CallToAction'), { ssr: true });
+const Footer = dynamic(() => import('./Footer'), { ssr: true });
 
 // --- COLORS & THEMES ---
 const COLORS = {
@@ -200,8 +204,7 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="w-full h-screen bg-black text-[#f2f4f4] overflow-hidden">
-      
+    <div className="w-full h-screen bg-black text-[#f2f4f4] overflow-hidden relative">
       <Canvas 
         dpr={[1, 1.25]} // OPTIMIZATION: Cap DPR at 1.25 for performance
         gl={{ 
@@ -230,6 +233,8 @@ export default function AboutPage() {
             </EffectComposer>
 
             <Scroll html style={{ width: '100%', height: '100%' }}>
+              {/* Overlay with 30% opacity - behind text content, above 3D background */}
+              <div className="absolute inset-0 bg-black opacity-30 pointer-events-none z-0"></div>
               
                 {/* 1. HERO SECTION */}
                 <Section>
@@ -244,14 +249,11 @@ export default function AboutPage() {
                       </div>
                       
                       <h1 className="text-3xl sm:text-5xl md:text-[6rem] font-bold leading-tight md:leading-[0.85] tracking-tighter mb-6 mix-blend-screen">
-                        <span className="block">ABOUT</span>
-                        <span className="block text-2xl sm:text-4xl md:text-[6rem] whitespace-nowrap">
-                          SHARKS AUTOMATION LAB
-                        </span>
+                        <span className="block">ABOUT US</span>
                       </h1>
                       
                       <p className="max-w-xl mx-auto text-sm sm:text-lg text-gray-300 font-light mb-10 leading-relaxed drop-shadow-xl">
-                        Architecting the <span className="text-[#35c4dd] font-semibold">Digital Nervous System</span> of tomorrow.
+                        At Outsource IT Projects, we operate as a strategic extension of your organization, delivering precision-driven solutions to complex business challenges. Our mission is to empower sustainable growth through innovation, reliability, and uncompromising execution. We partner with ambitious leaders to transform vision into measurable performance.
                       </p>
                     </motion.div>
 
@@ -266,93 +268,155 @@ export default function AboutPage() {
                   </div>
                 </Section>
 
-                {/* 2. STORY SECTION */}
-                <Section>
-                  <GlassPanel className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl">
-                    <div>
-                      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
-                        Forged in <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8a2be2] to-[#35c4dd]">Chaos.</span>
-                      </h2>
-                      <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
-                        We didn't start in a boardroom. We started in the code. Shark Retail was born from the necessity to bring order to the chaotic universe of e-commerce data.
-                      </p>
-                      <p className="text-gray-400 text-sm sm:text-base font-light">
-                        From a single node to a galactic network, our algorithms now process billions of signals every second.
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 border-t md:border-l md:border-t-0 border-white/10 pt-6 md:pt-0 md:pl-8">
-                      <StatCard value="2050" label="Vision Year" />
-                      <StatCard value="50M+" label="Data Points" />
-                      <StatCard value="0.01s" label="Latency" />
-                      <StatCard value="∞" label="Scale" />
-                    </div>
-                  </GlassPanel>
-                </Section>
-
-                {/* 3. VALUES SECTION */}
+                {/* 2. CORE VALUES SECTION */}
                 <Section>
                   <div className="w-full max-w-6xl">
-                    <h2 className="text-center text-3xl sm:text-4xl md:text-6xl font-bold mb-10 md:mb-16 tracking-tight text-white drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]">
-                      PRIME DIRECTIVES
+                    <h2 className="text-center text-3xl sm:text-4xl md:text-6xl font-bold mb-10 md:mb-16 tracking-tight text-white drop-shadow-[0_0_15px_rgba(53,196,221,0.5)]">
+                      OUR CORE VALUES
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                       {[
-                        { title: "PRECISION", icon: Target, desc: "Absolute accuracy in every transaction." },
-                        { title: "VELOCITY", icon: Zap, desc: "Optimized for light-speed execution." },
-                        { title: "ADAPTION", icon: Globe, desc: "Evolving automatically to market shifts." }
+                        { 
+                          number: "01",
+                          title: "One Stop Solution", 
+                          icon: CheckCircle2, 
+                          desc: "In today's landscape, IT agencies have diverse business needs. That's why we strive to fulfill all the requirements of your business, simplifying the process for you." 
+                        },
+                        { 
+                          number: "02",
+                          title: "Experienced Team", 
+                          icon: Users, 
+                          desc: "We have been in this business for a long time, which has enabled us to have experienced individuals who understand your business problems and are ready to resolve them." 
+                        },
+                        { 
+                          number: "03",
+                          title: "High Quality", 
+                          icon: Award, 
+                          desc: "Our quality service revolves around tangibility, complete reliability, assurance, and empathy. We understand your needs and provide a high level of service with consistency." 
+                        },
+                        { 
+                          number: "04",
+                          title: "Value for Money", 
+                          icon: DollarSign, 
+                          desc: "We follow a profound system to the capacity and manage well to deliver results and better outcomes and be calibrated to maximize utmost efficiency." 
+                        }
                       ].map((item, i) => (
-                        <GlassPanel key={i} className="hover:bg-white/10 transition-colors duration-500 group">
-                          <item.icon className="w-12 h-12 text-[#ffd700] mb-6 group-hover:scale-110 transition-transform duration-300" />
-                          <h3 className="text-xl sm:text-2xl font-bold mb-3">{item.title}</h3>
-                          <p className="text-gray-400 text-sm sm:text-base">{item.desc}</p>
+                        <GlassPanel key={i} className="hover:bg-white/10 transition-all duration-500 group relative overflow-hidden">
+                          {/* Number Badge */}
+                          <div className="absolute left-6 top-6 text-6xl sm:text-7xl md:text-8xl font-bold text-[#35c4dd]/20 group-hover:text-[#35c4dd]/30 transition-colors duration-300">
+                            {item.number}
+                          </div>
+                          
+                          {/* Content Container */}
+                          <div className="relative z-10">
+                            {/* Icon in top-right */}
+                            <div className="flex justify-end mb-4">
+                              <div className="p-3 rounded-full border border-[#35c4dd]/30 bg-[#35c4dd]/10 group-hover:border-[#35c4dd] group-hover:bg-[#35c4dd]/20 transition-all duration-300">
+                                <item.icon className="w-6 h-6 sm:w-7 sm:h-7 text-[#35c4dd] group-hover:scale-110 transition-transform duration-300" />
+                              </div>
+                            </div>
+                            
+                            {/* Title */}
+                            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 text-white group-hover:text-[#35c4dd] transition-colors duration-300">
+                              {item.title}
+                            </h3>
+                            
+                            {/* Description */}
+                            <p className="text-gray-300 text-sm sm:text-base leading-relaxed pl-0 md:pl-4">
+                              {item.desc}
+                            </p>
+                          </div>
                         </GlassPanel>
                       ))}
                     </div>
                   </div>
                 </Section>
 
-                {/* 4. TECH STACK */}
-                <Section>
-                  <div className="text-center w-full max-w-4xl">
-                    <GlassPanel className="backdrop-blur-2xl bg-black/60">
-                        <h2 className="text-2xl sm:text-3xl font-mono text-[#35c4dd] mb-8 md:mb-12 tracking-widest">SYSTEM ARCHITECTURE</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
-                          {[
-                            { icon: Code2, label: "Next.js Core" },
-                            { icon: Cpu, label: "Neural Net" },
-                            { icon: Rocket, label: "WebGL Engine" },
-                            { icon: Globe, label: "Edge Network" },
-                          ].map((item, i) => (
-                            <div key={i} className="flex flex-col items-center gap-4 group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
-                              <div className="p-4 md:p-5 rounded-full border border-white/10 bg-white/5 group-hover:border-[#35c4dd] group-hover:shadow-[0_0_20px_#35c4dd] transition-all">
-                                <item.icon className="w-6 h-6 md:w-8 md:h-8 text-gray-300 group-hover:text-white" />
-                              </div>
-                              <span className="font-bold text-xs sm:text-sm tracking-wider text-center">{item.label}</span>
-                            </div>
-                          ))}
-                        </div>
-                    </GlassPanel>
-                  </div>
-                </Section>
-
-                {/* 5. CTA */}
-                <Section>
-                  <div className="text-center relative z-10">
-                    <GlassPanel className="bg-[#000]/50 border-[#35c4dd]/50">
-                      <h2 className="text-3xl sm:text-5xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tighter text-white leading-tight">
-                        ENTER THE <span className="text-[#35c4dd]">VOID</span>
+                {/* 3. OUR HERITAGE SECTION */}
+                <Section className="pt-76 md:pt-96">
+                  <div className="w-full max-w-7xl">
+                    {/* Header */}
+                    <div className="mb-12 md:mb-16">
+                      <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 text-white">
+                        OUR HERITAGE
+                        <div className="h-1 w-24 md:w-32 bg-[#35c4dd] mt-2"></div>
                       </h2>
-                      <motion.button 
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="px-8 md:px-12 py-4 md:py-6 bg-[#35c4dd] text-black font-bold text-lg md:text-xl rounded-none hover:bg-white transition-colors tracking-[0.2em] shadow-[0_0_40px_rgba(53,196,221,0.6)]"
-                      >
-                        INITIALIZE PROTOCOL
-                      </motion.button>
-                    </GlassPanel>
-                  </div>
-                  <div className="absolute bottom-8 text-white/30 text-xs font-mono tracking-widest">
-                    SECURE CONNECTION // ENCRYPTED
+                      <p className="text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed max-w-4xl">
+                        We have been known among{' '}
+                        <span className="text-[#35c4dd] font-semibold">many businesses, brands</span>
+                        {' '}and{' '}
+                        <span className="text-[#35c4dd] font-semibold">clients to provide quality work</span>
+                        {' '}for the past Two Decades, uplifting the heritage flag up high.
+                      </p>
+                    </div>
+
+                    {/* Timeline */}
+                    <div className="relative">
+                      {/* Timeline Line */}
+                      <div className="hidden md:block absolute top-24 left-0 right-0 h-0.5 bg-gray-700/50"></div>
+                      
+                      {/* Timeline Items */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 relative">
+                        {[
+                          {
+                            dates: "2005 - 2016",
+                            title: "B2B Marketplace",
+                            icon: Network,
+                            desc: "Started off as one of the many B2B Marketplaces enabling companies to connect with other businesses and conduct business in one place, buying and selling products.",
+                            isActive: true
+                          },
+                          {
+                            dates: "2017 - 2019",
+                            title: "Digital Agency",
+                            icon: Lightbulb,
+                            desc: "Adding another feather to the cap, we transitioned to serve as a digital agency, catering to thousands of clients worldwide with diverse digital solutions.",
+                            isActive: false
+                          },
+                          {
+                            dates: "2020 - Onwards",
+                            title: "Outsourcing Hub",
+                            icon: Building2,
+                            desc: "Reaching new heights, we have become the outsourcing hub, providing digital marketing, web and app development, and staff augmentation services to IT companies and digital agencies.",
+                            isActive: false
+                          }
+                        ].map((phase, i) => (
+                          <div key={i} className="relative group">
+                            {/* Timeline Node */}
+                            <div className="flex flex-col items-center md:items-start">
+                              {/* Icon Circle */}
+                              <div className={`relative mb-6 ${i === 0 ? 'md:mt-0' : 'md:mt-20'}`}>
+                                <div className={`w-20 h-20 rounded-full flex items-center justify-center border-2 ${
+                                  phase.isActive 
+                                    ? 'bg-[#35c4dd]/20 border-[#35c4dd] shadow-[0_0_30px_rgba(53,196,221,0.5)]' 
+                                    : 'bg-gray-700/30 border-gray-600'
+                                } transition-all duration-300 group-hover:scale-110 group-hover:border-[#35c4dd] group-hover:bg-[#35c4dd]/20 group-hover:shadow-[0_0_30px_rgba(53,196,221,0.5)]`}>
+                                  <phase.icon className={`w-10 h-10 ${
+                                    phase.isActive ? 'text-[#35c4dd]' : 'text-gray-400'
+                                  } group-hover:text-[#35c4dd] transition-colors duration-300`} />
+                                </div>
+                                {/* Timeline Dot on Line (Desktop) */}
+                                <div className="hidden md:block absolute top-10 left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full bg-[#35c4dd] border-2 border-black group-hover:scale-125 transition-transform duration-300"></div>
+                              </div>
+
+                              {/* Content */}
+                              <GlassPanel className="text-left hover:bg-white/10 transition-all duration-300 group-hover:border-[#35c4dd]/50">
+                                <div className="text-[#35c4dd] text-sm font-mono mb-2 tracking-wider">
+                                  {phase.dates}
+                                </div>
+                                <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-4 ${
+                                  phase.isActive ? 'text-white' : 'text-gray-300'
+                                } group-hover:text-[#35c4dd] transition-colors duration-300`}>
+                                  {phase.title}
+                                </h3>
+                                <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+                                  {phase.desc}
+                                </p>
+                              </GlassPanel>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </Section>
 
@@ -363,6 +427,12 @@ export default function AboutPage() {
           </ScrollControls>
         </Suspense>
       </Canvas>
+      
+      {/* CTA Section */}
+      <CallToAction />
+      
+      {/* Footer Section */}
+      <Footer />
     </div>
   );
 }

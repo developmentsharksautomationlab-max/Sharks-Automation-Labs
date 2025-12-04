@@ -140,6 +140,34 @@ img {
   animation: spin-slow 8s linear infinite;
 }
 
+/* Holographic shimmer animation for InvestmentLifecycle - Optimized for performance */
+@keyframes holographic-shimmer {
+  0%, 100% {
+    transform: translateX(-2px);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(2px);
+    opacity: 0.7;
+  }
+}
+
+/* Smooth grid flow animation - GPU accelerated */
+@keyframes grid-flow {
+  0% {
+    transform: translateY(0) rotateX(60deg);
+  }
+  100% {
+    transform: translateY(4rem) rotateX(60deg);
+  }
+}
+
+.animate-grid-flow {
+  animation: grid-flow 20s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
 /* Hide scrollbar for tags */
 .scrollbar-hide {
   -ms-overflow-style: none;
@@ -148,4 +176,12 @@ img {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Hero Section - Tablet (786px) specific styles */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tablet-description-width {
+    width: 147% !important;
+    max-width: 147% !important;
+  }
 }

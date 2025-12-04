@@ -111,26 +111,26 @@ const Hero = () => {
         {/* 
             LEFT SIDE: Text Content 
             Mobile: Bottom aligned
-            Desktop: Vertically centered
+            Tablet & Desktop: Same layout
         */}
-        <div className="md:col-span-4 flex flex-col justify-end pb-12 sm:pb-16 md:justify-end md:pb-40 pt-4 sm:pt-6 md:pt-[60px] relative z-30 order-1 md:order-1 px-2 sm:px-4 md:px-0">
+        <div className="md:col-span-4 flex flex-col justify-end pb-12 sm:pb-16 md:justify-start md:pb-0 pt-4 sm:pt-6 md:pt-[213px] lg:pt-0 relative z-30 order-1 md:order-1 px-2 sm:px-4 md:px-0">
           {step >= 4 && (
-            <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 items-start mt-0 md:mt-0">
+            <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6 items-start mt-0 md:mt-0 lg:mt-0 md:w-full">
                
                <motion.div 
                  initial={{ x: -50, opacity: 0 }}
                  animate={{ x: 0, opacity: 1 }}
                  transition={{ duration: 0.8 }}
-                 className="w-9 h-9 sm:w-10 sm:h-10 md:w-14 md:h-14 bg-[#052126] border border-[#35c4dd] flex items-center justify-center rounded-lg text-[#35c4dd] shadow-[0_0_20px_rgba(53,196,221,0.2)]"
+                 className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-[#052126] border border-[#35c4dd] flex items-center justify-center rounded-lg text-[#35c4dd] shadow-[0_0_20px_rgba(53,196,221,0.2)]"
                >
-                 <Cpu size={20} className="sm:w-6 sm:h-6 md:w-8 md:h-8" />
+                 <Cpu size={20} className="sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
                </motion.div>
 
                <motion.h2
                  initial={{ x: -100, opacity: 0 }}
                  animate={{ x: 0, opacity: 1 }}
                  transition={{ duration: 0.8, delay: 0.2 }}
-                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#f2f4f4] leading-[0.9] sm:leading-[0.95]"
+                 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#f2f4f4] leading-[0.9] sm:leading-[0.95] md:max-w-[90%] lg:max-w-full"
                >
                  Strategic <br />
                  <span className="text-[#35c4dd]">Services</span>
@@ -140,7 +140,7 @@ const Hero = () => {
                  initial={{ x: -50, opacity: 0 }}
                  animate={{ x: 0, opacity: 1 }}
                  transition={{ duration: 0.8, delay: 0.4 }}
-                 className="text-sm sm:text-base md:text-lg text-[#f2f4f4]/70 leading-relaxed max-w-full sm:max-w-md border-l-4 border-[#35c4dd] pl-3 sm:pl-4 md:pl-5 py-0.5 sm:py-1"
+                 className="text-sm sm:text-base md:text-base lg:text-lg text-[#f2f4f4]/70 leading-relaxed max-w-full sm:max-w-md md:max-w-3xl lg:max-w-md border-l-4 border-[#35c4dd] pl-3 sm:pl-4 md:pl-5 py-0.5 sm:py-1 tablet-description-width"
                >
                  Trusted outsourcing partner delivering scalable growth enterprise support and long-term business success worldwide.
                </motion.p>
@@ -150,7 +150,7 @@ const Hero = () => {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.6 }}
-                  className="group relative mt-1 sm:mt-2 md:mt-2 px-5 py-2.5 sm:px-6 sm:py-3 md:px-10 md:py-4 bg-[#35c4dd] text-[#f2f4f4] font-bold tracking-wider hover:text-[#052126] transition-all duration-300 hover:scale-95 rounded-full text-xs sm:text-sm md:text-base cursor-pointer overflow-hidden w-full sm:w-auto"
+                  className="group relative mt-1 sm:mt-2 md:mt-2 px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 lg:px-10 lg:py-4 bg-[#35c4dd] text-[#f2f4f4] font-bold tracking-wider hover:text-[#052126] transition-all duration-300 hover:scale-95 rounded-full text-xs sm:text-sm md:text-sm lg:text-base cursor-pointer overflow-hidden w-full sm:w-auto"
                 >
                   <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#f2f4f4] rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
                   <span className="relative flex items-center justify-center gap-2">Get Started</span>
@@ -163,45 +163,45 @@ const Hero = () => {
         {/* 
             CENTER: Robot Animation 
             Mobile: Absolute bottom
-            Desktop: Center aligned
+            Tablet & Desktop: Exact same layout and image positioning as desktop
         */}
-        <div className="absolute bottom-0 left-0 right-0 md:relative md:col-span-4 flex justify-center items-end h-[75vh] sm:h-[80vh] md:h-full pointer-events-none md:order-2 z-10 md:z-20 md:pt-4">
+        <div className="absolute bottom-0 left-0 right-0 md:relative md:col-span-4 flex justify-center items-end md:items-start lg:items-center h-[75vh] sm:h-[80vh] md:h-full pointer-events-none md:order-2 z-10 md:z-20 md:pt-[768px] lg:pt-4">
            <motion.div
              initial={{ scale: 4, opacity: 0, y: 0 }}
              animate={
                step === 2 
                ? { scale: 1, opacity: 1, y: -30 } 
                : step >= 3 
-               ? { scale: 1.5, opacity: 1, y: 180 } 
+               ? { scale: 1.5, opacity: 1, y: -312 } 
                : {}
              }
              transition={{ 
                duration: step === 2 ? 1.5 : 1.5, 
                ease: [0.6, 0.01, 0.05, 0.95] 
              }}
-             className="relative w-full h-full flex items-end justify-center"
+             className="relative w-full h-full flex items-end md:items-start lg:items-center justify-center"
            >
-              {/* Mobile: Image full size aur perfectly bottom aligned */}
-              <div className="relative w-full max-w-[500px] h-[500px] sm:max-w-[550px] sm:h-[600px] md:w-[550px] md:h-[750px] md:max-w-none">
+              {/* Mobile: Image full size, Tablet & Desktop: Exact same sizing and positioning */}
+              <div className="relative w-full max-w-[500px] h-[500px] sm:max-w-[550px] sm:h-[600px] md:w-[580px] md:h-[750px] lg:w-[550px] lg:h-[750px] md:max-w-none lg:max-w-none">
                 <Image 
                   src="/banner_robot.png" 
                   alt="AI Robot" 
                   fill 
                   style={{ 
                     objectFit: 'contain', 
-                    objectPosition: 'bottom'
+                    objectPosition: 'bottom center'
                   }}
                   priority
                   quality={90}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 550px"
-                  className="relative z-10"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 580px, 550px"
+                  className="relative z-10 md:-mt-[500px] lg:mt-0"
                 />
               </div>
            </motion.div>
         </div>
 
-        {/* RIGHT SIDE: Content & Socials (Desktop Only) */}
-        <div className="md:col-span-4 flex flex-col justify-between py-6 md:pb-32 md:pt-16 relative z-30 order-3 hidden md:flex"> 
+        {/* RIGHT SIDE: Content & Socials (Tablet & Desktop) */}
+        <div className="md:col-span-4 flex flex-col justify-between py-6 md:pb-24 md:pt-12 lg:pb-32 lg:pt-16 relative z-30 order-3 hidden md:flex"> 
           
           <div className="flex justify-end">
             {step >= 4 && (
@@ -233,7 +233,7 @@ const Hero = () => {
 
       </div>
 
-      {/* Bottom Fade - Desktop only */}
+      {/* Bottom Fade - Tablet & Desktop */}
       <div className="hidden md:block absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#052126] via-[#052126] to-transparent z-20 pointer-events-none" />
 
     </section>

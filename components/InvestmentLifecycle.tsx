@@ -330,22 +330,29 @@ const ALL_SERVICES = [
 
 // --- HOOKS ---
 const useWindowSize = () => {
-  const [size, setSize] = useState({ width: 0, height: 0 });
+  const [size, setSize] = useState({ width: typeof window !== 'undefined' ? window.innerWidth : 0, height: typeof window !== 'undefined' ? window.innerHeight : 0 });
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     function updateSize() {
       setSize({ width: window.innerWidth, height: window.innerHeight });
     }
-    // Throttle resize events for better performance
+    // Optimized throttle with requestAnimationFrame for smoother performance
+    let rafId: number;
     let timeoutId: NodeJS.Timeout;
     const throttledUpdate = () => {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(updateSize, 150);
+      timeoutId = setTimeout(() => {
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(updateSize);
+      }, 200);
     };
     window.addEventListener('resize', throttledUpdate, { passive: true });
     updateSize();
     return () => {
       window.removeEventListener('resize', throttledUpdate);
       clearTimeout(timeoutId);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
   return size;
@@ -353,42 +360,52 @@ const useWindowSize = () => {
 
 // --- SUB-COMPONENTS ---
 
-// 1. HOLOGRAPHIC TEXT
-const HolographicText = ({ children, className, active }: { children: React.ReactNode, className?: string, active: boolean }) => {
+// 1. HOLOGRAPHIC TEXT (Optimized with CSS animations for better performance)
+const HolographicText = React.memo(({ children, className, active }: { children: React.ReactNode, className?: string, active: boolean }) => {
   return (
     <div className="relative overflow-visible group inline-block">
-      <motion.span 
-        animate={active ? { x: [-1, 1, -1], opacity: [0.5, 0.8, 0.5] } : { x: 0, opacity: 0 }}
-        transition={{ repeat: Infinity, duration: 0.2, ease: "linear" }}
-        className={cn("absolute inset-0 text-[#35c4dd] mix-blend-screen select-none pointer-events-none blur-[0.5px]", className)}
-        aria-hidden="true"
-      >
-        {children}
-      </motion.span>
-      <motion.span 
-        animate={active ? { x: [1, -1, 1], opacity: [0.3, 0.5, 0.3] } : { x: 0, opacity: 0 }}
-        transition={{ repeat: Infinity, duration: 0.25, ease: "linear" }}
-        className={cn("absolute inset-0 text-[#f2f4f4] mix-blend-overlay select-none pointer-events-none blur-[0.5px]", className)}
-        aria-hidden="true"
-      >
-        {children}
-      </motion.span>
+      {active && (
+        <>
+          <span 
+            className={cn("absolute inset-0 text-[#35c4dd] mix-blend-screen select-none pointer-events-none", className)}
+            style={{
+              animation: 'holographic-shimmer 3s ease-in-out infinite',
+              willChange: 'transform, opacity'
+            }}
+            aria-hidden="true"
+          >
+            {children}
+          </span>
+          <span 
+            className={cn("absolute inset-0 text-[#f2f4f4] mix-blend-overlay select-none pointer-events-none", className)}
+            style={{
+              animation: 'holographic-shimmer 3.5s ease-in-out infinite reverse',
+              willChange: 'transform, opacity'
+            }}
+            aria-hidden="true"
+          >
+            {children}
+          </span>
+        </>
+      )}
       <span className={cn("relative z-10 text-[#f2f4f4]", className)}>
         {children}
       </span>
     </div>
   );
-};
+});
+HolographicText.displayName = 'HolographicText';
 
 // 2. THE REACTOR CORE (Card Component)
 const HyperCard = React.memo(({ service }: { service: Service }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const mouseX = useSpring(x, { stiffness: 400, damping: 20, mass: 0.15 });
-  const mouseY = useSpring(y, { stiffness: 400, damping: 20, mass: 0.15 });
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [12, -12]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-12, 12]);
+  // Optimized spring settings for smoother, less bouncy animations
+  const mouseX = useSpring(x, { stiffness: 250, damping: 25, mass: 0.2 });
+  const mouseY = useSpring(y, { stiffness: 250, damping: 25, mass: 0.2 });
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [8, -8]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
   const glowX = useTransform(mouseX, [-0.5, 0.5], [0, 100]);
   const glowY = useTransform(mouseY, [-0.5, 0.5], [0, 100]);
   const plasmaGradient = useMotionTemplate`radial-gradient(circle at ${glowX}% ${glowY}%, #35c4dd 0%, transparent 45%)`;
@@ -416,25 +433,32 @@ const HyperCard = React.memo(({ service }: { service: Service }) => {
       className="relative w-full h-full"
     >
       <motion.div 
-        variants={{ initial: { scale: 1 }, hover: { scale: 1.02, transition: { duration: 0.2 } } }}
+        variants={{ initial: { scale: 1 }, hover: { scale: 1.02, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } } }}
         className="relative w-full h-full rounded-2xl bg-[#03161a] border border-[#35c4dd]/10 overflow-hidden group shadow-2xl"
+        style={{ willChange: 'transform' }}
       >
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0">
-             <div className="absolute inset-[-2px] rounded-2xl opacity-40 animate-spin-slow" 
-                  style={{ background: `conic-gradient(from 0deg at 50% 50%, transparent 0deg, #35c4dd 180deg, transparent 360deg)` }}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0">
+             <div className="absolute inset-[-2px] rounded-2xl opacity-30 animate-spin-slow" 
+                  style={{ 
+                    background: `conic-gradient(from 0deg at 50% 50%, transparent 0deg, #35c4dd 180deg, transparent 360deg)`,
+                    willChange: 'transform'
+                  }}
              />
         </div>
         <div className="absolute inset-0 z-0">
             <motion.div 
-                className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-50 transition-all duration-500"
+                className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-50 transition-all duration-700 ease-out"
                 style={{ 
                   backgroundImage: `url(${service.image})`,
-                  willChange: 'opacity, transform'
+                  willChange: 'opacity'
                 }}
             />
             <div className="absolute inset-0 bg-[#052126] opacity-80 mix-blend-multiply" />
-            <motion.div style={{ background: plasmaGradient, opacity: 0.15 }} className="absolute inset-0 mix-blend-screen group-hover:opacity-30 transition-opacity duration-300" />
-            <div className="absolute inset-0 opacity-[0.07] mix-blend-overlay pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+            <motion.div 
+              style={{ background: plasmaGradient, opacity: 0.15 }} 
+              className="absolute inset-0 mix-blend-screen group-hover:opacity-25 transition-opacity duration-500 ease-out" 
+            />
+            <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#35c4dd10_1px,transparent_1px),linear-gradient(to_bottom,#35c4dd10_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
         <div style={{ transform: "translateZ(60px)" }} className="relative h-full flex flex-col justify-between p-6 md:p-8 z-20">
@@ -488,15 +512,34 @@ const HyperCard = React.memo(({ service }: { service: Service }) => {
 });
 HyperCard.displayName = 'HyperCard';
 
-// 3. FRACTAL BACKGROUND (Optimized with will-change for smooth performance)
+// 3. FRACTAL BACKGROUND (Optimized with GPU acceleration for smooth performance)
 const FractalField = React.memo(() => {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" style={{ willChange: 'transform' }}>
-       <div className="absolute inset-0 perspective-[1000px]">
-           <div className="absolute inset-[-100%] bg-[linear-gradient(to_right,#35c4dd_1px,transparent_1px),linear-gradient(to_bottom,#35c4dd_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.05] transform rotate-x-[60deg] animate-grid-flow" style={{ willChange: 'transform' }} />
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+       <div className="absolute inset-0 perspective-[1000px]" style={{ transform: 'translateZ(0)', willChange: 'contents' }}>
+           <div 
+             className="absolute inset-[-100%] bg-[linear-gradient(to_right,#35c4dd_1px,transparent_1px),linear-gradient(to_bottom,#35c4dd_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.04] transform rotate-x-[60deg] animate-grid-flow" 
+             style={{ 
+               willChange: 'transform',
+               transform: 'translateZ(0)',
+               backfaceVisibility: 'hidden'
+             }} 
+           />
        </div>
-       <div className="absolute top-[-20%] left-[20%] w-[60vw] h-[60vw] bg-[#35c4dd] opacity-[0.05] blur-[150px] rounded-full mix-blend-screen" style={{ willChange: 'opacity' }} />
-       <div className="absolute bottom-[-20%] right-[20%] w-[60vw] h-[60vw] bg-[#052126] opacity-[0.8] blur-[150px] rounded-full mix-blend-multiply" style={{ willChange: 'opacity' }} />
+       <div 
+         className="absolute top-[-20%] left-[20%] w-[60vw] h-[60vw] bg-[#35c4dd] opacity-[0.04] blur-[120px] rounded-full mix-blend-screen" 
+         style={{ 
+           willChange: 'opacity',
+           transform: 'translateZ(0)'
+         }} 
+       />
+       <div 
+         className="absolute bottom-[-20%] right-[20%] w-[60vw] h-[60vw] bg-[#052126] opacity-[0.7] blur-[120px] rounded-full mix-blend-multiply" 
+         style={{ 
+           willChange: 'opacity',
+           transform: 'translateZ(0)'
+         }} 
+       />
     </div>
   );
 });
@@ -517,9 +560,12 @@ const ApexServices = () => {
     return ALL_SERVICES.filter(service => service.tabCategory === activeTab);
   }, [activeTab]);
 
-  // Reset index when tab changes to avoid out of bounds
+  // Reset index when tab changes to avoid out of bounds - Optimized with smooth transition
   useEffect(() => {
-    setActiveIndex(0);
+    // Use requestAnimationFrame for smooth transition
+    requestAnimationFrame(() => {
+      setActiveIndex(0);
+    });
   }, [activeTab]);
   
   // Handlers - Memoized for performance
@@ -531,14 +577,14 @@ const ApexServices = () => {
     setActiveIndex((prev) => (prev - 1 + filteredServices.length) % filteredServices.length);
   }, [filteredServices.length]);
 
-  // Auto-rotate (pauses if only 1 item) - Optimized
+  // Auto-rotate (pauses if only 1 item) - Optimized with smooth transitions
   useEffect(() => {
     if(filteredServices.length <= 1) return;
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % filteredServices.length);
-    }, 10000); // Increased to 10s for smoother experience
+    }, 12000); // Increased to 12s for even smoother experience
     return () => clearInterval(timer);
-  }, [filteredServices.length]);
+  }, [filteredServices.length, activeTab]);
 
   // Dynamic Title Logic
   const getDisplayTitle = () => {
@@ -547,10 +593,25 @@ const ApexServices = () => {
   };
 
   return (
-    <section className="relative w-full min-h-[120vh] bg-[#052126] text-[#f2f4f4] overflow-hidden flex flex-col items-center justify-center font-sans selection:bg-[#35c4dd] selection:text-[#052126] py-20">
+    <section 
+      className="relative w-full min-h-[120vh] bg-[#052126] text-[#f2f4f4] overflow-hidden flex flex-col items-center justify-center font-sans selection:bg-[#35c4dd] selection:text-[#052126] py-20"
+      style={{
+        transform: 'translateZ(0)',
+        willChange: 'contents',
+        backfaceVisibility: 'hidden'
+      }}
+    >
       
       <FractalField />
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#f2f4f4 1px, transparent 1px), linear-gradient(90deg, #f2f4f4 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+      <div 
+        className="absolute inset-0 opacity-[0.015] pointer-events-none" 
+        style={{ 
+          backgroundImage: 'linear-gradient(#f2f4f4 1px, transparent 1px), linear-gradient(90deg, #f2f4f4 1px, transparent 1px)', 
+          backgroundSize: '40px 40px',
+          willChange: 'auto',
+          transform: 'translateZ(0)'
+        }} 
+      />
 
       <div className="relative z-10 w-full max-w-[1920px] px-4 md:px-8 lg:px-12 h-full flex flex-col justify-center">
         
@@ -562,7 +623,10 @@ const ApexServices = () => {
                     <span className="text-[10px] font-mono tracking-widest text-[#35c4dd] uppercase">Enterprise Capabilities</span>
                 </div>
                 {/* Dynamic Title with Glitch Effect */}
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-[#f2f4f4] leading-tight min-h-[1.2em]">
+                <h1 
+                  className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-[#f2f4f4] leading-tight min-h-[1.2em]"
+                  style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+                >
                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#35c4dd] to-[#f2f4f4] opacity-90">
                       <HolographicText active={true}>{getDisplayTitle()}</HolographicText>
                    </span>
@@ -603,23 +667,45 @@ const ApexServices = () => {
         </div>
 
         {/* --- MAIN CAROUSEL ENGINE --- */}
-        <div className="relative w-full h-[600px] md:h-[700px] flex items-center justify-center" style={{ contain: 'layout style paint' }}>
+        <div 
+          className="relative w-full h-[600px] md:h-[700px] flex items-center justify-center" 
+          style={{ 
+            contain: 'layout style paint',
+            transform: 'translateZ(0)',
+            willChange: 'contents'
+          }}
+        >
             
-            {/* Controls */}
+            {/* Controls - Optimized for smooth interactions */}
             {filteredServices.length > 1 && (
             <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between items-center z-50 pointer-events-none px-2 md:px-8">
-                  <button onClick={handlePrev} className="pointer-events-auto p-3 md:p-5 rounded-full border-2 border-[#35c4dd]/40 bg-[#052126]/90 hover:bg-[#35c4dd]/20 text-[#35c4dd] transition-all backdrop-blur-md group shadow-[0_0_25px_rgba(53,196,221,0.4)] hover:shadow-[0_0_35px_rgba(53,196,221,0.6)]">
-                      <ChevronLeft className="w-6 h-6 md:w-7 md:h-7 group-hover:scale-110 transition-transform" />
+                  <button 
+                    onClick={handlePrev} 
+                    className="pointer-events-auto p-3 md:p-5 rounded-full border-2 border-[#35c4dd]/40 bg-[#052126]/90 hover:bg-[#35c4dd]/20 text-[#35c4dd] transition-all duration-300 ease-out backdrop-blur-md group shadow-[0_0_25px_rgba(53,196,221,0.4)] hover:shadow-[0_0_35px_rgba(53,196,221,0.6)]"
+                    style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+                  >
+                      <ChevronLeft className="w-6 h-6 md:w-7 md:h-7 group-hover:scale-110 transition-transform duration-300 ease-out" />
                 </button>
-                  <button onClick={handleNext} className="pointer-events-auto p-3 md:p-5 rounded-full border-2 border-[#35c4dd]/40 bg-[#052126]/90 hover:bg-[#35c4dd]/20 text-[#35c4dd] transition-all backdrop-blur-md group shadow-[0_0_25px_rgba(53,196,221,0.4)] hover:shadow-[0_0_35px_rgba(53,196,221,0.6)]">
-                      <ChevronRight className="w-6 h-6 md:w-7 md:h-7 group-hover:scale-110 transition-transform" />
+                  <button 
+                    onClick={handleNext} 
+                    className="pointer-events-auto p-3 md:p-5 rounded-full border-2 border-[#35c4dd]/40 bg-[#052126]/90 hover:bg-[#35c4dd]/20 text-[#35c4dd] transition-all duration-300 ease-out backdrop-blur-md group shadow-[0_0_25px_rgba(53,196,221,0.4)] hover:shadow-[0_0_35px_rgba(53,196,221,0.6)]"
+                    style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+                  >
+                      <ChevronRight className="w-6 h-6 md:w-7 md:h-7 group-hover:scale-110 transition-transform duration-300 ease-out" />
                 </button>
             </div>
             )}
 
             {/* 3D Card Stack */}
-            <div className="relative w-full max-w-[1400px] h-full flex items-center justify-center perspective-[2000px]" style={{ willChange: 'transform' }}>
-                <AnimatePresence initial={false} mode="popLayout">
+            <div 
+              className="relative w-full max-w-[1400px] h-full flex items-center justify-center perspective-[2000px]" 
+              style={{ 
+                willChange: 'transform',
+                transform: 'translateZ(0)',
+                contain: 'layout style paint'
+              }}
+            >
+                <AnimatePresence initial={false} mode="sync">
                     {/* Only map if we have data */}
                     {filteredServices.length > 0 ? (
                       [-1, 0, 1].map((offset) => {
@@ -637,39 +723,43 @@ const ApexServices = () => {
                         return (
                             <motion.div
                                   key={`${service.id}-${activeTab}`} // Key change triggers animation on tab switch
-                                layout
-                                  initial={{ opacity: 0, scale: 0.9, z: -100, x: 0, rotateY: 0 }}
+                                  initial={{ opacity: 0, scale: 0.92, z: -100, x: 0, rotateY: 0 }}
                                 animate={{ 
-                                      opacity: isCenter ? 1 : (isMobile ? 0 : 0.4),
-                                    scale: isCenter ? 1 : 0.88,
-                                    z: isCenter ? 0 : -80,
+                                      opacity: isCenter ? 1 : (isMobile ? 0 : 0.5),
+                                    scale: isCenter ? 1 : 0.9,
+                                    z: isCenter ? 0 : -60,
                                       x: isMobile && !isCenter ? 0 : xOffset,
-                                    rotateY: isCenter ? 0 : offset * -12,
+                                    rotateY: isCenter ? 0 : offset * -10,
                                     zIndex: isCenter ? 10 : 5,
-                                    filter: isCenter ? 'blur(0px)' : 'blur(1.5px)'
+                                    filter: isCenter ? 'blur(0px)' : 'blur(0.5px)'
                                 }}
                                   exit={{ 
                                     opacity: 0, 
-                                    scale: 0.5, 
-                                    z: -300, 
-                                    filter: 'blur(10px)', 
+                                    scale: 0.88, 
+                                    z: -150, 
+                                    filter: 'blur(3px)', 
                                     transition: { 
-                                      duration: 0.4,
-                                      ease: [0.4, 0, 0.2, 1]
+                                      duration: 0.5,
+                                      ease: [0.16, 1, 0.3, 1]
                                     } 
                                   }}
                                   transition={{ 
                                     type: "spring", 
-                                    stiffness: 200, 
-                                    damping: 30, 
-                                    mass: 0.8,
-                                    duration: 0.6
+                                    stiffness: 180, 
+                                    damping: 28, 
+                                    mass: 0.9,
+                                    duration: 0.8,
+                                    ease: [0.16, 1, 0.3, 1]
                                   }}
                                 className={cn(
                                     "absolute top-[5%] md:top-[10%] w-[90%] sm:w-[360px] md:w-[400px] h-[520px] md:h-[600px]",
                                       isCenter ? "cursor-none md:cursor-default pointer-events-auto" : "pointer-events-auto cursor-pointer"
                                 )}
-                                style={{ willChange: 'transform, opacity' }}
+                                style={{ 
+                                  willChange: 'transform, opacity',
+                                  transform: 'translateZ(0)',
+                                  backfaceVisibility: 'hidden'
+                                }}
                                   onClick={() => {
                                       if (!isCenter) {
                                           if (offset === -1) handlePrev();
@@ -696,11 +786,12 @@ const ApexServices = () => {
                     key={i}
                     onClick={() => setActiveIndex(i)}
                     className={cn(
-                            "h-1.5 md:h-2 transition-all duration-500 rounded-full cursor-pointer",
+                            "h-1.5 md:h-2 transition-all duration-500 ease-out rounded-full cursor-pointer",
                         i === activeIndex 
                                 ? "w-8 md:w-10 bg-[#35c4dd] shadow-[0_0_15px_#35c4dd]" 
                                 : "w-1.5 md:w-2 bg-[#f2f4f4]/20 hover:bg-[#f2f4f4]/40 hover:w-2 md:hover:w-2.5"
                     )}
+                    style={{ willChange: 'width, background-color' }}
                 />
             ))}
             </div>

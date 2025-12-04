@@ -110,12 +110,13 @@ const Hero = () => {
 
         {/* 
             LEFT SIDE: Text Content 
-            Mobile: Bottom aligned
-            Tablet & Desktop: Same layout
+            CHANGES: 
+            1. md:pb-28 (Tablet: Increased padding to push content UP so button is visible)
+            2. lg:pb-40 (Desktop: Original position)
         */}
-        <div className="md:col-span-4 flex flex-col justify-end pb-12 sm:pb-16 md:justify-start md:pb-0 pt-4 sm:pt-6 md:pt-[213px] lg:pt-0 relative z-30 order-1 md:order-1 px-2 sm:px-4 md:px-0">
+        <div className="md:col-span-4 flex flex-col justify-end pb-12 sm:pb-16 md:justify-end md:pb-28 lg:pb-40 pt-4 sm:pt-6 md:pt-[60px] relative z-30 order-1 md:order-1 px-2 sm:px-4 md:px-0">
           {step >= 4 && (
-            <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6 items-start mt-0 md:mt-0 lg:mt-0 md:w-full">
+            <div className="flex flex-col gap-3 sm:gap-4 md:gap-4 lg:gap-6 items-start mt-0 md:mt-0">
                
                <motion.div 
                  initial={{ x: -50, opacity: 0 }}
@@ -130,7 +131,7 @@ const Hero = () => {
                  initial={{ x: -100, opacity: 0 }}
                  animate={{ x: 0, opacity: 1 }}
                  transition={{ duration: 0.8, delay: 0.2 }}
-                 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#f2f4f4] leading-[0.9] sm:leading-[0.95] md:max-w-[90%] lg:max-w-full"
+                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#f2f4f4] leading-[0.9] sm:leading-[0.95]"
                >
                  Strategic <br />
                  <span className="text-[#35c4dd]">Services</span>
@@ -140,7 +141,11 @@ const Hero = () => {
                  initial={{ x: -50, opacity: 0 }}
                  animate={{ x: 0, opacity: 1 }}
                  transition={{ duration: 0.8, delay: 0.4 }}
-                 className="text-sm sm:text-base md:text-base lg:text-lg text-[#f2f4f4]/70 leading-relaxed max-w-full sm:max-w-md md:max-w-3xl lg:max-w-md border-l-4 border-[#35c4dd] pl-3 sm:pl-4 md:pl-5 py-0.5 sm:py-1 tablet-description-width"
+                 className="text-[#f2f4f4]/70 text-xs sm:text-sm md:text-sm lg:text-base leading-relaxed 
+                            max-w-full sm:max-w-md 
+                            md:w-[155%] md:max-w-none 
+                            lg:w-auto lg:max-w-md 
+                            border-l-4 border-[#35c4dd] pl-3 sm:pl-4 md:pl-5 py-0.5 sm:py-1"
                >
                  Trusted outsourcing partner delivering scalable growth enterprise support and long-term business success worldwide.
                </motion.p>
@@ -162,46 +167,51 @@ const Hero = () => {
 
         {/* 
             CENTER: Robot Animation 
-            Mobile: Absolute bottom
-            Tablet & Desktop: Exact same layout and image positioning as desktop
         */}
-        <div className="absolute bottom-0 left-0 right-0 md:relative md:col-span-4 flex justify-center items-end md:items-start lg:items-center h-[75vh] sm:h-[80vh] md:h-full pointer-events-none md:order-2 z-10 md:z-20 md:pt-[768px] lg:pt-4">
+        <div className="absolute bottom-0 left-0 right-0 md:relative md:col-span-4 flex justify-center items-end h-[75vh] sm:h-[80vh] md:h-full pointer-events-none md:order-2 z-0 md:z-20 md:pt-4">
            <motion.div
              initial={{ scale: 4, opacity: 0, y: 0 }}
              animate={
                step === 2 
                ? { scale: 1, opacity: 1, y: -30 } 
                : step >= 3 
-               ? { scale: 1.5, opacity: 1, y: -312 } 
+               ? { scale: 1.5, opacity: 1, y: 180 } 
                : {}
              }
              transition={{ 
                duration: step === 2 ? 1.5 : 1.5, 
                ease: [0.6, 0.01, 0.05, 0.95] 
              }}
-             className="relative w-full h-full flex items-end md:items-start lg:items-center justify-center"
+             className="relative w-full h-full flex items-end justify-center"
            >
-              {/* Mobile: Image full size, Tablet & Desktop: Exact same sizing and positioning */}
-              <div className="relative w-full max-w-[500px] h-[500px] sm:max-w-[550px] sm:h-[600px] md:w-[580px] md:h-[750px] lg:w-[550px] lg:h-[750px] md:max-w-none lg:max-w-none">
+              <div className="relative 
+                              w-full max-w-[500px] h-[500px] 
+                              sm:max-w-[550px] sm:h-[600px] 
+                              md:w-full md:min-w-[600px] md:max-w-none md:h-[85vh] md:-ml-[20%]
+                              lg:w-[550px] lg:min-w-0 lg:ml-0 lg:h-[750px]
+                              ">
                 <Image 
                   src="/banner_robot.png" 
                   alt="AI Robot" 
                   fill 
-                  style={{ 
-                    objectFit: 'contain', 
-                    objectPosition: 'bottom center'
-                  }}
+                  style={{ objectFit: 'contain', objectPosition: 'bottom' }}
                   priority
                   quality={90}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 580px, 550px"
-                  className="relative z-10 md:-mt-[500px] lg:mt-0"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 550px"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
               </div>
            </motion.div>
         </div>
 
-        {/* RIGHT SIDE: Content & Socials (Tablet & Desktop) */}
-        <div className="md:col-span-4 flex flex-col justify-between py-6 md:pb-24 md:pt-12 lg:pb-32 lg:pt-16 relative z-30 order-3 hidden md:flex"> 
+        {/* 
+            RIGHT SIDE: Content & Socials (Desktop Only) 
+            CHANGES:
+            1. md:pb-28 (Tablet: Increased padding to push icons UP)
+            2. lg:pb-32 (Desktop: Original position)
+        */}
+        <div className="md:col-span-4 flex flex-col justify-between py-6 md:pb-28 lg:pb-32 md:pt-16 relative z-30 order-3 hidden md:flex"> 
           
           <div className="flex justify-end">
             {step >= 4 && (
@@ -233,7 +243,7 @@ const Hero = () => {
 
       </div>
 
-      {/* Bottom Fade - Tablet & Desktop */}
+      {/* Bottom Fade - Desktop only */}
       <div className="hidden md:block absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#052126] via-[#052126] to-transparent z-20 pointer-events-none" />
 
     </section>

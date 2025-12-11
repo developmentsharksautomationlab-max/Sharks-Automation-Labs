@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "Virtual Reality",
-    subtitle: "Virtual Reality Excellence",
-    desc: "Get professional virtual reality services from our expert team.",
+    title: "Virtual Reality Development",
+    subtitle: "VR Excellence",
+    desc: "Leverage our elite VR development team to create immersive virtual reality experiences that engage users and drive business growth. We deliver cutting-edge VR solutions engineered with advanced technologies to maximize user engagement, enhance brand experiences, and create memorable virtual interactions.",
     color: new THREE.Color("#9d4edd"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY CHOOSE\nVR DEVELOPMENT?",
+    subtitle: "VR DEVELOPMENT",
+    desc: "VR development creates fully immersive virtual environments that transform user experiences, drive engagement, and deliver measurable business value.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide Cutting-Edge VR Solutions", text: "Enjoy innovative VR experiences designed to captivate audiences and deliver measurable business results through immersive technology." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your VR project." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your VR Needs", text: "From concept to deployment, we offer a full spectrum of VR services under one roof, enabling unified management and accelerated delivery." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,26 +106,26 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "VR\nSOLUTIONS",
+    subtitle: "VR SERVICES",
+    desc: "Our VR solutions are engineered to deliver high-performance, scalable, and engaging virtual reality experiences. We create enterprise-grade applications that strengthen brand authority, elevate user engagement, and accelerate measurable business growth.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "VR Application Development", text: "Native VR applications for Oculus, HTC Vive, PlayStation VR, and other major VR platforms." },
+        { id: "02", title: "VR Training & Simulation", text: "Immersive training and simulation applications for education, healthcare, and enterprise." },
+        { id: "03", title: "VR Marketing Experiences", text: "Engaging VR marketing campaigns that drive brand awareness and customer engagement." },
+        { id: "04", title: "VR Product Visualization", text: "Interactive 3D product experiences that allow customers to explore products in virtual space." },
+        { id: "05", title: "VR Gaming & Entertainment", text: "Immersive gaming and entertainment experiences that captivate users and drive engagement." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nVR DEVELOPMENT",
+    subtitle: "VR DEVELOPMENT",
+    desc: "Select your clearance level. Elevate your brand with our premium VR development packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of VR applications that transformed user experiences.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

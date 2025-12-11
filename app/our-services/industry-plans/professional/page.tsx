@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "Professional Services",
+    title: "Professional Services Solutions",
     subtitle: "Professional Services Excellence",
-    desc: "Get professional professional services services from our expert team.",
+    desc: "Leverage our comprehensive professional services solutions to build powerful client management and service delivery platforms. We deliver end-to-end professional service systems engineered with advanced technologies to maximize client satisfaction, streamline operations, and accelerate business growth.",
     color: new THREE.Color("#00d4ff"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY CHOOSE\nPROFESSIONAL SERVICES SOLUTIONS?",
+    subtitle: "PROFESSIONAL SERVICES",
+    desc: "Professional services solutions transform service businesses by creating seamless client management and service delivery experiences that drive client satisfaction, enhance productivity, and maximize revenue.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide Complete Professional Services Solutions", text: "Enjoy comprehensive service platforms designed to streamline operations and deliver measurable business results through optimized client management." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your professional services project." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your Professional Service Needs", text: "From client portals to project management, we offer a full spectrum of professional services under one roof, enabling unified management and accelerated growth." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,26 +106,26 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "PROFESSIONAL SERVICES\nSOLUTIONS",
+    subtitle: "PROFESSIONAL SERVICES",
+    desc: "Our professional services solutions are engineered to deliver high-performance, scalable, and client-focused service platforms. We create enterprise-grade systems that strengthen service operations, enhance client experiences, and accelerate measurable business growth.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "Client Portal Development", text: "Custom client portals for service delivery, project tracking, and communication management." },
+        { id: "02", title: "Service Management System", text: "Complete service management solutions for tracking projects, deliverables, and team collaboration." },
+        { id: "03", title: "Professional Website Development", text: "Professional service websites showcasing expertise, services, and client testimonials." },
+        { id: "04", title: "CRM & Lead Management", text: "Comprehensive CRM systems for managing client relationships and sales pipelines." },
+        { id: "05", title: "Professional Services Marketing", text: "Strategic professional services marketing including SEO, content marketing, social media, and lead generation campaigns." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nPROFESSIONAL SERVICES",
+    subtitle: "PROFESSIONAL SERVICES",
+    desc: "Select your clearance level. Elevate your professional services with our premium professional services packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of successful professional services projects that improved operations.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

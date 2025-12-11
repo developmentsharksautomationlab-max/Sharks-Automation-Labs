@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "Performance Marketing",
+    title: "Outsource Performance Marketing",
     subtitle: "Performance Marketing Excellence",
-    desc: "Get professional performance marketing services from our expert team.",
+    desc: "Leverage our elite performance marketing team to drive measurable results and maximize ROI. We deliver data-driven marketing strategies engineered to optimize conversions, reduce acquisition costs, and accelerate business growth through proven methodologies and advanced analytics.",
     color: new THREE.Color("#35c4dd"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY OUTSOURCE\nPERFORMANCE MARKETING?",
+    subtitle: "PERFORMANCE MARKETING",
+    desc: "Outsourcing performance marketing enhances efficiency, reduces operational burden, and delivers high-quality results through specialized expertise and data-driven strategies.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide an Effortless Outsourcing Experience", text: "Enjoy a frictionless engagement model designed to reduce operational complexity and deliver seamless performance marketing execution from strategy to optimization." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your marketing campaign." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your Performance Marketing Needs", text: "From campaign setup to optimization, we offer a full spectrum of performance marketing services under one roof, enabling unified management and accelerated results." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,63 +106,63 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "PERFORMANCE MARKETING\nSOLUTIONS",
+    subtitle: "PERFORMANCE MARKETING",
+    desc: "Our performance marketing solutions are engineered to deliver high-performance, scalable, and ROI-driven campaigns. We create enterprise-grade strategies that strengthen brand authority, optimize conversions, and accelerate measurable business growth.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "Google Ads Management", text: "Strategic Google Ads campaigns optimized for maximum ROI, including Search, Display, Shopping, and YouTube advertising." },
+        { id: "02", title: "Facebook & Instagram Ads", text: "Targeted social media advertising campaigns designed to reach your ideal audience and drive conversions." },
+        { id: "03", title: "Conversion Rate Optimization", text: "Data-driven optimization strategies to improve landing page performance and maximize conversion rates." },
+        { id: "04", title: "Retargeting Campaigns", text: "Advanced retargeting strategies to re-engage visitors and convert them into customers." },
+        { id: "05", title: "Analytics & Attribution", text: "Comprehensive tracking, analytics, and attribution modeling to measure and optimize campaign performance." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nPERFORMANCE MARKETING",
+    subtitle: "PERFORMANCE MARKETING",
+    desc: "Select your clearance level. Elevate your marketing performance with our premium performance marketing packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
     plans: [
       {
-        name: "INITIATE",
-        price: "$2,500",
-        period: "/project",
-        desc: "Entry level access to the grid.",
-        features: ["Standard 3D Assets", "2 Revisions", "1080p Renders"],
-        highlight: false,
+        name: "Essential",
+        price: "$500",
+        period: "/month",
+        desc: "An entry-level performance marketing package delivering refined, high-quality campaigns for early-stage business growth.",
+        features: ["Single Platform Management (Google or Facebook)", "Campaign Setup & Optimization", "Basic Conversion Tracking", "Monthly Performance Report", ""],
+        highlight: true,
         icon: <Box className="w-6 h-6" />
       },
       {
-        name: "OPERATOR",
-        price: "$5,000",
+        name: "Standard",
+        price: "$1,000",
         period: "/month",
-        desc: "Full system control for pros.",
-        features: ["High-Poly Modeling", "5 Revisions", "4K Raytracing", "Fluid Dynamics"],
-        highlight: true,
+        desc: "A comprehensive performance marketing package crafted to ensure consistency, professionalism, and strong market positioning.",
+        features: ["Multi-Platform Management (2-3 Platforms)", "Advanced Campaign Setup & A/B Testing", "Conversion Rate Optimization", "Landing Page Optimization", "Monthly Strategy Review & Reporting"],
+        highlight: false,
         icon: <Cpu className="w-6 h-6" />
       },
       {
-        name: "ARCHITECT",
-        price: "$12,000",
+        name: "Premium",
+        price: "$2,000",
         period: "/month",
-        desc: "Construct realities without limits.",
-        features: ["Unlimited Revisions", "8K Cinema Renders", "Custom Shaders", "Dedicated Team"],
+        desc: "A strategic performance marketing package designed for growth-oriented organizations requiring elevated marketing standards.",
+        features: ["Complete Platform Management (All Major Platforms)", "Advanced Campaign Strategy & Optimization", "Retargeting Campaigns", "Advanced Analytics & Attribution", "Landing Page Design & Optimization", "Weekly Strategy Calls & Reporting"],
         highlight: false,
         icon: <Layers className="w-6 h-6" />
       },
       {
-        name: "SINGULARITY",
+        name: "Elite",
         price: "CUSTOM",
         period: "",
-        desc: "Beyond the event horizon.",
-        features: ["Full Studio Acquisition", "Proprietary Tech", "On-Site Direction"],
+        desc: "An enterprise-grade, end-to-end performance marketing solution engineered for high-value organizations seeking market-leading ROI.",
+        features: ["Complete Performance Marketing Strategy", "All Platform Management & Optimization", "Advanced Retargeting & Remarketing", "Custom Attribution Modeling", "Dedicated Performance Marketing Consultant", "Custom Analytics Dashboard & Real-Time Reporting", "Conversion Funnel Optimization"],
         highlight: false,
         icon: <Globe className="w-6 h-6" />
       }
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of successful performance marketing campaigns that drove measurable ROI.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

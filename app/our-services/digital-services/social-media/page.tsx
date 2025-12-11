@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "Social Media Marketing",
+    title: "Outsource Social Media Marketing",
     subtitle: "Social Media Marketing Excellence",
-    desc: "Get professional social media marketing services from our expert team.",
+    desc: "Leverage our elite social media marketing team to build powerful brand presence and drive engagement across all platforms. We deliver comprehensive social media strategies engineered to increase followers, boost engagement, and maximize ROI through data-driven content and proven methodologies.",
     color: new THREE.Color("#35c4dd"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY OUTSOURCE\nSOCIAL MEDIA MARKETING?",
+    subtitle: "SOCIAL MEDIA",
+    desc: "Outsourcing social media marketing enhances efficiency, reduces operational burden, and delivers high-quality results through specialized expertise and proven strategies.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide an Effortless Outsourcing Experience", text: "Enjoy a frictionless engagement model designed to reduce operational complexity and deliver seamless social media management from strategy to execution." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your social media campaign." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your Social Media Needs", text: "From content creation to community management, we offer a full spectrum of social media services under one roof, enabling unified management and accelerated growth." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,63 +106,63 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "SOCIAL MEDIA\nSOLUTIONS",
+    subtitle: "SOCIAL MEDIA",
+    desc: "Our social media solutions are engineered to deliver high-performance, scalable, and engagement-driven marketing campaigns. We create enterprise-grade strategies that strengthen brand authority, elevate audience engagement, and accelerate measurable business growth.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "Content Creation & Strategy", text: "Strategic content creation across all platforms designed to engage audiences, build brand awareness, and drive conversions." },
+        { id: "02", title: "Community Management", text: "Active community engagement and management to build relationships, respond to inquiries, and foster brand loyalty." },
+        { id: "03", title: "Social Media Advertising", text: "Targeted paid advertising campaigns on Facebook, Instagram, LinkedIn, and Twitter to maximize reach and ROI." },
+        { id: "04", title: "Influencer Marketing", text: "Strategic influencer partnerships and collaborations to expand reach and build authentic brand connections." },
+        { id: "05", title: "Analytics & Reporting", text: "Comprehensive analytics tracking and monthly reporting to measure performance and optimize campaign strategies." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nSOCIAL MEDIA",
+    subtitle: "SOCIAL MEDIA",
+    desc: "Select your clearance level. Elevate your social presence with our premium social media marketing packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
     plans: [
       {
-        name: "INITIATE",
-        price: "$2,500",
-        period: "/project",
-        desc: "Entry level access to the grid.",
-        features: ["Standard 3D Assets", "2 Revisions", "1080p Renders"],
-        highlight: false,
+        name: "Essential",
+        price: "$300",
+        period: "/month",
+        desc: "An entry-level social media package delivering refined, high-quality content for early-stage business growth.",
+        features: ["Content Creation (15 Posts/Month)", "2 Social Media Platforms", "Basic Community Management", "Monthly Performance Report", ""],
+        highlight: true,
         icon: <Box className="w-6 h-6" />
       },
       {
-        name: "OPERATOR",
-        price: "$5,000",
+        name: "Standard",
+        price: "$500",
         period: "/month",
-        desc: "Full system control for pros.",
-        features: ["High-Poly Modeling", "5 Revisions", "4K Raytracing", "Fluid Dynamics"],
-        highlight: true,
+        desc: "A comprehensive social media package crafted to ensure consistency, professionalism, and strong market positioning.",
+        features: ["Content Creation (30 Posts/Month)", "3-4 Social Media Platforms", "Community Management & Engagement", "Social Media Strategy Development", "Monthly Analytics & Reporting"],
+        highlight: false,
         icon: <Cpu className="w-6 h-6" />
       },
       {
-        name: "ARCHITECT",
-        price: "$12,000",
+        name: "Premium",
+        price: "$1,000",
         period: "/month",
-        desc: "Construct realities without limits.",
-        features: ["Unlimited Revisions", "8K Cinema Renders", "Custom Shaders", "Dedicated Team"],
+        desc: "A strategic social media package designed for growth-oriented organizations requiring elevated marketing standards.",
+        features: ["Content Creation (60 Posts/Month)", "All Major Platforms Management", "Advanced Community Management", "Social Media Advertising Setup", "Influencer Outreach & Partnerships", "Weekly Strategy Calls & Reporting"],
         highlight: false,
         icon: <Layers className="w-6 h-6" />
       },
       {
-        name: "SINGULARITY",
+        name: "Elite",
         price: "CUSTOM",
         period: "",
-        desc: "Beyond the event horizon.",
-        features: ["Full Studio Acquisition", "Proprietary Tech", "On-Site Direction"],
+        desc: "An enterprise-grade, end-to-end social media solution engineered for high-value organizations seeking market-leading engagement.",
+        features: ["Unlimited Content Creation", "Complete Platform Management", "Dedicated Community Manager", "Advanced Paid Advertising Campaigns", "Influencer Marketing Program", "Dedicated Social Media Consultant", "Custom Analytics Dashboard & Reporting"],
         highlight: false,
         icon: <Globe className="w-6 h-6" />
       }
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of successful social media campaigns that drove engagement and growth.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

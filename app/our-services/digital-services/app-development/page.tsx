@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "App Development",
+    title: "Outsource App Development",
     subtitle: "App Development Excellence",
-    desc: "Get professional app development services from our expert team.",
+    desc: "Leverage our elite mobile and web app development team to build high-performance applications that drive user engagement and business growth. We deliver native iOS, Android, and cross-platform solutions engineered with cutting-edge technologies to maximize performance, scalability, and user satisfaction.",
     color: new THREE.Color("#35c4dd"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY OUTSOURCE\nAPP DEVELOPMENT?",
+    subtitle: "APP DEVELOPMENT",
+    desc: "Outsourcing app development accelerates time-to-market, reduces development costs, and delivers enterprise-grade mobile applications through specialized expertise and proven methodologies.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide an Effortless Outsourcing Experience", text: "Enjoy a frictionless engagement model designed to reduce operational complexity and deliver seamless app development from concept to launch." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your app development project." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your App Development Needs", text: "From strategy to deployment, we offer a full spectrum of app development services under one roof, enabling unified management and accelerated delivery." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,63 +106,63 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "APP DEVELOPMENT\nSOLUTIONS",
+    subtitle: "APP DEVELOPMENT",
+    desc: "Our app development solutions are engineered to deliver high-performance, scalable, and user-centric mobile applications. We create enterprise-grade apps that strengthen brand authority, elevate user experience, and accelerate measurable business growth.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "iOS App Development", text: "Native iOS applications built with Swift and SwiftUI, optimized for performance and delivering premium user experiences on Apple devices." },
+        { id: "02", title: "Android App Development", text: "Native Android applications developed with Kotlin and Jetpack Compose, ensuring seamless performance across all Android devices." },
+        { id: "03", title: "Cross-Platform Development", text: "Unified mobile applications using React Native, Flutter, or Xamarin, delivering native-like performance across iOS and Android." },
+        { id: "04", title: "Progressive Web Apps (PWA)", text: "Modern web applications that deliver app-like experiences with offline capabilities and push notifications." },
+        { id: "05", title: "App Maintenance & Support", text: "Comprehensive post-launch support including updates, bug fixes, performance optimization, and feature enhancements." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nAPP DEVELOPMENT",
+    subtitle: "APP DEVELOPMENT",
+    desc: "Select your clearance level. Elevate your mobile presence with our premium app development packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
     plans: [
       {
-        name: "INITIATE",
-        price: "$2,500",
+        name: "Essential",
+        price: "$500",
         period: "/project",
-        desc: "Entry level access to the grid.",
-        features: ["Standard 3D Assets", "2 Revisions", "1080p Renders"],
-        highlight: false,
+        desc: "An entry-level app development package delivering refined, high-performance mobile solutions for early-stage business growth.",
+        features: ["Basic Mobile App (iOS or Android)", "Standard UI/UX Design", "Core Features Implementation", "App Store Submission Support", ""],
+        highlight: true,
         icon: <Box className="w-6 h-6" />
       },
       {
-        name: "OPERATOR",
-        price: "$5,000",
-        period: "/month",
-        desc: "Full system control for pros.",
-        features: ["High-Poly Modeling", "5 Revisions", "4K Raytracing", "Fluid Dynamics"],
-        highlight: true,
+        name: "Standard",
+        price: "$1,000",
+        period: "/Projects",
+        desc: "A comprehensive app development package crafted to ensure consistency, professionalism, and strong market positioning.",
+        features: ["Cross-Platform App Development", "Enhanced UI/UX Design", "Backend Integration (APIs & Database)", "Push Notifications", "App Store & Play Store Submission"],
+        highlight: false,
         icon: <Cpu className="w-6 h-6" />
       },
       {
-        name: "ARCHITECT",
-        price: "$12,000",
-        period: "/month",
-        desc: "Construct realities without limits.",
-        features: ["Unlimited Revisions", "8K Cinema Renders", "Custom Shaders", "Dedicated Team"],
+        name: "Premium",
+        price: "$2,000",
+        period: "/Projects",
+        desc: "A strategic app development package designed for growth-oriented organizations requiring elevated technical standards.",
+        features: ["Native iOS & Android Development", "Advanced UI/UX with Animations", "Full Backend Development & Integration", "Third-Party API Integrations", "Analytics & Performance Monitoring", "3 Months Post-Launch Support"],
         highlight: false,
         icon: <Layers className="w-6 h-6" />
       },
       {
-        name: "SINGULARITY",
+        name: "Elite",
         price: "CUSTOM",
         period: "",
-        desc: "Beyond the event horizon.",
-        features: ["Full Studio Acquisition", "Proprietary Tech", "On-Site Direction"],
+        desc: "An enterprise-grade, end-to-end app development solution engineered for high-value organizations seeking market-leading mobile experiences.",
+        features: ["Complete Full-Stack App Development", "Custom Features & Complex Workflows", "Enterprise Security & Compliance", "Dedicated Development Team", "Performance Optimization & Scalability", "6+ Months Ongoing Support & Maintenance"],
         highlight: false,
         icon: <Globe className="w-6 h-6" />
       }
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of mobile applications crafted with precision and innovation.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

@@ -81,7 +81,7 @@ const SECTIONS = [
     type: "VERTICAL",
     title: "Outsourcing Partnership",
     subtitle: "Outsourcing Partnership Excellence",
-    desc: "Get professional outsourcing partnership services from our expert team.",
+    desc: "Leverage our comprehensive outsourcing partnership solutions to build powerful business relationships and scale your operations. We deliver end-to-end outsourcing partnerships engineered with advanced methodologies to maximize efficiency, reduce costs, and accelerate business growth through strategic collaboration.",
     color: new THREE.Color("#00ff88"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY CHOOSE\nOUTSOURCING PARTNERSHIP?",
+    subtitle: "OUTSOURCING PARTNERSHIP",
+    desc: "Outsourcing partnerships transform business operations by creating strategic collaborations that drive efficiency, reduce costs, and maximize growth through specialized expertise.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide Complete Outsourcing Solutions", text: "Enjoy comprehensive outsourcing partnerships designed to streamline operations and deliver measurable business results through optimized collaboration." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your partnership." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your Outsourcing Needs", text: "From development to support, we offer a full spectrum of outsourcing services under one roof, enabling unified management and accelerated delivery." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,26 +106,26 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "OUTSOURCING\nPARTNERSHIP SOLUTIONS",
+    subtitle: "OUTSOURCING PARTNERSHIP",
+    desc: "Our outsourcing partnership solutions are engineered to deliver high-performance, scalable, and cost-effective business collaborations. We create enterprise-grade partnerships that strengthen operations, enhance productivity, and accelerate measurable business growth.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "IT Outsourcing", text: "Comprehensive IT outsourcing including development, maintenance, and technical support services." },
+        { id: "02", title: "Business Process Outsourcing", text: "Complete business process outsourcing for administrative, operational, and support functions." },
+        { id: "03", title: "Dedicated Team Model", text: "Dedicated team partnerships providing specialized resources for long-term collaboration." },
+        { id: "04", title: "Project-Based Outsourcing", text: "Flexible project-based outsourcing for specific initiatives and short-term engagements." },
+        { id: "05", title: "Strategic Partnership", text: "Strategic outsourcing partnerships with ongoing support, optimization, and growth planning." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nOUTSOURCING PARTNERSHIP",
+    subtitle: "OUTSOURCING PARTNERSHIP",
+    desc: "Select your clearance level. Elevate your business with our premium outsourcing partnership packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of successful outsourcing partnerships that transformed businesses.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

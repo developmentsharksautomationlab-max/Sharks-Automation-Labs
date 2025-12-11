@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "Search Engine Optimization",
-    subtitle: "Search Engine Optimization Excellence",
-    desc: "Get professional search engine optimization services from our expert team.",
+    title: "Outsource SEO Services",
+    subtitle: "SEO Excellence",
+    desc: "Leverage our elite SEO team to dominate search engine rankings and drive organic traffic growth. We deliver comprehensive SEO strategies engineered to improve visibility, increase qualified leads, and maximize ROI through data-driven optimization and proven methodologies.",
     color: new THREE.Color("#35c4dd"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY OUTSOURCE\nSEO PROJECTS?",
+    subtitle: "SEO PROJECTS",
+    desc: "Outsourcing SEO projects enhances efficiency, reduces operational burden, and delivers high-quality results through specialized expertise and proven strategies.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide an Effortless Outsourcing Experience", text: "Enjoy a frictionless engagement model designed to reduce operational complexity and deliver seamless SEO execution from strategy to results." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your SEO campaign." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your SEO Needs", text: "From keyword research to technical optimization, we offer a full spectrum of SEO services under one roof, enabling unified management and accelerated results." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,63 +106,63 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "SEO\nSOLUTIONS",
+    subtitle: "SEO SERVICES",
+    desc: "Our SEO solutions are engineered to deliver high-performance, scalable, and results-driven search engine optimization. We create enterprise-grade strategies that strengthen brand authority, elevate search visibility, and accelerate measurable business growth.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "On-Page SEO", text: "Comprehensive on-page optimization including meta tags, content optimization, and internal linking strategies to improve search rankings." },
+        { id: "02", title: "Technical SEO", text: "Advanced technical audits and optimization including site speed, mobile-friendliness, crawlability, and Core Web Vitals improvements." },
+        { id: "03", title: "Content SEO", text: "Strategic content creation and optimization designed to rank for target keywords and drive organic traffic growth." },
+        { id: "04", title: "Link Building", text: "High-quality backlink acquisition strategies that build domain authority and improve search engine rankings." },
+        { id: "05", title: "Local SEO", text: "Location-based optimization strategies to dominate local search results and drive foot traffic to physical locations." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nSEO SERVICES",
+    subtitle: "SEO SERVICES",
+    desc: "Select your clearance level. Elevate your search visibility with our premium SEO packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
     plans: [
       {
-        name: "INITIATE",
-        price: "$2,500",
-        period: "/project",
-        desc: "Entry level access to the grid.",
-        features: ["Standard 3D Assets", "2 Revisions", "1080p Renders"],
-        highlight: false,
+        name: "Essential",
+        price: "$300",
+        period: "/month",
+        desc: "An entry-level SEO package delivering refined, high-quality optimization for early-stage business growth.",
+        features: ["On-Page SEO Optimization", "Keyword Research & Analysis", "Monthly SEO Reports", "Basic Technical SEO Audit", ""],
+        highlight: true,
         icon: <Box className="w-6 h-6" />
       },
       {
-        name: "OPERATOR",
-        price: "$5,000",
+        name: "Standard",
+        price: "$500",
         period: "/month",
-        desc: "Full system control for pros.",
-        features: ["High-Poly Modeling", "5 Revisions", "4K Raytracing", "Fluid Dynamics"],
-        highlight: true,
+        desc: "A comprehensive SEO package crafted to ensure consistency, professionalism, and strong market positioning.",
+        features: ["Complete On-Page & Technical SEO", "Content Optimization (5-10 Pages)", "Local SEO Setup", "Monthly Link Building (5-10 Links)", "Competitor Analysis"],
+        highlight: false,
         icon: <Cpu className="w-6 h-6" />
       },
       {
-        name: "ARCHITECT",
-        price: "$12,000",
+        name: "Premium",
+        price: "$1,000",
         period: "/month",
-        desc: "Construct realities without limits.",
-        features: ["Unlimited Revisions", "8K Cinema Renders", "Custom Shaders", "Dedicated Team"],
+        desc: "A strategic SEO package designed for growth-oriented organizations requiring elevated optimization standards.",
+        features: ["Advanced SEO Strategy & Implementation", "Content Creation & Optimization (15-20 Pages)", "High-Quality Link Building (15-20 Links/Month)", "Technical SEO & Site Speed Optimization", "Local SEO & Google My Business Management", "Monthly Strategy Calls & Reporting"],
         highlight: false,
         icon: <Layers className="w-6 h-6" />
       },
       {
-        name: "SINGULARITY",
+        name: "Elite",
         price: "CUSTOM",
         period: "",
-        desc: "Beyond the event horizon.",
-        features: ["Full Studio Acquisition", "Proprietary Tech", "On-Site Direction"],
+        desc: "An enterprise-grade, end-to-end SEO solution engineered for high-value organizations seeking market-leading search visibility.",
+        features: ["Complete SEO Strategy & Execution", "Unlimited Content Optimization", "Premium Link Building Campaign", "Advanced Technical SEO & Performance", "Multi-Location Local SEO", "Dedicated SEO Consultant & Team", "Custom Reporting & Analytics Dashboard"],
         highlight: false,
         icon: <Globe className="w-6 h-6" />
       }
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of successful SEO campaigns that drove measurable results.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "Augmented Reality",
-    subtitle: "Augmented Reality Excellence",
-    desc: "Get professional augmented reality services from our expert team.",
+    title: "Augmented Reality Development",
+    subtitle: "AR Excellence",
+    desc: "Leverage our elite AR development team to create immersive augmented reality experiences that engage users and drive business growth. We deliver cutting-edge AR solutions engineered with advanced technologies to maximize user engagement, enhance brand experiences, and create memorable interactions.",
     color: new THREE.Color("#9d4edd"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY CHOOSE\nAR DEVELOPMENT?",
+    subtitle: "AR DEVELOPMENT",
+    desc: "AR development transforms user experiences by overlaying digital content onto the real world, creating immersive interactions that drive engagement and business value.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide Cutting-Edge AR Solutions", text: "Enjoy innovative AR experiences designed to captivate audiences and deliver measurable business results through immersive technology." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your AR project." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your AR Needs", text: "From concept to deployment, we offer a full spectrum of AR services under one roof, enabling unified management and accelerated delivery." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,63 +106,63 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "AR\nSOLUTIONS",
+    subtitle: "AR SERVICES",
+    desc: "Our AR solutions are engineered to deliver high-performance, scalable, and engaging augmented reality experiences. We create enterprise-grade applications that strengthen brand authority, elevate user engagement, and accelerate measurable business growth.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "Mobile AR Applications", text: "Native iOS and Android AR apps using ARKit and ARCore for immersive mobile experiences." },
+        { id: "02", title: "Web AR Solutions", text: "Browser-based AR experiences accessible on any device without app downloads." },
+        { id: "03", title: "AR Product Visualization", text: "Interactive 3D product previews that allow customers to visualize products in their space." },
+        { id: "04", title: "AR Marketing Campaigns", text: "Engaging AR marketing experiences that drive brand awareness and customer engagement." },
+        { id: "05", title: "AR Training & Education", text: "Immersive training and educational applications that enhance learning experiences." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nAR DEVELOPMENT",
+    subtitle: "AR DEVELOPMENT",
+    desc: "Select your clearance level. Elevate your brand with our premium AR development packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
     plans: [
       {
-        name: "INITIATE",
-        price: "$2,500",
+        name: "Essential",
+        price: "$1,000",
         period: "/project",
-        desc: "Entry level access to the grid.",
-        features: ["Standard 3D Assets", "2 Revisions", "1080p Renders"],
-        highlight: false,
+        desc: "An entry-level AR development package delivering refined, high-quality AR experiences for early-stage business growth.",
+        features: ["Basic AR Application (iOS or Android)", "Simple AR Features", "3D Model Integration", "Basic AR Tracking", ""],
+        highlight: true,
         icon: <Box className="w-6 h-6" />
       },
       {
-        name: "OPERATOR",
-        price: "$5,000",
-        period: "/month",
-        desc: "Full system control for pros.",
-        features: ["High-Poly Modeling", "5 Revisions", "4K Raytracing", "Fluid Dynamics"],
-        highlight: true,
+        name: "Standard",
+        price: "$2,500",
+        period: "/project",
+        desc: "A comprehensive AR development package crafted to ensure consistency, professionalism, and strong market positioning.",
+        features: ["Cross-Platform AR App", "Advanced AR Features", "3D Model Library", "AR Analytics Integration", "App Store Submission"],
+        highlight: false,
         icon: <Cpu className="w-6 h-6" />
       },
       {
-        name: "ARCHITECT",
-        price: "$12,000",
-        period: "/month",
-        desc: "Construct realities without limits.",
-        features: ["Unlimited Revisions", "8K Cinema Renders", "Custom Shaders", "Dedicated Team"],
+        name: "Premium",
+        price: "$5,000",
+        period: "/project",
+        desc: "A strategic AR development package designed for growth-oriented organizations requiring elevated technical standards.",
+        features: ["Native iOS & Android AR Apps", "Advanced AR Features & Interactions", "Custom 3D Models & Animations", "AR Cloud Integration", "Multi-User AR Experiences", "3 Months Post-Launch Support"],
         highlight: false,
         icon: <Layers className="w-6 h-6" />
       },
       {
-        name: "SINGULARITY",
+        name: "Elite",
         price: "CUSTOM",
         period: "",
-        desc: "Beyond the event horizon.",
-        features: ["Full Studio Acquisition", "Proprietary Tech", "On-Site Direction"],
+        desc: "An enterprise-grade, end-to-end AR development solution engineered for high-value organizations seeking market-leading AR experiences.",
+        features: ["Complete AR Solution Development", "Custom AR Features & Complex Interactions", "Enterprise AR Platform Integration", "Dedicated AR Development Team", "Advanced Analytics & Performance Optimization", "6+ Months Ongoing Support & Maintenance"],
         highlight: false,
         icon: <Globe className="w-6 h-6" />
       }
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of AR applications that transformed user experiences.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

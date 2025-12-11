@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "Real Estate",
+    title: "Real Estate Solutions",
     subtitle: "Real Estate Excellence",
-    desc: "Get professional real estate services from our expert team.",
+    desc: "Leverage our comprehensive real estate solutions to build powerful property management and listing platforms. We deliver end-to-end real estate systems engineered with advanced technologies to maximize property visibility, enhance client engagement, and accelerate sales growth.",
     color: new THREE.Color("#00d4ff"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY CHOOSE\nREAL ESTATE SOLUTIONS?",
+    subtitle: "REAL ESTATE",
+    desc: "Real estate solutions transform property businesses by creating seamless listing and management experiences that drive sales, enhance client satisfaction, and maximize revenue.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide Complete Real Estate Solutions", text: "Enjoy comprehensive real estate platforms designed to drive property sales and deliver measurable business results through optimized listing experiences." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your real estate project." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your Real Estate Needs", text: "From property listings to CRM systems, we offer a full spectrum of real estate services under one roof, enabling unified management and accelerated growth." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,26 +106,26 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "REAL ESTATE\nSOLUTIONS",
+    subtitle: "REAL ESTATE SERVICES",
+    desc: "Our real estate solutions are engineered to deliver high-performance, scalable, and conversion-optimized property platforms. We create enterprise-grade systems that strengthen brand authority, elevate property experiences, and accelerate measurable sales growth.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "Property Listing Website", text: "Custom property listing websites with advanced search, filters, and virtual tour integration." },
+        { id: "02", title: "CRM & Lead Management", text: "Comprehensive CRM systems for managing leads, clients, and property transactions." },
+        { id: "03", title: "Virtual Tour Integration", text: "360-degree virtual tours and interactive property viewing experiences." },
+        { id: "04", title: "Property Management System", text: "Complete property management solutions for landlords and property managers." },
+        { id: "05", title: "Real Estate Marketing", text: "Strategic real estate marketing including SEO, PPC, social media, and email campaigns to drive leads and sales." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nREAL ESTATE SOLUTIONS",
+    subtitle: "REAL ESTATE",
+    desc: "Select your clearance level. Elevate your real estate business with our premium real estate packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of successful real estate projects that drove property sales.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

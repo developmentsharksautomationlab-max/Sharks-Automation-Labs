@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "Creative Services",
-    subtitle: "Creative Services Excellence",
-    desc: "Get professional creative services services from our expert team.",
+    title: "Outsource Creative Services",
+    subtitle: "Outsource Creative Excellence",
+    desc: "Elevate your brand by leveraging our world-class creative team, delivering a comprehensive suite of premium design and creative solutions. We develop bespoke, strategically aligned visual assets that reflect your vision while ensuring a seamless, high-touch client experience from concept to completion.",
     color: new THREE.Color("#ff6b9d"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY OUTSOURCE\nIT PROJECTS?",
+    subtitle: "IT PROJECTS",
+    desc: "Outsourcing IT projects enhances efficiency, reduces operational burden, and delivers high-quality results through specialized expertise.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide an Effortless Outsourcing Experience", text: "Enjoy a frictionless engagement model designed to reduce operational complexity and deliver seamless project execution from start to finish." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your project." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your Outsourcing Needs", text: "From strategy to implementation, we offer a full spectrum of IT services under one roof, enabling unified management and accelerated delivery." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,73 +106,74 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "CREATIVE DESIGN\nSOLUTION",
+    subtitle: "CREATIVE DESIGN",
+    desc: "Our creative design solutions are tailored to your brand's unique identity, delivering visually stunning and strategically aligned designs that captivate your audience and drive engagement.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "LOGO DESIGN", text: "Distinctive brand identities engineered for elite market recognition." },
+        { id: "02", title: "UI DESIGNS", text: "High-performance interface designs crafted for seamless, intuitive user engagement." },
+        { id: "03", title: "SOCIAL MEDIA DESIGNS", text: "Impactful visual content optimized for maximum visibility and audience influence." },
+        { id: "04", title: "PROMOTIONAL DESIGNS", text: "Persuasive campaign creatives designed to accelerate demand and drive conversions." },
+        { id: "05", title: "WEB DESIGN", text: "Enterprise-grade, responsive website designs that reflect brand excellence and ensure superior user experience." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nCREATIVE DESIGN",
+    subtitle: "CREATIVE DESIGN",
+    desc: "Select your clearance level. Enhance your reality with our Perieum packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
     plans: [
       {
-        name: "INITIATE",
-        price: "$2,500",
+        name: "Essential",
+        price: "$300",
         period: "/project",
-        desc: "Entry level access to the grid.",
-        features: ["Standard 3D Assets", "2 Revisions", "1080p Renders"],
+        desc: "An entry-level branding package delivering refined, high-quality visual assets for early-stage brand elevation.",
+        features: ["Creative Design", "Business Stationery Suite", "Social Media Creative Assets", "Web Design (Standard Layout)"],
         highlight: false,
         icon: <Box className="w-6 h-6" />
       },
       {
-        name: "OPERATOR",
-        price: "$5,000",
-        period: "/month",
-        desc: "Full system control for pros.",
-        features: ["High-Poly Modeling", "5 Revisions", "4K Raytracing", "Fluid Dynamics"],
+        name: "Standard",
+        price: "$500",
+        period: "/Projects",
+        desc: "A comprehensive branding experience crafted to ensure consistency, professionalism, and strong market positioning.",
+        features: ["Creative Design", "Corporate Profile", "Business Stationery Suite", "Social Media Creative Assets", "Brand Style Guide", "WWeb Design (Enhanced Layout)"],
         highlight: true,
         icon: <Cpu className="w-6 h-6" />
       },
       {
-        name: "ARCHITECT",
-        price: "$12,000",
-        period: "/month",
-        desc: "Construct realities without limits.",
-        features: ["Unlimited Revisions", "8K Cinema Renders", "Custom Shaders", "Dedicated Team"],
+        name: "Premium",
+        price: "$1,000",
+        period: "/Projects",
+        desc: "A strategic brand development package designed for growth-oriented organizations requiring elevated creative standards.",
+        features: ["Advanced Creative Design System (Primary + Secondary Marks)", "High-End Corporate Profile & Pitch Deck", "Full Business Stationery Package", "Social Media Campaign Kit (10–15 Assets)", "Brand Guidelines Manual (Color, Typography, Voice)", "Responsive Website (Up to 6 Pages)"],
         highlight: false,
         icon: <Layers className="w-6 h-6" />
       },
       {
-        name: "SINGULARITY",
-        price: "CUSTOM",
-        period: "",
-        desc: "Beyond the event horizon.",
-        features: ["Full Studio Acquisition", "Proprietary Tech", "On-Site Direction"],
+        name: "Elite",
+        price: "2,000",
+        period: "Projects",
+        desc: "An all-inclusive, enterprise-grade branding solution engineered for high-value organizations seeking unmatched creative precision and market impact.",
+        features: ["Complete Brand Identity System", "Executive-Level Corporate Profile + Investor Deck", "Premium Business Stationery & Print Collateral", "Social Media Design Suite (30-Day Content Set)", "Comprehensive Brand Governance Guide", "Custom Website Design (Advanced UI/UX + Animations)", "Dedicated Creative Consultant"],
         highlight: false,
         icon: <Globe className="w-6 h-6" />
       }
     ]
   },
+  
   // --- PORTFOLIO SECTION (MOVED TO LAST) ---
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "OUR\nPORTFOLIO",
     subtitle: "Selected Works",
     desc: "A collection of realities crafted in the void.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
@@ -522,7 +523,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

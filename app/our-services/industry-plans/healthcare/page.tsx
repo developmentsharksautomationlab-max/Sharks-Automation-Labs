@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "Healthcare",
+    title: "Healthcare Solutions",
     subtitle: "Healthcare Excellence",
-    desc: "Get professional healthcare services from our expert team.",
+    desc: "Leverage our comprehensive healthcare solutions to build secure, compliant, and patient-focused digital platforms. We deliver HIPAA-compliant healthcare systems engineered with advanced technologies to enhance patient care, streamline operations, and improve healthcare outcomes.",
     color: new THREE.Color("#00d4ff"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY CHOOSE\nHEALTHCARE SOLUTIONS?",
+    subtitle: "HEALTHCARE",
+    desc: "Healthcare solutions transform medical practices by creating secure, compliant, and patient-focused digital platforms that enhance care delivery and operational efficiency.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide HIPAA-Compliant Healthcare Solutions", text: "Enjoy secure healthcare platforms designed to meet regulatory requirements and deliver measurable improvements in patient care." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and compliance across every phase of your healthcare project." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your Healthcare Needs", text: "From patient portals to EMR systems, we offer a full spectrum of healthcare services under one roof, enabling unified management and accelerated delivery." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,26 +106,26 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "HEALTHCARE\nSOLUTIONS",
+    subtitle: "HEALTHCARE SERVICES",
+    desc: "Our healthcare solutions are engineered to deliver secure, compliant, and patient-focused digital platforms. We create enterprise-grade systems that strengthen healthcare delivery, enhance patient experiences, and improve operational efficiency.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "Patient Portal Development", text: "Secure patient portals for appointment scheduling, medical records access, and telehealth consultations." },
+        { id: "02", title: "EMR/EHR Integration", text: "Seamless integration with Electronic Medical Records and Electronic Health Records systems." },
+        { id: "03", title: "HIPAA-Compliant Systems", text: "Fully compliant healthcare platforms that meet HIPAA regulations and security standards." },
+        { id: "04", title: "Telemedicine Solutions", text: "Virtual consultation platforms that enable remote patient care and telehealth services." },
+        { id: "05", title: "Healthcare Marketing", text: "Strategic healthcare marketing including SEO, content marketing, and patient engagement campaigns." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nHEALTHCARE SOLUTIONS",
+    subtitle: "HEALTHCARE",
+    desc: "Select your clearance level. Elevate your healthcare practice with our premium healthcare packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of successful healthcare projects that improved patient care.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

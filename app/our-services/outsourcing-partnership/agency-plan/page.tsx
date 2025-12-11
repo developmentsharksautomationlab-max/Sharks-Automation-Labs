@@ -81,7 +81,7 @@ const SECTIONS = [
     type: "VERTICAL",
     title: "Agency Development Plan",
     subtitle: "Agency Development Plan Excellence",
-    desc: "Get professional agency development plan services from our expert team.",
+    desc: "Leverage our comprehensive agency development plan solutions to build and scale your digital agency. We deliver end-to-end agency development strategies engineered with advanced methodologies to maximize growth, enhance service delivery, and accelerate agency success through strategic planning and execution.",
     color: new THREE.Color("#00ff88"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY CHOOSE\nAGENCY DEVELOPMENT PLAN?",
+    subtitle: "AGENCY DEVELOPMENT",
+    desc: "Agency development plans transform digital agencies by creating strategic roadmaps that drive growth, enhance service delivery, and maximize revenue through comprehensive planning and execution.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide Complete Agency Development Solutions", text: "Enjoy comprehensive agency development plans designed to accelerate growth and deliver measurable business results through strategic planning." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your agency development." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your Agency Development Needs", text: "From strategy to execution, we offer a full spectrum of agency development services under one roof, enabling unified management and accelerated growth." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,26 +106,26 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "AGENCY DEVELOPMENT\nPLAN SOLUTIONS",
+    subtitle: "AGENCY DEVELOPMENT",
+    desc: "Our agency development plan solutions are engineered to deliver high-performance, scalable, and growth-focused agency strategies. We create enterprise-grade development plans that strengthen agency operations, enhance service delivery, and accelerate measurable agency growth.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "Agency Strategy Development", text: "Comprehensive agency strategy development including business planning, service positioning, and growth roadmaps." },
+        { id: "02", title: "Service Portfolio Planning", text: "Strategic service portfolio planning to identify opportunities and develop competitive service offerings." },
+        { id: "03", title: "Team Building & Scaling", text: "Complete team building and scaling strategies for hiring, training, and managing agency talent." },
+        { id: "04", title: "Client Acquisition Strategy", text: "Strategic client acquisition plans including marketing, sales, and business development strategies." },
+        { id: "05", title: "Operational Excellence", text: "Operational excellence planning for processes, systems, and tools to optimize agency efficiency and profitability." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nAGENCY DEVELOPMENT PLAN",
+    subtitle: "AGENCY DEVELOPMENT",
+    desc: "Select your clearance level. Elevate your agency with our premium agency development plan packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of successful agency development projects that transformed agencies.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

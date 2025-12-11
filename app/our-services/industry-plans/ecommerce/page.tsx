@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "Ecommerce",
+    title: "Ecommerce Solutions",
     subtitle: "Ecommerce Excellence",
-    desc: "Get professional ecommerce services from our expert team.",
+    desc: "Leverage our comprehensive ecommerce solutions to build powerful online stores that drive sales and business growth. We deliver end-to-end ecommerce platforms engineered with advanced technologies to maximize conversions, enhance user experience, and accelerate revenue growth.",
     color: new THREE.Color("#00d4ff"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY CHOOSE\nECOMMERCE SOLUTIONS?",
+    subtitle: "ECOMMERCE",
+    desc: "Ecommerce solutions transform online businesses by creating seamless shopping experiences that drive sales, enhance customer satisfaction, and maximize revenue.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide Complete Ecommerce Solutions", text: "Enjoy comprehensive ecommerce platforms designed to drive sales and deliver measurable business results through optimized shopping experiences." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your ecommerce project." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your Ecommerce Needs", text: "From store setup to marketing, we offer a full spectrum of ecommerce services under one roof, enabling unified management and accelerated growth." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,26 +106,26 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "ECOMMERCE\nSOLUTIONS",
+    subtitle: "ECOMMERCE SERVICES",
+    desc: "Our ecommerce solutions are engineered to deliver high-performance, scalable, and conversion-optimized online stores. We create enterprise-grade platforms that strengthen brand authority, elevate shopping experiences, and accelerate measurable revenue growth.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "Ecommerce Website Development", text: "Custom ecommerce websites built with Shopify, WooCommerce, Magento, or custom solutions tailored to your needs." },
+        { id: "02", title: "Payment Gateway Integration", text: "Seamless integration with major payment gateways including Stripe, PayPal, and Square for secure transactions." },
+        { id: "03", title: "Product Management System", text: "Comprehensive product catalog management with inventory tracking and automated updates." },
+        { id: "04", title: "Shopping Cart Optimization", text: "Optimized shopping cart experiences designed to reduce cart abandonment and increase conversions." },
+        { id: "05", title: "Ecommerce Marketing", text: "Strategic ecommerce marketing including SEO, PPC, email marketing, and social media campaigns to drive traffic and sales." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nECOMMERCE SOLUTIONS",
+    subtitle: "ECOMMERCE",
+    desc: "Select your clearance level. Elevate your online store with our premium ecommerce packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of successful ecommerce projects that drove sales and growth.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

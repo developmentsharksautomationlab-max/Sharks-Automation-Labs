@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "Financial Services",
+    title: "Financial Services Solutions",
     subtitle: "Financial Services Excellence",
-    desc: "Get professional financial services services from our expert team.",
+    desc: "Leverage our comprehensive financial services solutions to build secure, compliant, and client-focused digital platforms. We deliver FINRA-compliant financial systems engineered with advanced technologies to enhance client relationships, streamline operations, and improve financial outcomes.",
     color: new THREE.Color("#00d4ff"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY CHOOSE\nFINANCIAL SERVICES SOLUTIONS?",
+    subtitle: "FINANCIAL SERVICES",
+    desc: "Financial services solutions transform financial institutions by creating secure, compliant, and client-focused digital platforms that enhance service delivery and operational efficiency.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide FINRA-Compliant Financial Solutions", text: "Enjoy secure financial platforms designed to meet regulatory requirements and deliver measurable improvements in client service." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and compliance across every phase of your financial project." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your Financial Needs", text: "From client portals to trading platforms, we offer a full spectrum of financial services under one roof, enabling unified management and accelerated delivery." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,26 +106,26 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "FINANCIAL SERVICES\nSOLUTIONS",
+    subtitle: "FINANCIAL SERVICES",
+    desc: "Our financial services solutions are engineered to deliver secure, compliant, and client-focused digital platforms. We create enterprise-grade systems that strengthen financial operations, enhance client experiences, and improve operational efficiency.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "Client Portal Development", text: "Secure client portals for account management, portfolio tracking, and financial reporting." },
+        { id: "02", title: "Trading Platform Integration", text: "Seamless integration with trading platforms and financial data providers." },
+        { id: "03", title: "Compliance & Security", text: "Fully compliant financial platforms that meet FINRA, SEC, and other regulatory requirements." },
+        { id: "04", title: "Financial Analytics Dashboard", text: "Advanced analytics and reporting tools for portfolio management and financial insights." },
+        { id: "05", title: "Financial Marketing", text: "Strategic financial marketing including SEO, content marketing, and client engagement campaigns." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nFINANCIAL SERVICES",
+    subtitle: "FINANCIAL SERVICES",
+    desc: "Select your clearance level. Elevate your financial practice with our premium financial services packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of successful financial services projects that improved client relationships.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

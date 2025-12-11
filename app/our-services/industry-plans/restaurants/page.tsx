@@ -79,9 +79,9 @@ const SECTIONS = [
   {
     id: "hero",
     type: "VERTICAL",
-    title: "Restaurants",
-    subtitle: "Restaurants Excellence",
-    desc: "Get professional restaurants services from our expert team.",
+    title: "Restaurant Solutions",
+    subtitle: "Restaurant Excellence",
+    desc: "Leverage our comprehensive restaurant solutions to build powerful online ordering and management platforms. We deliver end-to-end restaurant systems engineered with advanced technologies to maximize orders, enhance customer experience, and accelerate revenue growth.",
     color: new THREE.Color("#00d4ff"), 
     shape: "SPHERE_LIQUID",
     icon: <Hexagon />
@@ -90,14 +90,14 @@ const SECTIONS = [
   {
     id: "3d",
     type: "VERTICAL",
-    title: "QUANTUM\nREALITY",
-    subtitle: "Visual Singularity",
-    desc: "Hyper-realistic renders existing in superposition. Visuals so sharp they cut reality.",
+    title: "WHY CHOOSE\nRESTAURANT SOLUTIONS?",
+    subtitle: "RESTAURANT",
+    desc: "Restaurant solutions transform dining businesses by creating seamless ordering and management experiences that drive sales, enhance customer satisfaction, and maximize revenue.",
     points: [
-        { title: "Raytracing", text: "Real-time simulation of light paths." },
-        { title: "Physics Engine", text: "Gravity, collision, and fluid dynamics." },
-        { title: "Sub-surface", text: "Skin and material scattering matrices." },
-        { title: "Volumetric Fog", text: "Atmospheric density and light shafts." }
+        { title: "We Provide Complete Restaurant Solutions", text: "Enjoy comprehensive restaurant platforms designed to drive online orders and deliver measurable business results through optimized dining experiences." },
+        { title: "We Strive To Deliver Optimum Service Quality", text: "Our teams adhere to enterprise-grade standards, ensuring precision, reliability, and performance across every phase of your restaurant project." },
+        { title: "We Ensure Best Value for Long-Term Partnerships", text: "We maximize ROI by aligning cost efficiency with sustained quality, supporting scalable growth and long-term business success." },
+        { title: "A One-Stop Solution for All Your Restaurant Needs", text: "From online ordering to POS integration, we offer a full spectrum of restaurant services under one roof, enabling unified management and accelerated growth." }
     ],
     color: new THREE.Color("#ff0055"), 
     shape: "TORNADO_CHAOS",
@@ -106,26 +106,26 @@ const SECTIONS = [
   {
     id: "horizontal-scroll",
     type: "HORIZONTAL",
-    title: "RETHINKING\nSMOOTH SCROLL",
-    subtitle: "Architecture",
-    desc: "We have to give props to libraries like Locomotive Scroll. But we built our own specifically for React.",
+    title: "RESTAURANT\nSOLUTIONS",
+    subtitle: "RESTAURANT SERVICES",
+    desc: "Our restaurant solutions are engineered to deliver high-performance, scalable, and conversion-optimized dining platforms. We create enterprise-grade systems that strengthen brand authority, elevate customer experiences, and accelerate measurable revenue growth.",
     color: new THREE.Color("#FFD700"), 
     shape: "DNA_EVOLVING",
     icon: <Share2 />,
     points: [
-        { id: "01", title: "PERFORMANCE", text: "Heavy budget loss due to CSS transforms." },
-        { id: "02", title: "ACCESSIBILITY", text: "No native scrollbar support causing issues." },
-        { id: "03", title: "COSTS", text: "Non-negligible bundle size increase." },
-        { id: "04", title: "ANIMATION", text: "Complex systems required for parallax." },
-        { id: "05", title: "NATIVE APIS", text: "Breaking IntersectionObserver." }
+        { id: "01", title: "Online Ordering System", text: "Custom online ordering platforms with menu management, cart functionality, and payment integration." },
+        { id: "02", title: "POS Integration", text: "Seamless integration with Point of Sale systems for unified order and inventory management." },
+        { id: "03", title: "Delivery Management", text: "Complete delivery management systems with real-time tracking and driver coordination." },
+        { id: "04", title: "Reservation System", text: "Table reservation platforms that streamline booking and enhance customer experience." },
+        { id: "05", title: "Restaurant Marketing", text: "Strategic restaurant marketing including SEO, social media, email campaigns, and loyalty programs to drive orders and customer retention." }
     ]
   },
   {
     id: "pricing",
     type: "PRICING",
-    title: "VALUE\nPROTOCOLS",
-    subtitle: "Access Granted",
-    desc: "Select your clearance level. Enhance your reality with our quantum-tiered packages.",
+    title: "VALUE\nRESTAURANT SOLUTIONS",
+    subtitle: "RESTAURANT",
+    desc: "Select your clearance level. Elevate your restaurant business with our premium restaurant packages.",
     color: new THREE.Color("#00FF88"),
     shape: "HYPER_CUBE",
     icon: <Diamond />,
@@ -172,9 +172,9 @@ const SECTIONS = [
   {
     id: "portfolio",
     type: "PORTFOLIO_SCROLL",
-    title: "ASTRAL\nARCHIVE",
+    title: "Our\nPORTFOLIO",
     subtitle: "Selected Works",
-    desc: "A collection of realities crafted in the void.",
+    desc: "A collection of successful restaurant projects that drove orders and growth.",
     color: new THREE.Color("#8A2BE2"), // Blue Violet
     shape: "GALAXY_SPIRAL",
     icon: <Aperture />,
@@ -522,7 +522,7 @@ const VerticalSection = ({ data, index }: { data: any; index: number }) => {
             </div>
             {data.points && data.points.map((point, i) => (
                 <div key={i} className="min-h-[30vh] md:min-h-[40vh] flex items-center group">
-                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden">
+                    <div className="w-full backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 rounded-none md:rounded-3xl hover:bg-white/10 transition-colors duration-500 relative overflow-hidden mb-5">
                          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-current to-transparent blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-40 transition-opacity duration-700" style={{ color: '#' + data.color.getHexString() }} />
                          <div className="relative z-10">
                              <div className="flex justify-between items-start mb-6">

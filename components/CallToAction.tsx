@@ -284,48 +284,78 @@ const CallToAction = () => {
             </motion.p>
 
             {/* The Trigger Button */}
-            <motion.div
-              animate={status === 'collapsing' ? { 
-                scale: [1, 0.8, 1.1, 0], 
-                rotate: [0, 10, -10, 0],
-                filter: "hue-rotate(90deg)"
-              } : { scale: 1, opacity: 1 }}
-            >
-              <Link href="/contact">
-                <button 
-                  onClick={handleTrigger}
-                  disabled={status !== 'idle'}
-                  className={`group relative inline-flex items-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 text-[#f2f4f4] rounded-full overflow-hidden shadow-[0_10px_30px_-10px_rgba(5,33,38,0.5)] transition-all duration-300 
-                    ${status === 'reborn' ? 'bg-[#35c4dd] hover:shadow-[0_20px_50px_-10px_rgba(53,196,221,0.6)]' : 'bg-[#052126] hover:shadow-[0_20px_40px_-10px_rgba(53,196,221,0.4)] hover:-translate-y-1'}
-                  `}
+            <AnimatePresence mode="wait">
+              {status === 'idle' && (
+                <motion.div
+                  key="activate-button"
+                  initial={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  animate={status === 'collapsing' ? { 
+                    scale: [1, 0.8, 1.1, 0], 
+                    rotate: [0, 10, -10, 0],
+                    filter: "hue-rotate(90deg)"
+                  } : { scale: 1, opacity: 1 }}
                 >
-                {/* Button BG */}
-                <div className={`absolute inset-0 w-full h-full transition-all duration-500 bg-[length:200%_auto] bg-left group-hover:bg-right
-                  ${status === 'reborn' 
-                    ? 'bg-gradient-to-r from-[#35c4dd] via-[#fff] to-[#35c4dd] opacity-30' 
-                    : 'bg-gradient-to-r from-[#052126] via-[#082e36] to-[#052126] group-hover:via-[#35c4dd]'}
-                `} />
-                
-                {/* Text & Icon */}
-                <span className="relative font-bold text-xs sm:text-sm md:text-base tracking-wide uppercase z-10 group-hover:text-white transition-colors">
-                  Activate Growth
-                </span>
-                
-                <svg 
-                  className="relative w-4 h-4 sm:w-5 sm:h-5 z-10 transform transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-45 text-[#35c4dd] group-hover:text-white" 
-                  fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  <button 
+                    onClick={handleTrigger}
+                    disabled={status !== 'idle'}
+                    className="group relative inline-flex items-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 text-[#f2f4f4] rounded-full overflow-hidden shadow-[0_10px_30px_-10px_rgba(5,33,38,0.5)] transition-all duration-300 bg-[#052126] hover:shadow-[0_20px_40px_-10px_rgba(53,196,221,0.4)] hover:-translate-y-1"
+                  >
+                    {/* Button BG */}
+                    <div className="absolute inset-0 w-full h-full transition-all duration-500 bg-[length:200%_auto] bg-left group-hover:bg-right bg-gradient-to-r from-[#052126] via-[#082e36] to-[#052126] group-hover:via-[#35c4dd]" />
+                    
+                    {/* Text & Icon */}
+                    <span className="relative font-bold text-xs sm:text-sm md:text-base tracking-wide uppercase z-10 group-hover:text-white transition-colors">
+                      Activate Growth
+                    </span>
+                    
+                    <svg 
+                      className="relative w-4 h-4 sm:w-5 sm:h-5 z-10 transform transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-45 text-[#35c4dd] group-hover:text-white" 
+                      fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                </motion.div>
+              )}
+
+              {status === 'reborn' && (
+                <motion.div
+                  key="active-growth-button"
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ type: "spring", stiffness: 100, damping: 12, delay: 0.3 }}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-                {status === 'reborn' && (
-                  <motion.div 
-                     initial={{ scale: 0 }} animate={{ scale: 1 }}
-                     className="relative w-3 h-3 rounded-full bg-white shadow-[0_0_10px_white]" 
-                  />
-                )}
-              </button>
-              </Link>
-            </motion.div>
+                  <Link href="/contact">
+                    <button 
+                      className="group relative inline-flex items-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 text-[#f2f4f4] rounded-full overflow-hidden shadow-[0_10px_30px_-10px_rgba(5,33,38,0.5)] transition-all duration-300 bg-[#35c4dd] hover:shadow-[0_20px_50px_-10px_rgba(53,196,221,0.6)] hover:scale-105"
+                    >
+                      {/* Button BG */}
+                      <div className="absolute inset-0 w-full h-full transition-all duration-500 bg-[length:200%_auto] bg-left group-hover:bg-right bg-gradient-to-r from-[#35c4dd] via-[#fff] to-[#35c4dd] opacity-30" />
+                      
+                      {/* Text & Icon */}
+                      <span className="relative font-bold text-xs sm:text-sm md:text-base tracking-wide uppercase z-10 group-hover:text-white transition-colors">
+                        Active Growth
+                      </span>
+                      
+                      <svg 
+                        className="relative w-4 h-4 sm:w-5 sm:h-5 z-10 transform transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-45 text-white" 
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                      
+                      <motion.div 
+                        initial={{ scale: 0 }} 
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.5 }}
+                        className="relative w-3 h-3 rounded-full bg-white shadow-[0_0_10px_white]" 
+                      />
+                    </button>
+                  </Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
           </div>
         </TiltCard>

@@ -74,6 +74,9 @@ export const metadata: Metadata = {
   },
 };
 
+// Fresh HTML each request so footer/content updates are not stuck on old Vercel edge prerender (X-Vercel-Cache HIT + stale RSC payload).
+export const dynamic = 'force-dynamic';
+
 export default function RootLayout({
   children,
 }: Readonly<{

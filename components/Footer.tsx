@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Facebook, Instagram, ArrowUpRight, MapPin, Mail, Phone, ArrowRight, ShieldCheck, FileText, Globe, Cpu, Layers } from 'lucide-react';
+import { Facebook, Instagram, ArrowUpRight, Mail, Phone, ArrowRight, ShieldCheck, FileText, Globe, Cpu, Layers } from 'lucide-react';
 
 // --- DATA ---
 const footerMenu = [
@@ -20,19 +20,20 @@ const footerLegal = [
   { name: "Return Policy", href: "/returns", icon: <FileText size={16} /> },
 ];
 
-const locations = [
-  { 
-    country: "USA (HQ)", 
-    address: "22023 Rustic Canyon Ln, Richmond, TX 77469",
-    phone: "+1 (469) 480-7938",
-    flag: "🇺🇸"
-  },
-  { 
-    country: "PAKISTAN (GDC)", 
+type FooterLocation = {
+  country: string;
+  address?: string;
+  phone: string;
+  flag: string;
+};
+
+const locations: FooterLocation[] = [
+  {
+    country: "PAKISTAN (GDC)",
     address: "DHA Commercial, Bukhari, Karachi",
     phone: "Global Delivery Center",
-    flag: "🇵🇰"
-  }
+    flag: "🇵🇰",
+  },
 ];
 
 // --- COMPONENTS ---
@@ -230,9 +231,11 @@ const Footer = () => {
                     <span className="text-xl">{loc.flag}</span>
                     <h5 className="font-bold text-[#052126] text-sm tracking-wide">{loc.country}</h5>
                   </div>
-                  <p className="text-[#052126]/60 text-xs leading-relaxed mb-2 min-h-[2.5rem]">
-                    {loc.address}
-                  </p>
+                  {loc.address ? (
+                    <p className="text-[#052126]/60 text-xs leading-relaxed mb-2">
+                      {loc.address}
+                    </p>
+                  ) : null}
                   <div className="text-[#35c4dd] font-mono text-xs">
                     {loc.phone}
                   </div>
